@@ -1,25 +1,28 @@
-package ir.sample.app.highway.services;
+package ir.sample.app.BeheshtRay.services;
 
 import ir.appsan.sdk.APSService;
 import ir.appsan.sdk.View;
 import ir.appsan.sdk.ViewUpdate;
 import ir.appsan.sdk.Response;
-import ir.sample.app.highway.models.Owner;
+import ir.sample.app.BeheshtRay.models.Student;
+import ir.sample.app.BeheshtRay.models.Teacher;
 import org.json.simple.JSONObject;
 
 import java.sql.Connection;
 
-public class HighwayService extends APSService {
+    public class BeheshtRayService extends APSService {
 
     String selectedharf = "";
     String selectedtype = "";
     String selectedid = "";
-    Owner owner = new Owner();
-    Pelak pelak = new Pelak();
+
+    Student student = new Student();
+    Teacher teacher = new Teacher();
+
     Connection connection = DatabaseManager.getConnection();
     boolean allowmake = true;
 
-    public HighwayService(String channelName) {
+    public BeheshtRayService(String channelName) {
         super(channelName);
     }
 
