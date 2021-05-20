@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DbOperation {
 
-    public static void registerPelak(Comment comment, String number, Connection connection) {
+    public static void sendComment(Comment comment, String number, Connection connection) {
         try {
             String count = "SELECT COUNT(*) FROM numberpelak";
             PreparedStatement pcount = connection.prepareStatement(count);
@@ -38,7 +38,7 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList<Pelak> retrievePelaks(String number, Connection connection) {
+    public static ArrayList<Comment> retrievePelaks(String number, Connection connection) {
         try {
             String checkSql = "SELECT first,second,third,type,harf,name,bedehi,id,show FROM numberpelak where number=? and show=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);

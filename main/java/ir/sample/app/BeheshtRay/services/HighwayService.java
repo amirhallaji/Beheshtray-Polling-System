@@ -4,11 +4,7 @@ import ir.appsan.sdk.APSService;
 import ir.appsan.sdk.View;
 import ir.appsan.sdk.ViewUpdate;
 import ir.appsan.sdk.Response;
-import ir.sample.app.highway.database.DatabaseManager;
-import ir.sample.app.highway.database.DbOperation;
 import ir.sample.app.highway.models.Owner;
-import ir.sample.app.highway.models.Pelak;
-import ir.sample.app.highway.views.*;
 import org.json.simple.JSONObject;
 
 import java.sql.Connection;
