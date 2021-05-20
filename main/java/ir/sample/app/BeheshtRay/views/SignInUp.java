@@ -2,9 +2,9 @@ package ir.sample.app.beheshtray.views;
 
 import ir.appsan.sdk.View;
 
-public class SignIn-Up extends View {
+public class SignInUp extends View {
 
-    public SignIn-Up() {
+    public SignInUp() {
         super();
         setViewPath("SignIn-Up.xml");
     }

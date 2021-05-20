@@ -33,7 +33,8 @@ import java.sql.Connection;
 
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
-        View view;
+        View view = new SignInUp();
+
         if (command.equals("addcar")) {
             return new AddCar();
         } else if (command.startsWith("idpelak")) {
