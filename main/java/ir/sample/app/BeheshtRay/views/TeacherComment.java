@@ -6,6 +6,6 @@ public class TeacherComment extends View {
 
     public TeacherComment() {
         super();
-        setViewPath("Teacher-Comment.xml");
+        setViewPath("TeacherComment.xml");
     }
 }

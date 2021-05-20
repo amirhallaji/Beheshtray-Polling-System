@@ -6,6 +6,6 @@ public class TeacherInfo extends View {
 
     public TeacherInfo() {
         super();
-        setViewPath("Teacher-Info.xml");
+        setViewPath("TeacherInfo.xml");
     }
 }

@@ -6,6 +6,6 @@ public class ProfileSettings extends View {
 
     public ProfileSettings() {
         super();
-        setViewPath("Profile-Settings.xml");
+        setViewPath("ProfileSettings.xml");
     }
 }

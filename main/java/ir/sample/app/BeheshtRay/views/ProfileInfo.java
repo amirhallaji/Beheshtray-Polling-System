@@ -6,6 +6,6 @@ public class ProfileInfo extends View {
 
     public ProfileInfo() {
         super();
-        setViewPath("Profile-Info.xml");
+        setViewPath("ProfileInfo.xml");
     }
 }

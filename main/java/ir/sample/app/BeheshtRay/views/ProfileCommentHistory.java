@@ -6,6 +6,6 @@ public class ProfileCommentHistory extends View {
 
     public ProfileCommentHistory() {
         super();
-        setViewPath("Profile-CommentHistory.xml");
+        setViewPath("ProfileCommentHistory.xml");
     }
 }

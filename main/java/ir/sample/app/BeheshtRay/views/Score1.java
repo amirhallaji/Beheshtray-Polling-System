@@ -6,6 +6,6 @@ public class Score1 extends View {
 
     public Score1() {
         super();
-        setViewPath("Score-1.xml");
+        setViewPath("Score1.xml");
     }
 }

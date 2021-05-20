@@ -6,6 +6,6 @@ public class TeacherScores extends View {
 
     public TeacherScores() {
         super();
-        setViewPath("Teacher-Scores.xml");
+        setViewPath("TeacherScores.xml");
     }
 }
