@@ -2,9 +2,9 @@ package ir.sample.app.beheshtray.views;
 
 import ir.appsan.sdk.View;
 
-public class Teacher-Scores extends View {
+public class TeacherScores extends View {
 
-    public Teacher-Scores() {
+    public TeacherScores() {
         super();
         setViewPath("Teacher-Scores.xml");
     }

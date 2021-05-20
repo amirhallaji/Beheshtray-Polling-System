@@ -2,9 +2,9 @@ package ir.sample.app.beheshtray.views;
 
 import ir.appsan.sdk.View;
 
-public class Teacher-Comment extends View {
+public class TeacherComment extends View {
 
-    public Teacher-Comment() {
+    public TeacherComment() {
         super();
         setViewPath("Teacher-Comment.xml");
     }

@@ -2,9 +2,9 @@ package ir.sample.app.beheshtray.views;
 
 import ir.appsan.sdk.View;
 
-public class Profile-CommentHistory extends View {
+public class ProfileCommentHistory extends View {
 
-    public Profile-CommentHistory() {
+    public ProfileCommentHistory() {
         super();
         setViewPath("Profile-CommentHistory.xml");
     }

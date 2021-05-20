@@ -2,9 +2,9 @@ package ir.sample.app.beheshtray.views;
 
 import ir.appsan.sdk.View;
 
-public class Profile-Info extends View {
+public class ProfileInfo extends View {
 
-    public Profile-Info() {
+    public ProfileInfo() {
         super();
         setViewPath("Profile-Info.xml");
     }
