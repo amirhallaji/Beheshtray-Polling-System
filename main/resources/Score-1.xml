@@ -1,0 +1,144 @@
+    <link href='https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css' rel='stylesheet' type='text/css'>
+  
+<page title="بازخورد", scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" >
+  
+   <frame >
+ 	<image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120"  height="164" width="164"></image>
+   </frame>
+  
+   <frame >
+   <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
+  </frame>
+  
+   <frame >
+    <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره</text>
+  </frame>
+  
+  
+  
+  <frame layout="linear_horizontal" >
+   <frame height="20" width="20" background="#1E90FF" borderCornerRadius="120"  borderColor="#1E90FF" borderStrokeWidth="0.5">
+   </frame>
+    
+   <frame height="20" width="20" background="#FFFFFF" borderCornerRadius="120"  borderColor="#1E90FF" borderStrokeWidth="0.5">
+   </frame>
+    
+    </frame>
+  
+
+
+      
+     
+
+  
+  
+              
+
+  
+          <frame gravity="center" >
+            <text textsize="22" gravity="center">امتیاز دهید.</text>
+        </frame>
+  
+            <frame layout="linear_vertical" >
+
+            <frame layout="linear_horizontal" >
+              
+                                    <frame gravity="left" width="">
+               <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                                      </frame>
+                                     
+
+                              </frame>
+
+                                      
+
+        <frame gravity="right" width="500">
+            <text textsize="14" gravity="right">رعایت حقوق دانشجو و رفتار مناسب با آن‌ها</text>
+        </frame>
+              </frame>
+                                                      </frame>
+  
+  
+              <frame layout="linear_vertical" >
+
+            <frame layout="linear_horizontal" >
+              
+                                    <frame gravity="left" width="">
+               <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                                      </frame>
+                                     
+
+                              </frame>
+
+                                      
+
+        <frame gravity="right" width="500">
+            <text textsize="14" gravity="right">میزان انتقال مطلب</text>
+        </frame>
+              </frame>
+                                                      </frame>
+  
+  
+              <frame layout="linear_vertical" >
+
+            <frame layout="linear_horizontal" >
+              
+                                    <frame gravity="left" width="">
+               <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                                      </frame>
+                                     
+
+                              </frame>
+
+                                      
+
+        <frame gravity="right" width="500">
+            <text textsize="14" gravity="right">تیم حل تمرین</text>
+        </frame>
+              </frame>
+                                                      </frame>
+  
+  
+              <frame layout="linear_vertical" >
+
+            <frame layout="linear_horizontal" >
+              
+                                    <frame gravity="left" width="">
+               <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                                      </frame>
+                                     
+
+                              </frame>
+
+                                      
+
+        <frame gravity="right" width="500">
+            <text textsize="14" gravity="right">متناسب بودن تکالیف</text>
+        </frame>
+              </frame>
+                                                      </frame>
+
+  
+        <frame padding_bottom="10"></frame>
+
+
+   <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50" textsize="14">بعدی</button>
+
+
+  
+  
+
+  
+      <frame padding_bottom="10"></frame>
+  
+  
+
+  
+
+  
+  
+      </page>

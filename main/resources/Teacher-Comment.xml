@@ -1,0 +1,214 @@
+    <link href='https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css' rel='stylesheet' type='text/css'>
+  
+<page title="بهشترأی", scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="52">
+  
+   <frame >
+ 	<image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120"  height="164" width="164"></image>
+   </frame>
+  
+   <frame >
+   <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
+  </frame>
+  
+   <frame >
+    <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره</text>
+  </frame>
+  
+
+
+      
+     
+  <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
+           <frame layout="linear_horizontal">
+                <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" >
+                    <text textsize="12" gravity="center" textcolor="black" >امتیازات</text>
+                </frame>
+                  <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" >
+                    <text textsize="12" gravity="center" textcolor="black">اطلاعات استاد</text>
+                </frame>
+                 <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" >
+                    <text textsize="12" gravity="center" textcolor="#1E90FF">نظرات</text>
+                </frame>
+            </frame>
+            <divider color="#fff" size="2" />
+        </frame>
+  
+  <divider  width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"></divider>  
+   
+  <frame padding_bottom="10"></frame>
+  
+    <frame layout="linear_vertical" width="200"  gravity="left" >
+           <frame layout="linear_horizontal" gravity="left">
+             <frame >
+     <button gravity="center" onClick="" borderCornerRadius="100" background="#1E90FF" width="100" textcolor="white" padding="40" textsize="12" height="40" >آخرین</button>
+               </frame>
+             <frame >
+      <button gravity="center" onClick="" borderCornerRadius="100" background="#87CEEB" width="100" textcolor="white" padding="40" textsize="12" height="40" >مفیدترین</button>
+               </frame>
+      </frame>
+  </frame>
+
+      <frame padding_bottom="10"></frame>
+  
+  
+              <divider color="#DCDCDC" size="1" />
+
+      <frame layout="linear_vertical" >
+
+           <frame layout="linear_horizontal"  >
+             
+
+
+
+                   
+               <frame >
+               
+               <frame >
+     <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30" textcolor="white"  textsize="14" height="40" >+۸</button>
+               </frame>
+               
+
+               
+
+             
+             
+             
+
+               
+               <frame >
+      <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30" textcolor="white" textsize="14" height="40" >-۱۸</button>
+                 </frame>
+                 
+             </frame>
+               
+
+                            
+                                                                     <frame >
+                                                                                    <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۵۷</text>
+
+             <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
+
+             </frame>
+
+
+
+
+      </frame>
+  </frame>
+  
+  
+  
+  <frame gravity="right" >
+               <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین استاد و درس ممکن
+توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.</text>
+</frame>
+  
+          <divider color="#DCDCDC" size="1" />
+  
+  
+        <frame layout="linear_vertical" >
+
+           <frame layout="linear_horizontal"  >
+             
+
+
+
+                   
+               <frame >
+               
+               <frame >
+     <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30" textcolor="white"  textsize="14" height="40" >+۸</button>
+               </frame>
+               
+
+               
+
+             
+             
+             
+
+               
+               <frame >
+      <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30" textcolor="white" textsize="14" height="40" >-۱۸</button>
+                 </frame>
+                 
+             </frame>
+               
+
+                            
+                                                                     <frame >
+                                                                                    <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۵۷</text>
+
+             <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
+
+             </frame>
+
+
+
+
+      </frame>
+  </frame>
+  
+  
+  
+  <frame gravity="right" >
+               <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین استاد و درس ممکن
+توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.</text>
+</frame>
+  
+          <divider color="#DCDCDC" size="1" />
+  
+  
+    
+      <frame padding_bottom="10"></frame>
+
+   <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50" textsize="14">ایجاد بازخورد</button>
+  
+      <frame padding_bottom="10"></frame>
+
+  
+  
+
+  
+
+  
+  
+  <footer background="#1E90FF">
+        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1" margin_bottom="-1" height="52">
+            <frame layout="linear_horizontal" gravity="center">
+              
+                   <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
+                                          
+              <frame margin="0" padding="0">
+              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
+              </frame>
+              </frame>
+              
+                                 <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
+                                          
+              <frame margin="0" padding="0">
+              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
+              </frame>
+              </frame>
+              
+              
+                                 <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
+                                          
+              <frame margin="0" padding="0">
+              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
+              </frame>
+              </frame>
+
+          </frame>
+        </frame>
+    </footer>
+  
+
+  
+      </page>
