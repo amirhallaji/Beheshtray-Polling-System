@@ -1,7 +1,8 @@
-package ir.sample.app.highway;
+package ir.sample.app.BeheshtRay;
 
 import ir.appsan.sdk.APSChannel;
-import ir.sample.app.highway.services.HighwayService;
+import ir.sample.app.BeheshtRay.services.BeheshtRayService;
+
 
 public class HighwayChannel extends APSChannel {
 
@@ -10,6 +11,6 @@ public class HighwayChannel extends APSChannel {
     }
 
     public void init() {
-        registerService(new HighwayService(getChannelName()));
+        registerService(new BeheshtRayService(getChannelName()));
     }
 }
