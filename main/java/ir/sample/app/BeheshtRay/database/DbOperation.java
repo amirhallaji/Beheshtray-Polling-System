@@ -22,7 +22,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO comments(commentId,teacherName,teacherAcademicGroup,teacherEmail,teacherLessons,studentName,studentFaculty,studentGender,studentId) VALUES (?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO comments(commentId,teacherName,teacherAcademicGroup,teacherEmail,teacherLessons,studentName,studentFaculty,studentId,studentGender,show) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, comment.commentId);
             pstmt.setString(2, comment.commentTeacher.teacherName);
@@ -31,8 +31,8 @@ public class DbOperation {
             pstmt.setString(5, comment.commentTeacher.teacherLessons);
             pstmt.setString(6, comment.commentStudent.studentName);
             pstmt.setString(7, comment.commentStudent.studentFaculty);
-            pstmt.setString(8, comment.commentStudent.studentGender);
-            pstmt.setString(9, comment.commentStudent.studentId);
+            pstmt.setString(8, comment.commentStudent.studentId);
+            pstmt.setString(9, comment.commentStudent.studentGender);
             pstmt.setString(10, String.valueOf(true));
             pstmt.executeUpdate();
             pstmt.close();
