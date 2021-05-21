@@ -12,26 +12,19 @@ import java.util.ArrayList;
 
 public class DbOperation {
 
-//    public String commentId;
-//    public Teacher commentTeacher;
-//    public Student commentStudent;
-//    public String commentText;
-//    public String commentScore;
-//    public String commentUpvote;
-//    public String commentDownvote;
 
-    public static void sendComment(Comment comment, String commentId, Connection connection) {
+    public static void sendComment(Comment comment, Connection connection) {
         try {
-            String count = "SELECT COUNT(*) FROM numberpelak";
+            String count = "SELECT COUNT(*) FROM comments"; // TODO dbOperation
             PreparedStatement pcount = connection.prepareStatement(count);
             ResultSet rcount = pcount.executeQuery();
             int countnum = 0;
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO numberpelak(number,first,second,third,type,harf,name,bedehi,id,show) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO comments(commentId,teacherName,teacherAcademicGroup,teacherEmail,teacherLessons,studentName,studentFaculty,studentGender,studentId) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, commentId);
+            pstmt.setString(1, comment.commentId);
             pstmt.setString(2, comment.commentTeacher.teacherName);
             pstmt.setString(3, comment.commentTeacher.teacherAcademicGroup);
             pstmt.setString(4, comment.commentTeacher.teacherEmail);

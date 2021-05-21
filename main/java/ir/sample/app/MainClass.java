@@ -22,8 +22,8 @@ import javax.naming.ConfigurationException;
 //        }
         //String port = System.getenv("CONNECTOR_PORT");
         //String host = System.getenv("CONNECTOR_HOST");
-        String host = "sbu.appsan.ir";
-        String port = "9092";
+        String host = "162.55.105.142";
+        String port = "55432";
 //        if(port == null)
 //            port = propertiesConfiguration.getString("ms.connector.port");
 //        if(host == null)

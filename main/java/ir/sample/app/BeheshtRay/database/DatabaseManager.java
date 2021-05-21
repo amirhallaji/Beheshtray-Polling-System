@@ -11,7 +11,7 @@ public class DatabaseManager {
 
     public static String host = getHost();
     public static String port = getPort();
-    public static String dbname = "beheshtRay_db";
+    public static String dbname = "postgres";
     public static String user = "a_soltani";
     public static String pass = "49d56sa8wa4s1dy";
 
@@ -21,7 +21,7 @@ public class DatabaseManager {
         if (System.getenv("DATABASE_HOST") != null && !System.getenv("DATABASE_HOST").equals("")) {
             return System.getenv("DATABASE_HOST");
         } else {
-            return "sbu.appsan.ir";
+            return "162.55.105.142";
         }
     }
 
@@ -29,7 +29,7 @@ public class DatabaseManager {
         if (System.getenv("DATABASE_PORT") != null && !System.getenv("DATABASE_PORT").equals("")) {
             return System.getenv("DATABASE_PORT");
         } else {
-            return "3254";
+            return "55432";
         }
     }
 

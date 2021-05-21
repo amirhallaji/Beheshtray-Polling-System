@@ -11,7 +11,8 @@ public class Comment {
 	public String commentUpvote;
 	public String commentDownvote;
 
-	public Comment() {
+	public Comment(String commentId) {
+		commentId = commentStudent.studentId + commentTeacher.teacherName;
 	}
 
 	public String getCommentId() {
