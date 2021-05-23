@@ -1,4 +1,4 @@
-package ir.sample.app.beheshtray.views;
+package ir.sample.app.BeheshtRay.views;
 
 import ir.appsan.sdk.View;
 

@@ -42,7 +42,7 @@ public class DbOperation {
         }
     }
 
-    
+
     public static void deletepelak(String pelakid, Connection connection) {
         try {
             String checkSql = "UPDATE numberpelak set show=? where id=?";
