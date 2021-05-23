@@ -34,7 +34,8 @@ public class DbOperation {
             pstmt.setString(8, comment.commentStudent.studentId);
             pstmt.setString(9, comment.commentStudent.studentGender);
             pstmt.setString(10, String.valueOf(true));
-            pstmt.executeUpdate();
+            System.out.println("\n\nState:");
+            System.out.println(pstmt.executeUpdate());
             pstmt.close();
         } catch (Exception e) {
             e.printStackTrace();

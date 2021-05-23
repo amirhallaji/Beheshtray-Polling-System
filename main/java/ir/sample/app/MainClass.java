@@ -18,6 +18,8 @@ import javax.naming.ConfigurationException;
 
     public static void main(String[] args) throws ConfigurationException {
 
+        System.out.println("start main");
+
         PropertiesConfiguration propertiesConfiguration = new PropertiesConfiguration();
 
 //        try {
@@ -39,6 +41,7 @@ import javax.naming.ConfigurationException;
         AppsanApplication.run(MainClass.class, args, config);
         AppsanApplication.registerChannel(new HighwayChannel());
 
+        System.out.println("after send comment");
         Comment comment = new Comment("abc");
         Student student = new Student();
         Teacher teacher = new Teacher();
@@ -51,6 +54,7 @@ import javax.naming.ConfigurationException;
         student.setStudentGender("male");
         student.setStudentId("9724");
         DbOperation.sendComment(comment, DatabaseManager.getConnection());
+
 
         //commentId,teacherName,teacherAcademicGroup,teacherEmail,teacherLessons,studentName,studentFaculty,studentGender,studentId
     }
