@@ -1,6 +1,6 @@
     <link href='https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css' rel='stylesheet' type='text/css'>
   
-<page title="بهشترأی", scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="52">
+<page title="بهشترأی", scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
   
     <frame padding_bottom="10"></frame>
    <frame height="164" width="164" background="#008080" borderCornerRadius="120">
@@ -171,7 +171,7 @@
 
   
   <footer background="#1E90FF">
-        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1" margin_bottom="-1" height="52">
+        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1" margin_bottom="-1" height="64">
             <frame layout="linear_horizontal" gravity="center">
               
                    <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
