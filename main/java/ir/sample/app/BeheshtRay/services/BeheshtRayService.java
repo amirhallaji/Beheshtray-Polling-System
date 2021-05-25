@@ -87,13 +87,47 @@ public class BeheshtRayService extends APSService {
                 System.out.println("contents received: " + transferContent);
                 System.out.println("contents received: " + taTeam);
                 System.out.println("contents received: " + suitableExercise);
-                view = new SignInUp();
+                view = new Home();
 
                 break;
 
             case "nextPage":
                 System.out.println("case nextPage");
                 view = new Score2();
+                break;
+
+            case "exit":
+                System.out.println("case exit");
+                view = new SignInUp();
+                break;
+
+            case "teacherInfo":
+                System.out.println("case teacher info");
+                view = new TeacherInfo();
+                break;
+
+            case "teacherComment":
+                System.out.println("case teacher comment");
+                view = new TeacherComment();
+                break;
+
+            case "teacherScores":
+                System.out.println("case teacher score");
+                view = new TeacherScores();
+                break;
+
+            case "profileInfo":
+                System.out.println("case profile info");
+                view = new ProfileInfo();
+                break;
+            case "profileSettings":
+                System.out.println("case profile settings");
+                view = new ProfileSettings();
+                break;
+
+            case "profileCommentHistory":
+                System.out.println("case profile comment setting");
+                view = new ProfileCommentHistory();
                 break;
 
             default:
@@ -118,8 +152,13 @@ public class BeheshtRayService extends APSService {
             comment.commentDownvote = "3";
             comment.commentUpvote = "r";
             comment.commentScore = "e";
-            DbOperation.sendComment(comment, connection);
-            return new SignInUp();
+            //DbOperation.sendComment(comment, connection);
+            return new Score2();
+        }
+
+        if("changeMode".equals(updateCommand)){
+            // id = night_mode
+            System.out.println("Change mode to Dark");
         }
 
 
