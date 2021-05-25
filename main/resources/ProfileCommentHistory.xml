@@ -68,19 +68,19 @@
 
             <frame layout="linear_horizental">
                 <frame gravity="right">
-                    <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">استاد:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">استاد:
                         دکتر مجتبی وحیدی
                     </text>
                 </frame>
                 <frame gravity="right">
-                    <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">درس:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">درس:
                         برنامه سازی پیشرفته
                     </text>
                 </frame>
             </frame>
 
             <frame gravity="right">
-                <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
+                <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
                     استاد و درس ممکن
                     توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
                 </text>
@@ -136,19 +136,19 @@
 
             <frame layout="linear_horizental">
                 <frame gravity="right">
-                    <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">استاد:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">استاد:
                         دکتر سید حسین عطارزاده نیاکی
                     </text>
                 </frame>
                 <frame gravity="right">
-                    <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">درس:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">درس:
                         معماری کامپیوترها
                     </text>
                 </frame>
             </frame>
 
             <frame gravity="right">
-                <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
+                <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
                     استاد و درس ممکن
                     توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
                 </text>

@@ -6,6 +6,6 @@ public class Footer extends View {
 
     public Footer() {
         super();
-        setViewPath("footer.xml");
+        setViewPath("Footer.xml");
     }
 }

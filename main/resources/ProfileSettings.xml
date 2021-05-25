@@ -43,8 +43,6 @@
                width="30" height="30" gravity="left"></image>
 
         <text width="wrap_content" gravity="right" margin_left="250" onClick="">حالت صفحه</text>
-
-
     </frame>
 
     <frame padding_bottom="10"></frame>
@@ -54,9 +52,6 @@
     </button>
 
     <frame padding_bottom="10"></frame>
-
-
-</frame>
 
 
 <footer background="#1E90FF">
@@ -99,7 +94,6 @@
     </frame>
 </frame>
 </footer>
-
-        </page>
+</page>
 
   

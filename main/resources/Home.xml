@@ -148,19 +148,19 @@
 
                     <frame layout="linear_horizental">
                         <frame gravity="right">
-                            <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
                                 استاد: دکتر مهرنوش شمس‌فرد
                             </text>
                         </frame>
                         <frame gravity="right">
-                            <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
                                 درس: هوش مصنوعی و سیستم‌های خبره
                             </text>
                         </frame>
                     </frame>
 
                     <frame gravity="right">
-                        <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
+                        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
                             خفن‌ترین استاد و درس ممکن
                             توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
                         </text>
@@ -208,19 +208,19 @@
 
                     <frame layout="linear_horizental">
                         <frame gravity="right">
-                            <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
                                 استاد: دکتر مجتبی وحیدی
                             </text>
                         </frame>
                         <frame gravity="right">
-                            <text textalignment="right" gravity="right" textsize="14" gravity="left" textcolor="gray">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
                                 درس: برنامه سازی پیشرفته
                             </text>
                         </frame>
                     </frame>
 
                     <frame gravity="right">
-                        <text textalignment="right" gravity="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
+                        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
                             خفن‌ترین استاد و درس ممکن
                             توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
                         </text>
