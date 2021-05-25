@@ -37,94 +37,88 @@
    
   <frame padding_bottom="10"></frame>
   
-  
+
               <frame layout="linear_vertical" >
 
-  
+
 <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#00FF00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۹۴/۱۰۰</text>
                                       </frame>
-                                     
+
 
                               </frame>
-                                      
+
 
         <frame gravity="right" width="500">
             <text textsize="20" gravity="right">امتیاز کلی</text>
         </frame>
               </frame>
   </frame>
-   <divider color="#DCDCDC" size="1" />
 
-  
       <frame padding_bottom="10"></frame>
   
-          <frame gravity="right" >
-            <text textsize="20" gravity="right">تفکیک امتیازات</text>
-        </frame>
   
-  
- 
+
+
 
 
             <frame layout="linear_vertical" >
 
             <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۹۹/۱۰۰</text>
                                       </frame>
-                                     
+
 
                               </frame>
 
-                                      
+
 
         <frame gravity="right" width="500">
             <text textsize="14" gravity="right">رعایت حقوق دانشجو و رفتار مناسب</text>
         </frame>
               </frame>
                                                       </frame>
-  
-  
+
+
             <frame layout="linear_vertical" >
 
             <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۹۹/۱۰۰</text>
                                       </frame>
-                                     
 
-                              </frame>
 
-                                      
+
+
 
         <frame gravity="right" width="500">
             <text textsize="14" gravity="right">رعایت حقوق دانشجو و رفتار مناسب</text>
         </frame>
               </frame>
                                                       </frame>
-  
-  
+
+
               <frame layout="linear_vertical" >
 
             <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۹۰/۱۰۰</text>
                                       </frame>
-                                     
+
 
                               </frame>
 
-                                      
+
 
         <frame gravity="right" width="500">
             <text textsize="14" gravity="right">میزان انتقال مطلب</text>
@@ -132,43 +126,42 @@
               </frame>
                                                       </frame>
   
+          <divider color="#DCDCDC" size="1" />
   
-  						
   
               <frame layout="linear_vertical" >
 
             <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۵۰/۱۰۰</text>
                                       </frame>
-                                     
 
-                              </frame>
 
-                                      
+
+
 
         <frame gravity="right" width="500">
             <text textsize="14" gravity="right">تیم حل تمرین</text>
         </frame>
               </frame>
                                                       </frame>
-  
-  
+
+
               <frame layout="linear_vertical" >
 
             <frame layout="linear_horizontal" >
-              
+
                                     <frame gravity="left" width="">
                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
                     <text textsize="12" gravity="center" textcolor="black">۷۸/۱۰۰</text>
                                       </frame>
-                                     
+
 
                               </frame>
 
-                                      
+
 
         <frame gravity="right" width="500">
             <text textsize="14" gravity="right">متناسب بودن تکالیف</text>
@@ -178,12 +171,15 @@
 
 
   
+    
       <frame padding_bottom="10"></frame>
 
    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50" textsize="14">ایجاد بازخورد</button>
   
       <frame padding_bottom="10"></frame>
 
+  
+  
 
   
 
@@ -226,5 +222,6 @@
     </footer>
   
 
-  
+
       </page>
+  

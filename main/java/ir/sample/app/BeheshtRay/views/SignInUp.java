@@ -6,6 +6,6 @@ public class SignInUp extends View {
 
     public SignInUp() {
         super();
-        setViewPath("SignInUp.xml");
+        setViewPath("signinup.xml");
     }
 }
