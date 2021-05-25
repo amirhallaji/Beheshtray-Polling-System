@@ -9,22 +9,22 @@ import ir.sample.app.BeheshtRay.database.DbOperation;
 import ir.sample.app.BeheshtRay.models.Comment;
 import ir.sample.app.BeheshtRay.models.Student;
 import ir.sample.app.BeheshtRay.models.Teacher;
-import ir.sample.app.BeheshtRay.views.SignInUp;
+import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
 import java.sql.Connection;
 
-    public class BeheshtRayService extends APSService {
+public class BeheshtRayService extends APSService {
 
     String selectedharf = "";
     String selectedtype = "";
     String selectedid = "";
 
-    Student student = new Student();
-    Teacher teacher = new Teacher();
+
 
     Connection connection = DatabaseManager.getConnection();
     boolean allowmake = true;
+    private String userId;
 
     public BeheshtRayService(String channelName) {
         super(channelName);
@@ -37,24 +37,42 @@ import java.sql.Connection;
 
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
-        View view = new SignInUp();
+        View view;
 
-        System.out.println("after send comment");
-        Comment comment = new Comment("abc");
-        Student student = new Student();
-        Teacher teacher = new Teacher();
-        teacher.setTeacherName("Ali");
-        teacher.setTeacherAcademicGroup("math");
-        teacher.setTeacherEmail("mail@ali.ir");
-        teacher.setTeacherLessons("physics");
-        student.setStudentName("ahmad");
-        student.setStudentFaculty("computer");
-        student.setStudentGender("male");
-        student.setStudentId("9724");
-        DbOperation.sendComment(comment, DatabaseManager.getConnection());
+        switch (command) {
+            case "acceptConditions":
+                System.out.println("case acceptedConditions");
+                view = new Home();
+                break;
+
+            case "home":
+                System.out.println("case home");
+                view = new Home();
+                break;
+
+            case "enter":
+                System.out.println("case enter");
+                view = new TeacherInfo();
+                break;
+
+            case "profile":
+                System.out.println("case profile");
+                view = new ProfileInfo();
+                break;
+
+            case "polling":
+                System.out.println("case polling");
+                view = new Search();
+                break;
+
+            default:
+                System.out.println("default case");
+                view = new SignInUp();
+        }
 
         return view;
     }
+
 
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {

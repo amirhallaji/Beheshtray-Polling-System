@@ -6,6 +6,6 @@ public class Home extends View {
 
     public Home() {
         super();
-        setViewPath("/resources/Home.xml");
+        setViewPath("Home.xml");
     }
 }

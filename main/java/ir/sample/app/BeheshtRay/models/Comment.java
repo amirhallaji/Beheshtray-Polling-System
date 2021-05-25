@@ -12,7 +12,7 @@ public class Comment {
 	public String commentDownvote;
 
 	public Comment(String commentId) {
-		commentId = commentStudent.studentId + commentTeacher.teacherName;
+//		commentId = commentStudent.studentId + commentTeacher.teacherName;
 	}
 
 	public String getCommentId() {
