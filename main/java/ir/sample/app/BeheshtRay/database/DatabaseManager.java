@@ -11,7 +11,7 @@ public class DatabaseManager {
 
     public static String host = getHost();
     public static String port = getPort();
-    public static String dbname = "postgres";
+    public static String dbname = "beheshtiray";
     public static String user = "a_soltani";
     public static String pass = "49d56sa8wa4s1dy";
 

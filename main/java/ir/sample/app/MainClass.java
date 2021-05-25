@@ -20,8 +20,8 @@ import javax.naming.ConfigurationException;
 
         System.out.println("start main");
 
-        String host = "sbu.appsan.ir";
-        String port = "9092";
+        String host = "connectorsbu.appsan.ir";
+        String port = "443";
 
         APSConfig config = new APSConfig(host, Integer.parseInt(port), "4283BF786996E133D9F9A0B37BC067C3");
         AppsanApplication.setDebug(true);
