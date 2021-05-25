@@ -36,8 +36,8 @@
         <frame layout="linear_horizontal">
 
             <frame gravity="left" width="">
-                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                <frame background="#FF8C00" gravity="left" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" id="right_legals" gravity="center" textcolor="black"/>
                 </frame>
 
 
@@ -56,8 +56,8 @@
         <frame layout="linear_horizontal">
 
             <frame gravity="left" width="">
-                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                <frame background="#FF8C00" gravity="left" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" id="transfer_content" gravity="center" textcolor="black"/>
                 </frame>
 
 
@@ -76,8 +76,8 @@
         <frame layout="linear_horizontal">
 
             <frame gravity="left" width="">
-                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                <frame background="#FF8C00" gravity="left" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" id="ta_team" gravity="center" textcolor="black"/>
                 </frame>
 
 
@@ -96,8 +96,8 @@
         <frame layout="linear_horizontal">
 
             <frame gravity="left" width="">
-                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <textInput hint=".../۱۰۰" textsize="12" gravity="center" textcolor="black"></textInput>
+                <frame background="#FF8C00" gravity="left" borderCornerRadius="120">
+                    <textInput hint=".../۱۰۰" textsize="12" id="suitable_exercise" gravity="center" textcolor="black"/>
                 </frame>
 
 
@@ -105,21 +105,22 @@
 
 
             <frame gravity="right" width="500">
-                <text textsize="14" gravity="right">متناسب بودن تکالیف</text>
+                <text textsize="14" id="suitable_exercise" gravity="right">متناسب بودن تکالیف</text>
             </frame>
         </frame>
     </frame>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
-    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="update/nextPage" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white"
+            padding="50"
             textsize="14">بعدی
     </button>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
 </page>

@@ -1,244 +1,222 @@
-
-  
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
-  
-  <frame padding_bottom="10"></frame>
-  
-            <frame layout="linear_horizontal">  
-              
-                            <frame width="320" >
-<textInput hint="جستجو..." borderColor="#4682B4" borderCornerRadius="10" background="#FFFAFA"></textInput>
-                </frame>
-              
-              <frame >
-<image src="https://s2.uupload.ir/files/round_search_black_24dp_p9b1.png" height="24" width="24" ></image>
-</frame>
-  </frame>
-  
-                <frame layout="linear_vertical">
 
-            <frame layout="linear_horizontal">
-              
-                                    <frame gravity="left">
-                                                            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" >
-                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
-                                      </frame>
+    <frame padding_bottom="10"></frame>
 
-              
-                                      
+    <frame layout="linear_horizontal">
 
-        <frame gravity="right" width="500">
-            <text textsize="22" gravity="right">جستجوهای اخیر</text>
+        <frame width="320">
+            <textInput hint="جستجو..." borderColor="#4682B4" borderCornerRadius="10" background="#FFFAFA"></textInput>
         </frame>
-              </frame>
-                </frame>
-      </frame>
-  
-<frame layout="linear_vertical" margin="0">
 
-            <frame layout="linear_horizontal" margin="0" gravity="top" >
-
-                          <frame layout="linear_vertical" background="#FFFAFA"  onclick="">
-              <frame padding="0">
-                    <image src="https://s2.uupload.ir/files/download_(2)_ymr.jpg" borderCornerRadius="1"  width="100" height="100" ></image>
-                </frame>
-              <frame gravity="center">
-              <text textsize="10" gravity="center">دکتر صادق علی‌اکبری</text>
-                            </frame>
-              </frame>
-  
-
- <frame layout="linear_vertical"  background="#FFFAFA"  onclick="">
-
-                 <frame >
-                    <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="1"  width="100" height="100"></image>
-                </frame>
-                                          
-              <frame gravity="center" >
-              <text textsize="10" gravity="center">دکتر محمود نشاطی</text>
-              </frame>
-              </frame>
-              
- <frame layout="linear_vertical"  background="#FFFAFA"  onclick="">
-
-                            <frame >
-                    <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg" borderCornerRadius="1"  width="100" height="100"></image>
-                </frame>
-                                                                                                  
-              <frame gravity="center" >
-              <text textsize="10" gravity="center">دکتر محسن ابراهیمی‌مقدم</text>
-              </frame>
-              </frame>
-  
-  
-  </frame>
-  
-  </frame>
-  
-                <frame layout="linear_vertical">
-
-            <frame layout="linear_horizontal">
-              
-                                    <frame gravity="left">
-                                                            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" >
-                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
-                                      </frame>
-
-              
-                                      
-
-        <frame gravity="right" width="500">
-            <text textsize="22" gravity="right">لیست دروس</text>
+        <frame>
+            <image src="https://s2.uupload.ir/files/round_search_black_24dp_p9b1.png" height="24" width="24"></image>
         </frame>
-              </frame>
+    </frame>
+
+    <frame layout="linear_vertical">
+
+        <frame layout="linear_horizontal">
+
+            <frame gravity="left">
+                <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
                 </frame>
-      </frame>
-  
-  
-  
-  
-  
-  
-  
-  <frame layout="linear_vertical" margin="0" gravity="top" >
-
-    <frame layout="linear_horizental"  background="#FFFAFA"  onclick="" height="80" >
 
 
-                                                                                                  
-                <frame layout="linear_vertical" gravity="central">
-                  <frame >
-              <text textsize="14" gravity="center_right" padding="0" margin="0">ساختمان داده‌ها</text>
-                    </frame>
-                  
-                                    <frame >
-              <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محسن ابراهیمی‌مقدم</text>
-                    </frame>
-                  </frame>
-                
-   
-                               <frame  height="128" width="128">
-                    <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg" borderCornerRadius="120" ></image>
+                <frame gravity="right" width="500">
+                    <text textsize="22" gravity="right">جستجوهای اخیر</text>
                 </frame>
-              </frame>
-    
-    
-    
- <frame layout="linear_horizental"  background="#FFFAFA"  onclick="" height="80" >
+            </frame>
+        </frame>
+    </frame>
 
+    <frame layout="linear_vertical" margin="0">
 
-                                                                                                  
-                <frame layout="linear_vertical" gravity="central">
-                  <frame >
-              <text textsize="14" gravity="center_right" padding="0" margin="0">روش پژوهش و ارائه</text>
-                    </frame>
-                  
-                                    <frame >
-              <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محمود نشاطی</text>
-                    </frame>
-                  </frame>
-                
-   
-                               <frame  height="128" width="128">
-                    <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="120" ></image>
+        <frame layout="linear_horizontal" margin="0" gravity="top">
+
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="">
+                <frame padding="0">
+                    <image src="https://s2.uupload.ir/files/download_(2)_ymr.jpg" borderCornerRadius="1" width="100"
+                           height="100"></image>
                 </frame>
-              </frame>
-              
- <frame layout="linear_horizental"  background="#FFFAFA"  onclick="" height="80" >
-
-
-                                                                                                  
-                <frame layout="linear_vertical" gravity="central">
-                  <frame >
-              <text textsize="14" gravity="center_right" padding="0" margin="0">زبان تخصصی</text>
-                    </frame>
-                  
-                                    <frame >
-              <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر مجتبی وحیدی</text>
-                    </frame>
-                  </frame>
-                
-   
-                               <frame  height="128" width="128">
-                    <image src="https://s2.uupload.ir/files/photo_2020-01-02_19-30-23_cwe0.jpg" borderCornerRadius="120" ></image>
+                <frame gravity="center">
+                    <text textsize="10" gravity="center">دکتر صادق علی‌اکبری</text>
                 </frame>
-              </frame>
-    
-     <frame layout="linear_horizental"  background="#FFFAFA"  onclick="" height="80" >
+            </frame>
 
 
-                                                                                                  
-                <frame layout="linear_vertical" gravity="central">
-                  <frame >
-              <text textsize="14" gravity="center_right" padding="0" margin="0">طراحی و ساخت سیستم‌های دیجیتال</text>
-                    </frame>
-                  
-                                    <frame >
-              <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر علی جهانیان</text>
-                    </frame>
-                  </frame>
-                
-   
-                               <frame  height="128" width="128">
-                    <image src="https://s2.uupload.ir/files/download_uu4d.jpg" borderCornerRadius="120" ></image>
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="">
+
+                <frame>
+                    <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="1" width="100"
+                           height="100"></image>
                 </frame>
-              </frame>
-  
-  
-  </frame>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
-  
-  
-  <footer background="#1E90FF">
-        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1" margin_bottom="-1" height="64">
+                <frame gravity="center">
+                    <text textsize="10" gravity="center">دکتر محمود نشاطی</text>
+                </frame>
+            </frame>
+
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="">
+
+                <frame>
+                    <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg" borderCornerRadius="1"
+                           width="100" height="100"></image>
+                </frame>
+
+                <frame gravity="center">
+                    <text textsize="10" gravity="center">دکتر محسن ابراهیمی‌مقدم</text>
+                </frame>
+            </frame>
+
+
+        </frame>
+
+    </frame>
+
+    <frame layout="linear_vertical">
+
+        <frame layout="linear_horizontal">
+
+            <frame gravity="left">
+                <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
+                </frame>
+
+
+                <frame gravity="right" width="500">
+                    <text textsize="22" gravity="right">لیست دروس</text>
+                </frame>
+            </frame>
+        </frame>
+    </frame>
+
+
+    <frame layout="linear_vertical" margin="0" gravity="top">
+
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
+
+
+            <frame layout="linear_vertical" gravity="central">
+                <frame>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0">ساختمان داده‌ها</text>
+                </frame>
+
+                <frame>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محسن ابراهیمی‌مقدم</text>
+                </frame>
+            </frame>
+
+
+            <frame height="128" width="128">
+                <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
+                       borderCornerRadius="120"/>
+            </frame>
+        </frame>
+
+
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
+
+
+            <frame layout="linear_vertical" gravity="central">
+                <frame>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0">روش پژوهش و ارائه</text>
+                </frame>
+
+                <frame>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محمود نشاطی</text>
+                </frame>
+            </frame>
+
+
+            <frame height="128" width="128">
+                <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="120"/>
+            </frame>
+        </frame>
+
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
+
+
+            <frame layout="linear_vertical" gravity="central">
+                <frame>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0">زبان تخصصی</text>
+                </frame>
+
+                <frame>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر مجتبی وحیدی</text>
+                </frame>
+            </frame>
+
+
+            <frame height="128" width="128">
+                <image src="https://s2.uupload.ir/files/photo_2020-01-02_19-30-23_cwe0.jpg"
+                       borderCornerRadius="120"/>
+            </frame>
+        </frame>
+
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
+
+
+            <frame layout="linear_vertical" gravity="central">
+                <frame>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0">طراحی و ساخت سیستم‌های دیجیتال
+                    </text>
+                </frame>
+
+                <frame>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر علی جهانیان</text>
+                </frame>
+            </frame>
+
+
+            <frame height="128" width="128">
+                <image src="https://s2.uupload.ir/files/download_uu4d.jpg" borderCornerRadius="120"/>
+            </frame>
+        </frame>
+
+
+    </frame>
+
+
+    <footer background="#1E90FF">
+        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
+               margin_bottom="-1" height="64">
             <frame layout="linear_horizontal" gravity="center">
-              
-                   <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
 
-                    <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
-                                          
-              <frame margin="0" padding="0">
-              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
-              </frame>
-              </frame>
-              
-                                 <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
+                <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
-                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
-                                          
-              <frame margin="0" padding="0">
-              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
-              </frame>
-              </frame>
-              
-              
-                                 <frame layout="linear_vertical"  background="#1E90FF"  onclick=""  gravity="center">
+                    <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
 
-                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"  width="24" height="24"  gravity="right" margin="0" padding="0"></image>
-                                          
-              <frame margin="0" padding="0">
-              <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
-              </frame>
-              </frame>
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
+                    </frame>
+                </frame>
 
-          </frame>
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/polling" gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
+                    </frame>
+                </frame>
+
+
+                <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
+                    </frame>
+                </frame>
+
+            </frame>
         </frame>
     </footer>
-  
 
-  
-      </page>
+
+</page>

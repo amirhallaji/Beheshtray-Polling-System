@@ -2,7 +2,7 @@
 
     <frame>
         <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
-               width="164"></image>
+               width="164"/>
     </frame>
 
     <frame>
@@ -27,28 +27,28 @@
     </frame>
 
 
-    <frame gravity="center">
-        <text textsize="22" gravity="center">در صورت تمایل چیزی بنویسید.</text>
+    <frame gravity="center" >
+        <text textsize="22" id="longComment" gravity="center">در صورت تمایل چیزی بنویسید.</text>
     </frame>
 
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="10" width="240">
         <textInput id="grade" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
                    borderColor="#4682B4" borderCornerRadius="10" background="#FFFFFF" hint="نمره ی من در این درس"
-                   inputtype="number"></textInput>
+                   inputtype="number"/>
     </frame>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1">
         <textInput width="350" height="260" gravity="top_right" padding="10" borderColor="#4682B4"
                    borderCornerRadius="10" background="#FFFAFA" hint="متن بازخورد..." multilineline="true"
-                   borderStrokeWidth=""></textInput>
+                   borderStrokeWidth=""/>
     </frame>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <frame layout="linear_horizontal">
@@ -58,7 +58,7 @@
         </button>
 
 
-        <button onClick="" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
+        <button onClick="command/createPoll" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
                 textsize="14">ثبت بازخورد
         </button>
 
@@ -66,7 +66,7 @@
     </frame>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
 </page>

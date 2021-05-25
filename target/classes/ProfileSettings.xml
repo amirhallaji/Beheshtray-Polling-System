@@ -43,8 +43,6 @@
                width="30" height="30" gravity="left"></image>
 
         <text width="wrap_content" gravity="right" margin_left="250" onClick="">حالت صفحه</text>
-
-
     </frame>
 
     <frame padding_bottom="10"></frame>
@@ -56,15 +54,12 @@
     <frame padding_bottom="10"></frame>
 
 
-</frame>
-
-
 <footer background="#1E90FF">
 <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
        margin_bottom="-1" height="64">
     <frame layout="linear_horizontal" gravity="center">
 
-        <frame layout="linear_vertical" background="#1E90FF" onclick="" gravity="center">
+        <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
             <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png" borderCornerRadius="0"
                    width="24" height="24" gravity="right" margin="0" padding="0"></image>
@@ -74,7 +69,7 @@
             </frame>
         </frame>
 
-        <frame layout="linear_vertical" background="#1E90FF" onclick="" gravity="center">
+        <frame layout="linear_vertical" background="#1E90FF" onclick="command/polling" gravity="center">
 
             <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0" width="24"
                    height="24" gravity="right" margin="0" padding="0"></image>
@@ -85,7 +80,7 @@
         </frame>
 
 
-        <frame layout="linear_vertical" background="#1E90FF" onclick="" gravity="center">
+        <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
 
             <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0" width="24"
                    height="24" gravity="right" margin="0" padding="0"></image>
@@ -99,7 +94,6 @@
     </frame>
 </frame>
 </footer>
-
-        </page>
+</page>
 
   

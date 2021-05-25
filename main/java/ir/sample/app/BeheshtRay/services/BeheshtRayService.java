@@ -12,14 +12,16 @@ import ir.sample.app.BeheshtRay.models.Teacher;
 import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
+import java.sql.Array;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class BeheshtRayService extends APSService {
 
-    String selectedharf = "";
-    String selectedtype = "";
-    String selectedid = "";
-
+    public static ArrayList<String> commentIds = new ArrayList<>();
+    Teacher teacher = new Teacher();
+    Student student = new Student();
+    Comment comment = new Comment("34");
 
 
     Connection connection = DatabaseManager.getConnection();
@@ -37,6 +39,7 @@ public class BeheshtRayService extends APSService {
 
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
+        String rightLegals = "", transferContent = "", taTeam = "", suitableExercise = "";
         View view;
 
         switch (command) {
@@ -62,7 +65,35 @@ public class BeheshtRayService extends APSService {
 
             case "polling":
                 System.out.println("case polling");
-                view = new Search();
+                view = new Score1(); // changed here
+                break;
+
+            case "makePoll":
+                System.out.println("create poll");
+                view = new Score1();
+                rightLegals = pageData.get("right_legals").toString();
+                transferContent = pageData.get("transfer_content").toString();
+                taTeam = pageData.get("ta_team").toString();
+                suitableExercise = pageData.get("suitable_exercise").toString();
+
+                System.out.println("contents received: " + rightLegals);
+                System.out.println("contents received: " + transferContent);
+                System.out.println("contents received: " + taTeam);
+                System.out.println("contents received: " + suitableExercise);
+
+                break;
+            case "createPoll":
+                System.out.println("contents received: " + rightLegals);
+                System.out.println("contents received: " + transferContent);
+                System.out.println("contents received: " + taTeam);
+                System.out.println("contents received: " + suitableExercise);
+                view = new SignInUp();
+
+                break;
+
+            case "nextPage":
+                System.out.println("case nextPage");
+                view = new Score2();
                 break;
 
             default:
@@ -76,6 +107,22 @@ public class BeheshtRayService extends APSService {
 
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
+        String thing;
+        if ("nextPage".equals(updateCommand)) {
+            thing = pageData.get("right_legals").toString();
+            System.out.println("thing: " + thing);
+            comment.commentText = "dffff";
+            comment.commentId = "eer";
+            comment.commentStudent = student;
+            comment.commentTeacher = teacher;
+            comment.commentDownvote = "3";
+            comment.commentUpvote = "r";
+            comment.commentScore = "e";
+            DbOperation.sendComment(comment, connection);
+            return new SignInUp();
+        }
+
+
         return update;
     }
 }

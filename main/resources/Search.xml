@@ -110,7 +110,7 @@
 
             <frame height="128" width="128">
                 <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
-                       borderCornerRadius="120"></image>
+                       borderCornerRadius="120"/>
             </frame>
         </frame>
 
@@ -130,7 +130,7 @@
 
 
             <frame height="128" width="128">
-                <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="120"></image>
+                <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="120"/>
             </frame>
         </frame>
 
@@ -150,7 +150,7 @@
 
             <frame height="128" width="128">
                 <image src="https://s2.uupload.ir/files/photo_2020-01-02_19-30-23_cwe0.jpg"
-                       borderCornerRadius="120"></image>
+                       borderCornerRadius="120"/>
             </frame>
         </frame>
 
@@ -170,7 +170,7 @@
 
 
             <frame height="128" width="128">
-                <image src="https://s2.uupload.ir/files/download_uu4d.jpg" borderCornerRadius="120"></image>
+                <image src="https://s2.uupload.ir/files/download_uu4d.jpg" borderCornerRadius="120"/>
             </frame>
         </frame>
 
@@ -186,7 +186,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
@@ -196,7 +196,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="update/polling" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
-                           width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
@@ -207,7 +207,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
-                           width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
