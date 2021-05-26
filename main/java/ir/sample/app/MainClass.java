@@ -18,6 +18,9 @@ import javax.naming.ConfigurationException;
 
     public static void main(String[] args) throws ConfigurationException {
 
+        System.out.println("start main");
+        System.out.println("This is a test from arman in Gitlab");
+
         String host = "connectorsbu.appsan.ir";
         String port = "443";
 

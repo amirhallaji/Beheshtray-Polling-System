@@ -53,7 +53,7 @@
 
     <frame layout="linear_horizontal">
 
-        <button onClick="command/polling" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+        <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
                 textsize="14">قبلی
         </button>
 

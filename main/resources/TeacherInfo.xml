@@ -18,13 +18,13 @@
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacherScores">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">امتیازات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacherInfo">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">اطلاعات استاد</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacherComment">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">نظرات</text>
             </frame>
         </frame>
@@ -63,7 +63,7 @@
 
     <frame padding_bottom="10"></frame>
 
-    <button onClick="command/polling" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 

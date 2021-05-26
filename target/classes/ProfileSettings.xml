@@ -19,13 +19,13 @@
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileSettings">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">تنظیمات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileInfo">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات دانشجو</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileCommentHistory">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">تاریخچه نظرات</text>
             </frame>
         </frame>
@@ -42,12 +42,12 @@
         <image src="https://www.pinclipart.com/picdir/big/115-1155947_sun-logo-clip-art-at-clker-transparent-background.png"
                width="30" height="30" gravity="left"></image>
 
-        <text width="wrap_content" gravity="right" margin_left="250" onClick="update/changeMode" id="night_mode">حالت صفحه</text>
+        <text width="wrap_content" gravity="right" margin_left="250" onClick="">حالت صفحه</text>
     </frame>
 
     <frame padding_bottom="10"></frame>
 
-    <button onClick="command/exit" borderCornerRadius="100" background="red" width="120" textcolor="white" padding="50"
+    <button onClick="" borderCornerRadius="100" background="red" width="120" textcolor="white" padding="50"
             textsize="14" margin_bottom="250">خروج از سامانه
     </button>
 

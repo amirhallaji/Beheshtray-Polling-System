@@ -40,7 +40,7 @@
                     </frame>
                 </frame>
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">   
+                <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_login_white_24dp_afte.png" borderCornerRadius="0"
                            width="24" height="24" gravity="right" margin="0" padding="0"></image>

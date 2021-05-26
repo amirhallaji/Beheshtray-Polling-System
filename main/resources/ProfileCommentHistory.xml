@@ -12,13 +12,13 @@
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileSettings">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">تنظیمات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileInfo">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات دانشجو</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profileCommentHistory">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">تاریخچه نظرات</text>
             </frame>
         </frame>
