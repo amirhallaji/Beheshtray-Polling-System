@@ -24,6 +24,9 @@ public class BeheshtRayService extends APSService {
     Student student = new Student();
     Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
+    ArrayList<Feedback> feedbacks = new ArrayList<>();
+
+    String feedback_id = "";
 
 
     Connection connection = DatabaseManager.getConnection();
@@ -118,16 +121,27 @@ public class BeheshtRayService extends APSService {
             System.out.println("thing: " + feedback.score1);
 
             return new Score2();
-        }
-
-        else if("createPoll".equals(updateCommand)){
+        } else if ("createPoll".equals(updateCommand)) {
             feedback.student_score = pageData.get("studentScore").toString();
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
             feedback.feedback_key = Integer.parseInt(userId);
             System.out.println("Feed" + feedback.student_score);
+            feedback.upvotes = "0";
+            feedback.downvotes = "0";
+            feedback.date = " ";
+            feedback.feedback_id = userId;
             DbOperation.sendFeedBack(feedback, connection);
 
-            return new TeacherComment();
+            View view = new TeacherComment();
+            feedback_id = userId;
+            feedbacks = DbOperation.retrieveFeedbacks(feedback_id, connection);
+            student.feedbacks = feedbacks;
+            view.setMustacheModel(student);
+            return view;
+        } else if ("bazgasht".equals(updateCommand)) {
+//            feedbacks = DbOperation.retrieveFeedbacks(feedback, connection);
+//            System.out.println(feedbacks.get(0).student_score);
+            return new Home();
         }
 
 

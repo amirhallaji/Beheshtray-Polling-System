@@ -11,6 +11,10 @@ public class Feedback {
     public String extended_feedback;
     public String user_id;
     public String teacher_name;
+    public String upvotes;
+    public String downvotes;
+    public String date;
+    public String feedback_id;
     public int feedback_key;
 
 }

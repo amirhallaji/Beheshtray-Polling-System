@@ -54,6 +54,8 @@
 
     <divider color="#DCDCDC" size="1"/>
 
+    {{#feedbacks}}
+
     <frame layout="linear_vertical">
 
         <frame layout="linear_horizontal">
@@ -63,14 +65,14 @@
 
                 <frame>
                     <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
-                            textcolor="white" textsize="14" height="40">+۸
+                            textcolor="white" textsize="14" height="40">{{upvotes}}
                     </button>
                 </frame>
 
 
                 <frame>
                     <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
-                            textcolor="white" textsize="14" height="40">-۱۸
+                            textcolor="white" textsize="14" height="40">{{downvotes}}
                     </button>
                 </frame>
 
@@ -78,7 +80,7 @@
 
 
             <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۵۷</text>
+                <text textalignment="right" gravity="right" width="60" textsize="12">نمره: {{student_score}}</text>
 
                 <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
 
@@ -90,14 +92,13 @@
 
 
     <frame gravity="right">
-        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین استاد و
-            درس ممکن
-            توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
+        <text textalignment="right" textsize="16" gravity="left">{{extended_feedback}}
         </text>
     </frame>
 
     <divider color="#DCDCDC" size="1"/>
 
+    {{/feedbacks}}
 
     <frame layout="linear_vertical">
 
@@ -146,7 +147,7 @@
 
     <frame padding_bottom="10"></frame>
 
-    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="update/bazgasht" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 
