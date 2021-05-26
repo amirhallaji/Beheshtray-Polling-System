@@ -109,13 +109,25 @@ public class BeheshtRayService extends APSService {
 
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
-        String thing;
         if ("nextPage".equals(updateCommand)) {
             feedback.score1 = pageData.get("right_legals").toString();
+            feedback.score2 = pageData.get("transfer_content").toString();
+            feedback.score3 = pageData.get("ta_team").toString();
+            feedback.score4 = pageData.get("suitable_exercise").toString();
+
             System.out.println("thing: " + feedback.score1);
 
+            return new Score2();
+        }
+
+        else if("createPoll".equals(updateCommand)){
+            feedback.student_score = pageData.get("studentScore").toString();
+            feedback.extended_feedback = pageData.get("extendedFeedback").toString();
+            feedback.feedback_key = Integer.parseInt(userId);
+            System.out.println("Feed" + feedback.student_score);
             DbOperation.sendFeedBack(feedback, connection);
-            return new SignInUp();
+
+            return new TeacherComment();
         }
 
 

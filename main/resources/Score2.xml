@@ -33,7 +33,7 @@
 
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="10" width="240">
-        <textInput id="grade" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
+        <textInput id="studentScore" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
                    borderColor="#4682B4" borderCornerRadius="10" background="#FFFFFF" hint="نمره ی من در این درس"
                    inputtype="number"/>
     </frame>
@@ -43,7 +43,7 @@
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1">
         <textInput width="350" height="260" gravity="top_right" padding="10" borderColor="#4682B4"
-                   borderCornerRadius="10" background="#FFFAFA" hint="متن بازخورد..." multilineline="true"
+                   borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multilineline="true"
                    borderStrokeWidth=""/>
     </frame>
 
@@ -58,7 +58,7 @@
         </button>
 
 
-        <button onClick="command/createPoll" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
+        <button onClick="update/createPoll" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
                 textsize="14">ثبت بازخورد
         </button>
 

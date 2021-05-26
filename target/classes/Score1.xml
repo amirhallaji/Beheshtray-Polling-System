@@ -105,7 +105,7 @@
 
 
             <frame gravity="right" width="500">
-                <text textsize="14" id="suitable_exercise" gravity="right">متناسب بودن تکالیف</text>
+                <text textsize="14" id="" gravity="right">متناسب بودن تکالیف</text>
             </frame>
         </frame>
     </frame>

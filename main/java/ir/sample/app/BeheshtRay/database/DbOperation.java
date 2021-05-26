@@ -23,7 +23,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, feedback_key) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
@@ -35,7 +35,7 @@ public class DbOperation {
             pstmt.setString(8, feedback.student_score);
             pstmt.setString(9, feedback.extended_feedback);
             pstmt.setString(10, feedback.user_id);
-            pstmt.setString(11, String.valueOf(feedback.feedback_key));
+//            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
             pstmt.executeUpdate();
             pstmt.close();
