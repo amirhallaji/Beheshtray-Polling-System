@@ -143,6 +143,7 @@ public class BeheshtRayService extends APSService {
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
         String thing;
         if ("nextPage".equals(updateCommand)) {
+            System.out.println("user id: " + userId);
             thing = pageData.get("right_legals").toString();
             System.out.println("thing: " + thing);
             comment.commentText = "dffff";
@@ -152,7 +153,7 @@ public class BeheshtRayService extends APSService {
             comment.commentDownvote = "3";
             comment.commentUpvote = "r";
             comment.commentScore = "e";
-            //DbOperation.sendComment(comment, connection);
+            DbOperation.sendComment(comment, connection);
             return new Score2();
         }
 
