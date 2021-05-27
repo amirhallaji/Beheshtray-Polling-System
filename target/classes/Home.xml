@@ -24,67 +24,19 @@
 
         <frame layout="linear_horizontal" margin="0" gravity="top">
 
-
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="" height="128">
+            {{#teachers}}
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacher_profile_info+{{teacher_key}}" height="128">
 
                 <frame width="64" height="64">
-                    <image src="https://s2.uupload.ir/files/download_(2)_ymr.jpg" borderCornerRadius="120"></image>
+                    <image src="{{teacher_photo}}" borderCornerRadius="120"/>
                 </frame>
                 <frame gravity="center">
-                    <text textsize="10" gravity="center">دکتر صادق علی‌اکبری</text>
+                    <text textsize="10" gravity="center" text="{{teacher_name}}"/>
 
                 </frame>
 
             </frame>
-
-
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="" height="128">
-
-                <frame width="64" height="64">
-                    <image src="https://s2.uupload.ir/files/neshati_93ui.jpg" borderCornerRadius="120"></image>
-                </frame>
-
-                <frame gravity="center">
-                    <text textsize="10" gravity="center">دکتر محمود نشاطی</text>
-                </frame>
-            </frame>
-
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="" height="128">
-
-                <frame width="64" height="64">
-                    <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg"
-                           borderCornerRadius="120"></image>
-                </frame>
-
-                <frame gravity="center">
-                    <text textsize="10" gravity="center">دکتر مهرنوش شمس‌فرد</text>
-                </frame>
-            </frame>
-
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="" height="128">
-
-                <frame width="64" height="64">
-                    <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
-                           borderCornerRadius="120"></image>
-                </frame>
-
-                <frame gravity="center">
-                    <text textsize="10" gravity="center">دکتر محسن ابراهیمی‌مقدم</text>
-                </frame>
-            </frame>
-
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="" height="128">
-
-                <frame width="64" height="64">
-                    <image src="https://s2.uupload.ir/files/photo_2020-01-02_19-30-23_cwe0.jpg"
-                           borderCornerRadius="120"></image>
-                </frame>
-                <frame gravity="center">
-                    <text textsize="10" gravity="center">دکتر مجتبی وحیدی</text>
-
-                </frame>
-
-            </frame>
+            {{/teachers}}
 
 
         </frame>

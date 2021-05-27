@@ -35,7 +35,7 @@
 
 
             <frame height="128" width="128">
-                <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
+                <image src="{{teacher_photo}}"
                        borderCornerRadius="120"/>
             </frame>
         </frame>

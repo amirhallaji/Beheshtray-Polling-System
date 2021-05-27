@@ -184,6 +184,12 @@ public class BeheshtRayService extends APSService {
             return view;
         }
 
+        else if("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)){
+            View view = new Home();
+            view.setMustacheModel(temp);  // query here
+            return view;
+        }
+
 
         return update;
     }

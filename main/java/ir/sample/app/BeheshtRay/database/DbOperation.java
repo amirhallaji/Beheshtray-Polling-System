@@ -123,12 +123,12 @@ public class DbOperation {
 //            System.out.println(resultSet.next());
 //            System.out.println(resultSet.next());
 //            System.out.println(resultSet.next());
-            String[] data = new String[11];
+            String[] data = new String[12];
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
 //                System.out.println("Hello");
                 Teacher teacher = new Teacher();
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 11; i++) {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
@@ -137,6 +137,7 @@ public class DbOperation {
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
                 teacher.teacher_key = data[10];
+                teacher.teeacher_photo = data[11];
 //                System.out.println(teacher.teacher_name);
                 teachers.add(teacher);
             }
@@ -154,12 +155,12 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_key);
             ResultSet resultSet = pstmt.executeQuery();
-            String[] data = new String[11];
+            String[] data = new String[12];
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
                 System.out.println("Hello");
                 Teacher teacher = new Teacher();
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 11; i++) {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
@@ -168,6 +169,7 @@ public class DbOperation {
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
                 teacher.teacher_key = data[10];
+                teacher.teeacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
