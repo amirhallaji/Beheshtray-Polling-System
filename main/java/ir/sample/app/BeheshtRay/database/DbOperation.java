@@ -154,26 +154,21 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_key);
             ResultSet resultSet = pstmt.executeQuery();
-            System.out.println("resultset: " + resultSet.next());
-            System.out.println("resultset: " + resultSet.next());
-            System.out.println("resultset: " + resultSet.next());
-            System.out.println("resultset: " + resultSet.next());
             String[] data = new String[11];
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
-//                System.out.println("Hello");
-            Teacher teacher = new Teacher();
-            for (int i = 1; i <= 10; i++) {
-                data[i] = resultSet.getString(i);
-            }
+                System.out.println("Hello");
+                Teacher teacher = new Teacher();
+                for (int i = 1; i <= 10; i++) {
+                    data[i] = resultSet.getString(i);
+                }
 //                System.out.println("data: " + data[1]);
-            teacher.teacher_name = data[1];
-            teacher.lesson_name = data[2];
-            teacher.teacher_email = data[3];
-            teacher.teacher_academic_group = data[4];
-            teacher.teacher_key = data[10];
-            System.out.println("teacher in db" + teacher_key + "   " + teacher.teacher_name);
-            teachers.add(teacher);
+                teacher.teacher_name = data[1];
+                teacher.lesson_name = data[2];
+                teacher.teacher_email = data[3];
+                teacher.teacher_academic_group = data[4];
+                teacher.teacher_key = data[10];
+                teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
             return teachers;
