@@ -155,6 +155,13 @@ public class BeheshtRayService extends APSService {
             return view;
         }
 
+        else if("teacher_profile_info".equals(updateCommand)){
+            View view = new TeacherInfo();
+
+
+            return view;
+        }
+
 
 
         return update;

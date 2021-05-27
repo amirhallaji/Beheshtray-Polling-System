@@ -2,15 +2,16 @@
 
     <frame>
         <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
-               width="164"/>
+               width="164"></image>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
     </frame>
 
     <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره
+        </text>
     </frame>
 
 
@@ -30,35 +31,37 @@
         <divider color="#fff" size="2"/>
     </frame>
 
-    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
+    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"></divider>
 
-    <frame padding_bottom="24"/>
+    <frame padding_bottom="24"></frame>
 
 
     <text gravity="center" textsize="16">گروه آموزشی</text>
-    <text gravity="center" textsize="14" id="fields" text="{{academic_group}}"/>
+    <text gravity="center" textsize="14" id="fields">هوش مصنوعی، رباتیک و رایانش شناختی</text>
 
-    <frame padding_bottom="10"/>
+    <frame padding_bottom="10"></frame>
 
     <text gravity="center" textsize="16">ایمیل</text>
     <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
-        <text textsize="14" gravity="center" textcolor="black" text="{{teacher_email}}"/>
+        <text textsize="14" gravity="center" textcolor="black">m-shams@sbu.ac.ir</text>
     </frame>
 
-    <frame padding_bottom="10"/>
+    <frame padding_bottom="10"></frame>
 
 
     <text gravity="center" textsize="16">دروس ارائه‌شده نیمسال جاری</text>
     <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses">هوش مصنوعی و سیستم‌های خبره</text>
 
-<!--    {{#semester_lessons}}-->
     <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
         <text textsize="14" gravity="center" textcolor="black">وب معنایی</text>
     </frame>
-<!--    {{/semester_lessons}}-->
+
+    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+        <text textsize="14" gravity="center" textcolor="black">روش پژوهش و ارائه</text>
+    </frame>
 
 
-    <frame padding_bottom="10"/>
+    <frame padding_bottom="10"></frame>
 
     <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
