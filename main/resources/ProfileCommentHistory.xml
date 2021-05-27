@@ -1,6 +1,6 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
     <frame height="164" width="164" background="#008080" borderCornerRadius="120">
         <text weight="2" gravity="center" textsize="40" textcolor="white">+۷</text>
     </frame>
@@ -12,20 +12,20 @@
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="studentSettingsTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentSettingsTab">
                 <text textsize="12" gravity="center" textcolor="black">تنظیمات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="studentInformationTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentInformationTab">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات دانشجو</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="studentCommentHistoryTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentCommentHistoryTab">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">تاریخچه نظرات</text>
             </frame>
         </frame>
         <divider color="#fff" size="2"/>
     </frame>
 
-    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"></divider>
+    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
 
 
     <divider color="#DCDCDC" size="1"/>
@@ -95,7 +95,7 @@
     </frame>
 
     <divider color="#DCDCDC" size="1"/>
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <divider color="#DCDCDC" size="1"/>
@@ -164,7 +164,7 @@
 
 
     <divider color="#DCDCDC" size="1"/>
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <footer background="#1E90FF">
