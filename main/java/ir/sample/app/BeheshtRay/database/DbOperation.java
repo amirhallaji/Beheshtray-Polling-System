@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DbOperation {
 
 
-    public static void sendFeedBack(Feedback feedback, Connection connection){
+    public static void sendFeedBack(Feedback feedback, Connection connection) {
         try {
             String count = "SELECT COUNT(*) FROM feedbacks"; // TODO dbOperation
             PreparedStatement pcount = connection.prepareStatement(count);
@@ -49,15 +49,15 @@ public class DbOperation {
             pstmt.setString(1, feedbackId);
             ResultSet resultSet = pstmt.executeQuery();
             String data[] = new String[14];
-            ArrayList <Feedback> feedbacks = new ArrayList<>();
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 13; i++) {
                     data[i] = resultSet.getString(i);
                 }
-                feedback.teacher_name= data[1];
+                feedback.teacher_name = data[1];
                 feedback.lesson_name = data[2];
-                feedback.score1= data[3];
+                feedback.score1 = data[3];
                 feedback.score2 = data[4];
                 feedback.score3 = data[5];
                 feedback.score4 = data[6];
@@ -85,15 +85,15 @@ public class DbOperation {
             pstmt.setString(2, teacher_name);
             ResultSet resultSet = pstmt.executeQuery();
             String data[] = new String[14];
-            ArrayList <Feedback> feedbacks = new ArrayList<>();
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 10; i++) {
+                for (int i = 1; i <= 13; i++) {
                     data[i] = resultSet.getString(i);
                 }
-                feedback.teacher_name= data[1];
+                feedback.teacher_name = data[1];
                 feedback.lesson_name = data[2];
-                feedback.score1= data[3];
+                feedback.score1 = data[3];
                 feedback.score2 = data[4];
                 feedback.score3 = data[5];
                 feedback.score4 = data[6];
@@ -123,21 +123,58 @@ public class DbOperation {
 //            System.out.println(resultSet.next());
 //            System.out.println(resultSet.next());
 //            System.out.println(resultSet.next());
-            String[] data = new String[5];
+            String[] data = new String[11];
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
-                System.out.println("Hello");
+//                System.out.println("Hello");
                 Teacher teacher = new Teacher();
-                for (int i = 1; i <= 4; i++) {
+                for (int i = 1; i <= 10; i++) {
                     data[i] = resultSet.getString(i);
                 }
-                System.out.println("data: " + data[1]);
+//                System.out.println("data: " + data[1]);
                 teacher.teacher_name = data[1];
                 teacher.lesson_name = data[2];
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
-                System.out.println(teacher.teacher_name);
+                teacher.teacher_key = data[10];
+//                System.out.println(teacher.teacher_name);
                 teachers.add(teacher);
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
+    public static ArrayList<Teacher> retrieveTeacherByKey(String teacher_key, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM teachers WHERE teacher_key=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_key);
+            ResultSet resultSet = pstmt.executeQuery();
+            System.out.println("resultset: " + resultSet.next());
+            System.out.println("resultset: " + resultSet.next());
+            System.out.println("resultset: " + resultSet.next());
+            System.out.println("resultset: " + resultSet.next());
+            String[] data = new String[11];
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+//                System.out.println("Hello");
+            Teacher teacher = new Teacher();
+            for (int i = 1; i <= 10; i++) {
+                data[i] = resultSet.getString(i);
+            }
+//                System.out.println("data: " + data[1]);
+            teacher.teacher_name = data[1];
+            teacher.lesson_name = data[2];
+            teacher.teacher_email = data[3];
+            teacher.teacher_academic_group = data[4];
+            teacher.teacher_key = data[10];
+            System.out.println("teacher in db" + teacher_key + "   " + teacher.teacher_name);
+            teachers.add(teacher);
+//                System.out.println(teacher.teacher_name);
             }
             return teachers;
         } catch (Exception e) {

@@ -21,7 +21,7 @@
     <frame layout="linear_vertical" margin="0" gravity="top">
 
         {{#teachers}}
-        <frame layout="linear_horizental" background="#FFFAFA" onclick="update/teacher_profile_info" height="80">
+        <frame layout="linear_horizontal" id="{{teacher_key}}" background="#FFFAFA" onclick="update/teacher_profile_info+{{teacher_key}}" height="80">
 
             <frame layout="linear_vertical" gravity="central">
                 <frame>
