@@ -1,15 +1,9 @@
 package ir.sample.app.BeheshtRay.services;
 
-import ir.appsan.sdk.APSService;
-import ir.appsan.sdk.View;
-import ir.appsan.sdk.ViewUpdate;
-import ir.appsan.sdk.Response;
+import ir.appsan.sdk.*;
 import ir.sample.app.BeheshtRay.database.DatabaseManager;
 import ir.sample.app.BeheshtRay.database.DbOperation;
-import ir.sample.app.BeheshtRay.models.Comment;
-import ir.sample.app.BeheshtRay.models.Feedback;
-import ir.sample.app.BeheshtRay.models.Student;
-import ir.sample.app.BeheshtRay.models.Teacher;
+import ir.sample.app.BeheshtRay.models.*;
 import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
@@ -25,9 +19,10 @@ public class BeheshtRayService extends APSService {
     Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
     ArrayList<Feedback> feedbacks = new ArrayList<>();
+    ArrayList <Teacher> teachers = new ArrayList<>();
+    Temp<Teacher> temp = new Temp<>();
 
     String feedback_id = "";
-
 
     Connection connection = DatabaseManager.getConnection();
     boolean allowmake = true;
@@ -113,10 +108,13 @@ public class BeheshtRayService extends APSService {
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
         if ("nextPage".equals(updateCommand)) {
+            System.out.println("json: " + pageData);
             feedback.score1 = pageData.get("right_legals").toString();
             feedback.score2 = pageData.get("transfer_content").toString();
             feedback.score3 = pageData.get("ta_team").toString();
             feedback.score4 = pageData.get("suitable_exercise").toString();
+            feedback.teacher_name = pageData.get("teacher_name").toString();
+            feedback.lesson_name = pageData.get("lesson_name").toString();
 
             System.out.println("thing: " + feedback.score1);
 
@@ -134,7 +132,7 @@ public class BeheshtRayService extends APSService {
 
             View view = new TeacherComment();
             feedback_id = userId;
-            feedbacks = DbOperation.retrieveFeedbacks(feedback_id, connection);
+            feedbacks = DbOperation.retrieveFeedbacksByTeacher(feedback.teacher_name, feedback.lesson_name, connection);
             student.feedbacks = feedbacks;
             view.setMustacheModel(student);
             return view;
@@ -143,6 +141,20 @@ public class BeheshtRayService extends APSService {
 //            System.out.println(feedbacks.get(0).student_score);
             return new Home();
         }
+
+        else if("polling".equals(updateCommand)){
+            return new Search();
+        }
+
+        else if("seeAll".equals(updateCommand)){
+            View view = new FullList();
+            teachers = DbOperation.retrieveTeachers("h_malek@sbu.ac.ir", connection);
+            temp.teachers = teachers;
+            System.out.println(teachers);
+            view.setMustacheModel(temp);
+            return view;
+        }
+
 
 
         return update;

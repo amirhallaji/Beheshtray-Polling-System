@@ -80,7 +80,7 @@
 
             <frame gravity="left">
                 <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
-                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
+                    <text textsize="12" gravity="center" textcolor="#1E90FF" onclick="update/seeAll">مشاهده همه</text>
                 </frame>
 
 

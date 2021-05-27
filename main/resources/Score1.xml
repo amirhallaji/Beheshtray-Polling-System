@@ -2,16 +2,15 @@
 
     <frame>
         <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
-               width="164"></image>
+               width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
+        <text gravity="center" id="teacher_name" textsize="28" text="دکتر مهرنوش شمس فرد" margin_bottom="0"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره
-        </text>
+        <text gravity="center" id="lesson_name" text="هوش مصنوعی و سیستم های خبره" textsize="14" textcolor="gray" margin_top="0"/>
     </frame>
 
 
