@@ -8,7 +8,7 @@ public class Teacher {
     public String teacher_academic_group;
     public String lesson_name;
     public String teacher_key;
-    public String teeacher_photo;
+    public String teacher_photo;
 	public ArrayList<Comment> teacher_comments = new ArrayList<>();
 
 	public Teacher(String teacher_name, String lesson_name) {

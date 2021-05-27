@@ -35,7 +35,7 @@
 
 
             <frame height="128" width="128">
-                <image src="http://{{teacher_photo}}"
+                <image src="{{teacher_photo}}"
                        borderCornerRadius="120"/>
             </frame>
         </frame>
@@ -71,7 +71,7 @@
                 </frame>
 
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/home" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
                            width="24" height="24" gravity="right" margin="0" padding="0"/>

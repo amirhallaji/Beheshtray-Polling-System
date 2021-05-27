@@ -137,7 +137,7 @@ public class DbOperation {
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
                 teacher.teacher_key = data[10];
-                teacher.teeacher_photo = data[11];
+                teacher.teacher_photo = data[11];
 //                System.out.println(teacher.teacher_name);
                 teachers.add(teacher);
             }
@@ -169,7 +169,7 @@ public class DbOperation {
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
                 teacher.teacher_key = data[10];
-                teacher.teeacher_photo = data[11];
+                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -180,4 +180,17 @@ public class DbOperation {
 
     }
 
+    public static String retrieveTeacherURLImage(String teacher_name, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM teachers WHERE teacher_name=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_name);
+            ResultSet resultSet = pstmt.executeQuery();
+            return resultSet.getString(11);
+        } catch (Exception e) {
+            return null;
+        }
+
+
+    }
 }

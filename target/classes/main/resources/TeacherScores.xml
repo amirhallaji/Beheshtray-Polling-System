@@ -1,21 +1,21 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    {{#teachers}}
+<!--    {{#teachers}}-->
 
-    <frame>
-        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
-               width="164"/>
-    </frame>
+<!--    <frame>-->
+<!--        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"-->
+<!--               width="164"/>-->
+<!--    </frame>-->
 
-    <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
-    </frame>
+<!--    <frame>-->
+<!--        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>-->
+<!--    </frame>-->
 
-    <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
-    </frame>
+<!--    <frame>-->
+<!--        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>-->
+<!--    </frame>-->
 
-    {{/teachers}}
+<!--    {{/teachers}}-->
 
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
@@ -183,7 +183,7 @@
                     </frame>
                 </frame>
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="command/polling" gravity="center">
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/polling" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
                            width="24" height="24" gravity="right" margin="0" padding="0"/>
@@ -194,7 +194,7 @@
                 </frame>
 
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/home" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
                            width="24" height="24" gravity="right" margin="0" padding="0"/>

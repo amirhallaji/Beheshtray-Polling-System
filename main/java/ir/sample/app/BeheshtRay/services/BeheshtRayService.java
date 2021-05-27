@@ -169,6 +169,7 @@ public class BeheshtRayService extends APSService {
             View view = new TeacherComment();
             System.out.println("currentTeacher: " + current_teacher.teacher_name);
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+//            student.image_url = DbOperation.retrieveTeacherURLImage(current_teacher.lesson_name, connection);
             view.setMustacheModel(student);
             return view;
         } else if ("teacherInformationTab".equals(updateCommand)) {
@@ -183,7 +184,7 @@ public class BeheshtRayService extends APSService {
             View view = new Home();
             teachers = DbOperation.retrieveTeachers(connection);
             if (teachers != null) {
-                teachers.subList(0, 6);
+                teachers = new ArrayList<>(teachers.subList(0,5));
             }
             temp.teachers = teachers;
             view.setMustacheModel(temp);  // query here
@@ -205,4 +206,21 @@ public class BeheshtRayService extends APSService {
 
         return update;
     }
+
+    public static String convertToEnglishDigits(String value)
+    {
+        return value.replace("1","۱")
+                .replace("2","۲")
+                .replace("3","۳")
+                .replace("4","۴")
+                .replace("5","۵")
+                .replace("6","۶")
+                .replace("7","۷")
+                .replace("8","۸")
+                .replace("9","۹")
+                .replace("0","۰");
+    }
+
+
 }
+

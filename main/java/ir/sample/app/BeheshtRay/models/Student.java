@@ -9,9 +9,11 @@ public class Student {
     public String studentId;
     public String studentFaculty;
     public String studentGender;
+	public String image_url;
 
 
-    public ArrayList <Feedback> feedbacks;
+
+	public ArrayList <Feedback> feedbacks;
 
 
 	public ArrayList<Comment> studentComments = new ArrayList<>();
