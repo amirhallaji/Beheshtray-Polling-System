@@ -115,7 +115,7 @@ public class DbOperation {
 
     public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
         try {
-            String checkSql = "SELECT * FROM teachers";
+            String checkSql = "SELECT * FROM teachers ORDER BY teacher_name";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             ResultSet resultSet = pstmt.executeQuery();
 //            System.out.println(resultSet.next());

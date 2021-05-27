@@ -24,6 +24,8 @@ public class BeheshtRayService extends APSService {
     ArrayList <Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
 
+    Teacher current_teacher;
+
     String feedback_id = "";
 
     Connection connection = DatabaseManager.getConnection();
@@ -67,21 +69,22 @@ public class BeheshtRayService extends APSService {
 
             case "polling":
                 System.out.println("case polling");
+
                 view = new Score1(); // changed here
                 break;
 
             case "makePoll":
                 System.out.println("create poll");
                 view = new Score1();
-                rightLegals = pageData.get("right_legals").toString();
-                transferContent = pageData.get("transfer_content").toString();
-                taTeam = pageData.get("ta_team").toString();
-                suitableExercise = pageData.get("suitable_exercise").toString();
-
-                System.out.println("contents received: " + rightLegals);
-                System.out.println("contents received: " + transferContent);
-                System.out.println("contents received: " + taTeam);
-                System.out.println("contents received: " + suitableExercise);
+//                rightLegals = pageData.get("right_legals").toString();
+//                transferContent = pageData.get("transfer_content").toString();
+//                taTeam = pageData.get("ta_team").toString();
+//                suitableExercise = pageData.get("suitable_exercise").toString();
+//
+//                System.out.println("contents received: " + rightLegals);
+//                System.out.println("contents received: " + transferContent);
+//                System.out.println("contents received: " + taTeam);
+//                System.out.println("contents received: " + suitableExercise);
 
                 break;
             case "createPoll":
@@ -160,15 +163,12 @@ public class BeheshtRayService extends APSService {
 
         else if(updateCommand.startsWith("teacher_profile_info")){
             View view = new TeacherInfo();
-
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             teachers = DbOperation.retrieveTeacherByKey(selectedid, connection);
+            current_teacher = teachers.get(0);
+
             temp.teachers = teachers;
-
-            System.out.println("HI" + teachers);
-//            System.out.println("teacher" + Arrays.toString(new ArrayList[]{teachers}));
             view.setMustacheModel(temp);
-
             return view;
         }
 

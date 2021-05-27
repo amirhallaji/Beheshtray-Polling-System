@@ -37,7 +37,7 @@
 
 
     <text gravity="center" textsize="16">گروه آموزشی</text>
-    <text gravity="center" textsize="14" id="fields" text="{{academic_group}}"/>
+    <text gravity="center" textsize="14" id="fields" text="{{teacher_academic_group}}"/>
 
     <frame padding_bottom="10"/>
 
@@ -61,7 +61,7 @@
 
     <frame padding_bottom="10"/>
 
-    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="command/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 
