@@ -35,7 +35,7 @@
 
 
             <frame height="128" width="128">
-                <image src="{{teacher_photo}}"
+                <image src="http://{{teacher_photo}}"
                        borderCornerRadius="120"/>
             </frame>
         </frame>

@@ -170,7 +170,7 @@
 
 
             <frame height="128" width="128">
-                <image src="http://{{162.55.105.137:8080/api/public/dl/P4_OvOz7/Pictures/hamed.jpg}}" borderCornerRadius="120"/>
+                <image src="http://162.55.105.137:8080/api/public/dl/P4_OvOz7/Pictures/hamed.jpg" borderCornerRadius="120"/>
             </frame>
         </frame>
 

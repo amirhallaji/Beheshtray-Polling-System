@@ -191,6 +191,22 @@ public class BeheshtRayService extends APSService {
         }
 
 
+        else if("studentCommentHistoryTab".equals(updateCommand)){
+            View view = new ProfileCommentHistory();
+            return view;
+        }
+
+        else if("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)){
+            View view = new ProfileInfo();
+            return view;
+        }
+
+        else if("studentSettingsTab".equals(updateCommand)){
+            View view = new ProfileSettings();
+            return view;
+        }
+
+
         return update;
     }
 }
