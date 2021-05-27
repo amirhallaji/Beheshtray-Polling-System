@@ -113,17 +113,22 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList<Teacher> retrieveTeachers(String teacher_email, Connection connection) {
+    public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, lesson_name, teacher_email, academic_group FROM teachers WHERE teacher_email=?";
+            String checkSql = "SELECT * FROM teachers";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, teacher_email);
             ResultSet resultSet = pstmt.executeQuery();
+//            System.out.println(resultSet.next());
+//            System.out.println(resultSet.next());
+//            System.out.println(resultSet.next());
+//            System.out.println(resultSet.next());
+//            System.out.println(resultSet.next());
             String[] data = new String[5];
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
+                System.out.println("Hello");
                 Teacher teacher = new Teacher();
-                for (int i = 1; i <= 5; i++) {
+                for (int i = 1; i <= 4; i++) {
                     data[i] = resultSet.getString(i);
                 }
                 System.out.println("data: " + data[1]);
@@ -131,6 +136,7 @@ public class DbOperation {
                 teacher.lesson_name = data[2];
                 teacher.teacher_email = data[3];
                 teacher.teacher_academic_group = data[4];
+                System.out.println(teacher.teacher_name);
                 teachers.add(teacher);
             }
             return teachers;

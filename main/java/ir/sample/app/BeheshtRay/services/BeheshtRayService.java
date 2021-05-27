@@ -148,7 +148,7 @@ public class BeheshtRayService extends APSService {
 
         else if("seeAll".equals(updateCommand)){
             View view = new FullList();
-            teachers = DbOperation.retrieveTeachers("h_malek@sbu.ac.ir", connection);
+            teachers = DbOperation.retrieveTeachers(connection);
             temp.teachers = teachers;
             System.out.println(teachers);
             view.setMustacheModel(temp);
