@@ -1,39 +1,42 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
+    {{#teachers}}
+
     <frame>
         <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
-               width="164"></image>
+               width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره
-        </text>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
     </frame>
+
+    {{/teachers}}
 
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherScoresTab">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">امتیازات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherInformationTab">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات استاد</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherCommentsTab">
                 <text textsize="12" gravity="center" textcolor="black">نظرات</text>
             </frame>
         </frame>
         <divider color="#fff" size="2"/>
     </frame>
 
-    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"></divider>
+    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <frame layout="linear_vertical">
@@ -156,13 +159,13 @@
     </frame>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
-    <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <footer background="#1E90FF">
@@ -173,44 +176,37 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0"
-                           padding="0"></image>
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
-                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل
-                        </text>
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
                     </frame>
                 </frame>
 
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/polling" gravity="center">
 
-                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0"
-                           padding="0"></image>
+                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
-                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی
-                        </text>
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
                     </frame>
                 </frame>
 
 
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
 
-                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0"
-                           padding="0"></image>
+                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
-                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه
-                        </text>
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
                     </frame>
                 </frame>
 
             </frame>
         </frame>
     </footer>
-
 
 </page>
   

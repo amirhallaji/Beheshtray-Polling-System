@@ -5,14 +5,15 @@
                width="164"/>
     </frame>
 
+    {{#teachers}}
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">دکتر مهرنوش شمس فرد</text>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">هوش مصنوعی و سیستم های خبره
-        </text>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
     </frame>
+    {{/teachers}}
 
 
     <frame layout="linear_horizontal">

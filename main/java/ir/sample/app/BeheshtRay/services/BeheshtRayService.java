@@ -21,7 +21,7 @@ public class BeheshtRayService extends APSService {
     Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
     ArrayList<Feedback> feedbacks = new ArrayList<>();
-    ArrayList <Teacher> teachers = new ArrayList<>();
+    ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
 
     Teacher current_teacher;
@@ -119,12 +119,14 @@ public class BeheshtRayService extends APSService {
             feedback.score2 = pageData.get("transfer_content").toString();
             feedback.score3 = pageData.get("ta_team").toString();
             feedback.score4 = pageData.get("suitable_exercise").toString();
-            feedback.teacher_name = pageData.get("teacher_name").toString();
-            feedback.lesson_name = pageData.get("lesson_name").toString();
-
+            System.out.println("techer name: " + current_teacher.teacher_name);
+            System.out.println("lesson name: " + current_teacher.lesson_name);
+            feedback.teacher_name = current_teacher.teacher_name;
+            feedback.lesson_name = current_teacher.lesson_name;
             System.out.println("thing: " + feedback.score1);
-
-            return new Score2();
+            View view = new Score2();
+            view.setMustacheModel(temp);
+            return view;
         } else if ("createPoll".equals(updateCommand)) {
             feedback.student_score = pageData.get("studentScore").toString();
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
@@ -135,24 +137,15 @@ public class BeheshtRayService extends APSService {
             feedback.date = " ";
             feedback.feedback_id = userId;
             DbOperation.sendFeedBack(feedback, connection);
-
             View view = new TeacherComment();
             feedback_id = userId;
             feedbacks = DbOperation.retrieveFeedbacksByTeacher(feedback.teacher_name, feedback.lesson_name, connection);
             student.feedbacks = feedbacks;
             view.setMustacheModel(student);
             return view;
-        } else if ("bazgasht".equals(updateCommand)) {
-//            feedbacks = DbOperation.retrieveFeedbacks(feedback, connection);
-//            System.out.println(feedbacks.get(0).student_score);
-            return new Home();
-        }
-
-        else if("polling".equals(updateCommand)){
+        } else if ("polling".equals(updateCommand)) {
             return new Search();
-        }
-
-        else if("seeAll".equals(updateCommand)){
+        } else if ("seeAll".equals(updateCommand)) {
             View view = new FullList();
             teachers = DbOperation.retrieveTeachers(connection);
             temp.teachers = teachers;
@@ -160,9 +153,7 @@ public class BeheshtRayService extends APSService {
             System.out.println("get: " + teachers.get(0).teacher_key);
             view.setMustacheModel(temp);
             return view;
-        }
-
-        else if(updateCommand.startsWith("teacher_profile_info")){
+        } else if (updateCommand.startsWith("teacher_profile_info")) {
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             System.out.println("selectedid : " + selectedid);
             teachers = DbOperation.retrieveTeacherByKey("4", connection);
@@ -175,14 +166,23 @@ public class BeheshtRayService extends APSService {
             temp.teachers = teachers;
             view.setMustacheModel(temp);
             return view;
-        }
-
-        else if("makePoll".equals(updateCommand)){
+        } else if ("makePoll".equals(updateCommand)) {
             View view = new Score1();
             view.setMustacheModel(temp);
             return view;
+        } else if ("teacherCommentsTab".equals(updateCommand)) {
+            View view = new TeacherComment();
+            view.setMustacheModel(temp);
+            return view;
+        } else if ("teacherInformationTab".equals(updateCommand)) {
+            View view = new TeacherInfo();
+            view.setMustacheModel(temp);
+            return view;
+        } else if ("teacherScoresTab".equals(updateCommand)) {
+            View view = new TeacherScores();
+            view.setMustacheModel(temp);
+            return view;
         }
-
 
 
         return update;

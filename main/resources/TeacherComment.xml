@@ -148,14 +148,14 @@
     <divider color="#DCDCDC" size="1"/>
 
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
-    <button onClick="update/bazgasht" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white"
+    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white"
             padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <footer background="#1E90FF">
@@ -166,7 +166,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
