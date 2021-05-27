@@ -1,5 +1,6 @@
     package ir.sample.app;
 
+import com.github.mfathi91.time.PersianDate;
 import ir.appsan.sdk.APSConfig;
 import ir.appsan.sdk.AppsanApplication;
 import ir.sample.app.BeheshtRay.HighwayChannel;
@@ -17,6 +18,9 @@ import javax.naming.ConfigurationException;
     public class MainClass {
 
     public static void main(String[] args) throws ConfigurationException {
+
+        PersianDate today = PersianDate.now();
+        System.out.println(today.toString());
 
         System.out.println("start main");
         System.out.println("This is a test from arman in Gitlab");

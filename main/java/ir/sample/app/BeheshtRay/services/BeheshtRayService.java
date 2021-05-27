@@ -1,5 +1,6 @@
 package ir.sample.app.BeheshtRay.services;
 
+import com.github.mfathi91.time.PersianDate;
 import ir.appsan.sdk.*;
 import ir.sample.app.BeheshtRay.database.DatabaseManager;
 import ir.sample.app.BeheshtRay.database.DbOperation;
@@ -131,16 +132,16 @@ public class BeheshtRayService extends APSService {
             feedback.student_score = pageData.get("studentScore").toString();
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
             feedback.feedback_key = Integer.parseInt(userId);
-            System.out.println("Feed" + feedback.student_score);
             feedback.upvotes = "0";
             feedback.downvotes = "0";
-            feedback.date = " ";
-            feedback.feedback_id = userId;
+            feedback.user_id = userId;
+            PersianDate today = PersianDate.now();
+            feedback.date_number = convertToEnglishDigits(today.toString());
             DbOperation.sendFeedBack(feedback, connection);
+
             View view = new TeacherComment();
             feedback_id = userId;
-            feedbacks = DbOperation.retrieveFeedbacksByTeacher(feedback.teacher_name, feedback.lesson_name, connection);
-            student.feedbacks = feedbacks;
+            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
             view.setMustacheModel(student);
             return view;
         } else if ("polling".equals(updateCommand)) {

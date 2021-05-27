@@ -13,7 +13,7 @@ public class Feedback {
     public String teacher_name;
     public String upvotes;
     public String downvotes;
-    public String date;
+    public String date_number;
     public String feedback_id;
     public int feedback_key;
 

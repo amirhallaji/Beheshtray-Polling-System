@@ -19,7 +19,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, feedback_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
@@ -31,7 +31,10 @@ public class DbOperation {
             pstmt.setString(8, feedback.student_score);
             pstmt.setString(9, feedback.extended_feedback);
             pstmt.setString(10, feedback.user_id);
-            pstmt.setString(11, feedback.feedback_id);
+            pstmt.setString(11, feedback.date_number);
+            pstmt.setString(12, feedback.upvotes);
+            pstmt.setString(13, feedback.downvotes);
+//            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
             pstmt.executeUpdate();
@@ -42,11 +45,11 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Feedback> retrieveFeedbacksBySelf(String feedbackId, Connection connection) {
+    public static ArrayList<Feedback> retrieveFeedbacksBySelf(String user_id, Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date, upvotes, downvotes FROM feedbacks WHERE feedback_id=?";
+            String checkSql = "SELECT * FROM feedbacks WHERE user_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, feedbackId);
+            pstmt.setString(1, user_id);
             ResultSet resultSet = pstmt.executeQuery();
             String data[] = new String[14];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
@@ -65,7 +68,7 @@ public class DbOperation {
                 feedback.student_score = data[8];
                 feedback.extended_feedback = data[9];
                 feedback.user_id = data[10];
-                feedback.date = data[11];
+                feedback.date_number = data[11];
                 feedback.upvotes = data[12];
                 feedback.downvotes = data[13];
                 feedbacks.add(feedback);
@@ -101,7 +104,7 @@ public class DbOperation {
                 feedback.student_score = data[8];
                 feedback.extended_feedback = data[9];
                 feedback.user_id = data[10];
-                feedback.date = data[11];
+                feedback.date_number = data[11];
                 feedback.upvotes = data[12];
                 feedback.downvotes = data[13];
                 feedbacks.add(feedback);
