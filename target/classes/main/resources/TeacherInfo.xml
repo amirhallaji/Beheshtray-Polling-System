@@ -61,7 +61,7 @@
 
     <frame padding_bottom="10"/>
 
-    <button onClick="command/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
             textsize="14">ایجاد بازخورد
     </button>
 

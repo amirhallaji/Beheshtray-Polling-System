@@ -76,6 +76,7 @@ public class BeheshtRayService extends APSService {
             case "makePoll":
                 System.out.println("create poll");
                 view = new Score1();
+
 //                rightLegals = pageData.get("right_legals").toString();
 //                transferContent = pageData.get("transfer_content").toString();
 //                taTeam = pageData.get("ta_team").toString();
@@ -162,12 +163,22 @@ public class BeheshtRayService extends APSService {
         }
 
         else if(updateCommand.startsWith("teacher_profile_info")){
-            View view = new TeacherInfo();
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            System.out.println("selectedid : " + selectedid);
+            teachers = DbOperation.retrieveTeacherByKey("4", connection);
+            System.out.println("teacher" + Arrays.toString(new ArrayList[]{teachers}));
+            View view = new TeacherInfo();
+            selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             teachers = DbOperation.retrieveTeacherByKey(selectedid, connection);
             current_teacher = teachers.get(0);
 
             temp.teachers = teachers;
+            view.setMustacheModel(temp);
+            return view;
+        }
+
+        else if("makePoll".equals(updateCommand)){
+            View view = new Score1();
             view.setMustacheModel(temp);
             return view;
         }
