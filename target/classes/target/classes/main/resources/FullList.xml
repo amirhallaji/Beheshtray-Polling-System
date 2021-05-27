@@ -1,6 +1,6 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <frame layout="linear_vertical">

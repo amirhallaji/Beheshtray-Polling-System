@@ -154,15 +154,10 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if (updateCommand.startsWith("teacher_profile_info")) {
-            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
-            System.out.println("selectedid : " + selectedid);
-            teachers = DbOperation.retrieveTeacherByKey("4", connection);
-            System.out.println("teacher" + Arrays.toString(new ArrayList[]{teachers}));
             View view = new TeacherInfo();
-            selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             teachers = DbOperation.retrieveTeacherByKey(selectedid, connection);
             current_teacher = teachers.get(0);
-
             temp.teachers = teachers;
             view.setMustacheModel(temp);
             return view;
@@ -172,7 +167,9 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if ("teacherCommentsTab".equals(updateCommand)) {
             View view = new TeacherComment();
-            view.setMustacheModel(temp);
+            System.out.println("currentTeacher: " + current_teacher.teacher_name);
+            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            view.setMustacheModel(student);
             return view;
         } else if ("teacherInformationTab".equals(updateCommand)) {
             View view = new TeacherInfo();
@@ -182,28 +179,25 @@ public class BeheshtRayService extends APSService {
             View view = new TeacherScores();
             view.setMustacheModel(temp);
             return view;
-        }
-
-        else if("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)){
+        } else if ("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)) {
             View view = new Home();
+            teachers = DbOperation.retrieveTeachers(connection);
+            if (teachers != null) {
+                teachers.subList(0, 6);
+            }
+            temp.teachers = teachers;
             view.setMustacheModel(temp);  // query here
+
             return view;
-        }
-
-
-        else if("studentCommentHistoryTab".equals(updateCommand)){
+        } else if ("studentCommentHistoryTab".equals(updateCommand)) {
             View view = new ProfileCommentHistory();
             student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
             view.setMustacheModel(student);
             return view;
-        }
-
-        else if("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)){
+        } else if ("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)) {
             View view = new ProfileInfo();
             return view;
-        }
-
-        else if("studentSettingsTab".equals(updateCommand)){
+        } else if ("studentSettingsTab".equals(updateCommand)) {
             View view = new ProfileSettings();
             return view;
         }

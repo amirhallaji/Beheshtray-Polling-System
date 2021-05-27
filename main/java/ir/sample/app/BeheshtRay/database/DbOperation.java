@@ -79,10 +79,10 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date, upvotes, downvotes FROM feedbacks WHERE teacher_name=?, lesson_name=?";
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, lesson_name);
-            pstmt.setString(2, teacher_name);
+            pstmt.setString(1, teacher_name);
+            pstmt.setString(2, lesson_name);
             ResultSet resultSet = pstmt.executeQuery();
             String data[] = new String[14];
             ArrayList<Feedback> feedbacks = new ArrayList<>();

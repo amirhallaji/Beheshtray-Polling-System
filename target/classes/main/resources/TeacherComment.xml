@@ -1,6 +1,6 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    {{#teachers}}
+    {{#feedbacks}}
 
     <frame>
         <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
@@ -15,7 +15,8 @@
         <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
     </frame>
 
-    {{/teachers}}
+    {{/feedbacks}}
+
 
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
@@ -57,7 +58,7 @@
 
     <divider color="#DCDCDC" size="1"/>
 
-    {{#feedbacks}}
+<!--    {{#feedbacks}}-->
 
     <frame layout="linear_vertical">
 
@@ -68,14 +69,14 @@
 
                 <frame>
                     <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
-                            textcolor="white" textsize="14" height="40">{{upvotes}}
+                            textcolor="white" textsize="14" height="40" text="{{upvotes}}">
                     </button>
                 </frame>
 
 
                 <frame>
                     <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
-                            textcolor="white" textsize="14" height="40">{{downvotes}}
+                            textcolor="white" textsize="14" height="40" text="{{downvotes}}">
                     </button>
                 </frame>
 
@@ -83,7 +84,7 @@
 
 
             <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12">نمره: {{student_score}}</text>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره:{{student_score}}"> </text>
 
                 <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
 
@@ -95,57 +96,16 @@
 
 
     <frame gravity="right">
-        <text textalignment="right" textsize="16" gravity="left">{{extended_feedback}}
-        </text>
+        <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}"/>
     </frame>
 
     <divider color="#DCDCDC" size="1"/>
 
-    {{/feedbacks}}
-
-    <frame layout="linear_vertical">
-
-        <frame layout="linear_horizontal">
+<!--    {{/feedbacks}}-->
 
 
-            <frame>
-
-                <frame>
-                    <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
-                            textcolor="white" textsize="14" height="40">+۸
-                    </button>
-                </frame>
 
 
-                <frame>
-                    <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
-                            textcolor="white" textsize="14" height="40">-۱۸
-                    </button>
-                </frame>
-
-            </frame>
-
-
-            <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۵۷</text>
-
-                <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
-
-            </frame>
-
-
-        </frame>
-    </frame>
-
-
-    <frame gravity="right">
-        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین استاد و
-            درس ممکن
-            توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
-        </text>
-    </frame>
-
-    <divider color="#DCDCDC" size="1"/>
 
 
     <frame padding_bottom="10"/>
