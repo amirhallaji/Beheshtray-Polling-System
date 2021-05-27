@@ -67,7 +67,7 @@
 
     {{/teachers}}
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
 
 
     <footer background="#1E90FF">
@@ -78,7 +78,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
-                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
@@ -88,7 +88,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/polling" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
-                           width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
@@ -99,7 +99,7 @@
                 <frame layout="linear_vertical" background="#1E90FF" onclick="command/home" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
-                           width="24" height="24" gravity="right" margin="0" padding="0"></image>
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
 
                     <frame margin="0" padding="0">
                         <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>

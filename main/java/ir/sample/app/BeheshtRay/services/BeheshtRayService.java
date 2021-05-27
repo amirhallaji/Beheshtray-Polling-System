@@ -193,6 +193,8 @@ public class BeheshtRayService extends APSService {
 
         else if("studentCommentHistoryTab".equals(updateCommand)){
             View view = new ProfileCommentHistory();
+            student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+            view.setMustacheModel(student);
             return view;
         }
 

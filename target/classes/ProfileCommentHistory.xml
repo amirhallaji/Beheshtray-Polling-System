@@ -1,6 +1,6 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    <frame padding_bottom="10"></frame>
+    <frame padding_bottom="10"/>
     <frame height="164" width="164" background="#008080" borderCornerRadius="120">
         <text weight="2" gravity="center" textsize="40" textcolor="white">+۷</text>
     </frame>
@@ -25,12 +25,12 @@
         <divider color="#fff" size="2"/>
     </frame>
 
-    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"></divider>
+    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
 
 
     <divider color="#DCDCDC" size="1"/>
 
-
+    {{#feedbacks}}
     <frame background="#FFFAFA" onclick="">
 
         <frame layout="linear_vertical">
@@ -57,7 +57,7 @@
 
 
                 <frame>
-                    <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۷</text>
+                    <text textalignment="right" gravity="right" width="60" textsize="12" text="{{student_score}}">نمره: </text>
 
                     <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۳/۹/۱۳۹۹
                     </text>
@@ -66,91 +66,21 @@
 
             </frame>
 
-            <frame layout="linear_horizental">
-                <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">استاد:
-                        دکتر مجتبی وحیدی
-                    </text>
-                </frame>
-                <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">درس:
-                        برنامه سازی پیشرفته
-                    </text>
-                </frame>
-            </frame>
-
-            <frame gravity="right">
-                <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
-                    استاد و درس ممکن
-                    توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
-                </text>
-            </frame>
-            <frame width="100">
-                <button gravity="center" onClick="" borderCornerRadius="100" background="#8B0000" textcolor="white"
-                        textsize="14" height="40">حذف نظر
-                </button>
-            </frame>
-        </frame>
-
-    </frame>
-
-    <divider color="#DCDCDC" size="1"/>
-    <frame padding_bottom="10"></frame>
-
-
-    <divider color="#DCDCDC" size="1"/>
-    <frame background="#FFFAFA" onclick="">
-
-        <frame layout="linear_vertical">
-
             <frame layout="linear_horizontal">
-
-
-                <frame>
-
-                    <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
-                                textcolor="white" textsize="14" height="40">+۱۷
-                        </button>
-                    </frame>
-
-
-                    <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
-                                textcolor="white" textsize="14" height="40">-۱۷
-                        </button>
-                    </frame>
-
-                </frame>
-
-
-                <frame>
-                    <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۸.۹</text>
-
-                    <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۱/۹/۱۳۹۹
-                    </text>
-
-                </frame>
-
-            </frame>
-
-            <frame layout="linear_horizental">
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">استاد:
-                        دکتر سید حسین عطارزاده نیاکی
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="{{teacher_name}}">استاد:
+
                     </text>
                 </frame>
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray">درس:
-                        معماری کامپیوترها
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="{{lesson_name}}">درس:
+
                     </text>
                 </frame>
             </frame>
 
             <frame gravity="right">
-                <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین خفن‌ترین
-                    استاد و درس ممکن
-                    توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
+                <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}">
                 </text>
             </frame>
             <frame width="100">
@@ -162,10 +92,9 @@
 
     </frame>
 
-
     <divider color="#DCDCDC" size="1"/>
-    <frame padding_bottom="10"></frame>
-
+    <frame padding_bottom="10"/>
+    {{/feedbacks}}
 
     <footer background="#1E90FF">
         <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
