@@ -135,8 +135,7 @@ public class BeheshtRayService extends APSService {
             feedback.upvotes = "0";
             feedback.downvotes = "0";
             feedback.user_id = userId;
-            PersianDate today = PersianDate.now();
-            feedback.date_number = convertToEnglishDigits(today.toString());
+            feedback.date_number = PersianDate.now().toString();
             DbOperation.sendFeedBack(feedback, connection);
 
             View view = new TeacherComment();

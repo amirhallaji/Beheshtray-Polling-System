@@ -1,11 +1,13 @@
 <page title="بازخورد" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4">
 
+
+    {{#teachers}}
     <frame>
-        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"
+        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164"
                width="164"/>
     </frame>
 
-    {{#teachers}}
+
     <frame>
         <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
     </frame>
