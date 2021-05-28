@@ -8,7 +8,6 @@ import ir.sample.app.BeheshtRay.models.*;
 import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -140,9 +139,9 @@ public class BeheshtRayService extends APSService {
             feedback.date_number = convertToEnglishDigits(dtf.format(PersianDate.now()));
             int number = 0;
             number = Objects.requireNonNull(DbOperation.retrieveFeedbacksBySelf2(userId, connection)).size();
-            feedback.feedback_id = userId + "_"  + number;
+            feedback.feedback_id = userId + "_" + number;
             Date date = new Date();
-            feedback.created_time =  String.valueOf(date.getTime());
+            feedback.created_time = String.valueOf(date.getTime());
 
             DbOperation.sendFeedBack(feedback, connection);
 
@@ -194,7 +193,7 @@ public class BeheshtRayService extends APSService {
             View view = new Home();
             teachers = DbOperation.retrieveTeachers(connection);
             if (teachers != null) {
-                teachers = new ArrayList<>(teachers.subList(0,5));
+                teachers = new ArrayList<>(teachers.subList(0, 5));
             }
             temp.teachers = teachers;
             view.setMustacheModel(temp);  // query here
@@ -211,30 +210,167 @@ public class BeheshtRayService extends APSService {
         } else if ("studentSettingsTab".equals(updateCommand)) {
             View view = new ProfileSettings();
             return view;
-        }
+        } else if (updateCommand.startsWith("upvote_comment")) {
 
-        else if(updateCommand.startsWith("upvote_comment")){
+            String upvotes_status;
+            String downvotes_status;
+            boolean already_upvoted = false;
+            boolean already_downvoted = false;
+            upvotes_status = Objects.requireNonNull(DbOperation.retrieveVoteStatus(userId, connection)).get(0).student_upvotes;
+            downvotes_status = Objects.requireNonNull(DbOperation.retrieveVoteStatus(userId, connection)).get(0).student_downvotes;
+            if (upvotes_status == null) {
+                upvotes_status = "";
+            }
+            if (downvotes_status == null) {
+                downvotes_status = "";
+            }
+
+//            System.out.println(upvotes_status);
+//            System.out.println(downvotes_status);
+
+            String[] upvote_list = upvotes_status.split(",");
+            String[] downvote_list = downvotes_status.split(",");
+
+//            System.out.println(Arrays.toString(upvote_list));
+//            System.out.println(Arrays.toString(downvote_list);
+
+
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
-            String upvote;
-            upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
-            upvote = String.valueOf(Integer.parseInt(upvote) + 1);
-            upvote = convertToEnglishDigits(upvote);
-//            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
-            DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+            for (String str : upvote_list) {
+                if (str.equals(selectedid)) {
+                    already_upvoted = true;
+                    break;
+                }
+            }
+
+            for (String str : downvote_list) {
+                if (str.equals(selectedid)) {
+                    already_downvoted = true;
+                    break;
+                }
+            }
+
+            if (already_upvoted) {
+                System.out.println("Hello1");
+
+                // already upvoted
+
+            } else if (already_downvoted) {
+                System.out.println("Hello2");
+
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) - 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateDownvotes(selectedid, upvote, connection);
+
+                downvotes_status = downvotes_status.replace(selectedid+",", "");
+                DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
+
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                upvotes_status += selectedid + ',';
+                DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
+
+            } else {
+                System.out.println("Hello3");
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                upvotes_status += selectedid + ',';
+                System.out.println("################");
+                System.out.println(userId);
+                System.out.println(upvotes_status);
+                DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
+            }
+
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
             View view = new TeacherComment();
             view.setMustacheModel(student);
             return view;
-        }
+        } else if (updateCommand.startsWith("downvote_comment")) {
 
-        else if(updateCommand.startsWith("downvote_comment")){
+
+            String upvotes_status;
+            String downvotes_status;
+            boolean already_upvoted = false;
+            boolean already_downvoted = false;
+            upvotes_status = Objects.requireNonNull(DbOperation.retrieveVoteStatus(userId, connection)).get(0).student_upvotes;
+            downvotes_status = Objects.requireNonNull(DbOperation.retrieveVoteStatus(userId, connection)).get(0).student_downvotes;
+            if (upvotes_status == null) {
+                upvotes_status = "";
+            }
+            if (downvotes_status == null) {
+                downvotes_status = "";
+            }
+
+//            System.out.println(upvotes_status);
+//            System.out.println(downvotes_status);
+
+            String[] upvote_list = upvotes_status.split(",");
+            String[] downvote_list = downvotes_status.split(",");
+
+//            System.out.println(Arrays.toString(upvote_list));
+//            System.out.println(Arrays.toString(downvote_list);
+
+
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
-            String upvote;
-            upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
-            upvote = String.valueOf(Integer.parseInt(upvote) + 1);
-            upvote = convertToEnglishDigits(upvote);
+
+            for (String str : upvote_list) {
+                if (str.equals(selectedid)) {
+                    already_upvoted = true;
+                    break;
+                }
+            }
+
+            for (String str : downvote_list) {
+                if (str.equals(selectedid)) {
+                    already_downvoted = true;
+                    break;
+                }
+            }
+
+            if (already_downvoted) {
+
+            } else if (already_upvoted) {
+
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) - 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                upvotes_status = upvotes_status.replace(selectedid+",", "");
+                DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
+
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateDownvotes(selectedid, upvote, connection);
+
+                downvotes_status += selectedid + ',';
+                DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
+
+            } else {
+
+
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+                upvote = convertToEnglishDigits(upvote);
 //            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
-            DbOperation.updateDownvotes(selectedid, upvote, connection);
+                DbOperation.updateDownvotes(selectedid, upvote, connection);
+
+                downvotes_status += selectedid + ',';
+                DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
+            }
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
             View view = new TeacherComment();
             view.setMustacheModel(student);
@@ -247,19 +383,17 @@ public class BeheshtRayService extends APSService {
     }
 
 
-
-    public static String convertToEnglishDigits(String value)
-    {
-        return value.replace("1","۱")
-                .replace("2","۲")
-                .replace("3","۳")
-                .replace("4","۴")
-                .replace("5","۵")
-                .replace("6","۶")
-                .replace("7","۷")
-                .replace("8","۸")
-                .replace("9","۹")
-                .replace("0","۰");
+    public static String convertToEnglishDigits(String value) {
+        return value.replace("1", "۱")
+                .replace("2", "۲")
+                .replace("3", "۳")
+                .replace("4", "۴")
+                .replace("5", "۵")
+                .replace("6", "۶")
+                .replace("7", "۷")
+                .replace("8", "۸")
+                .replace("9", "۹")
+                .replace("0", "۰");
     }
 
 

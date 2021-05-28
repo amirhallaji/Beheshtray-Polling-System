@@ -1,15 +1,16 @@
 package ir.sample.app.BeheshtRay.models;
 
-import ir.sample.app.BeheshtRay.models.Comment;
-
 import java.util.ArrayList;
 
 public class Student {
-    public String studentName;
-    public String studentId;
-    public String studentFaculty;
-    public String studentGender;
-	public String image_url;
+    public String student_name;
+    public String student_id;
+    public String student_faculty;
+    public String student_gender;
+	public String student_photo;
+	public String student_upvotes;
+	public String student_downvotes;
+	public String user_id;
 
 
 
@@ -22,35 +23,35 @@ public class Student {
 	}
 
 	public String getStudentName() {
-		return studentName;
+		return student_name;
 	}
 
 	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+		this.student_name = studentName;
 	}
 
-	public String getStudentId() {
-		return studentId;
+	public String getStudent_id() {
+		return student_id;
 	}
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setStudent_id(String student_id) {
+		this.student_id = student_id;
 	}
 
-	public String getStudentFaculty() {
-		return studentFaculty;
+	public String getStudent_faculty() {
+		return student_faculty;
 	}
 
-	public void setStudentFaculty(String studentFaculty) {
-		this.studentFaculty = studentFaculty;
+	public void setStudent_faculty(String student_faculty) {
+		this.student_faculty = student_faculty;
 	}
 
-	public String getStudentGender() {
-		return studentGender;
+	public String getStudent_gender() {
+		return student_gender;
 	}
 
-	public void setStudentGender(String studentGender) {
-		this.studentGender = studentGender;
+	public void setStudent_gender(String student_gender) {
+		this.student_gender = student_gender;
 	}
 
 	public ArrayList<Comment> getStudentComments() {

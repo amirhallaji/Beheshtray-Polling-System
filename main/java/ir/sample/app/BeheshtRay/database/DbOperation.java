@@ -2,6 +2,7 @@ package ir.sample.app.BeheshtRay.database;
 
 
 import ir.sample.app.BeheshtRay.models.Feedback;
+import ir.sample.app.BeheshtRay.models.Student;
 import ir.sample.app.BeheshtRay.models.Teacher;
 
 import java.sql.*;
@@ -187,10 +188,6 @@ public class DbOperation {
     }
 
 
-
-
-
-
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
             String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL ORDER BY created_time DESC";
@@ -305,7 +302,99 @@ public class DbOperation {
         } catch (Exception e) {
             return null;
         }
+    }
 
+
+    public static void sendUserInfo(Student student, Connection connection) {
+        try {
+            String count = "SELECT COUNT(*) FROM students"; // TODO dbOperation
+            PreparedStatement pcount = connection.prepareStatement(count);
+            ResultSet rcount = pcount.executeQuery();
+            int countnum = 0;
+            while (rcount.next()) {
+                countnum = Integer.parseInt(rcount.getString(1));
+            }
+            String checkSql = "INSERT INTO feedbacks(student_name, student_id, student_faculty, student_gender, student_photo, student_upvotes, student_downvotes, user_id) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, student.student_name);
+            pstmt.setString(2, student.student_id);
+            pstmt.setString(3, student.student_faculty);
+            pstmt.setString(4, student.student_gender);
+            pstmt.setString(5, student.student_photo);
+            pstmt.setString(6, student.student_upvotes);
+            pstmt.setString(7, student.student_downvotes);
+            pstmt.setString(8, student.user_id);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static ArrayList<Student> retrieveVoteStatus(String user_id, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM students WHERE user_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, user_id);
+            ResultSet resultSet = pstmt.executeQuery();
+            String data[] = new String[9];
+            ArrayList<Student> students = new ArrayList<>();
+            while (resultSet.next()) {
+                Student student = new Student();
+                for (int i = 1; i <= 8; i++) {
+                    data[i] = resultSet.getString(i);
+                }
+
+                student.student_name = data[1];
+                student.student_id = data[2];
+                student.student_faculty = data[3];
+                student.student_gender = data[4];
+                student.student_photo = data[5];
+                student.student_upvotes = data[6];
+                student.student_downvotes = data[7];
+                student.user_id = data[8];
+
+                students.add(student);
+
+            }
+            return students;
+        } catch (Exception e) {
+            return null;
+
+        }
 
     }
+
+
+    public static void updateUpvotesListForUser(String user_id, String student_upvotes, Connection connection) {
+        try {
+            String checkSql = "UPDATE students SET student_upvotes=? WHERE user_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, student_upvotes);
+            pstmt.setString(2, user_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateDownvotesListForUser(String user_id, String student_downvotes, Connection connection) {
+        try {
+            String checkSql = "UPDATE students SET student_downvotes=? WHERE user_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, student_downvotes);
+            pstmt.setString(2, user_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+
+
+
+
