@@ -11,6 +11,7 @@ public class Student {
 	public String student_upvotes;
 	public String student_downvotes;
 	public String user_id;
+	public String user_karma;
 
 
 

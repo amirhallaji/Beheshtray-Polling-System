@@ -50,7 +50,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksBySelf(String userid, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE userid=? and extended_feedback IS NOT NULL";
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=? and extended_feedback IS NOT NULL ORDER BY created_time DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();

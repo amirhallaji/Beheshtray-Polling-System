@@ -202,6 +202,17 @@ public class BeheshtRayService extends APSService {
         } else if ("studentCommentHistoryTab".equals(updateCommand)) {
             View view = new ProfileCommentHistory();
             student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+            int score = 0;
+            for (Feedback f : student.feedbacks) {
+                score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
+            }
+
+            if (score > 0) {
+                student.user_karma = "+";
+                student.user_karma += convertToEnglishDigits(String.valueOf(score));
+            } else {
+                student.user_karma = convertToEnglishDigits(String.valueOf(score));
+            }
             view.setMustacheModel(student);
             return view;
         } else if ("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)) {
@@ -265,7 +276,7 @@ public class BeheshtRayService extends APSService {
                 upvote = convertToEnglishDigits(upvote);
                 DbOperation.updateDownvotes(selectedid, upvote, connection);
 
-                downvotes_status = downvotes_status.replace(selectedid+",", "");
+                downvotes_status = downvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
 
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
@@ -291,10 +302,30 @@ public class BeheshtRayService extends APSService {
                 DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
             }
 
-            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
-            View view = new TeacherComment();
-            view.setMustacheModel(student);
-            return view;
+            if (updateCommand.startsWith("upvote_comment_teacher")) {
+                student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                View view = new TeacherComment();
+                view.setMustacheModel(student);
+                return view;
+
+            } else if (updateCommand.startsWith("upvote_comment_student")) {
+                student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+                int score = 0;
+                for (Feedback f : student.feedbacks) {
+                    score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
+                }
+
+                if (score > 0) {
+                    student.user_karma = "+";
+                    student.user_karma += convertToEnglishDigits(String.valueOf(score));
+                } else {
+                    student.user_karma = convertToEnglishDigits(String.valueOf(score));
+                }
+                View view = new ProfileCommentHistory();
+                view.setMustacheModel(student);
+                return view;
+            }
+
         } else if (updateCommand.startsWith("downvote_comment")) {
 
 
@@ -347,7 +378,7 @@ public class BeheshtRayService extends APSService {
                 upvote = convertToEnglishDigits(upvote);
                 DbOperation.updateUpvotes(selectedid, upvote, connection);
 
-                upvotes_status = upvotes_status.replace(selectedid+",", "");
+                upvotes_status = upvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
 
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
@@ -371,11 +402,29 @@ public class BeheshtRayService extends APSService {
                 downvotes_status += selectedid + ',';
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
             }
-            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
-            View view = new TeacherComment();
-            view.setMustacheModel(student);
-            return view;
+            if (updateCommand.startsWith("downvote_comment_teacher")) {
+                student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                View view = new TeacherComment();
+                view.setMustacheModel(student);
+                return view;
 
+            } else if (updateCommand.startsWith("downvote_comment_student")) {
+                student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+                int score = 0;
+                for (Feedback f : student.feedbacks) {
+                    score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
+                }
+
+                if (score > 0) {
+                    student.user_karma = "+";
+                    student.user_karma += convertToEnglishDigits(String.valueOf(score));
+                } else {
+                    student.user_karma = convertToEnglishDigits(String.valueOf(score));
+                }
+                View view = new ProfileCommentHistory();
+                view.setMustacheModel(student);
+                return view;
+            }
         }
 
 

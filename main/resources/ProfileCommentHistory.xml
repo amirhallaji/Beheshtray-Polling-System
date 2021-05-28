@@ -2,7 +2,7 @@
 
     <frame padding_bottom="10"/>
     <frame height="164" width="164" background="#008080" borderCornerRadius="120">
-        <text weight="2" gravity="center" textsize="40" textcolor="white">+۷</text>
+        <text weight="2" gravity="center" textsize="40" textcolor="white" text="{{user_karma}}"/>
     </frame>
 
     <frame>
@@ -41,14 +41,14 @@
                 <frame>
 
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
+                        <button gravity="center" onClick="update/upvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#228B22" width="30"
                                 textcolor="white" textsize="14" height="40" text="{{upvotes}}">
                         </button>
                     </frame>
 
 
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
+                        <button gravity="center" onClick="update/downvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#FF0000" width="30"
                                 textcolor="white" textsize="14" height="40" text="{{downvotes}}">
                         </button>
                     </frame>
