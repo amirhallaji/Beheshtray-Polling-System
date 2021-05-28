@@ -11,10 +11,7 @@ import org.json.simple.JSONObject;
 import java.sql.Array;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Objects;
+import java.util.*;
 
 public class BeheshtRayService extends APSService {
 
@@ -144,6 +141,8 @@ public class BeheshtRayService extends APSService {
             int number = 0;
             number = Objects.requireNonNull(DbOperation.retrieveFeedbacksBySelf2(userId, connection)).size();
             feedback.feedback_id = userId + "_"  + number;
+            Date date = new Date();
+            feedback.created_time =  String.valueOf(date.getTime());
 
             DbOperation.sendFeedBack(feedback, connection);
 

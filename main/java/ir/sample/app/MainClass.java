@@ -13,6 +13,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 
 import javax.naming.ConfigurationException;
+import java.util.Date;
 
 
     public class MainClass {
@@ -21,6 +22,9 @@ import javax.naming.ConfigurationException;
 
         PersianDate today = PersianDate.now();
         System.out.println(today.toString());
+
+        Date date = new Date();
+        System.out.println(date.getTime());
 
         System.out.println("start main");
         System.out.println("This is a test from arman in Gitlab");

@@ -15,6 +15,7 @@ public class Feedback {
     public String downvotes;
     public String date_number;
     public String feedback_id;
+    public String created_time;
     public int feedback_key;
 
 }
