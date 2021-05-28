@@ -133,6 +133,9 @@ public class BeheshtRayService extends APSService {
         } else if ("createPoll".equals(updateCommand)) {
             feedback.student_score = convertToEnglishDigits(pageData.get("studentScore").toString());
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
+            if (feedback.extended_feedback.trim().isEmpty()) {
+                feedback.extended_feedback = null;
+            }
 //            feedback.feedback_key = Integer.parseInt(userId);
             feedback.upvotes = "۰";
             feedback.downvotes = "۰";

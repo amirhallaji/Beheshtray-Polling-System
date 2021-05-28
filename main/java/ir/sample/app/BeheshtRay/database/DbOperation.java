@@ -45,11 +45,11 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Feedback> retrieveFeedbacksBySelf(String user_id, Connection connection) {
+    public static ArrayList<Feedback> retrieveFeedbacksBySelf(String userid, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE user_id=?";
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=? and extended_feedback IS NOT NULL";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, user_id);
+            pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
             String data[] = new String[14];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
@@ -82,7 +82,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=?";
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
