@@ -20,8 +20,10 @@ public class BeheshtRayService extends APSService {
     Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
     ArrayList<Feedback> feedbacks = new ArrayList<>();
+    ArrayList <Student> students = new ArrayList<>();
     ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
+    TempStudent <Student> tempStudent = new TempStudent<>();
     Teacher current_teacher;
 
     String feedback_id = "";
@@ -103,6 +105,9 @@ public class BeheshtRayService extends APSService {
             default:
                 System.out.println("default case");
                 view = new SignInUp();
+                students = DbOperation.retrieveVoteStatus(userId, connection);
+                tempStudent.students = students;
+                view.setMustacheModel(tempStudent);
         }
 
         return view;
@@ -190,6 +195,7 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if ("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)) {
+            System.out.println("userid: " + userId);
             View view = new Home();
             teachers = DbOperation.retrieveTeachers(connection);
             if (teachers != null) {
@@ -217,9 +223,15 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if ("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)) {
             View view = new ProfileInfo();
+//            students = DbOperation.retrieveVoteStatus(userId, connection); //
+            System.out.println("sggg: " + students.get(0).student_name);
+            students.get(0).student_id = convertToEnglishDigits(students.get(0).student_id);
+//            tempStudent.students = students;
+            view.setMustacheModel(tempStudent);
             return view;
         } else if ("studentSettingsTab".equals(updateCommand)) {
             View view = new ProfileSettings();
+            view.setMustacheModel(tempStudent);
             return view;
         } else if (updateCommand.startsWith("upvote_comment")) {
 
@@ -438,7 +450,7 @@ public class BeheshtRayService extends APSService {
 
             if (score > 0) {
                 student.user_karma = "+";
-                student.user_karma += convertToEnglishDigits(String.valueOf(score));
+                    student.user_karma += convertToEnglishDigits(String.valueOf(score));
             } else {
                 student.user_karma = convertToEnglishDigits(String.valueOf(score));
             }
@@ -446,6 +458,7 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(student);
             return view;
         }
+
 
 
         return update;

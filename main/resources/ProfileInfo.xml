@@ -1,12 +1,12 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
-
+    {{#students}}
     <frame>
-        <image src="https://uupload.ir/files/qzfz_287589_732.jpeg" borderCornerRadius="120" height="164"
+        <image src="{{student_photo}}" borderCornerRadius="120" height="164"
                width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">عباس بوعذار</text>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{student_name}}"/>
     </frame>
 
     <frame>
@@ -14,7 +14,6 @@
             فقط یدونه ر داره
         </text>
     </frame>
-
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
@@ -38,20 +37,24 @@
 
 
     <text gravity="center" textsize="16">شماره دانشجویی</text>
-    <text gravity="center" textsize="14" id="fields">۹۷۲۴۳۰۲۳</text>
+    <text gravity="center" textsize="14" id="fields" text="{{student_id}}"/>
 
     <frame padding_bottom="10"/>
 
     <text gravity="center" textsize="16">دانشکده</text>
-    <text gravity="center" textsize="14" id="e-mail_address">مهندسی و علوم کامپیوتر</text>
+    <text gravity="center" textsize="14" id="e-mail_address" text="{{student_faculty}}"/>
 
     <frame padding_bottom="10"/>
 
 
     <text gravity="center" textsize="16">جنسیت</text>
-    <text gravity="center" textsize="14" id="courses">مرد</text>
+    <text gravity="center" textsize="14" id="courses" text="{{student_gender}}"/>
+
 
     <frame padding_bottom="10"/>
+
+    {{/students}}
+
 
     <button onClick="" borderCornerRadius="100" background="red" width="120" textcolor="white" padding="50"
             textsize="14">خروج از سامانه
@@ -65,7 +68,7 @@
                margin_bottom="-1" height="64">
             <frame layout="linear_horizontal" gravity="center">
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/profile_info" gravity="center">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
                            borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>

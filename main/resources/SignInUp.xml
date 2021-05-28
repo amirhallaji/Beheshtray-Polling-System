@@ -15,15 +15,15 @@
         <text textalignment="center" textcolor="#3399ff" textsize="14">سرویس نظرسنجی دانشگاه شهید بهشتی</text>
     </frame>
 
-
+    {{#students}}
     <frame layout="linear_vertical" padding_bottom="100" width="280">
         <checkbox textsize="14" text="شرایط و ضوابط استفاده از بهشترأی را می‌پذیرم." margin_right="10"
                   margin_left="10"/>
         <button borderCornerRadius="100" background="#3399ff" textcolor="white" onclick="update/acceptConditions"
-                id="signin_button">ورود با اپسان به عنوان عباس بوعذار
+                id="signin_button" text="ورود با اپسان به عنوان: {{student_name}}">
         </button>
     </frame>
-
+    {{/students}}
 
     <footer background="#1E90FF">
         <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
