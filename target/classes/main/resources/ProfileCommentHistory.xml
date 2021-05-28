@@ -42,14 +42,14 @@
 
                     <frame>
                         <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22" width="30"
-                                textcolor="white" textsize="14" height="40">+۸
+                                textcolor="white" textsize="14" height="40" text="{{upvotes}}">
                         </button>
                     </frame>
 
 
                     <frame>
                         <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000" width="30"
-                                textcolor="white" textsize="14" height="40">-۱
+                                textcolor="white" textsize="14" height="40" text="{{downvotes}}">
                         </button>
                     </frame>
 
@@ -57,10 +57,9 @@
 
 
                 <frame>
-                    <text textalignment="right" gravity="right" width="60" textsize="12" text="{{student_score}}">نمره: </text>
+                    <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{student_score}}"/>
 
-                    <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۳/۹/۱۳۹۹
-                    </text>
+                    <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{date_number}}"/>
 
                 </frame>
 
@@ -68,12 +67,12 @@
 
             <frame layout="linear_horizontal">
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="{{teacher_name}}">استاد:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacher_name}}">
 
                     </text>
                 </frame>
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="{{lesson_name}}">درس:
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lesson_name}}">
 
                     </text>
                 </frame>
