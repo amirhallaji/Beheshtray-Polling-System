@@ -82,9 +82,9 @@
 
 
             <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره:{{student_score}}"> </text>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{student_score}}"/>
 
-                <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر : ۹/۹/۱۳۹۹</text>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{date_number}}"/>
 
             </frame>
 

@@ -10,9 +10,11 @@ import org.json.simple.JSONObject;
 
 import java.sql.Array;
 import java.sql.Connection;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 public class BeheshtRayService extends APSService {
 
@@ -129,18 +131,20 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if ("createPoll".equals(updateCommand)) {
-            feedback.student_score = pageData.get("studentScore").toString();
+            feedback.student_score = convertToEnglishDigits(pageData.get("studentScore").toString());
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
-            feedback.feedback_key = Integer.parseInt(userId);
-            feedback.upvotes = "0";
-            feedback.downvotes = "0";
+//            feedback.feedback_key = Integer.parseInt(userId);
+            feedback.upvotes = "۰";
+            feedback.downvotes = "۰";
             feedback.user_id = userId;
-            feedback.date_number = PersianDate.now().toString();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            feedback.date_number = convertToEnglishDigits(dtf.format(PersianDate.now()));
             DbOperation.sendFeedBack(feedback, connection);
 
             View view = new TeacherComment();
             feedback_id = userId;
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+
             view.setMustacheModel(student);
             return view;
         } else if ("polling".equals(updateCommand)) {
