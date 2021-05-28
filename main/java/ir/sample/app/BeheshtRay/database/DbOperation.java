@@ -165,7 +165,7 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, new_upvote);
             pstmt.setString(2, feedback_id);
-            ResultSet resultSet = pstmt.executeQuery();
+            pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -179,6 +179,7 @@ public class BeheshtRayService extends APSService {
             View view = new TeacherComment();
             System.out.println("currentTeacher: " + current_teacher.teacher_name);
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+//            System.out.println("MAN" + student.feedbacks.get(0).feedback_id);
 //            student.image_url = DbOperation.retrieveTeacherURLImage(current_teacher.lesson_name, connection);
             view.setMustacheModel(student);
             return view;
@@ -215,12 +216,16 @@ public class BeheshtRayService extends APSService {
 
         else if(updateCommand.startsWith("upvote_comment")){
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
-            System.out.println("select: "  + selectedid );
+//            System.out.println("select: "  + selectedid );
             String upvote;
             upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
             upvote = String.valueOf(Integer.parseInt(upvote) + 1);
-            System.out.println("upvote: " + upvote  +"    feedback" + feedback_id);
-            DbOperation.updateUpvotes(feedback_id, upvote, connection);
+            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
+            DbOperation.updateUpvotes(selectedid, upvote, connection);
+            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            View view = new TeacherComment();
+            view.setMustacheModel(student);
+            return view;
 
         }
 
