@@ -224,7 +224,7 @@ public class BeheshtRayService extends APSService {
         } else if ("studentInformationTab".equals(updateCommand) || "profile_info".equals(updateCommand)) {
             View view = new ProfileInfo();
 //            students = DbOperation.retrieveVoteStatus(userId, connection); //
-            System.out.println("sggg: " + students.get(0).student_name);
+//            System.out.println("sggg: " + students.get(0).student_name);
             students.get(0).student_id = convertToEnglishDigits(students.get(0).student_id);
 //            tempStudent.students = students;
             view.setMustacheModel(tempStudent);
@@ -277,6 +277,14 @@ public class BeheshtRayService extends APSService {
             if (already_upvoted) {
                 System.out.println("Hello1");
 
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) - 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                upvotes_status = upvotes_status.replace(selectedid + ",", "");
+                DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
                 // already upvoted
 
             } else if (already_downvoted) {
@@ -381,6 +389,16 @@ public class BeheshtRayService extends APSService {
             }
 
             if (already_downvoted) {
+
+                String upvote;
+                upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
+                upvote = String.valueOf(Integer.parseInt(upvote) - 1);
+                upvote = convertToEnglishDigits(upvote);
+                DbOperation.updateDownvotes(selectedid, upvote, connection);
+
+                downvotes_status = downvotes_status.replace(selectedid + ",", "");
+                DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
+
 
             } else if (already_upvoted) {
 
