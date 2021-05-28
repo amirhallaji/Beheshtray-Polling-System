@@ -427,6 +427,26 @@ public class BeheshtRayService extends APSService {
             }
         }
 
+        else if(updateCommand.startsWith("deleteComment")){
+            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            DbOperation.deleteExtendedVote(selectedid, connection);
+            student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+            int score = 0;
+            for (Feedback f : student.feedbacks) {
+                score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
+            }
+
+            if (score > 0) {
+                student.user_karma = "+";
+                student.user_karma += convertToEnglishDigits(String.valueOf(score));
+            } else {
+                student.user_karma = convertToEnglishDigits(String.valueOf(score));
+            }
+            View view = new ProfileCommentHistory();
+            view.setMustacheModel(student);
+            return view;
+        }
+
 
         return update;
     }

@@ -392,6 +392,17 @@ public class DbOperation {
         }
     }
 
+    public static void deleteExtendedVote(String feedback_id, Connection connection) {
+        try {
+            String checkSql = "UPDATE feedbacks SET extended_feedback=NULL WHERE feedback_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, feedback_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
