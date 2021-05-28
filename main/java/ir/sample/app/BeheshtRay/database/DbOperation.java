@@ -171,6 +171,18 @@ public class DbOperation {
         }
     }
 
+    public static void updateDownvotes(String feedback_id, String new_downvote, Connection connection) {
+        try {
+            String checkSql = "UPDATE feedbacks SET downvotes=? WHERE feedback_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, new_downvote);
+            pstmt.setString(2, feedback_id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

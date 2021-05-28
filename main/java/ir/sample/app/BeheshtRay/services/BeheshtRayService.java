@@ -216,21 +216,30 @@ public class BeheshtRayService extends APSService {
 
         else if(updateCommand.startsWith("upvote_comment")){
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
-//            System.out.println("select: "  + selectedid );
             String upvote;
             upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
             upvote = String.valueOf(Integer.parseInt(upvote) + 1);
-            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
+            upvote = convertToEnglishDigits(upvote);
+//            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
             DbOperation.updateUpvotes(selectedid, upvote, connection);
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
             View view = new TeacherComment();
             view.setMustacheModel(student);
             return view;
-
         }
 
         else if(updateCommand.startsWith("downvote_comment")){
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            String upvote;
+            upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
+            upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+            upvote = convertToEnglishDigits(upvote);
+//            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
+            DbOperation.updateDownvotes(selectedid, upvote, connection);
+            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            View view = new TeacherComment();
+            view.setMustacheModel(student);
+            return view;
 
         }
 
