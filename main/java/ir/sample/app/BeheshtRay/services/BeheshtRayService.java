@@ -213,9 +213,27 @@ public class BeheshtRayService extends APSService {
             return view;
         }
 
+        else if(updateCommand.startsWith("upvote_comment")){
+            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            System.out.println("select: "  + selectedid );
+            String upvote;
+            upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
+            upvote = String.valueOf(Integer.parseInt(upvote) + 1);
+            System.out.println("upvote: " + upvote  +"    feedback" + feedback_id);
+            DbOperation.updateUpvotes(feedback_id, upvote, connection);
+
+        }
+
+        else if(updateCommand.startsWith("downvote_comment")){
+            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+
+        }
+
 
         return update;
     }
+
+
 
     public static String convertToEnglishDigits(String value)
     {
