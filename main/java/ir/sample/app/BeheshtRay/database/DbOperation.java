@@ -19,7 +19,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
@@ -34,6 +34,7 @@ public class DbOperation {
             pstmt.setString(11, feedback.date_number);
             pstmt.setString(12, feedback.upvotes);
             pstmt.setString(13, feedback.downvotes);
+            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
@@ -51,11 +52,11 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[14];
+            String data[] = new String[15];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 13; i++) {
+                for (int i = 1; i <= 14; i++) {
                     data[i] = resultSet.getString(i);
                 }
                 feedback.teacher_name = data[1];
@@ -71,14 +72,56 @@ public class DbOperation {
                 feedback.date_number = data[11];
                 feedback.upvotes = data[12];
                 feedback.downvotes = data[13];
+                feedback.feedback_id = data[14];
                 feedbacks.add(feedback);
 
             }
             return feedbacks;
         } catch (Exception e) {
             return null;
+
         }
     }
+
+
+    public static ArrayList<Feedback> retrieveFeedbacksBySelf2(String userid, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userid);
+            ResultSet resultSet = pstmt.executeQuery();
+//            String data[] = new String[15];
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+//                for (int i = 1; i <= 14; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+////                feedback.teacher_name = data[1];
+////                feedback.lesson_name = data[2];
+////                feedback.score1 = data[3];
+////                feedback.score2 = data[4];
+////                feedback.score3 = data[5];
+////                feedback.score4 = data[6];
+////                feedback.score_ave = data[7];
+////                feedback.student_score = data[8];
+////                feedback.extended_feedback = data[9];
+////                feedback.user_id = data[10];
+////                feedback.date_number = data[11];
+////                feedback.upvotes = data[12];
+////                feedback.downvotes = data[13];
+//                feedback.feedback_id = data[14];
+                feedbacks.add(feedback);
+
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+
+        }
+    }
+
+
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
@@ -87,11 +130,11 @@ public class DbOperation {
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[14];
+            String data[] = new String[15];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 13; i++) {
+                for (int i = 1; i <= 14; i++) {
                     data[i] = resultSet.getString(i);
                 }
                 feedback.teacher_name = data[1];
@@ -107,6 +150,7 @@ public class DbOperation {
                 feedback.date_number = data[11];
                 feedback.upvotes = data[12];
                 feedback.downvotes = data[13];
+                feedback.feedback_id = data[14];
                 feedbacks.add(feedback);
 
             }

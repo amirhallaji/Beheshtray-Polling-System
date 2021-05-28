@@ -26,7 +26,6 @@ public class BeheshtRayService extends APSService {
     ArrayList<Feedback> feedbacks = new ArrayList<>();
     ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
-
     Teacher current_teacher;
 
     String feedback_id = "";
@@ -142,6 +141,10 @@ public class BeheshtRayService extends APSService {
             feedback.user_id = userId;
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             feedback.date_number = convertToEnglishDigits(dtf.format(PersianDate.now()));
+            int number = 0;
+            number = Objects.requireNonNull(DbOperation.retrieveFeedbacksBySelf2(userId, connection)).size();
+            feedback.feedback_id = userId + "_"  + number;
+
             DbOperation.sendFeedBack(feedback, connection);
 
             View view = new TeacherComment();

@@ -1,0 +1,75 @@
+<page title="بازخورد" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4">
+
+
+    {{#teachers}}
+    <frame>
+        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164"
+               width="164"/>
+    </frame>
+
+
+    <frame>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
+    </frame>
+
+    <frame>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
+    </frame>
+    {{/teachers}}
+
+
+    <frame layout="linear_horizontal">
+        <frame height="20" width="20" background="#228B22" borderCornerRadius="120" borderColor="#228B22"
+               borderStrokeWidth="0.5">
+        </frame>
+
+        <frame height="20" width="20" background="#1E90FF" borderCornerRadius="120" borderColor="#1E90FF"
+               borderStrokeWidth="0.5">
+        </frame>
+
+    </frame>
+
+
+    <frame gravity="center" >
+        <text textsize="22" id="longComment" gravity="center">در صورت تمایل چیزی بنویسید.</text>
+    </frame>
+
+
+    <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="10" width="240">
+        <textInput id="studentScore" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
+                   borderColor="#4682B4" borderCornerRadius="10" background="#FFFFFF" hint="نمره ی من در این درس"
+                   inputtype="number"/>
+    </frame>
+
+
+    <frame padding_bottom="10"/>
+
+    <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1">
+        <textInput width="350" height="260" gravity="top_right" padding="10" borderColor="#4682B4"
+                   borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multilineline="true"
+                   borderStrokeWidth=""/>
+    </frame>
+
+
+    <frame padding_bottom="10"/>
+
+
+    <frame layout="linear_horizontal">
+
+        <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
+                textsize="14">قبلی
+        </button>
+
+
+        <button onClick="update/createPoll" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
+                textsize="14">ثبت بازخورد
+        </button>
+
+
+    </frame>
+
+
+    <frame padding_bottom="10"/>
+
+
+</page>

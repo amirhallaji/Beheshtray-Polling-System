@@ -1,0 +1,103 @@
+<page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
+
+    <frame>
+        <image src="https://uupload.ir/files/qzfz_287589_732.jpeg" borderCornerRadius="120" height="164"
+               width="164"/>
+    </frame>
+
+    <frame>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">عباس بوعذار</text>
+    </frame>
+
+    <frame>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">نه ح داره نه م داره نه د داره،
+            فقط یدونه ر داره
+        </text>
+    </frame>
+
+
+    <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
+        +
+        <frame layout="linear_horizontal">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentSettingsTab">
+                <text textsize="12" gravity="center" textcolor="black">تنظیمات</text>
+            </frame>
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentInformationTab">
+                <text textsize="12" gravity="center" textcolor="#1E90FF">اطلاعات دانشجو</text>
+            </frame>
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentCommentHistoryTab">
+                <text textsize="12" gravity="center" textcolor="black">تاریخچه نظرات</text>
+            </frame>
+        </frame>
+        <divider color="#fff" size="2"/>
+    </frame>
+
+    <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
+
+    <frame padding_bottom="24"/>
+
+
+    <text gravity="center" textsize="16">شماره دانشجویی</text>
+    <text gravity="center" textsize="14" id="fields">۹۷۲۴۳۰۲۳</text>
+
+    <frame padding_bottom="10"/>
+
+    <text gravity="center" textsize="16">دانشکده</text>
+    <text gravity="center" textsize="14" id="e-mail_address">مهندسی و علوم کامپیوتر</text>
+
+    <frame padding_bottom="10"/>
+
+
+    <text gravity="center" textsize="16">جنسیت</text>
+    <text gravity="center" textsize="14" id="courses">مرد</text>
+
+    <frame padding_bottom="10"/>
+
+    <button onClick="" borderCornerRadius="100" background="red" width="120" textcolor="white" padding="50"
+            textsize="14">خروج از سامانه
+    </button>
+
+    <frame padding_bottom="10"/>
+
+
+    <footer background="#1E90FF">
+        <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
+               margin_bottom="-1" height="64">
+            <frame layout="linear_horizontal" gravity="center">
+
+                <frame layout="linear_vertical" background="#1E90FF" onclick="command/profile" gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
+                           borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">پروفایل</text>
+                    </frame>
+                </frame>
+
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/polling" gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">نظرسنجی</text>
+                    </frame>
+                </frame>
+
+
+                <frame layout="linear_vertical" background="#1E90FF" onclick="update/home" gravity="center">
+
+                    <image src="https://s2.uupload.ir/files/round_home_white_24dp_rq7x.png" borderCornerRadius="0"
+                           width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+                    <frame margin="0" padding="0">
+                        <text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">خانه</text>
+                    </frame>
+                </frame>
+
+            </frame>
+        </frame>
+    </footer>
+</page>
+  
