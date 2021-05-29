@@ -20,7 +20,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
@@ -37,6 +37,7 @@ public class DbOperation {
             pstmt.setString(13, feedback.downvotes);
             pstmt.setString(14, feedback.feedback_id);
             pstmt.setString(15, feedback.created_time);
+            pstmt.setInt(16, feedback.diff_votes);
 //            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
@@ -76,6 +77,7 @@ public class DbOperation {
                 feedback.downvotes = data[13];
                 feedback.feedback_id = data[14];
                 feedback.created_time = data[15];
+                feedback.diff_votes = resultSet.getInt(16);
                 feedbacks.add(feedback);
 
             }
@@ -153,6 +155,8 @@ public class DbOperation {
                 feedback.downvotes = data[13];
                 feedback.feedback_id = data[14];
                 feedback.created_time = data[15];
+                feedback.diff_votes = resultSet.getInt(16);
+
                 feedbacks.add(feedback);
 
             }
@@ -163,24 +167,26 @@ public class DbOperation {
         }
     }
 
-    public static void updateUpvotes(String feedback_id, String new_upvote, Connection connection) {
+    public static void updateUpvotes(String feedback_id, int diff_votes, String new_upvote, Connection connection) {
         try {
-            String checkSql = "UPDATE feedbacks SET upvotes=? WHERE feedback_id=?";
+            String checkSql = "UPDATE feedbacks SET upvotes=?, diff_votes=? WHERE feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, new_upvote);
-            pstmt.setString(2, feedback_id);
+            pstmt.setInt(2, diff_votes);
+            pstmt.setString(3, feedback_id);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void updateDownvotes(String feedback_id, String new_downvote, Connection connection) {
+    public static void updateDownvotes(String feedback_id,int diff_votes, String new_downvote, Connection connection) {
         try {
-            String checkSql = "UPDATE feedbacks SET downvotes=? WHERE feedback_id=?";
+            String checkSql = "UPDATE feedbacks SET downvotes=?, diff_votes=? WHERE feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, new_downvote);
-            pstmt.setString(2, feedback_id);
+            pstmt.setInt(2, diff_votes);
+            pstmt.setString(3, feedback_id);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,11 +201,11 @@ public class DbOperation {
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[15];
+            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 14; i++) {
+                for (int i = 1; i <= 15; i++) {
                     data[i] = resultSet.getString(i);
                 }
                 feedback.teacher_name = data[1];
@@ -216,6 +222,9 @@ public class DbOperation {
                 feedback.upvotes = data[12];
                 feedback.downvotes = data[13];
                 feedback.feedback_id = data[14];
+                feedback.created_time = data[15];
+                feedback.diff_votes = resultSet.getInt(16);
+
                 feedbacks.add(feedback);
 
             }
@@ -224,6 +233,8 @@ public class DbOperation {
             return null;
         }
     }
+
+
 
     public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
         try {
@@ -405,7 +416,7 @@ public class DbOperation {
 
     public static void deleteExtendedVote(String feedback_id, Connection connection) {
         try {
-            String checkSql = "UPDATE feedbacks SET extended_feedback=NULL WHERE feedback_id=?";
+            String checkSql = "UPDATE feedbacks SET extended_feedback=NULL, diff_votes=0 WHERE feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback_id);
             pstmt.executeUpdate();

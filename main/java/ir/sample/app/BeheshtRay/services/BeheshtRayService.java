@@ -147,6 +147,7 @@ public class BeheshtRayService extends APSService {
             feedback.feedback_id = userId + "_" + number;
             Date date = new Date();
             feedback.created_time = String.valueOf(date.getTime());
+            feedback.diff_votes = 0;
 
             DbOperation.sendFeedBack(feedback, connection);
 
@@ -281,7 +282,9 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) - 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes - 1;
+                DbOperation.updateUpvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 upvotes_status = upvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
@@ -294,7 +297,8 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) - 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateDownvotes(selectedid, upvote, connection);
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes + 1;
+                DbOperation.updateDownvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 downvotes_status = downvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
@@ -302,7 +306,9 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) + 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes + 1;
+                DbOperation.updateUpvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 upvotes_status += selectedid + ',';
                 DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
@@ -313,7 +319,9 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) + 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateUpvotes(selectedid, upvote, connection);
+
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes + 1;
+                DbOperation.updateUpvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 upvotes_status += selectedid + ',';
                 System.out.println("################");
@@ -394,7 +402,8 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) - 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateDownvotes(selectedid, upvote, connection);
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes + 1;
+                DbOperation.updateDownvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 downvotes_status = downvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
@@ -406,7 +415,8 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).upvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) - 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateUpvotes(selectedid, upvote, connection);
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes - 1;
+                DbOperation.updateUpvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 upvotes_status = upvotes_status.replace(selectedid + ",", "");
                 DbOperation.updateUpvotesListForUser(userId, upvotes_status, connection);
@@ -414,7 +424,8 @@ public class BeheshtRayService extends APSService {
                 upvote = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).downvotes;
                 upvote = String.valueOf(Integer.parseInt(upvote) + 1);
                 upvote = convertToEnglishDigits(upvote);
-                DbOperation.updateDownvotes(selectedid, upvote, connection);
+                upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes - 1;
+                DbOperation.updateDownvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 downvotes_status += selectedid + ',';
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
@@ -427,7 +438,8 @@ public class BeheshtRayService extends APSService {
                 upvote = String.valueOf(Integer.parseInt(upvote) + 1);
                 upvote = convertToEnglishDigits(upvote);
 //            System.out.println("upvote: " + upvote  +"    feedback" + selectedid);
-                DbOperation.updateDownvotes(selectedid, upvote, connection);
+                int upvote_diff_num = Objects.requireNonNull(DbOperation.retrieveFeedbacksByFeedbackId(selectedid, connection)).get(0).diff_votes - 1;
+                DbOperation.updateDownvotes(selectedid, upvote_diff_num, upvote, connection);
 
                 downvotes_status += selectedid + ',';
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
