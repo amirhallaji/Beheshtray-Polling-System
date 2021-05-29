@@ -106,8 +106,14 @@ public class BeheshtRayService extends APSService {
                 System.out.println("default case");
                 view = new SignInUp();
                 students = DbOperation.retrieveVoteStatus(userId, connection);
-                tempStudent.students = students;
-                view.setMustacheModel(tempStudent);
+                if(Objects.requireNonNull(students).size() == 0){
+                    view = new Register();
+                }else {
+                    view = new SignInUp();
+                    tempStudent.students = students;
+                    view.setMustacheModel(tempStudent);
+                }
+
         }
 
         return view;

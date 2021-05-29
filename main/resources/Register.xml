@@ -1,36 +1,120 @@
-<page onBack="app/back" background="" toolbarColor="#1E90FF" statusbarColor="#4682B4" title="ثبت‌نام"  scrollable="true">
-	<frame scrollable="true"  layout="linear_vertical" margin_top="0" margin_bottom="0">
-		<image width="100" src="http://162.55.105.137:8080/api/public/dl/z9tn450x"></image>
-	</frame>
+<page onBack="app/back" background="" toolbarColor="#1E90FF" statusbarColor="#4682B4" title="بهشترأی"  scrollable="true" padding_top="64">
+
 	<frame layout="linear_vertical">
-		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
-			<text margin_left="10" margin_right="10" background="white">نام:</text>
-			<textInput textsize="11" textalignment="right" margin-right="50" hint="" id="" onClick=""></textInput>
 
+		<frame layout="linear_horizontal">
+
+			<frame gravity="left">
+
+
+				<frame gravity="right" width="250">
+					<text textsize="22" gravity="right">ثبت نام</text>
+				</frame>
+			</frame>
+		</frame>
+	</frame>
+
+	<frame layout="linear_vertical">
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text gravity="center" background="white">نام</text>
+			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+				<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+						   hint="عباس"
+						   />
+			</frame>
 		</frame>
 
-		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
-			<text margin_left="10" margin_right="10" background="white">نام خانوادگی:</text>
-			<textInput textsize="11" textalignment="right" margin-right="50" hint="" id="" onClick=""></textInput>
+		<frame padding="5"></frame>
 
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text gravity="center" background="white">نام خانوادگی</text>
+			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+			<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+					      hint="بوعذار"
+					   />
+			</frame>
 		</frame>
 
-		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
-			<text margin_left="10" margin_right="10" background="white">شماره دانشجویی:</text>
-			<textInput textsize="11" textalignment="right" margin-right="50" Inputtype="number" hint="شماره دانشجویی باید 8 رقم باشد" id="" onClick=""></textInput>
-		</frame>
+	<frame padding="5"></frame>
 
 		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
-			<!-- <text margin_left="10" margin_right="10" background="white">جنسیت:</text> -->
-			<dropdown onSelectionChange="" id="" hint="جنسیت">
-				<item id="" onClick="">جنسیت</item>
+			<text gravity="center" background="white">شماره دانشجویی</text>
+			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+				<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+						   hint="۹۷۲۴۳۰۲۹"
+						   inputtype="number"/>
+			</frame>
+		</frame>
+
+		<frame padding="5"></frame>
+
+
+		<!--		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">-->
+<!--			<text margin_left="10" margin_right="10" background="white">نام خانوادگی</text>-->
+<!--			<textInput textsize="11" textalignment="right" margin-right="50" hint="" id="" onClick=""></textInput>-->
+
+<!--		</frame>-->
+
+<!--		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">-->
+<!--			<text margin_left="10" margin_right="10" background="white">شماره دانشجویی:</text>-->
+<!--			<textInput textsize="11" textalignment="right" margin-right="50" Inputtype="number" hint="شماره دانشجویی باید 8 رقم باشد" id="" onClick=""></textInput>-->
+<!--		</frame>-->
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			 <text gravity="center" margin_left="10" margin_right="10" background="white">جنسیت</text>
+			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+			<dropdown onSelectionChange="" id="" hint="انتخاب کنید...">
+				<item id="" onClick="" text_color="#7F7F7F">هیچکدام</item>
 				<item id="" onClick="">مرد</item>
 				<item id="" onClick="">زن</item>
 			</dropdown>
+			</frame>
 		</frame>
 
 	</frame>
-	<frame  layout="linear_vertical" margin_top="30" >
-		<button id="nextPageButton" progressBarRadius="11" progressBarColor="white" borderCornerRadius="8" onClick=""  textcolor="white" textsize="14" background="#1E90FF" height="55" >ارسال اطلاعات و ثبت نام</button>
+	<frame>
+		<button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
+				textcolor="#fff" borderCornerRadius="5" onClick="update/createPoll" margin="20">ارسال اطلاعات و ثبت نام</button>
 	</frame>
+
+
+
+
+
+
+	<footer background="#1E90FF">
+		<frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
+			   margin_bottom="-1" height="64">
+			<frame layout="linear_horizontal" gravity="center">
+
+				<frame layout="linear_vertical" background="#1E90FF" onclick="" gravity="center" height="64">
+
+					<image src="https://s2.uupload.ir/files/round_info_white_24dp_j64w.png" borderCornerRadius="0"
+						   width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+					<frame margin="0" padding="0">
+						<text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">راهنما</text>
+					</frame>
+				</frame>
+
+				<frame layout="linear_vertical" background="#006AD1" onclick="update/home" gravity="center" height="64">
+
+					<image src="https://s2.uupload.ir/files/round_login_white_24dp_afte.png" borderCornerRadius="0"
+						   width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+					<frame margin="0" padding="0">
+						<text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">ثبت نام</text>
+					</frame>
+				</frame>
+
+
+			</frame>
+		</frame>
+	</footer>
 </page>
