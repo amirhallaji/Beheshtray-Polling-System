@@ -1,0 +1,36 @@
+<page onBack="app/back" background="" toolbarColor="#1E90FF" statusbarColor="#4682B4" title="ثبت‌نام"  scrollable="true">
+	<frame scrollable="true"  layout="linear_vertical" margin_top="0" margin_bottom="0">
+		<image width="100" src="http://162.55.105.137:8080/api/public/dl/z9tn450x"></image>
+	</frame>
+	<frame layout="linear_vertical">
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text margin_left="10" margin_right="10" background="white">نام:</text>
+			<textInput textsize="11" textalignment="right" margin-right="50" hint="" id="" onClick=""></textInput>
+
+		</frame>
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text margin_left="10" margin_right="10" background="white">نام خانوادگی:</text>
+			<textInput textsize="11" textalignment="right" margin-right="50" hint="" id="" onClick=""></textInput>
+
+		</frame>
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text margin_left="10" margin_right="10" background="white">شماره دانشجویی:</text>
+			<textInput textsize="11" textalignment="right" margin-right="50" Inputtype="number" hint="شماره دانشجویی باید 8 رقم باشد" id="" onClick=""></textInput>
+		</frame>
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<!-- <text margin_left="10" margin_right="10" background="white">جنسیت:</text> -->
+			<dropdown onSelectionChange="" id="" hint="جنسیت">
+				<item id="" onClick="">جنسیت</item>
+				<item id="" onClick="">مرد</item>
+				<item id="" onClick="">زن</item>
+			</dropdown>
+		</frame>
+
+	</frame>
+	<frame  layout="linear_vertical" margin_top="30" >
+		<button id="nextPageButton" progressBarRadius="11" progressBarColor="white" borderCornerRadius="8" onClick=""  textcolor="white" textsize="14" background="#1E90FF" height="55" >ارسال اطلاعات و ثبت نام</button>
+	</frame>
+</page>
