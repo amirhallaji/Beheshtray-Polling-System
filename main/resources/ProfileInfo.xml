@@ -59,7 +59,7 @@
 
     <frame>
         <button height="50" width="100" padding="35" background="#b43322" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">خروج از سامانه</button>
+                textcolor="#fff" borderCornerRadius="5" onClick="update/logout" margin="20">خروج از سامانه</button>
     </frame>
 
     <frame padding_bottom="10"/>

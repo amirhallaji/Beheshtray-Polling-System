@@ -9,11 +9,11 @@
         <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{student_name}}"/>
     </frame>
 
-    <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">نه ح داره نه م داره نه د داره،
-            فقط یدونه ر داره
-        </text>
-    </frame>
+<!--    <frame>-->
+<!--        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0">نه ح داره نه م داره نه د داره،-->
+<!--            فقط یدونه ر داره-->
+<!--        </text>-->
+<!--    </frame>-->
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
@@ -59,7 +59,7 @@
 
     <frame>
         <button height="50" width="100" padding="35" background="#b43322" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">خروج از سامانه</button>
+                textcolor="#fff" borderCornerRadius="5" onClick="update/logout" margin="20">خروج از سامانه</button>
     </frame>
 
     <frame padding_bottom="10"/>

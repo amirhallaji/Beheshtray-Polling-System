@@ -20,10 +20,10 @@ public class BeheshtRayService extends APSService {
     Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
     ArrayList<Feedback> feedbacks = new ArrayList<>();
-    ArrayList <Student> students = new ArrayList<>();
+    ArrayList<Student> students = new ArrayList<>();
     ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
-    TempStudent <Student> tempStudent = new TempStudent<>();
+    TempStudent<Student> tempStudent = new TempStudent<>();
     Teacher current_teacher;
 
     String feedback_id = "";
@@ -104,11 +104,10 @@ public class BeheshtRayService extends APSService {
 
             default:
                 System.out.println("default case");
-                view = new SignInUp();
                 students = DbOperation.retrieveVoteStatus(userId, connection);
-                if(Objects.requireNonNull(students).size() == 0){
+                if (Objects.requireNonNull(students).size() == 0) {
                     view = new Register();
-                }else {
+                } else {
                     view = new SignInUp();
                     tempStudent.students = students;
                     view.setMustacheModel(tempStudent);
@@ -211,8 +210,7 @@ public class BeheshtRayService extends APSService {
 //            System.out.println("MAN" + student.feedbacks.get(0).feedback_id);
 //            student.image_url = DbOperation.retrieveTeacherURLImage(current_teacher.lesson_name, connection);
             return view;
-        }
-        else if("best_comments_teacher".equals(updateCommand)){
+        } else if ("best_comments_teacher".equals(updateCommand)) {
             View view = new TeacherComment2();
             CommentEntity commentEntity = new CommentEntity();
             commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacherMostVoted(current_teacher.lesson_name, current_teacher.teacher_name, connection);
@@ -221,9 +219,7 @@ public class BeheshtRayService extends APSService {
 
             view.setMustacheModel(commentEntity);
             return view;
-        }
-
-        else if ("teacherInformationTab".equals(updateCommand)) {
+        } else if ("teacherInformationTab".equals(updateCommand)) {
             View view = new TeacherInfo();
             view.setMustacheModel(temp);
             return view;
@@ -237,13 +233,13 @@ public class BeheshtRayService extends APSService {
             homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
             try {
                 homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
-            }catch (Exception e){
+            } catch (Exception e) {
                 try {
                     homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
-                }catch (Exception e1){
+                } catch (Exception e1) {
                     try {
                         homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
-                    }catch (Exception e2){
+                    } catch (Exception e2) {
 
                     }
                 }
@@ -527,9 +523,7 @@ public class BeheshtRayService extends APSService {
                 view.setMustacheModel(student);
                 return view;
             }
-        }
-
-        else if(updateCommand.startsWith("deleteComment")){
+        } else if (updateCommand.startsWith("deleteComment")) {
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             DbOperation.deleteExtendedVote(selectedid, connection);
 
@@ -543,7 +537,7 @@ public class BeheshtRayService extends APSService {
 
             if (score > 0) {
                 student.user_karma = "+";
-                    student.user_karma += convertToEnglishDigits(String.valueOf(score));
+                student.user_karma += convertToEnglishDigits(String.valueOf(score));
             } else {
                 student.user_karma = convertToEnglishDigits(String.valueOf(score));
             }
@@ -551,22 +545,20 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(student);
             return view;
 
-        }
-        else if (updateCommand.startsWith("teacherViewAllLessons")){
+        } else if (updateCommand.startsWith("teacherViewAllLessons")) {
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             temp.teachers = DbOperation.retrieveLessonsByTeacher(selectedid, connection);
             View view = new FullList();
             view.setMustacheModel(temp);
             return view;
-        }
-        else if (updateCommand.equals("search_button")){
+        } else if (updateCommand.equals("search_button")) {
             String search_input = pageData.get("search_input").toString();
             System.out.println(search_input);
             temp.teachers = DbOperation.search(search_input, connection);
             View view = new SearchResults();
             view.setMustacheModel(temp);
             return view;
-        }else if (updateCommand.startsWith("big_comment_to_teacher")){
+        } else if (updateCommand.startsWith("big_comment_to_teacher")) {
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1, updateCommand.indexOf("%"));
             String selectedid_2 = updateCommand.substring(updateCommand.indexOf("%") + 1);
 
@@ -584,26 +576,25 @@ public class BeheshtRayService extends APSService {
             commentEntity.teacher_name = current_teacher.teacher_name;
 
 
-
             View view = new TeacherComment();
             view.setMustacheModel(commentEntity);
 
             return view;
 
-        }else if (updateCommand.equals("register_new_user")){
+        } else if (updateCommand.equals("register_new_user")) {
             Student student = new Student();
 
-            student.student_name = pageData.get("first_name").toString().trim()+" "+pageData.get("last_name").toString().trim();
+            student.student_name = pageData.get("first_name").toString().trim() + " " + pageData.get("last_name").toString().trim();
             student.student_id = pageData.get("student_number").toString();
             student.student_faculty = "مهندسی کامپیوتر";
 
 
             student.student_gender = pageData.get("selected_gender").toString();
-            if (student.student_gender.equals("مرد")){
+            if (student.student_gender.equals("مرد")) {
                 student.student_photo = "https://s4.uupload.ir/files/cfee5087-8773-4fb3-ac5e-63372d889b1f_ks1c.png";
-            }else if (student.student_gender.equals("زن")){
+            } else if (student.student_gender.equals("زن")) {
                 student.student_photo = "https://s4.uupload.ir/files/3b786101-e336-4e3d-96bb-a73d2227b8d2_n9a3.png";
-            }else {
+            } else {
                 student.student_photo = "https://s4.uupload.ir/files/9446101f-27b4-4f8f-9761-0397d7ea932e_mcg1.png";
             }
             student.user_id = userId;
@@ -613,28 +604,30 @@ public class BeheshtRayService extends APSService {
             tempStudent.students = students;
 
 
-
-
             View view = new Home();
             HomePageEntity homePageEntity = new HomePageEntity();
             homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
             try {
                 homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
-            }catch (Exception e){
+            } catch (Exception e) {
                 try {
                     homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
-                }catch (Exception e1){
+                } catch (Exception e1) {
                     try {
                         homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
-                    }catch (Exception e2){
+                    } catch (Exception e2) {
 
                     }
                 }
             }
             view.setMustacheModel(homePageEntity);  // query here
-            return view;        }
-
-
+            return view;
+        }else if (updateCommand.equals("logout")){
+            View view = new SignInUp();
+            tempStudent.students = students;
+            view.setMustacheModel(tempStudent);
+            return view;
+        }
 
 
         return update;
