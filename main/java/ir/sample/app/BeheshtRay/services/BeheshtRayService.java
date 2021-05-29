@@ -491,7 +491,16 @@ public class BeheshtRayService extends APSService {
             View view = new ProfileCommentHistory();
             view.setMustacheModel(student);
             return view;
+
         }
+        else if (updateCommand.startsWith("teacherViewAllLessons")){
+            String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            temp.teachers = DbOperation.retrieveLessonsByTeacher(selectedid, connection);
+            View view = new FullList();
+            view.setMustacheModel(temp);
+            return view;
+        }
+
 
 
 
