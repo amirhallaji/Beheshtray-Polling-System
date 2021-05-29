@@ -52,7 +52,7 @@
     <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses" text="{{current_lesson}}"></text>
 
     {{#otherLessons}}
-    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
+    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacher_profile_info+{{teacher_key}}">
         <text textsize="14" gravity="center" textcolor="black" text="{{lesson_name}}"></text>
     </frame>
     {{/otherLessons}}
