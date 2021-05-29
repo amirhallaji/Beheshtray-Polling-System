@@ -234,6 +234,47 @@ public class DbOperation {
         }
     }
 
+    public static ArrayList<Feedback> retrieveFeedbacksByTeacherMostVoted(String lesson_name, String teacher_name, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL ORDER BY diff_votes DESC";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_name);
+            pstmt.setString(2, lesson_name);
+            ResultSet resultSet = pstmt.executeQuery();
+            String data[] = new String[16];
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+                for (int i = 1; i <= 15; i++) {
+                    data[i] = resultSet.getString(i);
+                }
+                feedback.teacher_name = data[1];
+                feedback.lesson_name = data[2];
+                feedback.score1 = data[3];
+                feedback.score2 = data[4];
+                feedback.score3 = data[5];
+                feedback.score4 = data[6];
+                feedback.score_ave = data[7];
+                feedback.student_score = data[8];
+                feedback.extended_feedback = data[9];
+                feedback.user_id = data[10];
+                feedback.date_number = data[11];
+                feedback.upvotes = data[12];
+                feedback.downvotes = data[13];
+                feedback.feedback_id = data[14];
+                feedback.created_time = data[15];
+                feedback.diff_votes = resultSet.getInt(16);
+
+                feedbacks.add(feedback);
+
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
 
 
     public static ArrayList<Teacher> retrieveTeachers(Connection connection) {

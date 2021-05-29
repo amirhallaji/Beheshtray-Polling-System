@@ -179,15 +179,23 @@ public class BeheshtRayService extends APSService {
             View view = new Score1();
             view.setMustacheModel(temp);
             return view;
-        } else if ("teacherCommentsTab".equals(updateCommand)) {
+        } else if ("teacherCommentsTab".equals(updateCommand) || "last_comments_teacher".equals(updateCommand)) {
             View view = new TeacherComment();
-            System.out.println("currentTeacher: " + current_teacher.teacher_name);
+//            System.out.println("currentTeacher: " + current_teacher.teacher_name);
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
 //            System.out.println("MAN" + student.feedbacks.get(0).feedback_id);
 //            student.image_url = DbOperation.retrieveTeacherURLImage(current_teacher.lesson_name, connection);
             view.setMustacheModel(student);
             return view;
-        } else if ("teacherInformationTab".equals(updateCommand)) {
+        }
+        else if("best_comments_teacher".equals(updateCommand)){
+            View view = new TeacherComment();
+            student.feedbacks = DbOperation.retrieveFeedbacksByTeacherMostVoted(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            view.setMustacheModel(student);
+            return view;
+        }
+
+        else if ("teacherInformationTab".equals(updateCommand)) {
             View view = new TeacherInfo();
             view.setMustacheModel(temp);
             return view;
