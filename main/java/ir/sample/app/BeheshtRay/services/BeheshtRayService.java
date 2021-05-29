@@ -399,6 +399,25 @@ public class BeheshtRayService extends APSService {
                 View view = new ProfileCommentHistory();
                 view.setMustacheModel(student);
                 return view;
+            }else if (updateCommand.startsWith("upvote_comment_home")){
+                View view = new Home();
+                HomePageEntity homePageEntity = new HomePageEntity();
+                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+                try {
+                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+                } catch (Exception e) {
+                    try {
+                        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
+                    } catch (Exception e1) {
+                        try {
+                            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
+                        } catch (Exception e2) {
+
+                        }
+                    }
+                }
+                view.setMustacheModel(homePageEntity);  // query here
+                return view;
             }
 
         } else if (updateCommand.startsWith("downvote_comment")) {
@@ -506,8 +525,6 @@ public class BeheshtRayService extends APSService {
             } else if (updateCommand.startsWith("downvote_comment_student")) {
 
                 student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
-
-
                 int score = 0;
                 for (Feedback f : student.feedbacks) {
                     score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
@@ -522,7 +539,27 @@ public class BeheshtRayService extends APSService {
                 View view = new ProfileCommentHistory();
                 view.setMustacheModel(student);
                 return view;
+            } else if (updateCommand.startsWith("downvote_comment_home")){
+                View view = new Home();
+                HomePageEntity homePageEntity = new HomePageEntity();
+                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+                try {
+                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+                } catch (Exception e) {
+                    try {
+                        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
+                    } catch (Exception e1) {
+                        try {
+                            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
+                        } catch (Exception e2) {
+
+                        }
+                    }
+                }
+                view.setMustacheModel(homePageEntity);  // query here
+                return view;
             }
+
         } else if (updateCommand.startsWith("deleteComment")) {
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             DbOperation.deleteExtendedVote(selectedid, connection);
