@@ -46,17 +46,16 @@
         <text textsize="14" gravity="center" textcolor="black" text="{{teacher_email}}"/>
     </frame>
 
-    <frame padding_bottom="10"/>
-
+    <frame padding_bottom="20"/>
 
     <text gravity="center" textsize="16">دروس ارائه‌شده نیمسال جاری</text>
-    <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses">هوش مصنوعی و سیستم‌های خبره</text>
+    <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses" text="{{current_lesson}}"></text>
 
-<!--    {{#semester_lessons}}-->
+    {{#otherLessons}}
     <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
-        <text textsize="14" gravity="center" textcolor="black">وب معنایی</text>
+        <text textsize="14" gravity="center" textcolor="black" text="{{lesson_name}}"></text>
     </frame>
-<!--    {{/semester_lessons}}-->
+    {{/otherLessons}}
 
 
     <frame padding_bottom="10"/>

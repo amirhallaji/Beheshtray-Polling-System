@@ -162,7 +162,7 @@ public class BeheshtRayService extends APSService {
             View view = new Search();
             SearchPageEntity searchPageEntity = new SearchPageEntity();
 //            searchPageEntity.teachers_recent = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 3));
-            searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 7));
+            searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 3));
             view.setMustacheModel(searchPageEntity);
             return view;
 
@@ -180,6 +180,8 @@ public class BeheshtRayService extends APSService {
             teachers = DbOperation.retrieveTeacherByKey(selectedid, connection);
             current_teacher = teachers.get(0);
             temp.teachers = teachers;
+            temp.otherLessons = DbOperation.retrieveLessonsByTeacherNotRepetitive(current_teacher.teacher_name, current_teacher.lesson_name, connection);
+            temp.current_lesson = current_teacher.lesson_name;
             view.setMustacheModel(temp);
             return view;
         } else if ("makePoll".equals(updateCommand)) {
@@ -196,7 +198,7 @@ public class BeheshtRayService extends APSService {
             return view;
         }
         else if("best_comments_teacher".equals(updateCommand)){
-            View view = new TeacherComment();
+            View view = new TeacherComment2();
             student.feedbacks = DbOperation.retrieveFeedbacksByTeacherMostVoted(current_teacher.lesson_name, current_teacher.teacher_name, connection);
             view.setMustacheModel(student);
             return view;
