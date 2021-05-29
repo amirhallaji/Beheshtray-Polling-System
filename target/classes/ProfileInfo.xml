@@ -56,9 +56,11 @@
     {{/students}}
 
 
-    <button onClick="" borderCornerRadius="100" background="red" width="120" textcolor="white" padding="50"
-            textsize="14">خروج از سامانه
-    </button>
+
+    <frame>
+        <button height="50" width="100" padding="35" background="#b43322" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">خروج از سامانه</button>
+    </frame>
 
     <frame padding_bottom="10"/>
 

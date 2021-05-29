@@ -82,10 +82,9 @@
                 <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}">
                 </text>
             </frame>
-            <frame width="100">
-                <button gravity="center" onClick="update/deleteComment+{{feedback_id}}" borderCornerRadius="100" background="#8B0000" textcolor="white"
-                        textsize="14" height="40">حذف نظر
-                </button>
+            <frame>
+                <button height="50" width="100" padding="35" background="#b43322" textsize="14" gravity="center"
+                        textcolor="#fff" borderCornerRadius="5" margin="20" onClick="update/deleteComment+{{feedback_id}}">حذف نظر</button>
             </frame>
         </frame>
 

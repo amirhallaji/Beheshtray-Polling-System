@@ -6,13 +6,13 @@
     <!--               width="164"/>-->
     <!--    </frame>-->
 
-    <!--    <frame>-->
-    <!--        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>-->
-    <!--    </frame>-->
+        <frame>
+            <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
+        </frame>
 
-    <!--    <frame>-->
-    <!--        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>-->
-    <!--    </frame>-->
+        <frame>
+            <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
+        </frame>
 
 
 
@@ -108,10 +108,10 @@
 
     <frame padding_bottom="10"/>
 
-    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white"
-            padding="50"
-            textsize="14">ایجاد بازخورد
-    </button>
+    <frame>
+        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">ارسال بازخورد</button>
+    </frame>
 
     <frame padding_bottom="10"/>
 

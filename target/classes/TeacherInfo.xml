@@ -51,6 +51,8 @@
     <text gravity="center" textsize="16">دروس ارائه‌شده نیمسال جاری</text>
     <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses" text="{{current_lesson}}"></text>
 
+    {{/teachers}}
+
     {{#otherLessons}}
     <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacher_profile_info+{{teacher_key}}">
         <text textsize="14" gravity="center" textcolor="black" text="{{lesson_name}}"></text>
@@ -60,11 +62,11 @@
 
     <frame padding_bottom="10"/>
 
-    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
-            textsize="14">ایجاد بازخورد
-    </button>
+    <frame>
+        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">ارسال بازخورد</button>
+    </frame>
 
-    {{/teachers}}
 
     <frame padding_bottom="10"/>
 

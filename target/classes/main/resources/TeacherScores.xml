@@ -1,21 +1,21 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-<!--    {{#teachers}}-->
+    <!--    {{#teachers}}-->
 
-<!--    <frame>-->
-<!--        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"-->
-<!--               width="164"/>-->
-<!--    </frame>-->
+    <!--    <frame>-->
+    <!--        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"-->
+    <!--               width="164"/>-->
+    <!--    </frame>-->
 
-<!--    <frame>-->
-<!--        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>-->
-<!--    </frame>-->
+        <frame>
+            <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
+        </frame>
 
-<!--    <frame>-->
-<!--        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>-->
-<!--    </frame>-->
+        <frame>
+            <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
+        </frame>
 
-<!--    {{/teachers}}-->
+    <!--    {{/teachers}}-->
 
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
@@ -92,10 +92,10 @@
                 </frame>
 
 
-             <frame gravity="right" width="500">
+                <frame gravity="right" width="500">
                     <text textsize="14" gravity="right">رعایت حقوق دانشجو و رفتار مناسب</text>
-             </frame>
-         </frame>
+                </frame>
+            </frame>
         </frame>
     </frame>
 
@@ -127,12 +127,12 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                  <text textsize="12" gravity="center" textcolor="black">۵۰/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black">۵۰/۱۰۰</text>
                 </frame>
 
 
                 <frame gravity="right" width="500">
-                 <text textsize="14" gravity="right">تیم حل تمرین</text>
+                    <text textsize="14" gravity="right">تیم حل تمرین</text>
                 </frame>
             </frame>
         </frame>
@@ -161,9 +161,10 @@
 
     <frame padding_bottom="10"/>
 
-    <button onClick="update/makePoll" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
-            textsize="14">ایجاد بازخورد
-    </button>
+    <frame>
+        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">ارسال بازخورد</button>
+    </frame>
 
     <frame padding_bottom="10"/>
 

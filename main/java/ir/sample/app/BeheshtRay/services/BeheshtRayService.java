@@ -153,9 +153,14 @@ public class BeheshtRayService extends APSService {
 
             View view = new TeacherComment();
             feedback_id = userId;
-            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
 
-            view.setMustacheModel(student);
+            CommentEntity commentEntity = new CommentEntity();
+
+            commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            commentEntity.lesson_name = current_teacher.lesson_name;
+            commentEntity.teacher_name = current_teacher.teacher_name;
+
+            view.setMustacheModel(commentEntity);
             return view;
         } else if ("polling".equals(updateCommand)) {
 
@@ -191,16 +196,24 @@ public class BeheshtRayService extends APSService {
         } else if ("teacherCommentsTab".equals(updateCommand) || "last_comments_teacher".equals(updateCommand)) {
             View view = new TeacherComment();
 //            System.out.println("currentTeacher: " + current_teacher.teacher_name);
-            student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            CommentEntity commentEntity = new CommentEntity();
+            commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            commentEntity.lesson_name = current_teacher.lesson_name;
+            commentEntity.teacher_name = current_teacher.teacher_name;
+
+            view.setMustacheModel(commentEntity);
 //            System.out.println("MAN" + student.feedbacks.get(0).feedback_id);
 //            student.image_url = DbOperation.retrieveTeacherURLImage(current_teacher.lesson_name, connection);
-            view.setMustacheModel(student);
             return view;
         }
         else if("best_comments_teacher".equals(updateCommand)){
             View view = new TeacherComment2();
-            student.feedbacks = DbOperation.retrieveFeedbacksByTeacherMostVoted(current_teacher.lesson_name, current_teacher.teacher_name, connection);
-            view.setMustacheModel(student);
+            CommentEntity commentEntity = new CommentEntity();
+            commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacherMostVoted(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+            commentEntity.lesson_name = current_teacher.lesson_name;
+            commentEntity.teacher_name = current_teacher.teacher_name;
+
+            view.setMustacheModel(commentEntity);
             return view;
         }
 
@@ -216,11 +229,24 @@ public class BeheshtRayService extends APSService {
             View view = new Home();
             HomePageEntity homePageEntity = new HomePageEntity();
             homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
-            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+            try {
+                homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+            }catch (Exception e){
+                try {
+                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
+                }catch (Exception e1){
+                    try {
+                        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
+                    }catch (Exception e2){
+
+                    }
+                }
+            }
             view.setMustacheModel(homePageEntity);  // query here
             return view;
         } else if ("studentCommentHistoryTab".equals(updateCommand)) {
             View view = new ProfileCommentHistory();
+
             student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
             int score = 0;
             for (Feedback f : student.feedbacks) {
@@ -344,12 +370,18 @@ public class BeheshtRayService extends APSService {
             }
 
             if (updateCommand.startsWith("upvote_comment_teacher")) {
-                student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                CommentEntity commentEntity = new CommentEntity();
+
+                commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                commentEntity.lesson_name = current_teacher.lesson_name;
+                commentEntity.teacher_name = current_teacher.teacher_name;
+
                 View view = new TeacherComment();
-                view.setMustacheModel(student);
+                view.setMustacheModel(commentEntity);
                 return view;
 
             } else if (updateCommand.startsWith("upvote_comment_student")) {
+
                 student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
                 int score = 0;
                 for (Feedback f : student.feedbacks) {
@@ -458,13 +490,22 @@ public class BeheshtRayService extends APSService {
                 DbOperation.updateDownvotesListForUser(userId, downvotes_status, connection);
             }
             if (updateCommand.startsWith("downvote_comment_teacher")) {
-                student.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                CommentEntity commentEntity = new CommentEntity();
+
+                commentEntity.feedbacks = DbOperation.retrieveFeedbacksByTeacher(current_teacher.lesson_name, current_teacher.teacher_name, connection);
+                commentEntity.lesson_name = current_teacher.lesson_name;
+                commentEntity.teacher_name = current_teacher.teacher_name;
+
                 View view = new TeacherComment();
-                view.setMustacheModel(student);
+                view.setMustacheModel(commentEntity);
+
                 return view;
 
             } else if (updateCommand.startsWith("downvote_comment_student")) {
+
                 student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+
+
                 int score = 0;
                 for (Feedback f : student.feedbacks) {
                     score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
@@ -485,7 +526,10 @@ public class BeheshtRayService extends APSService {
         else if(updateCommand.startsWith("deleteComment")){
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
             DbOperation.deleteExtendedVote(selectedid, connection);
+
+
             student.feedbacks = DbOperation.retrieveFeedbacksBySelf(userId, connection);
+
             int score = 0;
             for (Feedback f : student.feedbacks) {
                 score += (Integer.parseInt(f.upvotes) - Integer.parseInt(f.downvotes));
