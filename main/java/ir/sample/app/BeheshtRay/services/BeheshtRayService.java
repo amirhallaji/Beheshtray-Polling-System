@@ -557,7 +557,7 @@ public class BeheshtRayService extends APSService {
             String search_input = pageData.get("search_input").toString();
             System.out.println(search_input);
             temp.teachers = DbOperation.search(search_input, connection);
-            View view = new FullList();
+            View view = new SearchResults();
             view.setMustacheModel(temp);
             return view;
         }
