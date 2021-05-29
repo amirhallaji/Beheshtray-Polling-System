@@ -39,12 +39,12 @@
     <frame layout="linear_vertical" width="200" gravity="left">
         <frame layout="linear_horizontal" gravity="left">
             <frame>
-                <button gravity="center" onClick="" borderCornerRadius="100" background="#1E90FF" width="100"
+                <button gravity="center" onClick="update/last_comments_teacher" borderCornerRadius="100" background="#1E90FF" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">آخرین
                 </button>
             </frame>
             <frame>
-                <button gravity="center" onClick="" borderCornerRadius="100" background="#87CEEB" width="100"
+                <button gravity="center" onClick="update/best_comments_teacher" borderCornerRadius="100" background="#87CEEB" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">مفیدترین
                 </button>
             </frame>

@@ -62,6 +62,7 @@
 
             <divider color="#DCDCDC" size="1"/>
 
+            {{#feedbacks}}
 
             <frame background="#FFFAFA" onclick="">
                 <frame layout="linear_vertical">
@@ -73,14 +74,14 @@
 
                             <frame>
                                 <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22"
-                                        width="30" textcolor="white" textsize="14" height="40">+۱۸
+                                        width="30" textcolor="white" textsize="14" height="40" text="{{upvotes}}">
                                 </button>
                             </frame>
 
 
                             <frame>
                                 <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000"
-                                        width="30" textcolor="white" textsize="14" height="40">-۱
+                                        width="30" textcolor="white" textsize="14" height="40" text="{{downvotes}}">
                                 </button>
                             </frame>
 
@@ -88,9 +89,9 @@
 
 
                         <frame>
-                            <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۵۷</text>
+                            <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره:{{student_score}}"></text>
 
-                            <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر :
+                            <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ ارسال نظر:{{date_number}}">
                                 ۹/۹/۱۳۹۹
                             </text>
 
@@ -100,87 +101,86 @@
 
                     <frame layout="linear_horizental">
                         <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
-                                استاد: دکتر مهرنوش شمس‌فرد
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacher_name}}">
                             </text>
                         </frame>
                         <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
-                                درس: هوش مصنوعی و سیستم‌های خبره
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lesson_name}}">
                             </text>
                         </frame>
                     </frame>
 
                     <frame gravity="right">
-                        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
-                            خفن‌ترین استاد و درس ممکن
-                            توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
+                        <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}">
+
                         </text>
                     </frame>
                 </frame>
             </frame>
             <divider color="#DCDCDC" size="1"/>
 
-
-            <frame background="#FFFAFA" onclick="">
-
-                <frame layout="linear_vertical">
-
-                    <frame layout="linear_horizontal">
+            {{/feedbacks}}
 
 
-                        <frame>
+<!--            <frame background="#FFFAFA" onclick="">-->
 
-                            <frame>
-                                <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22"
-                                        width="30" textcolor="white" textsize="14" height="40">+۸
-                                </button>
-                            </frame>
+<!--                <frame layout="linear_vertical">-->
+
+<!--                    <frame layout="linear_horizontal">-->
 
 
-                            <frame>
-                                <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000"
-                                        width="30" textcolor="white" textsize="14" height="40">-۱
-                                </button>
-                            </frame>
+<!--                        <frame>-->
 
-                        </frame>
+<!--                            <frame>-->
+<!--                                <button gravity="center" onClick="" borderCornerRadius="100" background="#228B22"-->
+<!--                                        width="30" textcolor="white" textsize="14" height="40">+۸-->
+<!--                                </button>-->
+<!--                            </frame>-->
 
 
-                        <frame>
-                            <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۷</text>
+<!--                            <frame>-->
+<!--                                <button gravity="center" onClick="" borderCornerRadius="100" background="#FF0000"-->
+<!--                                        width="30" textcolor="white" textsize="14" height="40">-۱-->
+<!--                                </button>-->
+<!--                            </frame>-->
 
-                            <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر :
-                                ۳/۹/۱۳۹۹
-                            </text>
+<!--                        </frame>-->
 
-                        </frame>
 
-                    </frame>
+<!--                        <frame>-->
+<!--                            <text textalignment="right" gravity="right" width="60" textsize="12">نمره: ۱۷.۷</text>-->
 
-                    <frame layout="linear_horizental">
-                        <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
-                                استاد: دکتر مجتبی وحیدی
-                            </text>
-                        </frame>
-                        <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">
-                                درس: برنامه سازی پیشرفته
-                            </text>
-                        </frame>
-                    </frame>
+<!--                            <text textalignment="right" gravity="right" width="60" textsize="12">تاریخ ارسال نظر :-->
+<!--                                ۳/۹/۱۳۹۹-->
+<!--                            </text>-->
 
-                    <frame gravity="right">
-                        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین
-                            خفن‌ترین استاد و درس ممکن
-                            توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.
-                        </text>
-                    </frame>
-                </frame>
-            </frame>
+<!--                        </frame>-->
 
-            <divider color="#DCDCDC" size="1"/>
+<!--                    </frame>-->
+
+<!--                    <frame layout="linear_horizental">-->
+<!--                        <frame gravity="right">-->
+<!--                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">-->
+<!--                                استاد: دکتر مجتبی وحیدی-->
+<!--                            </text>-->
+<!--                        </frame>-->
+<!--                        <frame gravity="right">-->
+<!--                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray">-->
+<!--                                درس: برنامه سازی پیشرفته-->
+<!--                            </text>-->
+<!--                        </frame>-->
+<!--                    </frame>-->
+
+<!--                    <frame gravity="right">-->
+<!--                        <text textalignment="right" textsize="16" gravity="left">متن: بهترین عالی‌ترین-->
+<!--                            خفن‌ترین استاد و درس ممکن-->
+<!--                            توصیه می‌کنم هر چه سریع‌تر بردارید این درسو.-->
+<!--                        </text>-->
+<!--                    </frame>-->
+<!--                </frame>-->
+<!--            </frame>-->
+
+<!--            <divider color="#DCDCDC" size="1"/>-->
             <divider color="#1E90FF" size="2"/>
 
 

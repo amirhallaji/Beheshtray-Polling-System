@@ -204,15 +204,11 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if ("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)) {
-            System.out.println("userid: " + userId);
             View view = new Home();
-            teachers = DbOperation.retrieveTeachers(connection);
-            if (teachers != null) {
-                teachers = new ArrayList<>(teachers.subList(0, 5));
-            }
-            temp.teachers = teachers;
-            view.setMustacheModel(temp);  // query here
-
+            HomePageEntity homePageEntity = new HomePageEntity();
+            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+            view.setMustacheModel(homePageEntity);  // query here
             return view;
         } else if ("studentCommentHistoryTab".equals(updateCommand)) {
             View view = new ProfileCommentHistory();
