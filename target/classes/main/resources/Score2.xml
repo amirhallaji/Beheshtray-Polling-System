@@ -56,14 +56,15 @@
 
     <frame layout="linear_horizontal">
 
-        <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"
-                textsize="14">قبلی
-        </button>
+<!--        <button onClick="" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white" padding="50"-->
+<!--                textsize="14">قبلی-->
+<!--        </button>-->
 
 
-        <button onClick="update/createPoll" borderCornerRadius="100" background="#228B22" width="120" textcolor="white" padding="50"
-                textsize="14">ثبت بازخورد
-        </button>
+        <frame>
+            <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
+                    textcolor="#fff" borderCornerRadius="5" onClick="update/createPoll" margin="20">ثبت کن!</button>
+        </frame>
 
 
     </frame>

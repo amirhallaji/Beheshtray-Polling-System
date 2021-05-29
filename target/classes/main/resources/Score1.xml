@@ -114,11 +114,13 @@
 
     <frame padding_bottom="10"/>
 
+    <frame layout="linear_horizontal">
 
-    <button onClick="update/nextPage" borderCornerRadius="100" background="#1E90FF" width="120" textcolor="white"
-            padding="50"
-            textsize="14">بعدی
-    </button>
+    <frame>
+        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="update/nextPage" margin="20">بعدی</button>
+    </frame>
+    </frame>
 
 
     <frame padding_bottom="10"/>
