@@ -500,6 +500,14 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         }
+        else if (updateCommand.equals("search_button")){
+            String search_input = pageData.get("search_input").toString();
+            System.out.println(search_input);
+            temp.teachers = DbOperation.search(search_input, connection);
+            View view = new FullList();
+            view.setMustacheModel(temp);
+            return view;
+        }
 
 
 

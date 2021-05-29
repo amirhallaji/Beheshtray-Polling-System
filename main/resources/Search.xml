@@ -5,11 +5,11 @@
     <frame layout="linear_horizontal">
 
         <frame width="320">
-            <textInput hint="جستجو..." borderColor="#4682B4" borderCornerRadius="10" background="#FFFAFA"></textInput>
+            <textInput hint="جستجو..." borderColor="#4682B4" borderCornerRadius="10" background="#FFFAFA" id="search_input"></textInput>
         </frame>
 
         <frame>
-            <image src="https://s2.uupload.ir/files/round_search_black_24dp_p9b1.png" height="24" width="24"></image>
+            <image src="https://s2.uupload.ir/files/round_search_black_24dp_p9b1.png" onclick="update/search_button" height="24" width="24"></image>
         </frame>
     </frame>
 
