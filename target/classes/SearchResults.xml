@@ -2,31 +2,16 @@
 
     <frame padding_bottom="10"/>
 
-    <frame layout="linear_horizontal">
-
-        <frame width="320">
-            <textInput hint="جستجو..." borderColor="#4682B4" borderCornerRadius="10" background="#FFFAFA"
-                       text="ابراهیمی|"/>
-        </frame>
-
-        <frame>
-            <image src="https://s2.uupload.ir/files/round_search_black_24dp_p9b1.png" height="24" width="24"/>
-        </frame>
-    </frame>
-
 
     <frame layout="linear_vertical">
 
         <frame layout="linear_horizontal">
 
             <frame gravity="left">
-                <frame textcolor="#fff" gravity="center" id="">
-                    <text textsize="12" gravity="center" textcolor="#1E90FF">۲ مورد یافت شد!</text>
-                </frame>
 
 
                 <frame gravity="right" width="500">
-                    <text textsize="22" gravity="right">نتایج جستجو</text>
+                    <text textsize="22" gravity="right">نتایج جستجو...</text>
                 </frame>
             </frame>
         </frame>
@@ -35,51 +20,29 @@
 
     <frame layout="linear_vertical" margin="0" gravity="top">
 
-        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
-
+        {{#teachers}}
+        <frame layout="linear_horizontal" id="{{teacher_key}}" background="#FFFAFA" onclick="update/teacher_profile_info+{{teacher_key}}" height="80">
 
             <frame layout="linear_vertical" gravity="central">
                 <frame>
-                    <text textsize="14" gravity="center_right" padding="0" margin="0">ساختمان داده‌ها</text>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0" id="lesson_name" text="{{lesson_name}}"/>
                 </frame>
 
                 <frame>
-                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محسن ابراهیمی‌مقدم</text>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0" id="teacher_name" text="{{teacher_name}}"/>
                 </frame>
             </frame>
 
 
             <frame height="128" width="128">
-                <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
+                <image src="{{teacher_photo}}"
                        borderCornerRadius="120"/>
             </frame>
         </frame>
-
-
-        <frame layout="linear_horizental" background="#FFFAFA" onclick="" height="80">
-
-
-            <frame layout="linear_vertical" gravity="central">
-                <frame>
-                    <text textsize="14" gravity="center_right" padding="0" margin="0">سیستم‌های عامل</text>
-                </frame>
-
-                <frame>
-                    <text textsize="12" gravity="center_right" padding="0" margin="0">دکتر محسن ابراهیمی‌مقدم</text>
-                </frame>
-            </frame>
-
-
-            <frame height="128" width="128">
-                <image src="https://s2.uupload.ir/files/photo_2020-10-07_08-03-45_74j.jpg"
-                       borderCornerRadius="120"/>
-            </frame>
-        </frame>
+        {{/teachers}}
 
 
     </frame>
-
-
 
 
     <footer background="#1E90FF">
@@ -122,4 +85,5 @@
         </frame>
     </footer>
 
-        </page>
+
+</page>

@@ -31,7 +31,7 @@
     <divider color="#DCDCDC" size="1"/>
 
     {{#feedbacks}}
-    <frame background="#FFFAFA" onclick="">
+    <frame background="#FFFAFA" onclick="update/big_comment_to_teacher+{{teacher_name}}%{{lesson_name}}">
 
         <frame layout="linear_vertical">
 

@@ -64,7 +64,7 @@
 
             {{#feedbacks}}
 
-            <frame background="#FFFAFA" onclick="">
+            <frame background="#FFFAFA" onclick="update/big_comment_to_teacher+{{teacher_name}}%{{lesson_name}}">
                 <frame layout="linear_vertical">
 
                     <frame layout="linear_horizontal">

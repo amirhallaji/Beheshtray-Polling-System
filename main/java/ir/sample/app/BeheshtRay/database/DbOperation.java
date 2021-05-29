@@ -383,6 +383,39 @@ public class DbOperation {
 
     }
 
+
+    public static ArrayList<Teacher> retrieveTeacherByNameAndLesson(String teacher_name, String lesson_name, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM teachers WHERE teacher_name=? AND lesson_name=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_name);
+            pstmt.setString(2, lesson_name);
+            ResultSet resultSet = pstmt.executeQuery();
+            String[] data = new String[12];
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                System.out.println("Hello");
+                Teacher teacher = new Teacher();
+                for (int i = 1; i <= 11; i++) {
+                    data[i] = resultSet.getString(i);
+                }
+//                System.out.println("data: " + data[1]);
+                teacher.teacher_name = data[1];
+                teacher.lesson_name = data[2];
+                teacher.teacher_email = data[3];
+                teacher.teacher_academic_group = data[4];
+                teacher.teacher_key = data[10];
+                teacher.teacher_photo = data[11];
+                teachers.add(teacher);
+//                System.out.println(teacher.teacher_name);
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
     public static ArrayList<Teacher> retrieveLessonsByTeacher(String teacher_name, Connection connection) {
         try {
             String checkSql = "SELECT * FROM teachers WHERE teacher_name=?";
