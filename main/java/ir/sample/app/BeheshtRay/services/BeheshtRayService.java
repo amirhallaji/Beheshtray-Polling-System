@@ -590,7 +590,49 @@ public class BeheshtRayService extends APSService {
 
             return view;
 
-        }
+        }else if (updateCommand.equals("register_new_user")){
+            Student student = new Student();
+
+            student.student_name = pageData.get("first_name").toString().trim()+" "+pageData.get("last_name").toString().trim();
+            student.student_id = pageData.get("student_number").toString();
+            student.student_faculty = "مهندسی کامپیوتر";
+
+
+            student.student_gender = pageData.get("selected_gender").toString();
+            if (student.student_gender.equals("مرد")){
+                student.student_photo = "https://s4.uupload.ir/files/cfee5087-8773-4fb3-ac5e-63372d889b1f_ks1c.png";
+            }else if (student.student_gender.equals("زن")){
+                student.student_photo = "https://s4.uupload.ir/files/3b786101-e336-4e3d-96bb-a73d2227b8d2_n9a3.png";
+            }else {
+                student.student_photo = "https://s4.uupload.ir/files/9446101f-27b4-4f8f-9761-0397d7ea932e_mcg1.png";
+            }
+            student.user_id = userId;
+            DbOperation.sendUserInfo(student, connection);
+
+            students = DbOperation.retrieveVoteStatus(userId, connection);
+            tempStudent.students = students;
+
+
+
+
+            View view = new Home();
+            HomePageEntity homePageEntity = new HomePageEntity();
+            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+            try {
+                homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+            }catch (Exception e){
+                try {
+                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
+                }catch (Exception e1){
+                    try {
+                        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
+                    }catch (Exception e2){
+
+                    }
+                }
+            }
+            view.setMustacheModel(homePageEntity);  // query here
+            return view;        }
 
 
 

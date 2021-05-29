@@ -507,7 +507,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(student_name, student_id, student_faculty, student_gender, student_photo, student_upvotes, student_downvotes, user_id) VALUES (?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO students(student_name, student_id, student_faculty, student_gender, student_photo, student_upvotes, student_downvotes, user_id) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, student.student_name);
             pstmt.setString(2, student.student_id);

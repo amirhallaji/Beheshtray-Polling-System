@@ -20,7 +20,7 @@
 			<text gravity="center" background="white">نام</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-				<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+				<textInput id="first_name" width="200"  gravity="center" background="#FFFFFF"
 						   hint="عباس"
 						   />
 			</frame>
@@ -33,7 +33,7 @@
 			<text gravity="center" background="white">نام خانوادگی</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-			<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+			<textInput id="last_name" width="200"  gravity="center" background="#FFFFFF"
 					      hint="بوعذار"
 					   />
 			</frame>
@@ -45,7 +45,7 @@
 			<text gravity="center" background="white">شماره دانشجویی</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-				<textInput id="studentScore" width="200"  gravity="center" background="#FFFFFF"
+				<textInput id="student_number" width="200"  gravity="center" background="#FFFFFF"
 						   hint="۹۷۲۴۳۰۲۹"
 						   inputtype="number"/>
 			</frame>
@@ -69,10 +69,10 @@
 			 <text gravity="center" margin_left="10" margin_right="10" background="white">جنسیت</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-			<dropdown onSelectionChange="" id="" hint="انتخاب کنید...">
-				<item id="" onClick="" text_color="#7F7F7F">هیچکدام</item>
-				<item id="" onClick="">مرد</item>
-				<item id="" onClick="">زن</item>
+			<dropdown onSelectionChange="" id="selected_gender" hint="انتخاب کنید...">
+				<item id="non-binary" onClick="" text_color="#7F7F7F">هیچکدام</item>
+				<item id="male" onClick="">مرد</item>
+				<item id="female" onClick="">زن</item>
 			</dropdown>
 			</frame>
 		</frame>
@@ -80,7 +80,7 @@
 	</frame>
 	<frame>
 		<button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
-				textcolor="#fff" borderCornerRadius="5" onClick="update/createPoll" margin="20">ارسال اطلاعات و ثبت نام</button>
+				textcolor="#fff" borderCornerRadius="5" onClick="update/register_new_user" margin="20">ارسال اطلاعات و ثبت نام</button>
 	</frame>
 
 
