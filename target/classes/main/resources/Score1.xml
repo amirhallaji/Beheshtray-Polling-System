@@ -2,7 +2,7 @@
 
     {{#teachers}}
     <frame>
-        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164"
+        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 

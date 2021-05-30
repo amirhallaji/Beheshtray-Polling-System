@@ -38,7 +38,7 @@
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="10" width="240">
         <textInput id="studentScore" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
                    borderColor="#4682B4" borderCornerRadius="10" background="#FFFFFF" hint="نمره ی من در این درس"
-                   inputtype="number"/>
+                   />
     </frame>
 
 

@@ -2,7 +2,7 @@
 
     {{#students}}
     <frame>
-        <image src="{{student_photo}}" borderCornerRadius="120" height="164"
+        <image src="{{student_photo}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 
