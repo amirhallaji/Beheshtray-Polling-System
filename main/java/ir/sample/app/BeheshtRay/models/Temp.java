@@ -9,4 +9,11 @@ public class Temp<T> {
     public ArrayList<Teacher> otherLessons;
     public String current_lesson;
 
+    public String score_overall;
+    public String score1;
+    public String score2;
+    public String score3;
+    public String score4;
+
+
 }

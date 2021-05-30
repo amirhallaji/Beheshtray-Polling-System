@@ -123,10 +123,10 @@ public class BeheshtRayService extends APSService {
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
         if ("nextPage".equals(updateCommand)) {
             System.out.println("json: " + pageData);
-            feedback.score1 = pageData.get("right_legals").toString();
-            feedback.score2 = pageData.get("transfer_content").toString();
-            feedback.score3 = pageData.get("ta_team").toString();
-            feedback.score4 = pageData.get("suitable_exercise").toString();
+            feedback.score1 = (double) pageData.get("right_legals");
+            feedback.score2 = (double) pageData.get("transfer_content");
+            feedback.score3 = (double) pageData.get("ta_team");
+            feedback.score4 = (double) pageData.get("suitable_exercise");
             System.out.println("techer name: " + current_teacher.teacher_name);
             System.out.println("lesson name: " + current_teacher.lesson_name);
             feedback.teacher_name = current_teacher.teacher_name;
@@ -224,6 +224,15 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if ("teacherScoresTab".equals(updateCommand)) {
+
+            ArrayList<Double> scores = DbOperation.retrieveScoreMagic(current_teacher.teacher_name, current_teacher.lesson_name, connection);
+            temp.score_overall = convertToEnglishDigits(Objects.requireNonNull(scores).get(0).toString())+"/۱۰۰";
+            temp.score1 = convertToEnglishDigits(scores.get(1).toString())+"/۱۰۰";
+            temp.score2 = convertToEnglishDigits(scores.get(2).toString())+"/۱۰۰";
+            temp.score3 = convertToEnglishDigits(scores.get(3).toString())+"/۱۰۰";
+            temp.score4 = convertToEnglishDigits(scores.get(4).toString())+"/۱۰۰";
+
+
             View view = new TeacherScores();
             view.setMustacheModel(temp);
             return view;

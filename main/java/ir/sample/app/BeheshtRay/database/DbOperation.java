@@ -20,24 +20,23 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, score_ave, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
-            pstmt.setString(3, feedback.score1);
-            pstmt.setString(4, feedback.score2);
-            pstmt.setString(5, feedback.score3);
-            pstmt.setString(6, feedback.score4);
-            pstmt.setString(7, feedback.score_ave);
-            pstmt.setString(8, feedback.student_score);
-            pstmt.setString(9, feedback.extended_feedback);
-            pstmt.setString(10, feedback.user_id);
-            pstmt.setString(11, feedback.date_number);
-            pstmt.setString(12, feedback.upvotes);
-            pstmt.setString(13, feedback.downvotes);
-            pstmt.setString(14, feedback.feedback_id);
-            pstmt.setString(15, feedback.created_time);
-            pstmt.setInt(16, feedback.diff_votes);
+            pstmt.setDouble(3, feedback.score1);
+            pstmt.setDouble(4, feedback.score2);
+            pstmt.setDouble(5, feedback.score3);
+            pstmt.setDouble(6, feedback.score4);
+            pstmt.setString(7, feedback.student_score);
+            pstmt.setString(8, feedback.extended_feedback);
+            pstmt.setString(9, feedback.user_id);
+            pstmt.setString(10, feedback.date_number);
+            pstmt.setString(11, feedback.upvotes);
+            pstmt.setString(12, feedback.downvotes);
+            pstmt.setString(13, feedback.feedback_id);
+            pstmt.setString(14, feedback.created_time);
+            pstmt.setInt(15, feedback.diff_votes);
 //            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
@@ -55,29 +54,28 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[16];
+//            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 15; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedback.score1 = data[3];
-                feedback.score2 = data[4];
-                feedback.score3 = data[5];
-                feedback.score4 = data[6];
-                feedback.score_ave = data[7];
-                feedback.student_score = data[8];
-                feedback.extended_feedback = data[9];
-                feedback.user_id = data[10];
-                feedback.date_number = data[11];
-                feedback.upvotes = data[12];
-                feedback.downvotes = data[13];
-                feedback.feedback_id = data[14];
-                feedback.created_time = data[15];
-                feedback.diff_votes = resultSet.getInt(16);
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
                 feedbacks.add(feedback);
 
             }
@@ -133,30 +131,28 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback_id);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[16];
+//            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 15; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedback.score1 = data[3];
-                feedback.score2 = data[4];
-                feedback.score3 = data[5];
-                feedback.score4 = data[6];
-                feedback.score_ave = data[7];
-                feedback.student_score = data[8];
-                feedback.extended_feedback = data[9];
-                feedback.user_id = data[10];
-                feedback.date_number = data[11];
-                feedback.upvotes = data[12];
-                feedback.downvotes = data[13];
-                feedback.feedback_id = data[14];
-                feedback.created_time = data[15];
-                feedback.diff_votes = resultSet.getInt(16);
-
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
                 feedbacks.add(feedback);
 
             }
@@ -201,30 +197,28 @@ public class DbOperation {
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[16];
+//            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 15; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedback.score1 = data[3];
-                feedback.score2 = data[4];
-                feedback.score3 = data[5];
-                feedback.score4 = data[6];
-                feedback.score_ave = data[7];
-                feedback.student_score = data[8];
-                feedback.extended_feedback = data[9];
-                feedback.user_id = data[10];
-                feedback.date_number = data[11];
-                feedback.upvotes = data[12];
-                feedback.downvotes = data[13];
-                feedback.feedback_id = data[14];
-                feedback.created_time = data[15];
-                feedback.diff_votes = resultSet.getInt(16);
-
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
                 feedbacks.add(feedback);
 
             }
@@ -241,30 +235,28 @@ public class DbOperation {
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[16];
+//            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 15; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedback.score1 = data[3];
-                feedback.score2 = data[4];
-                feedback.score3 = data[5];
-                feedback.score4 = data[6];
-                feedback.score_ave = data[7];
-                feedback.student_score = data[8];
-                feedback.extended_feedback = data[9];
-                feedback.user_id = data[10];
-                feedback.date_number = data[11];
-                feedback.upvotes = data[12];
-                feedback.downvotes = data[13];
-                feedback.feedback_id = data[14];
-                feedback.created_time = data[15];
-                feedback.diff_votes = resultSet.getInt(16);
-
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
                 feedbacks.add(feedback);
 
             }
@@ -280,31 +272,30 @@ public class DbOperation {
             String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL ORDER BY diff_votes DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             ResultSet resultSet = pstmt.executeQuery();
-            String data[] = new String[16];
+//            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
-                for (int i = 1; i <= 15; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedback.score1 = data[3];
-                feedback.score2 = data[4];
-                feedback.score3 = data[5];
-                feedback.score4 = data[6];
-                feedback.score_ave = data[7];
-                feedback.student_score = data[8];
-                feedback.extended_feedback = data[9];
-                feedback.user_id = data[10];
-                feedback.date_number = data[11];
-                feedback.upvotes = data[12];
-                feedback.downvotes = data[13];
-                feedback.feedback_id = data[14];
-                feedback.created_time = data[15];
-                feedback.diff_votes = resultSet.getInt(16);
-
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
                 feedbacks.add(feedback);
+
 
             }
             return feedbacks;
@@ -638,6 +629,34 @@ public class DbOperation {
         }
 
     }
+
+
+    public static ArrayList<Double> retrieveScoreMagic(String teacher_name, String lesson_name, Connection connection){
+        try {
+            String checkSql = "SELECT (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0, AVG(score_1), AVG(score_2), AVG(score_3), AVG(score_4) FROM feedbacks WHERE score_1 IS NOT NULL AND score_2 IS NOT NULL AND score_3 IS NOT NULL AND score_4 IS NOT NULL AND teacher_name=? AND lesson_name=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_name);
+            pstmt.setString(2, lesson_name);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Double> magicScores = new ArrayList<>();
+            if (resultSet.next()) {
+                magicScores.add(resultSet.getDouble(1));
+                magicScores.add(resultSet.getDouble(2));
+                magicScores.add(resultSet.getDouble(3));
+                magicScores.add(resultSet.getDouble(4));
+                magicScores.add(resultSet.getDouble(5));
+                return magicScores;
+            }
+
+            return null;
+
+
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 }
 
 
