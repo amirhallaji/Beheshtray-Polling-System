@@ -54,7 +54,7 @@
     {{/teachers}}
 
     {{#otherLessons}}
-    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacher_profile_info+{{teacher_key}}">
+    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacher_profile_info+{{teacher_key}}" borderCornerRadius="5">
         <text textsize="14" gravity="center" textcolor="black" text="{{lesson_name}}"></text>
     </frame>
     {{/otherLessons}}

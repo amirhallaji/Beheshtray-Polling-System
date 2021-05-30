@@ -674,6 +674,21 @@ public class BeheshtRayService extends APSService {
             tempStudent.students = students;
             view.setMustacheModel(tempStudent);
             return view;
+        }else if (updateCommand.equals("help_register")){
+            return new HelpRegister();
+        }else if(updateCommand.equals("help_sign_in")){
+            return new HelpSignInUp();
+        }else if(updateCommand.equals("sign_in")){
+            students = DbOperation.retrieveVoteStatus(userId, connection);
+            View view = new SignInUp();
+            tempStudent.students = students;
+            view.setMustacheModel(tempStudent);
+            return view;
+
+
+        }else if (updateCommand.equals("register")){
+            return new Register();
+
         }
 
 

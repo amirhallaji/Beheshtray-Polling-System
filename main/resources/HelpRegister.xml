@@ -1,0 +1,96 @@
+<page onBack="app/back" background="" toolbarColor="#1E90FF" statusbarColor="#4682B4" title="بهشترأی"  scrollable="true" padding_top="64">
+
+	<frame padding_bottom="10"/>
+
+	<frame margin="center">
+		<image src="https://s4.uupload.ir/files/artboard_1_vdwm.png" borderCornerRadius="120" width="128"
+			   height="128"/>
+	</frame>
+
+	<frame margin="center">
+		<text textsize="24" textcolor="#3399ff" gravity="center">بهشترأی اپسان</text>
+	</frame>
+
+	<frame margin="center">
+		<text textalignment="center" textcolor="#3399ff" textsize="14">سرویس نظرسنجی دانشگاه شهید بهشتی</text>
+	</frame>
+
+	<frame layout="linear_vertical">
+
+		<frame layout="linear_horizontal">
+
+			<frame gravity="left">
+
+
+				<frame gravity="right" width="250">
+					<text textsize="22" gravity="right">درباره برنامه</text>
+				</frame>
+			</frame>
+		</frame>
+	</frame>
+
+	<frame margin="center" background="#FFFAFA" borderCornerRadius="5">
+		<text textalignment="center"  textsize="14">در بهشترأی اپسان، سامانه نظرسنجی اساتید دانشگاه شهید بهشتی، به دوستانتان کمک می‌کنید که با ثبت نظرات خود درباره‌ی اساتید دانشگاه، شناخت کافی پیدا کنند.</text>
+	</frame>
+
+	<frame padding_bottom="10"/>
+
+
+	<frame layout="linear_vertical">
+
+		<frame layout="linear_horizontal">
+
+			<frame gravity="left">
+
+
+				<frame gravity="right" width="250">
+					<text textsize="22" gravity="right">توسعه دهندگان</text>
+				</frame>
+			</frame>
+		</frame>
+	</frame>
+
+	<frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" borderCornerRadius="5">
+		<text textsize="14" gravity="center" textcolor="black" text="محمد خدام"></text>
+	</frame>
+	<frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" borderCornerRadius="5">
+		<text textsize="14" gravity="center" textcolor="black" text="امیر حلاجی بیدگلی"></text>
+	</frame>
+	<frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" borderCornerRadius="5">
+		<text textsize="14" gravity="center" textcolor="black" text="آرمان حسنمردی"></text>
+	</frame>
+	<frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="" borderCornerRadius="5">
+		<text textsize="14" gravity="center" textcolor="black" text="علی رضاسلطانی"></text>
+	</frame>
+
+
+	<footer background="#1E90FF">
+		<frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
+			   margin_bottom="-1" height="64">
+			<frame layout="linear_horizontal" gravity="center">
+
+				<frame layout="linear_vertical" background="#006AD1" onclick="update/help_register" gravity="center" height="64">
+
+					<image src="https://s2.uupload.ir/files/round_info_white_24dp_j64w.png" borderCornerRadius="0"
+						   width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+					<frame margin="0" padding="0">
+						<text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">راهنما</text>
+					</frame>
+				</frame>
+
+				<frame layout="linear_vertical" background="#1E90FF" onclick="update/register" gravity="center" height="64">
+
+					<image src="https://s2.uupload.ir/files/round_login_white_24dp_afte.png" borderCornerRadius="0"
+						   width="24" height="24" gravity="right" margin="0" padding="0"/>
+
+					<frame margin="0" padding="0">
+						<text textsize="12" gravity="center" textcolor="white" margin="0" padding="0">ثبت نام</text>
+					</frame>
+				</frame>
+
+
+			</frame>
+		</frame>
+	</footer>
+</page>
