@@ -20,7 +20,7 @@ public class DbOperation {
             while (rcount.next()) {
                 countnum = Integer.parseInt(rcount.getString(1));
             }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes, score_avg, is_removed) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,false)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback.teacher_name);
             pstmt.setString(2, feedback.lesson_name);
@@ -37,6 +37,7 @@ public class DbOperation {
             pstmt.setString(13, feedback.feedback_id);
             pstmt.setString(14, feedback.created_time);
             pstmt.setInt(15, feedback.diff_votes);
+            pstmt.setString(16, feedback.score_avg);
 //            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
@@ -50,7 +51,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksBySelf(String userid, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE userid=? and extended_feedback IS NOT NULL ORDER BY created_time DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=? AND is_removed=false ORDER BY created_time DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
@@ -76,6 +77,7 @@ public class DbOperation {
                 feedback.feedback_id = resultSet.getString(13);
                 feedback.created_time = resultSet.getString(14);
                 feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
                 feedbacks.add(feedback);
 
             }
@@ -89,7 +91,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksBySelf2(String userid, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE userid=?";
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=? AND is_removed=false";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
@@ -127,7 +129,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByFeedbackId(String feedback_id, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE feedback_id=? and extended_feedback IS NOT NULL";
+            String checkSql = "SELECT * FROM feedbacks WHERE feedback_id=? and extended_feedback IS NOT NULL AND is_removed=false";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback_id);
             ResultSet resultSet = pstmt.executeQuery();
@@ -153,6 +155,8 @@ public class DbOperation {
                 feedback.feedback_id = resultSet.getString(13);
                 feedback.created_time = resultSet.getString(14);
                 feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
+
                 feedbacks.add(feedback);
 
             }
@@ -192,7 +196,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL ORDER BY created_time DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL AND is_removed=false ORDER BY created_time DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
@@ -219,6 +223,8 @@ public class DbOperation {
                 feedback.feedback_id = resultSet.getString(13);
                 feedback.created_time = resultSet.getString(14);
                 feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
+
                 feedbacks.add(feedback);
 
             }
@@ -230,7 +236,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacherMostVoted(String lesson_name, String teacher_name, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL ORDER BY diff_votes DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL AND is_removed=false ORDER BY diff_votes DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
@@ -257,6 +263,8 @@ public class DbOperation {
                 feedback.feedback_id = resultSet.getString(13);
                 feedback.created_time = resultSet.getString(14);
                 feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
+
                 feedbacks.add(feedback);
 
             }
@@ -269,7 +277,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksMostVoted(Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL ORDER BY diff_votes DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL AND is_removed=false ORDER BY diff_votes DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             ResultSet resultSet = pstmt.executeQuery();
 //            String data[] = new String[16];
@@ -294,6 +302,8 @@ public class DbOperation {
                 feedback.feedback_id = resultSet.getString(13);
                 feedback.created_time = resultSet.getString(14);
                 feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
+
                 feedbacks.add(feedback);
 
 
@@ -589,7 +599,7 @@ public class DbOperation {
 
     public static void deleteExtendedVote(String feedback_id, Connection connection) {
         try {
-            String checkSql = "UPDATE feedbacks SET extended_feedback=NULL, diff_votes=0 WHERE feedback_id=?";
+            String checkSql = "UPDATE feedbacks SET extended_feedback=NULL, diff_votes=0, score_1=0, score_2=0, score_3=0, score_4=0, score_avg='0', is_removed=true WHERE feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, feedback_id);
             pstmt.executeUpdate();
@@ -633,7 +643,7 @@ public class DbOperation {
 
     public static ArrayList<Double> retrieveScoreMagic(String teacher_name, String lesson_name, Connection connection){
         try {
-            String checkSql = "SELECT (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0, AVG(score_1), AVG(score_2), AVG(score_3), AVG(score_4) FROM feedbacks WHERE score_1 IS NOT NULL AND score_2 IS NOT NULL AND score_3 IS NOT NULL AND score_4 IS NOT NULL AND teacher_name=? AND lesson_name=?";
+            String checkSql = "SELECT (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0, AVG(score_1), AVG(score_2), AVG(score_3), AVG(score_4) FROM feedbacks WHERE score_1 IS NOT NULL AND score_2 IS NOT NULL AND score_3 IS NOT NULL AND score_4 IS NOT NULL AND teacher_name=? AND lesson_name=? AND is_removed=false";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);

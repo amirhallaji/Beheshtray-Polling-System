@@ -46,7 +46,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#00FF00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۹۴/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score_overall}}"></text>
                 </frame>
 
 
@@ -68,7 +68,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۹۹/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score1}}"></text>
                 </frame>
 
 
@@ -82,22 +82,6 @@
     </frame>
 
 
-    <frame layout="linear_vertical">
-
-        <frame layout="linear_horizontal">
-
-            <frame gravity="left" width="">
-                <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۹۹/۱۰۰</text>
-                </frame>
-
-
-                <frame gravity="right" width="500">
-                    <text textsize="14" gravity="right">رعایت حقوق دانشجو و رفتار مناسب</text>
-                </frame>
-            </frame>
-        </frame>
-    </frame>
 
     <frame layout="linear_vertical">
 
@@ -105,7 +89,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۹۰/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score2}}"></text>
                 </frame>
 
 
@@ -127,7 +111,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۵۰/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score3}}"></text>
                 </frame>
 
 
@@ -145,7 +129,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black">۷۸/۱۰۰</text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score4}}"></text>
                 </frame>
 
 
