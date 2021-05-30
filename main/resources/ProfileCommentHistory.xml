@@ -38,22 +38,22 @@
             <frame layout="linear_horizontal">
 
 
-                <frame>
+<!--                <frame>-->
 
-                    <frame>
-                        <button gravity="center" onClick="update/upvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#228B22" width="30"
-                                textcolor="white" textsize="14" height="40" text="{{upvotes}}">
-                        </button>
-                    </frame>
+<!--                    <frame>-->
+<!--                        <button gravity="center" onClick="update/upvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#228B22" width="30"-->
+<!--                                textcolor="white" textsize="14" height="40" text="{{upvotes}}">-->
+<!--                        </button>-->
+<!--                    </frame>-->
 
 
-                    <frame>
-                        <button gravity="center" onClick="update/downvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#FF0000" width="30"
-                                textcolor="white" textsize="14" height="40" text="{{downvotes}}">
-                        </button>
-                    </frame>
+<!--                    <frame>-->
+<!--                        <button gravity="center" onClick="update/downvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#FF0000" width="30"-->
+<!--                                textcolor="white" textsize="14" height="40" text="{{downvotes}}">-->
+<!--                        </button>-->
+<!--                    </frame>-->
 
-                </frame>
+<!--                </frame>-->
 
 
                 <frame>
@@ -81,11 +81,6 @@
 
 
 
-            <frame gravity="right">
-                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extended_feedback}}">
-                </text>
-            </frame>
-
             <frame layout="linear_horizontal">
                 <frame gravity="right">
                     <text textalignment="right" textsize="12" gravity="center" text="میانگین امتیاز داده شده توسط شما:{{score_avg}}">
@@ -93,6 +88,13 @@
                     </text>
                 </frame>
             </frame>
+
+            <frame gravity="right">
+                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extended_feedback}}">
+                </text>
+            </frame>
+
+
 
 
             <frame>
