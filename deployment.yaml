@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{SRV_NAME}}-deployment
+  namespace: sbuclass
+  labels:
+    app: {{SRV_NAME}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{SRV_NAME}}
+  template:
+    metadata:
+      labels:
+        app: {{SRV_NAME}}
+    spec:
+      containers:
+        - name: {{SRV_NAME}}
+          image: {{SRV_IMG}}
+          env:
+            - name: CONNECTOR_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: sbu-services-configmap
+                  key: connector_host
+            - name: CONNECTOR_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: sbu-services-configmap
+                  key: connector_port
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: sbu-services-configmap
+                  key: database_host
+            - name: DATABASE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: sbu-services-configmap
+                  key: database_port
