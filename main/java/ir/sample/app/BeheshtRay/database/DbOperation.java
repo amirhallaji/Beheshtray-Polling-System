@@ -668,24 +668,22 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList <Feedback> retrieveByTaTeam(Connection connection) {
+    public static ArrayList <Teacher> retrieveByTaTeam(Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, lesson_name FROM feedbacks ORDER BY score_3";
+            int counter = 0;
+            String checkSql = "select teacher_name, lesson_name, AVG(score_3)  as team_ta from feedbacks group by (teacher_name, lesson_name) order by team_ta DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             ResultSet resultSet = pstmt.executeQuery();
-            String[] data = new String[3];
-            ArrayList<Feedback> feedbacks = new ArrayList<>();
-            while (resultSet.next()) {
-                System.out.println("Hello");
-                Feedback feedback = new Feedback();
-                for (int i = 1; i <= 2; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-                feedback.teacher_name = data[1];
-                feedback.lesson_name = data[2];
-                feedbacks.add(feedback);
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next() && counter <= 7) {
+                Teacher teacher = new Teacher();
+                teacher.teacher_name = resultSet.getString(1);
+                teacher.lesson_name = resultSet.getString(2);
+                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                teachers.add(teacher);
+                counter++;
             }
-            return feedbacks;
+            return teachers;
         } catch (Exception e) {
             return null;
         }
