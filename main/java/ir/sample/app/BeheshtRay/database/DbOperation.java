@@ -661,8 +661,6 @@ public class DbOperation {
             }
 
             return null;
-
-
         }catch (Exception e){
             return null;
         }
@@ -712,9 +710,28 @@ public class DbOperation {
         }
     }
 
+
+    public static ArrayList<Teacher> retrieveTheMostFamousTeachersLessons(Connection connection) {
+        try {
+            int counter = 1;
+            ArrayList<Teacher> teachers = new ArrayList<>();
+                String checkSql = "select teacher_name, lesson_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by (teacher_name, lesson_name) order by team_score DESC";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next() && counter <= 7) {
+                Teacher teacher = new Teacher();
+                teacher.teacher_name = resultSet.getString(1);
+                teacher.lesson_name = resultSet.getString(2);
+                System.out.println(teacher.teacher_name);
+                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                System.out.println(teacher.teacher_photo);
+                teachers.add(teacher);
+                counter++;
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
-
-
-
-
-

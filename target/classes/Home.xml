@@ -210,8 +210,8 @@
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="0" background="#FF8C00" width="30"
-                                textcolor="white" textsize="14" height="40">محبوب‌ترین اساتید
+                        <button gravity="center" onClick="update/popularLessons" borderCornerRadius="0" background="#FF8C00" width="30"
+                                textcolor="white" textsize="14" height="40">محبوب‌ترین دروس
                         </button>
                     </frame>
                 </frame>
