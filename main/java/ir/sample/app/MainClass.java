@@ -26,7 +26,7 @@ import java.util.Date;
         Date date = new Date();
         System.out.println(date.getTime());
 
-        System.out.println("start main");
+        System.out.println("****** BEHESHTRAY ORG® ******");
         System.out.println("This is a test from arman in Gitlab");
 
         String host = "connectorsbu.appsan.ir";
@@ -37,9 +37,5 @@ import java.util.Date;
         AppsanApplication.run(MainClass.class, args, config);
         AppsanApplication.registerChannel(new HighwayChannel());
 
-
-
-
-        //commentId,teacherName,teacherAcademicGroup,teacherEmail,teacherLessons,studentName,studentFaculty,studentGender,studentId
     }
 }

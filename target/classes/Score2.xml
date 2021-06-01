@@ -45,8 +45,8 @@
     <frame padding_bottom="10"/>
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1" width="match_parent" >
-        <textInput width="match_parent" height="260" gravity="top_right" padding="10" borderColor="#4682B4"
-                   borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multilineline="true"
+        <textInput width="match_parent" height="260px" gravity="top_right" padding="10" borderColor="#4682B4"
+                   borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multiline="true"
                    borderStrokeWidth=""/>
     </frame>
 

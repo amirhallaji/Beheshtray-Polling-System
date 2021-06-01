@@ -8,6 +8,8 @@ import ir.sample.app.BeheshtRay.models.*;
 import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -123,10 +125,10 @@ public class BeheshtRayService extends APSService {
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
         if ("nextPage".equals(updateCommand)) {
             System.out.println("json: " + pageData);
-            feedback.score1 =  Double.parseDouble(pageData.get("right_legals").toString());
-            feedback.score2 =  Double.parseDouble(pageData.get("transfer_content").toString());
-            feedback.score3 =  Double.parseDouble(pageData.get("ta_team").toString());
-            feedback.score4 =  Double.parseDouble(pageData.get("suitable_exercise").toString());
+            feedback.score1 = Double.parseDouble(pageData.get("right_legals").toString());
+            feedback.score2 = Double.parseDouble(pageData.get("transfer_content").toString());
+            feedback.score3 = Double.parseDouble(pageData.get("ta_team").toString());
+            feedback.score4 = Double.parseDouble(pageData.get("suitable_exercise").toString());
             feedback.score_avg = convertToEnglishDigits(String.valueOf((feedback.score1 + feedback.score2 + feedback.score3 + feedback.score4) / 4.0));
             System.out.println("techer name: " + current_teacher.teacher_name);
             System.out.println("lesson name: " + current_teacher.lesson_name);
@@ -227,12 +229,11 @@ public class BeheshtRayService extends APSService {
         } else if ("teacherScoresTab".equals(updateCommand)) {
 
             ArrayList<Double> scores = DbOperation.retrieveScoreMagic(current_teacher.teacher_name, current_teacher.lesson_name, connection);
-            temp.score_overall = convertToEnglishDigits(Objects.requireNonNull(scores).get(0).toString())+"/۱۰۰";
-            temp.score1 = convertToEnglishDigits(scores.get(1).toString())+"/۱۰۰";
-            temp.score2 = convertToEnglishDigits(scores.get(2).toString())+"/۱۰۰";
-            temp.score3 = convertToEnglishDigits(scores.get(3).toString())+"/۱۰۰";
-            temp.score4 = convertToEnglishDigits(scores.get(4).toString())+"/۱۰۰";
-
+            temp.score_overall = convertToEnglishDigits(BigDecimal.valueOf(Objects.requireNonNull(scores).get(0)).setScale(2, RoundingMode.HALF_UP).toString()) + "/۱۰۰";
+            temp.score1 = convertToEnglishDigits(BigDecimal.valueOf(scores.get(1)).setScale(2, RoundingMode.HALF_UP).toString()) + "/۱۰۰";
+            temp.score2 = convertToEnglishDigits(BigDecimal.valueOf(scores.get(2)).setScale(2, RoundingMode.HALF_UP).toString()) + "/۱۰۰";
+            temp.score3 = convertToEnglishDigits(BigDecimal.valueOf(scores.get(3)).setScale(2, RoundingMode.HALF_UP).toString()) + "/۱۰۰";
+            temp.score4 = convertToEnglishDigits(BigDecimal.valueOf(scores.get(4)).setScale(2, RoundingMode.HALF_UP).toString()) + "/۱۰۰";
 
             View view = new TeacherScores();
             view.setMustacheModel(temp);
@@ -409,7 +410,7 @@ public class BeheshtRayService extends APSService {
                 View view = new ProfileCommentHistory();
                 view.setMustacheModel(student);
                 return view;
-            }else if (updateCommand.startsWith("upvote_comment_home")){
+            } else if (updateCommand.startsWith("upvote_comment_home")) {
                 View view = new Home();
                 HomePageEntity homePageEntity = new HomePageEntity();
                 homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
@@ -549,7 +550,7 @@ public class BeheshtRayService extends APSService {
                 View view = new ProfileCommentHistory();
                 view.setMustacheModel(student);
                 return view;
-            } else if (updateCommand.startsWith("downvote_comment_home")){
+            } else if (updateCommand.startsWith("downvote_comment_home")) {
                 View view = new Home();
                 HomePageEntity homePageEntity = new HomePageEntity();
                 homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
@@ -669,16 +670,16 @@ public class BeheshtRayService extends APSService {
             }
             view.setMustacheModel(homePageEntity);  // query here
             return view;
-        }else if (updateCommand.equals("logout")){
+        } else if (updateCommand.equals("logout")) {
             View view = new SignInUp();
             tempStudent.students = students;
             view.setMustacheModel(tempStudent);
             return view;
-        }else if (updateCommand.equals("help_register")){
+        } else if (updateCommand.equals("help_register")) {
             return new HelpRegister();
-        }else if(updateCommand.equals("help_sign_in")){
+        } else if (updateCommand.equals("help_sign_in")) {
             return new HelpSignInUp();
-        }else if(updateCommand.equals("sign_in")){
+        } else if (updateCommand.equals("sign_in")) {
             students = DbOperation.retrieveVoteStatus(userId, connection);
             View view = new SignInUp();
             tempStudent.students = students;
@@ -686,7 +687,7 @@ public class BeheshtRayService extends APSService {
             return view;
 
 
-        }else if (updateCommand.equals("register")){
+        } else if (updateCommand.equals("register")) {
             return new Register();
 
         }
