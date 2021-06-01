@@ -240,8 +240,10 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if ("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)) {
             View view = new Home();
+            DbOperation.retrieveTheMostFamousTeachers(connection);
+//            System.out.println(DbOperation.retrieveTeacherURLImage("حامد ملک", connection));
             HomePageEntity homePageEntity = new HomePageEntity();
-            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
             try {
                 homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
             } catch (Exception e) {

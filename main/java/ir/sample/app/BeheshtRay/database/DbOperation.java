@@ -492,6 +492,7 @@ public class DbOperation {
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             ResultSet resultSet = pstmt.executeQuery();
+            resultSet.next();
             return resultSet.getString(11);
         } catch (Exception e) {
             return null;
@@ -663,6 +664,52 @@ public class DbOperation {
 
 
         }catch (Exception e){
+            return null;
+        }
+    }
+
+    public static ArrayList <Feedback> retrieveByTaTeam(Connection connection) {
+        try {
+            String checkSql = "SELECT teacher_name, lesson_name FROM feedbacks ORDER BY score_3";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            String[] data = new String[3];
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                System.out.println("Hello");
+                Feedback feedback = new Feedback();
+                for (int i = 1; i <= 2; i++) {
+                    data[i] = resultSet.getString(i);
+                }
+                feedback.teacher_name = data[1];
+                feedback.lesson_name = data[2];
+                feedbacks.add(feedback);
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(Connection connection) {
+        try {
+            int counter = 1;
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            String checkSql = "select teacher_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by teacher_name order by team_score DESC";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            String[] data = new String[3];
+            while (resultSet.next() && counter <= 5) {
+                Teacher teacher = new Teacher();
+                teacher.teacher_name = resultSet.getString(1);
+                System.out.println(teacher.teacher_name);
+                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                System.out.println(teacher.teacher_photo);
+                teachers.add(teacher);
+                counter++;
+            }
+            return teachers;
+        } catch (Exception e) {
             return null;
         }
     }
