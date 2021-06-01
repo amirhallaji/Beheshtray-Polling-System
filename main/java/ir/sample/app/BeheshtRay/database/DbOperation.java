@@ -500,6 +500,21 @@ public class DbOperation {
     }
 
 
+    public static String retrieveTeacherID(String teacher_name, String lesson_name, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM teachers WHERE teacher_name=? AND lesson_name=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, teacher_name);
+            pstmt.setString(2, lesson_name);
+            ResultSet resultSet = pstmt.executeQuery();
+            resultSet.next();
+            return resultSet.getString(10);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
     public static void sendUserInfo(Student student, Connection connection) {
         try {
             String count = "SELECT COUNT(*) FROM students"; // TODO dbOperation
@@ -678,6 +693,7 @@ public class DbOperation {
                 teacher.teacher_name = resultSet.getString(1);
                 teacher.lesson_name = resultSet.getString(2);
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
                 teachers.add(teacher);
                 counter++;
             }
@@ -724,6 +740,7 @@ public class DbOperation {
                 teacher.lesson_name = resultSet.getString(2);
                 System.out.println(teacher.teacher_name);
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
                 System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;

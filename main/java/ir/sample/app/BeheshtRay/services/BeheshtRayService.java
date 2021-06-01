@@ -189,7 +189,9 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if (updateCommand.startsWith("teacher_profile_info")) {
             View view = new TeacherInfo();
+            System.out.println("uooo"+updateCommand);
             String selectedid = updateCommand.substring(updateCommand.indexOf("+") + 1);
+            System.out.println("jhjhjh "+selectedid);
             teachers = DbOperation.retrieveTeacherByKey(selectedid, connection);
             current_teacher = teachers.get(0);
             temp.teachers = teachers;
