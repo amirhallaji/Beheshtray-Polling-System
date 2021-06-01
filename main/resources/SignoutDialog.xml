@@ -1,0 +1,13 @@
+<dialog id="deletecomment" scrollable="true" width="match_parent">
+    <frame id="" width="match_parent">
+        <frame background="#FFF" layout="linear_vertical">
+            <text gravity="center" textsize="14">آیا می‌خواهید از سامانه خارج شوید؟</text>
+            <frame background="#FFF" layout="linear_horizontal">
+                <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
+                        textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">خیر</button>
+                <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
+                        textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">بله</button>
+            </frame>
+        </frame>
+    </frame>
+</dialog>
