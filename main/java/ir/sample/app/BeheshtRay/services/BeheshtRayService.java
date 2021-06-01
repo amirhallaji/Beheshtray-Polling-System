@@ -671,9 +671,10 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(homePageEntity);  // query here
             return view;
         } else if (updateCommand.equals("logout")) {
-            View view = new SignInUp();
-            tempStudent.students = students;
-            view.setMustacheModel(tempStudent);
+            View view = new SignoutDialog();
+//            View view = new SignInUp();
+//            tempStudent.students = students;
+//            view.setMustacheModel(tempStudent);
             return view;
         } else if (updateCommand.equals("help_register")) {
             return new HelpRegister();
