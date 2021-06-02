@@ -29,8 +29,8 @@
 		</frame>
 	</frame>
 
-	<frame margin="center" background="#FFFAFA" borderCornerRadius="5">
-		<text textalignment="center"  textsize="14">در بهشترأی اپسان، سامانه نظرسنجی اساتید دانشگاه شهید بهشتی، به دوستانتان کمک می‌کنید که با ثبت نظرات خود درباره‌ی اساتید دانشگاه، شناخت کافی پیدا کنند.</text>
+	<frame margin="center" background="#FFFAFA" borderCornerRadius="5" height="100">
+		<text textalignment="center"  textsize="14">در بهشترأی اپسان، سامانه نظرسنجی اساتید دانشگاه شهید بهشتی، به دوستانتان کمک می‌کنید که با ثبت نظرات خود درباره‌ی اساتید دانشگاه، شناخت کافی پیدا کنند. شما می‌توانید با خیال راحت نظر بدهید؛ چون نام شما در نظرات نمایش داده نمی‌شود.</text>
 	</frame>
 
 	<frame padding_bottom="10"/>
@@ -69,7 +69,7 @@
 			   margin_bottom="-1" height="64">
 			<frame layout="linear_horizontal" gravity="center">
 
-				<frame layout="linear_vertical" background="#006AD1" onclick="update/help_register" gravity="center" height="64">
+				<frame layout="linear_vertical" background="#006AD1" borderCornerRadius="20" onclick="update/help_register" gravity="center" height="64">
 
 					<image src="https://s2.uupload.ir/files/round_info_white_24dp_j64w.png" borderCornerRadius="0"
 						   width="24" height="24" gravity="right" margin="0" padding="0"/>

@@ -116,7 +116,7 @@
                     </frame>
                 </frame>
 
-                <frame layout="linear_vertical" background="#006AD1" onclick="update/polling" gravity="center" height="64">
+                <frame layout="linear_vertical" background="#006AD1" borderCornerRadius="20" onclick="update/polling" gravity="center" height="64">
 
                     <image src="https://s2.uupload.ir/files/round_poll_white_24dp_ysj.png" borderCornerRadius="0"
                            width="24" height="24" gravity="right" margin="0" padding="0"/>

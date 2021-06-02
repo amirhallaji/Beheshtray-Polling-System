@@ -62,7 +62,7 @@
                margin_bottom="-1" height="64">
             <frame layout="linear_horizontal" gravity="center">
 
-                <frame layout="linear_vertical" background="#006AD1" onclick="update/profile_info" gravity="center" height="64">
+                <frame layout="linear_vertical" background="#006AD1" borderCornerRadius="20" margin_left="-10" onclick="update/profile_info" gravity="center" height="64">
 
                     <image src="https://s2.uupload.ir/files/round_account_circle_white_24dp_fhxf.png"
                            borderCornerRadius="0" width="24" height="24" gravity="right" margin="0" padding="0"/>
