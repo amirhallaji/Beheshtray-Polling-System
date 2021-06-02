@@ -282,7 +282,8 @@ public class DbOperation {
             ResultSet resultSet = pstmt.executeQuery();
 //            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
-            while (resultSet.next()) {
+            int counter = 1;
+            while (resultSet.next() && counter <= 16) {
                 Feedback feedback = new Feedback();
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
@@ -305,6 +306,7 @@ public class DbOperation {
                 feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
+                counter++;
 
 
             }

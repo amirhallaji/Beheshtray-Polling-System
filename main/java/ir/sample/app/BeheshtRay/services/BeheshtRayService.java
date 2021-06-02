@@ -745,6 +745,12 @@ public class BeheshtRayService extends APSService {
             return view;
 
 
+        } else if(updateCommand.equals("ViewFullBestComments")){
+            View view = new FullCommentListView();
+            FullCommentEntity fullCommentEntity = new FullCommentEntity();
+            fullCommentEntity.feedbacks = DbOperation.retrieveFeedbacksMostVoted(connection);
+            view.setMustacheModel(fullCommentEntity);
+            return view;
         }
 
 
