@@ -36,7 +36,7 @@
 
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="10" width="240">
-        <textInput id="studentScore" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
+        <textInput id="student_score" width="200" height="48" gravity="center" padding="10" borderStrokeWidth="0.5"
                    borderColor="#4682B4" borderCornerRadius="10" background="#FFFFFF" hint="نمره ی من در این درس"
                    />
     </frame>
@@ -44,7 +44,7 @@
 
     <frame padding_bottom="10"/>
 
-    <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1" width="match_parent" >
+    <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1" >
         <textInput width="match_parent" height="260px" gravity="top_right" padding="10" borderColor="#4682B4"
                    borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multiline="true"
                    borderStrokeWidth=""/>

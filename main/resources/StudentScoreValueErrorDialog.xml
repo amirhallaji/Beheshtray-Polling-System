@@ -4,7 +4,7 @@
             <text gravity="center" textsize="14">نمره وارد شده باید بین ۰ و ۲۰ باشد!</text>
             <frame background="#FFF" layout="linear_horizontal">
                 <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
-                        textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">متوجه شدم!</button>
+                        textcolor="#fff" borderCornerRadius="5" onClick="app/closedialog" margin="20">متوجه شدم!</button>
             </frame>
         </frame>
     </frame>

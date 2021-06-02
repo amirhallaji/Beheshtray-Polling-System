@@ -53,7 +53,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksBySelf(String userid, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE userid=? AND is_removed=false ORDER BY created_time DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE userid=? AND is_removed=false ORDER BY length(created_time) DESC, created_time DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userid);
             ResultSet resultSet = pstmt.executeQuery();
@@ -198,7 +198,7 @@ public class DbOperation {
 
     public static ArrayList<Feedback> retrieveFeedbacksByTeacher(String lesson_name, String teacher_name, Connection connection) {
         try {
-            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL AND is_removed=false ORDER BY created_time DESC";
+            String checkSql = "SELECT * FROM feedbacks WHERE teacher_name=? and lesson_name=? and extended_feedback IS NOT NULL AND is_removed=false ORDER BY length(created_time) DESC, created_time DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, teacher_name);
             pstmt.setString(2, lesson_name);
@@ -498,7 +498,7 @@ public class DbOperation {
     public static ArrayList<Teacher> search(String search_input, Connection connection) {
         try {
 
-            String checkSql = "SELECT * FROM teachers WHERE teacher_name LIKE ? OR lesson_name LIKE ? OR teacher_email LIKE ?";
+            String checkSql = "SELECT * FROM teachers WHERE teacher_name LIKE ? OR lesson_name LIKE ? OR teacher_email iLIKE ?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, '%'+search_input+'%');
             pstmt.setString(2, '%'+search_input+'%');

@@ -126,10 +126,23 @@ public class BeheshtRayService extends APSService {
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
         if ("nextPage".equals(updateCommand)) {
             System.out.println("json: " + pageData);
+            System.out.println((pageData.get("right_legals").toString()));
+            if (pageData.get("right_legals").toString().trim().equals("") || pageData.get("transfer_content").toString().trim().equals("") || pageData.get("ta_team").toString().trim().equals("") || pageData.get("suitable_exercise").toString().trim().equals("")){
+                return new ScoreValueErrorDialog();
+            }
+
             feedback.score1 = Double.parseDouble(pageData.get("right_legals").toString());
             feedback.score2 = Double.parseDouble(pageData.get("transfer_content").toString());
             feedback.score3 = Double.parseDouble(pageData.get("ta_team").toString());
             feedback.score4 = Double.parseDouble(pageData.get("suitable_exercise").toString());
+
+            if (!((feedback.score1 >= 0 && feedback.score1 <= 100) && (feedback.score2 >= 0 && feedback.score2 <= 100) && (feedback.score3 >= 0 && feedback.score3 <= 100) && (feedback.score4 >= 0 && feedback.score4 <= 100))) {
+
+                return new ScoreValueErrorDialog();
+
+            }
+
+
             feedback.score_avg = convertToEnglishDigits(String.valueOf((feedback.score1 + feedback.score2 + feedback.score3 + feedback.score4) / 4.0));
             System.out.println("techer name: " + current_teacher.teacher_name);
             System.out.println("lesson name: " + current_teacher.lesson_name);
@@ -140,7 +153,19 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         } else if ("createPoll".equals(updateCommand)) {
-            feedback.student_score = convertToEnglishDigits(pageData.get("studentScore").toString());
+            System.out.println("json: " + pageData);
+
+//            System.out.println(pageData.get("studentScore").toString());
+
+            if (pageData.get("student_score").toString().trim().equals("")){
+                return new StudentScoreValueErrorDialog();
+            }
+
+            if (!(Double.parseDouble(pageData.get("student_score").toString())>=0 && Double.parseDouble(pageData.get("student_score").toString())<=20)){
+                return new StudentScoreValueErrorDialog();
+            }
+
+            feedback.student_score = convertToEnglishDigits(pageData.get("student_score").toString());
             feedback.extended_feedback = pageData.get("extendedFeedback").toString();
             if (feedback.extended_feedback.trim().isEmpty()) {
                 feedback.extended_feedback = null;
