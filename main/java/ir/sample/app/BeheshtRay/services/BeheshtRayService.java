@@ -642,6 +642,7 @@ public class BeheshtRayService extends APSService {
             student.student_faculty = "مهندسی کامپیوتر";
 
 
+
             student.student_gender = pageData.get("selected_gender").toString();
             if (student.student_gender.equals("مرد")) {
                 student.student_photo = "https://s4.uupload.ir/files/cfee5087-8773-4fb3-ac5e-63372d889b1f_ks1c.png";
@@ -761,6 +762,19 @@ public class BeheshtRayService extends APSService {
             fullCommentEntity.feedbacks = DbOperation.retrieveFeedbacksLeastVoted(connection);
             view.setMustacheModel(fullCommentEntity);
             return view;
+
+        } else if (updateCommand.equals("SubmitDialogShow")){
+            return new SubmitFeedbackDialog();
+        } else if(updateCommand.equals("DeleteDialogShow")){
+            return new DeleteCommentDialog();
+        } else if(updateCommand.equals("ScoreValueDialogShow")){
+            return new ScoreValueErrorDialog();
+        } else if(updateCommand.equals("StudentScoreValueDialogShow")){
+            return new StudentScoreValueErrorDialog();
+        } else if(updateCommand.equals("SignOutDialogShow")){
+            return new SignoutDialog();
+        } else if(updateCommand.equals("WelcomeDialogShow")){
+            return new WelcomeDialog();
         }
 
 
