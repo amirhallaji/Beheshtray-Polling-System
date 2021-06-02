@@ -1,2 +1,0 @@
-## Beheshtray Polling Service
-
