@@ -699,34 +699,38 @@ public class BeheshtRayService extends APSService {
         }
 
         else if(updateCommand.equals("bestTAs")) {
-            View view = new FullList();
+            View view = new FullListWithNumber();
             teachers = DbOperation.retrieveByTaTeam(connection);
             temp.teachers = teachers;
+            temp.numberTitle = "میانگین امتیاز: ";
             System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
             view.setMustacheModel(temp);
             return view;
         }
 
         else if(updateCommand.equals("popularLessons")){
-            View view = new FullList();
+            View view = new FullListWithNumber();
             teachers = DbOperation.retrieveTheMostFamousTeachersLessons(connection);
+            temp.numberTitle = "میانگین امتیاز: ";
             temp.teachers = teachers;
             System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
             view.setMustacheModel(temp);
             return view;
         }
         else if (updateCommand.equals("MostCommentedTeachers")){
-            View view = new FullList();
+            View view = new FullListWithNumber();
             teachers = DbOperation.retrieveMostCommentedTeachers(connection);
             temp.teachers = teachers;
+            temp.numberTitle = "تعداد نظرات: ";
             System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
             view.setMustacheModel(temp);
             return view;
         }
         else if (updateCommand.equals("LeastCommentedTeachers")){
-            View view = new FullList();
+            View view = new FullListWithNumber();
             teachers = DbOperation.retrieveLeastCommentedTeachers(connection);
             temp.teachers = teachers;
+            temp.numberTitle = "تعداد نظرات: ";
             System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
             view.setMustacheModel(temp);
             return view;

@@ -11,6 +11,8 @@ public class Teacher {
     public String teacher_photo;
 	public ArrayList<Comment> teacher_comments = new ArrayList<>();
 
+	public String tempAverage;
+
 	public Teacher(String teacher_name, String lesson_name) {
 		this.teacher_name = teacher_name;
 		this.lesson_name = lesson_name;

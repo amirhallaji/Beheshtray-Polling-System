@@ -223,7 +223,7 @@
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="update/" borderCornerRadius="0" background="#6A5ACD" width="30"
+                        <button gravity="center" onClick="update/LeastCommentedTeachers" borderCornerRadius="0" background="#6A5ACD" width="30"
                                 textcolor="white" textsize="14" height="40">کمترین نظر
                         </button>
                     </frame>

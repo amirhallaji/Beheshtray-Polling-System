@@ -15,5 +15,8 @@ public class Temp<T> {
     public String score3;
     public String score4;
 
+    public String numberTitle;
+
+
 
 }

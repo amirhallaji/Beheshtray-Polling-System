@@ -5,6 +5,8 @@ import ir.sample.app.BeheshtRay.models.Feedback;
 import ir.sample.app.BeheshtRay.models.Student;
 import ir.sample.app.BeheshtRay.models.Teacher;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -324,7 +326,7 @@ public class DbOperation {
 //            String data[] = new String[16];
             ArrayList<Feedback> feedbacks = new ArrayList<>();
             int counter = 1;
-            while (resultSet.next() && counter <= 16) {
+            while (resultSet.next() && counter <= 10) {
                 Feedback feedback = new Feedback();
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
@@ -724,6 +726,20 @@ public class DbOperation {
         }
     }
 
+
+    public static String convertToEnglishDigits(String value) {
+        return value.replace("1", "۱")
+                .replace("2", "۲")
+                .replace("3", "۳")
+                .replace("4", "۴")
+                .replace("5", "۵")
+                .replace("6", "۶")
+                .replace("7", "۷")
+                .replace("8", "۸")
+                .replace("9", "۹")
+                .replace("0", "۰");
+    }
+
     public static ArrayList <Teacher> retrieveByTaTeam(Connection connection) {
         try {
             int counter = 0;
@@ -735,6 +751,7 @@ public class DbOperation {
                 Teacher teacher = new Teacher();
                 teacher.teacher_name = resultSet.getString(1);
                 teacher.lesson_name = resultSet.getString(2);
+                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getDouble(3)).setScale(2, RoundingMode.HALF_UP).toString());
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
                 teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
                 teachers.add(teacher);
@@ -804,6 +821,7 @@ public class DbOperation {
                 Teacher teacher = new Teacher();
                 teacher.teacher_name = resultSet.getString(1);
                 teacher.lesson_name = resultSet.getString(2);
+                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getInt(3)).setScale(2, RoundingMode.HALF_UP).toString());
                 System.out.println(teacher.teacher_name);
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
                 teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
@@ -829,6 +847,8 @@ public class DbOperation {
                 Teacher teacher = new Teacher();
                 teacher.teacher_name = resultSet.getString(1);
                 teacher.lesson_name = resultSet.getString(2);
+                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
+
                 System.out.println(teacher.teacher_name);
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
                 teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
@@ -854,6 +874,8 @@ public class DbOperation {
                 Teacher teacher = new Teacher();
                 teacher.teacher_name = resultSet.getString(1);
                 teacher.lesson_name = resultSet.getString(2);
+                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
+
                 System.out.println(teacher.teacher_name);
                 teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
                 teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
