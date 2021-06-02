@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Array;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -242,7 +243,7 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if ("home".equals(updateCommand) || "acceptConditions".equals(updateCommand)) {
             View view = new Home();
-            DbOperation.retrieveTheMostFamousTeachers(connection);
+            //DbOperation.retrieveTheMostFamousTeachers(connection);
 //            System.out.println(DbOperation.retrieveTeacherURLImage("حامد ملک", connection));
             HomePageEntity homePageEntity = new HomePageEntity();
             homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
@@ -417,7 +418,7 @@ public class BeheshtRayService extends APSService {
             } else if (updateCommand.startsWith("upvote_comment_home")) {
                 View view = new Home();
                 HomePageEntity homePageEntity = new HomePageEntity();
-                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
                 try {
                     homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
                 } catch (Exception e) {
@@ -557,7 +558,7 @@ public class BeheshtRayService extends APSService {
             } else if (updateCommand.startsWith("downvote_comment_home")) {
                 View view = new Home();
                 HomePageEntity homePageEntity = new HomePageEntity();
-                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+                homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
                 try {
                     homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
                 } catch (Exception e) {
@@ -658,7 +659,7 @@ public class BeheshtRayService extends APSService {
 
             View view = new Home();
             HomePageEntity homePageEntity = new HomePageEntity();
-            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachers(connection)).subList(0, 5));
+            homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
             try {
                 homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
             } catch (Exception e) {
@@ -729,6 +730,21 @@ public class BeheshtRayService extends APSService {
             System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
             view.setMustacheModel(temp);
             return view;
+
+        } else if (updateCommand.equals("ViewTeacherCircular")){
+
+            View view = new CircularTeacherList();
+            CircularEntity circularEntity = new CircularEntity();
+            ArrayList<Teacher> teachers =  DbOperation.retrieveTheMostFamousTeachers2(connection);
+            circularEntity.teachers1 = new ArrayList<>(Objects.requireNonNull(teachers).subList(0, 5));
+            circularEntity.teachers2 = new ArrayList<>(Objects.requireNonNull(teachers).subList(5, 10));
+            circularEntity.teachers3 = new ArrayList<>(Objects.requireNonNull(teachers).subList(10, 15));
+//            circularEntity.teachers4 = new ArrayList<>(Objects.requireNonNull(teachers).subList(15, 20));
+
+            view.setMustacheModel(circularEntity);
+            return view;
+
+
         }
 
 
