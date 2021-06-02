@@ -751,4 +751,54 @@ public class DbOperation {
         }
     }
 
+
+    public static ArrayList<Teacher> retrieveMostCommentedTeachers(Connection connection) {
+        try {
+            int counter = 1;
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            String checkSql = "select teacher_name, lesson_name, COUNT(*) as comment_count from feedbacks group by (teacher_name, lesson_name) order by comment_count DESC";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next() && counter <= 7) {
+                Teacher teacher = new Teacher();
+                teacher.teacher_name = resultSet.getString(1);
+                teacher.lesson_name = resultSet.getString(2);
+                System.out.println(teacher.teacher_name);
+                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+                System.out.println(teacher.teacher_photo);
+                teachers.add(teacher);
+                counter++;
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    public static ArrayList<Teacher> retrieveLeastCommentedTeachers(Connection connection) {
+        try {
+            int counter = 1;
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            String checkSql = "select teacher_name, lesson_name, COUNT(*) as comment_count from feedbacks group by (teacher_name, lesson_name) order by comment_count";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next() && counter <= 7) {
+                Teacher teacher = new Teacher();
+                teacher.teacher_name = resultSet.getString(1);
+                teacher.lesson_name = resultSet.getString(2);
+                System.out.println(teacher.teacher_name);
+                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+                System.out.println(teacher.teacher_photo);
+                teachers.add(teacher);
+                counter++;
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

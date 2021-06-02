@@ -714,6 +714,22 @@ public class BeheshtRayService extends APSService {
             view.setMustacheModel(temp);
             return view;
         }
+        else if (updateCommand.equals("MostCommentedTeachers")){
+            View view = new FullList();
+            teachers = DbOperation.retrieveMostCommentedTeachers(connection);
+            temp.teachers = teachers;
+            System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
+            view.setMustacheModel(temp);
+            return view;
+        }
+        else if (updateCommand.equals("LeastCommentedTeachers")){
+            View view = new FullList();
+            teachers = DbOperation.retrieveLeastCommentedTeachers(connection);
+            temp.teachers = teachers;
+            System.out.println("sag: "  + temp.teachers.get(0).teacher_name);
+            view.setMustacheModel(temp);
+            return view;
+        }
 
 
         return update;

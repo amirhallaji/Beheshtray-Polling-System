@@ -218,7 +218,7 @@
 
                 <frame layout="linear_horizontal">
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="0" background="#808080" width="30"
+                        <button gravity="center" onClick="update/MostCommentedTeachers" borderCornerRadius="0" background="#808080" width="30"
                                 textcolor="white" textsize="14" height="40">بیشترین نظر
                         </button>
                     </frame>
@@ -236,7 +236,7 @@
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="0" background="#DC143C" width="30"
+                        <button gravity="center" onClick="update/LeastCommentedTeachers" borderCornerRadius="0" background="#DC143C" width="30"
                                 textcolor="white" textsize="14" height="40">کمترین نظر
                         </button>
                     </frame>
