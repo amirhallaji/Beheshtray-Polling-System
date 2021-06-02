@@ -316,6 +316,47 @@ public class DbOperation {
         }
     }
 
+    public static ArrayList<Feedback> retrieveFeedbacksLeastVoted(Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL AND is_removed=false ORDER BY diff_votes";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+//            String data[] = new String[16];
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            int counter = 1;
+            while (resultSet.next() && counter <= 16) {
+                Feedback feedback = new Feedback();
+//                for (int i = 1; i <= 15; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+                feedback.teacher_name = resultSet.getString(1);
+                feedback.lesson_name = resultSet.getString(2);
+                feedback.score1 = resultSet.getDouble(3);
+                feedback.score2 = resultSet.getDouble(4);
+                feedback.score3 = resultSet.getDouble(5);
+                feedback.score4 = resultSet.getDouble(6);
+                feedback.student_score = resultSet.getString(7);
+                feedback.extended_feedback = resultSet.getString(8);
+                feedback.user_id = resultSet.getString(9);
+                feedback.date_number = resultSet.getString(10);
+                feedback.upvotes = resultSet.getString(11);
+                feedback.downvotes = resultSet.getString(12);
+                feedback.feedback_id = resultSet.getString(13);
+                feedback.created_time = resultSet.getString(14);
+                feedback.diff_votes = resultSet.getInt(15);
+                feedback.score_avg = resultSet.getString(16);
+
+                feedbacks.add(feedback);
+                counter++;
+
+
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
 
 
