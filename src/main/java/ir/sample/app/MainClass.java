@@ -1,4 +1,4 @@
-    package ir.sample.app;
+package ir.sample.app;
 
 import com.github.mfathi91.time.PersianDate;
 import ir.appsan.sdk.APSConfig;
