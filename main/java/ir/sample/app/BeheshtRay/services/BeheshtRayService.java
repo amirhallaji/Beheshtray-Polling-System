@@ -8,6 +8,7 @@ import ir.sample.app.BeheshtRay.models.*;
 import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Connection;
@@ -16,23 +17,18 @@ import java.util.*;
 
 public class BeheshtRayService extends APSService {
 
-    public static ArrayList<String> commentIds = new ArrayList<>();
-    Teacher teacher = new Teacher();
     Student student = new Student();
-    Comment comment = new Comment("34");
     Feedback feedback = new Feedback();
-    ArrayList<Feedback> feedbacks = new ArrayList<>();
     ArrayList<Student> students = new ArrayList<>();
     ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
     TempStudent<Student> tempStudent = new TempStudent<>();
     Teacher current_teacher;
-
     String feedback_id = "";
-
     Connection connection = DatabaseManager.getConnection();
-    boolean allowmake = true;
-    private String userId;
+
+    CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
+    Student current_user = null;
 
     public BeheshtRayService(String channelName) {
         super(channelName);
@@ -43,76 +39,64 @@ public class BeheshtRayService extends APSService {
         return "app:09384158428:Beheshti Poll Service";
     }
 
+    public void serializeUser(Student student){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/Beheshtray");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(student);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public Student deserializeUser(){
+        Student student = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("/main\\java\\ir\\sample\\app\\BeheshtRay\\database\\current_user.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            student = (Student) in.readObject();
+            in.close();
+            fileIn.close();
+            return student;
+        } catch (IOException i) {
+            i.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return null;
+        }
+
+    }
+
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
         String rightLegals = "", transferContent = "", taTeam = "", suitableExercise = "";
         View view = null;
 
+
         switch (command) {
-            case "acceptConditions":
-//                System.out.println("case acceptedConditions");
-//                view = new Home();
+            case "sign_in_nav":
+                view = new SignIn();
+                view.setMustacheModel(currentStudentEntity);
                 break;
 
-            case "home":
-//                System.out.println("case home");
-//                view = new Home();
-                break;
 
-            case "enter":
-//                System.out.println("case enter");
-//                view = new TeacherInfo();
-                break;
-
-            case "profile":
-//                System.out.println("case profile");
-//                view = new ProfileInfo();
-                break;
-
-            case "polling":
-//                System.out.println("case polling");
-
-//                view = new Score1(); // changed here
-                break;
-
-            case "makePoll":
-//                System.out.println("create poll");
-//                view = new Score1();
-
-//                rightLegals = pageData.get("right_legals").toString();
-//                transferContent = pageData.get("transfer_content").toString();
-//                taTeam = pageData.get("ta_team").toString();
-//                suitableExercise = pageData.get("suitable_exercise").toString();
-//
-//                System.out.println("contents received: " + rightLegals);
-//                System.out.println("contents received: " + transferContent);
-//                System.out.println("contents received: " + taTeam);
-//                System.out.println("contents received: " + suitableExercise);
-
-                break;
-            case "createPoll":
-//                System.out.println("contents received: " + rightLegals);
-//                System.out.println("contents received: " + transferContent);
-//                System.out.println("contents received: " + taTeam);
-//                System.out.println("contents received: " + suitableExercise);
-//                view = new SignIn();
-
-                break;
-
-            case "nextPage":
-//                System.out.println("case nextPage");
-//                view = new Score2();
-                break;
 
             default:
                 students = DbOperation.retrieveVoteStatus(userId, connection);
-                if (Objects.requireNonNull(students).size() == 0) {
+                boolean isNotRegistered = Objects.requireNonNull(students).size() == 0;
+                if (isNotRegistered) {
                     view = new Register();
                 } else {
                     view = new SignIn();
-                    CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
+
                     currentStudentEntity.currentStudent = students;
                     System.out.println(students.get(0));
+
                     view.setMustacheModel(currentStudentEntity);
                 }
 

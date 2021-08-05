@@ -5,6 +5,8 @@ import ir.appsan.sdk.AppsanApplication;
 import ir.sample.app.BeheshtRay.HighwayChannel;
 
 import javax.naming.ConfigurationException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 public class MainClass {
@@ -12,6 +14,13 @@ public class MainClass {
     public static void main(String[] args) throws ConfigurationException {
 
         System.out.println("****** BEHESHTRAY ORG® ******");
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/BeheshtRay/database/current_user.ser");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         String host = "connectorsbu.appsan.ir";
         String port = "443";
