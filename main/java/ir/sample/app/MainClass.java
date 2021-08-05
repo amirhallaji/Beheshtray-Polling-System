@@ -20,12 +20,6 @@ import java.util.Date;
 
     public static void main(String[] args) throws ConfigurationException {
 
-        PersianDate today = PersianDate.now();
-        System.out.println(today.toString());
-
-        Date date = new Date();
-        System.out.println(date.getTime());
-
         System.out.println("****** BEHESHTRAY ORG® ******");
 
         String host = "connectorsbu.appsan.ir";
