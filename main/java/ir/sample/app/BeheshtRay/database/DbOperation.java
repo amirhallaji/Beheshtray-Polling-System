@@ -614,17 +614,6 @@ public class DbOperation {
                 students.add(student);
 
             }
-//            if(students.size() == 0){
-//                Student student = new Student();
-//                student.student_name = "کاربر مهمان";
-//                student.student_id = "کاربر مهمان";
-//                student.student_faculty = "دانشگاه شهید بهشتی";
-//                student.student_photo = "https://s4.uupload.ir/files/guest_xt0.jpg";
-//                student.student_gender = "مرد";
-//                student.student_upvotes = "۰";
-//                student.student_downvotes = "۰";
-//                students.add(student);
-//            }
             return students;
         } catch (Exception e) {
             return null;
