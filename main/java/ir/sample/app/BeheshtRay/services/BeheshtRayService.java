@@ -84,6 +84,14 @@ public class BeheshtRayService extends APSService {
                 view.setMustacheModel(currentStudentEntity);
                 break;
 
+            case "help_sign_in_nav":
+                view = new HelpSignIn();
+                break;
+
+
+
+
+
 
 
             default:
