@@ -39,44 +39,9 @@ public class BeheshtRayService extends APSService {
         return "app:09384158428:Beheshti Poll Service";
     }
 
-    public void serializeUser(Student student){
-        try {
-            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/Beheshtray");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(student);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-    }
-
-    public Student deserializeUser(){
-        Student student = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("/main\\java\\ir\\sample\\app\\BeheshtRay\\database\\current_user.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            student = (Student) in.readObject();
-            in.close();
-            fileIn.close();
-            return student;
-        } catch (IOException i) {
-            i.printStackTrace();
-            return null;
-        } catch (ClassNotFoundException c) {
-            System.out.println("Employee class not found");
-            c.printStackTrace();
-            return null;
-        }
-
-    }
-
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
-        String rightLegals = "", transferContent = "", taTeam = "", suitableExercise = "";
         View view = null;
-
 
         switch (command) {
             case "sign_in_nav":
@@ -87,6 +52,16 @@ public class BeheshtRayService extends APSService {
             case "help_sign_in_nav":
                 view = new HelpSignIn();
                 break;
+
+            case "register_nav":
+                view = new Register();
+                break;
+
+            case "help_register_nav":
+                view = new HelpRegister();
+                break;
+
+
 
 
 
@@ -701,14 +676,14 @@ public class BeheshtRayService extends APSService {
             return view;
         } else if (updateCommand.equals("help_register")) {
             return new HelpRegister();
-        } else if (updateCommand.equals("help_sign_in")) {
-            return new HelpSignIn();
-        } else if (updateCommand.equals("sign_in")) {
-            students = DbOperation.retrieveVoteStatus(userId, connection);
-            View view = new SignIn();
-            tempStudent.students = students;
-            view.setMustacheModel(tempStudent);
-            return view;
+//        } else if (updateCommand.equals("help_sign_in")) {
+//            return new HelpSignIn();
+//        } else if (updateCommand.equals("sign_in")) {
+//            students = DbOperation.retrieveVoteStatus(userId, connection);
+//            View view = new SignIn();
+//            tempStudent.students = students;
+//            view.setMustacheModel(tempStudent);
+//            return view;
 
 
         } else if (updateCommand.equals("register")) {
@@ -812,6 +787,39 @@ public class BeheshtRayService extends APSService {
                 .replace("0", "۰");
     }
 
+
+    public void serializeUser(Student student){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/Beheshtray");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(student);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+
+    public Student deserializeUser(){
+        Student student = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("/main\\java\\ir\\sample\\app\\BeheshtRay\\database\\current_user.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            student = (Student) in.readObject();
+            in.close();
+            fileIn.close();
+            return student;
+        } catch (IOException i) {
+            i.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return null;
+        }
+
+    }
 
 }
 

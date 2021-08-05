@@ -66,6 +66,37 @@
 <!--		</frame>-->
 
 		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+			<text gravity="center" margin_left="10" margin_right="10" background="white">دانشکده</text>
+			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+				<dropdown onSelectionChange="" id="selected_gender" hint="انتخاب کنید...">
+					<!--					<item id="" onClick="" text_color="#7F7F7F">هیچکدام</item>-->
+
+					<item id="" onClick="">مهندسی و علوم کامپیوتر</item>
+					<item id="" onClick="">مهندسی عمران، آب و محیط زیست</item>
+					<item id="" onClick="">فیزیک</item>
+					<item id="" onClick="">مهندسی برق</item>
+					<item id="" onClick="">مهندسی مكانیک و انرژی</item>
+					<item id="" onClick="">مهندسی و فناوری‌های نوین</item>
+					<item id="" onClick="">معماری و شهرسازی</item>
+					<item id="" onClick="">علوم شیمی و نفت</item>
+					<item id="" onClick="">ادبیات و علوم انسانی</item>
+					<item id="" onClick="">الهیات و ادیان</item>
+					<item id="" onClick="">حقوق</item>
+					<item id="" onClick="">علوم اقتصادی و سیاسی</item>
+					<item id="" onClick="">علوم زمین</item>
+					<item id="" onClick="">علوم ریاضی</item>
+					<item id="" onClick="">علوم و فناوری زیستی</item>
+
+
+				</dropdown>
+			</frame>
+		</frame>
+
+		<frame padding="5"></frame>
+
+
+		<frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
 			 <text gravity="center" margin_left="10" margin_right="10" background="white">جنسیت</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
@@ -77,7 +108,11 @@
 			</frame>
 		</frame>
 
+
 	</frame>
+
+	<frame padding="5"></frame>
+
 	<frame>
 		<button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
 				textcolor="#fff" borderCornerRadius="5" onClick="update/register_new_user;update/WelcomeDialogShow" margin="20">ارسال اطلاعات و ثبت نام</button>
@@ -93,7 +128,7 @@
 			   margin_bottom="-1" height="64">
 			<frame layout="linear_horizontal" gravity="center">
 
-				<frame layout="linear_vertical" background="#1E90FF" onclick="update/help_register" gravity="center" height="64">
+				<frame layout="linear_vertical" background="#1E90FF" onclick="command/help_register_nav" gravity="center" height="64">
 
 					<image src="https://s2.uupload.ir/files/round_info_white_24dp_j64w.png" borderCornerRadius="0"
 						   width="24" height="24" gravity="right" margin="0" padding="0"/>
@@ -103,7 +138,7 @@
 					</frame>
 				</frame>
 
-				<frame layout="linear_vertical" background="#006AD1" borderCornerRadius="20" onclick="update/register" gravity="center" height="64">
+				<frame layout="linear_vertical" background="#006AD1" borderCornerRadius="20" onclick="command/register_nav" gravity="center" height="64">
 
 					<image src="https://s2.uupload.ir/files/round_login_white_24dp_afte.png" borderCornerRadius="0"
 						   width="24" height="24" gravity="right" margin="0" padding="0"/>
