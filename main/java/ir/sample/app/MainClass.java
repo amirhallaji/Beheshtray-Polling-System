@@ -27,7 +27,6 @@ import java.util.Date;
         System.out.println(date.getTime());
 
         System.out.println("****** BEHESHTRAY ORG® ******");
-        System.out.println("This is a test from arman in Gitlab");
 
         String host = "connectorsbu.appsan.ir";
         String port = "443";
