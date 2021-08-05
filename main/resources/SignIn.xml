@@ -30,7 +30,7 @@
                margin_bottom="-1" height="64">
             <frame layout="linear_horizontal" gravity="center">
 
-                <frame layout="linear_vertical" background="#1E90FF" onclick="update/help_sign_in" gravity="center"
+                <frame layout="linear_vertical" background="#1E90FF" onclick="command/help_sign_in_nav" gravity="center"
                        height="64">
 
                     <image src="https://s2.uupload.ir/files/round_info_white_24dp_j64w.png" borderCornerRadius="0"
@@ -41,7 +41,7 @@
                     </frame>
                 </frame>
 
-                <frame layout="linear_vertical" borderCornerRadius="20" background="#006AD1" onclick="update/sign_in"
+                <frame layout="linear_vertical" borderCornerRadius="20" background="#006AD1" onclick="command/sign_in_nav"
                        gravity="center" height="64">
 
                     <image src="https://s2.uupload.ir/files/round_login_white_24dp_afte.png" borderCornerRadius="0"
