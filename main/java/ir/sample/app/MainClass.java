@@ -1,22 +1,13 @@
 package ir.sample.app;
 
-import com.github.mfathi91.time.PersianDate;
 import ir.appsan.sdk.APSConfig;
 import ir.appsan.sdk.AppsanApplication;
 import ir.sample.app.BeheshtRay.HighwayChannel;
-import ir.sample.app.BeheshtRay.database.DatabaseManager;
-import ir.sample.app.BeheshtRay.database.DbOperation;
-import ir.sample.app.BeheshtRay.models.Comment;
-import ir.sample.app.BeheshtRay.models.Student;
-import ir.sample.app.BeheshtRay.models.Teacher;
-import org.apache.commons.configuration.PropertiesConfiguration;
-
 
 import javax.naming.ConfigurationException;
-import java.util.Date;
 
 
-    public class MainClass {
+public class MainClass {
 
     public static void main(String[] args) throws ConfigurationException {
 

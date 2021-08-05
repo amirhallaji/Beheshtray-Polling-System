@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Array;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -47,38 +46,38 @@ public class BeheshtRayService extends APSService {
     @Override
     public View onCreateView(String command, JSONObject pageData, String userId) {
         String rightLegals = "", transferContent = "", taTeam = "", suitableExercise = "";
-        View view;
+        View view = null;
 
         switch (command) {
             case "acceptConditions":
-                System.out.println("case acceptedConditions");
-                view = new Home();
+//                System.out.println("case acceptedConditions");
+//                view = new Home();
                 break;
 
             case "home":
-                System.out.println("case home");
-                view = new Home();
+//                System.out.println("case home");
+//                view = new Home();
                 break;
 
             case "enter":
-                System.out.println("case enter");
-                view = new TeacherInfo();
+//                System.out.println("case enter");
+//                view = new TeacherInfo();
                 break;
 
             case "profile":
-                System.out.println("case profile");
-                view = new ProfileInfo();
+//                System.out.println("case profile");
+//                view = new ProfileInfo();
                 break;
 
             case "polling":
-                System.out.println("case polling");
+//                System.out.println("case polling");
 
-                view = new Score1(); // changed here
+//                view = new Score1(); // changed here
                 break;
 
             case "makePoll":
-                System.out.println("create poll");
-                view = new Score1();
+//                System.out.println("create poll");
+//                view = new Score1();
 
 //                rightLegals = pageData.get("right_legals").toString();
 //                transferContent = pageData.get("transfer_content").toString();
@@ -92,28 +91,29 @@ public class BeheshtRayService extends APSService {
 
                 break;
             case "createPoll":
-                System.out.println("contents received: " + rightLegals);
-                System.out.println("contents received: " + transferContent);
-                System.out.println("contents received: " + taTeam);
-                System.out.println("contents received: " + suitableExercise);
-                view = new SignInUp();
+//                System.out.println("contents received: " + rightLegals);
+//                System.out.println("contents received: " + transferContent);
+//                System.out.println("contents received: " + taTeam);
+//                System.out.println("contents received: " + suitableExercise);
+//                view = new SignIn();
 
                 break;
 
             case "nextPage":
-                System.out.println("case nextPage");
-                view = new Score2();
+//                System.out.println("case nextPage");
+//                view = new Score2();
                 break;
 
             default:
-                System.out.println("default case");
                 students = DbOperation.retrieveVoteStatus(userId, connection);
                 if (Objects.requireNonNull(students).size() == 0) {
                     view = new Register();
                 } else {
-                    view = new SignInUp();
-                    tempStudent.students = students;
-                    view.setMustacheModel(tempStudent);
+                    view = new SignIn();
+                    CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
+                    currentStudentEntity.currentStudent = students;
+                    System.out.println(students.get(0));
+                    view.setMustacheModel(currentStudentEntity);
                 }
 
         }
@@ -710,10 +710,10 @@ public class BeheshtRayService extends APSService {
         } else if (updateCommand.equals("help_register")) {
             return new HelpRegister();
         } else if (updateCommand.equals("help_sign_in")) {
-            return new HelpSignInUp();
+            return new HelpSignIn();
         } else if (updateCommand.equals("sign_in")) {
             students = DbOperation.retrieveVoteStatus(userId, connection);
-            View view = new SignInUp();
+            View view = new SignIn();
             tempStudent.students = students;
             view.setMustacheModel(tempStudent);
             return view;

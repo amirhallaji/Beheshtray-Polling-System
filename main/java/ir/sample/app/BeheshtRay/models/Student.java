@@ -62,4 +62,13 @@ public class Student {
 	public void setStudentComments(ArrayList<Comment> studentComments) {
 		this.studentComments = studentComments;
 	}
+
+	@Override
+	public String toString() {
+		return "Student{" +
+				"student_name='" + student_name + '\'' +
+				", student_id='" + student_id + '\'' +
+				", student_faculty='" + student_faculty + '\'' +
+				'}';
+	}
 }
