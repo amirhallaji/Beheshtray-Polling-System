@@ -13,6 +13,86 @@ import java.util.ArrayList;
 public class DbOperation {
 
 
+    /**
+     * Send the data of new registered users to database
+     * TABLE: STUDENT
+     *
+     * @param student
+     * @param connection
+     */
+    public static void sendUserInfo(Student student, Connection connection) {
+        try {
+            String checkSql = "INSERT INTO student(first_name, last_name, student_id, faculty_id, user_id, gender, photo_url, karma) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, student.getStudentFirstName());
+            pstmt.setString(2, student.getStudentLastName());
+            pstmt.setString(3, student.getStudentId());
+            pstmt.setString(4, student.getStudentFacultyId());
+            pstmt.setString(5, student.getUserId());
+            pstmt.setString(6, student.getStudentGender());
+            pstmt.setString(7, student.getStudentPhotoURL());
+            pstmt.setString(8, student.getUserKarma());
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Return ID of the selected faculty by getting its name
+     * TABLE: FACULTY
+     *
+     * @param faculty_name
+     * @param connection
+     * @return
+     */
+    public static String retrieveFacultyId(String faculty_name, Connection connection) {
+        String checkSql = "SELECT faculty_id FROM faculty WHERE faculty_name=?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, faculty_name);
+            ResultSet resultSet = pstmt.executeQuery();
+            resultSet.next();
+            return resultSet.getString(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public static ArrayList<Student> retrieveStudentByUserId(String user_id, Connection connection) {
+        String checkSql = "SELECT * FROM student WHERE user_id=?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, user_id);
+            ResultSet resultSet = pstmt.executeQuery();
+            resultSet.next();
+
+            ArrayList<Student> students = new ArrayList<>();
+            Student student = new Student(user_id);
+
+            student.setStudentFirstName(resultSet.getString(1));
+            student.setStudentLastName(resultSet.getString(2));
+            student.setStudentId(resultSet.getString(3));
+            student.setStudentFacultyId(resultSet.getString(4));
+            student.setStudentGender(resultSet.getString(6));
+            student.setStudentPhotoURL(resultSet.getString(7));
+            student.setUserKarma(resultSet.getString(8));
+            students.add(student);
+
+            return students;
+
+
+        } catch (SQLException throwables) {
+            return null;
+        }
+    }
+
+
     public static void sendFeedBack(Feedback feedback, Connection connection) {
         try {
             String count = "SELECT COUNT(*) FROM feedbacks"; // TODO dbOperation
@@ -182,7 +262,7 @@ public class DbOperation {
         }
     }
 
-    public static void updateDownvotes(String feedback_id,int diff_votes, String new_downvote, Connection connection) {
+    public static void updateDownvotes(String feedback_id, int diff_votes, String new_downvote, Connection connection) {
         try {
             String checkSql = "UPDATE feedbacks SET downvotes=?, diff_votes=? WHERE feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
@@ -360,8 +440,6 @@ public class DbOperation {
     }
 
 
-
-
     public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
         try {
             String checkSql = "SELECT * FROM teachers ORDER BY teacher_name";
@@ -494,15 +572,14 @@ public class DbOperation {
     }
 
 
-
     public static ArrayList<Teacher> search(String search_input, Connection connection) {
         try {
 
             String checkSql = "SELECT * FROM teachers WHERE teacher_name LIKE ? OR lesson_name LIKE ? OR teacher_email iLIKE ?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, '%'+search_input+'%');
-            pstmt.setString(2, '%'+search_input+'%');
-            pstmt.setString(3, '%'+search_input+'%');
+            pstmt.setString(1, '%' + search_input + '%');
+            pstmt.setString(2, '%' + search_input + '%');
+            pstmt.setString(3, '%' + search_input + '%');
             ResultSet resultSet = pstmt.executeQuery();
             String[] data = new String[12];
             ArrayList<Teacher> teachers = new ArrayList<>();
@@ -528,7 +605,6 @@ public class DbOperation {
         }
 
     }
-
 
 
     public static String retrieveTeacherURLImage(String teacher_name, Connection connection) {
@@ -560,7 +636,7 @@ public class DbOperation {
     }
 
 
-    public static void sendUserInfo(Student student, Connection connection) {
+    public static void sendUserInfo2(Student student, Connection connection) {
         try {
             String count = "SELECT COUNT(*) FROM students"; // TODO dbOperation
             PreparedStatement pcount = connection.prepareStatement(count);
@@ -571,14 +647,14 @@ public class DbOperation {
             }
             String checkSql = "INSERT INTO students(student_name, student_id, student_faculty, student_gender, student_photo, student_upvotes, student_downvotes, user_id) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, student.student_name);
-            pstmt.setString(2, student.student_id);
-            pstmt.setString(3, student.student_faculty);
-            pstmt.setString(4, student.student_gender);
-            pstmt.setString(5, student.student_photo);
-            pstmt.setString(6, student.student_upvotes);
-            pstmt.setString(7, student.student_downvotes);
-            pstmt.setString(8, student.user_id);
+//            pstmt.setString(1, student.student_name);
+//            pstmt.setString(2, student.student_id);
+//            pstmt.setString(3, student.student_faculty);
+//            pstmt.setString(4, student.student_gender);
+//            pstmt.setString(5, student.student_photo);
+//            pstmt.setString(6, student.student_upvotes);
+//            pstmt.setString(7, student.student_downvotes);
+//            pstmt.setString(8, student.user_id);
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -597,21 +673,21 @@ public class DbOperation {
             String data[] = new String[9];
             ArrayList<Student> students = new ArrayList<>();
             while (resultSet.next()) {
-                Student student = new Student();
+//                Student student = new Student();
                 for (int i = 1; i <= 8; i++) {
                     data[i] = resultSet.getString(i);
                 }
 
-                student.student_name = data[1];
-                student.student_id = data[2];
-                student.student_faculty = data[3];
-                student.student_gender = data[4];
-                student.student_photo = data[5];
-                student.student_upvotes = data[6];
-                student.student_downvotes = data[7];
-                student.user_id = data[8];
+//                student.student_name = data[1];
+//                student.student_id = data[2];
+//                student.student_faculty = data[3];
+//                student.student_gender = data[4];
+//                student.student_photo = data[5];
+//                student.student_upvotes = data[6];
+//                student.student_downvotes = data[7];
+//                student.user_id = data[8];
 
-                students.add(student);
+//                students.add(student);
 
             }
             return students;
@@ -691,7 +767,7 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Double> retrieveScoreMagic(String teacher_name, String lesson_name, Connection connection){
+    public static ArrayList<Double> retrieveScoreMagic(String teacher_name, String lesson_name, Connection connection) {
         try {
             String checkSql = "SELECT (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0, AVG(score_1), AVG(score_2), AVG(score_3), AVG(score_4) FROM feedbacks WHERE score_1 IS NOT NULL AND score_2 IS NOT NULL AND score_3 IS NOT NULL AND score_4 IS NOT NULL AND teacher_name=? AND lesson_name=? AND is_removed=false";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
@@ -710,7 +786,7 @@ public class DbOperation {
             }
 
             return null;
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -729,7 +805,7 @@ public class DbOperation {
                 .replace("0", "۰");
     }
 
-    public static ArrayList <Teacher> retrieveByTaTeam(Connection connection) {
+    public static ArrayList<Teacher> retrieveByTaTeam(Connection connection) {
         try {
             int counter = 0;
             String checkSql = "select teacher_name, lesson_name, AVG(score_3)  as team_ta from feedbacks group by (teacher_name, lesson_name) order by team_ta DESC";
@@ -803,7 +879,7 @@ public class DbOperation {
         try {
             int counter = 1;
             ArrayList<Teacher> teachers = new ArrayList<>();
-                String checkSql = "select teacher_name, lesson_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by (teacher_name, lesson_name) order by team_score DESC";
+            String checkSql = "select teacher_name, lesson_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by (teacher_name, lesson_name) order by team_score DESC";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next() && counter <= 7) {

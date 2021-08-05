@@ -1,74 +1,107 @@
 package ir.sample.app.BeheshtRay.models;
 
-import java.util.ArrayList;
-
 public class Student {
-    public String student_name;
-    public String student_id;
-    public String student_faculty;
-    public String student_gender;
-	public String student_photo;
-	public String student_upvotes;
-	public String student_downvotes;
-	public String user_id;
-	public String user_karma;
+
+	private String studentFirstName;
+	private String studentLastName;
+
+	private String studentFullName;
+
+	private String studentId;
+	private String studentFacultyId;
+	private String userId;
 
 
+	private String studentGender;
+	private String studentPhotoURL;
+	private String userKarma;
 
-	public ArrayList <Feedback> feedbacks;
-
-
-	public ArrayList<Comment> studentComments = new ArrayList<>();
-
-	public Student() {
+	public Student(String userId) {
+		this.userId = userId;
+		this.userKarma = "0";
 	}
 
-	public String getStudentName() {
-		return student_name;
+	public void setStudentFullName(String studentFullName) {
+		this.studentFullName = studentFullName;
 	}
 
-	public void setStudentName(String studentName) {
-		this.student_name = studentName;
+	public String getStudentFullName() {
+		return studentFirstName + " " + studentLastName;
 	}
 
-	public String getStudent_id() {
-		return student_id;
+
+
+
+	public String getStudentFirstName() {
+		return studentFirstName;
 	}
 
-	public void setStudent_id(String student_id) {
-		this.student_id = student_id;
+	public String getStudentLastName() {
+		return studentLastName;
 	}
 
-	public String getStudent_faculty() {
-		return student_faculty;
+
+	public String getStudentId() {
+		return studentId;
 	}
 
-	public void setStudent_faculty(String student_faculty) {
-		this.student_faculty = student_faculty;
+	public String getStudentFacultyId() {
+		return studentFacultyId;
 	}
 
-	public String getStudent_gender() {
-		return student_gender;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setStudent_gender(String student_gender) {
-		this.student_gender = student_gender;
+	public String getStudentGender() {
+		return studentGender;
 	}
 
-	public ArrayList<Comment> getStudentComments() {
-		return studentComments;
+	public String getStudentPhotoURL() {
+		return studentPhotoURL;
 	}
 
-	public void setStudentComments(ArrayList<Comment> studentComments) {
-		this.studentComments = studentComments;
+	public String getUserKarma() {
+		return userKarma;
 	}
 
-	@Override
-	public String toString() {
-		return "Student{" +
-				"student_name='" + student_name + '\'' +
-				", student_id='" + student_id + '\'' +
-				", student_faculty='" + student_faculty + '\'' +
-				'}';
+	public void setStudentFirstName(String studentFirstName) {
+		this.studentFirstName = studentFirstName;
+	}
+
+	public void setStudentLastName(String studentLastName) {
+		this.studentLastName = studentLastName;
+	}
+
+
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
+
+	public void setStudentFacultyId(String studentFacultyId) {
+		this.studentFacultyId = studentFacultyId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setStudentGender(String studentGender) {
+		this.studentGender = studentGender;
+	}
+
+	public void setStudentPhotoURL(String gender) {
+		if (gender.equals("مرد")) {
+			this.studentPhotoURL = "https://s4.uupload.ir/files/cfee5087-8773-4fb3-ac5e-63372d889b1f_ks1c.png";
+		} else if (gender.equals("زن")) {
+			this.studentPhotoURL = "https://s4.uupload.ir/files/3b786101-e336-4e3d-96bb-a73d2227b8d2_n9a3.png";
+		} else {
+			this.studentPhotoURL = "https://s4.uupload.ir/files/9446101f-27b4-4f8f-9761-0397d7ea932e_mcg1.png";
+		}
+	}
+
+	public void setUserKarma(String userKarma) {
+		this.userKarma = userKarma;
 	}
 }

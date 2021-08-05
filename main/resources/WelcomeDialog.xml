@@ -4,7 +4,7 @@
             <text gravity="center" textsize="14">به بهشترأی خوش آمدید.</text>
             <frame background="#FFF" layout="linear_horizontal">
                 <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
-                        textcolor="#fff" borderCornerRadius="5" onClick="app/closedialog" margin="20">ممنون!</button>
+                        textcolor="#fff" borderCornerRadius="5" onClick="app/closedialog" margin="20">🙌</button>
             </frame>
         </frame>
     </frame>

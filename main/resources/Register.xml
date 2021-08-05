@@ -45,7 +45,7 @@
 			<text gravity="center" background="white">شماره دانشجویی</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-				<textInput id="student_number" width="200"  gravity="center" background="#FFFFFF"
+				<textInput id="student_id" width="200"  gravity="center" background="#FFFFFF"
 						   hint="۹۷۲۴۳۰۲۹"
 						   inputtype="number"/>
 			</frame>
@@ -69,7 +69,7 @@
 			<text gravity="center" margin_left="10" margin_right="10" background="white">دانشکده</text>
 			<frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
 
-				<dropdown onSelectionChange="" id="selected_gender" hint="انتخاب کنید...">
+				<dropdown onSelectionChange="" id="selected_faculty" hint="انتخاب کنید...">
 					<!--					<item id="" onClick="" text_color="#7F7F7F">هیچکدام</item>-->
 
 					<item id="" onClick="">مهندسی و علوم کامپیوتر</item>
@@ -112,6 +112,12 @@
 	</frame>
 
 	<frame padding="5"></frame>
+
+	<text gravity="center" textcolor="red" id="error_msg" text=""/>
+
+
+	<frame padding="5"></frame>
+
 
 	<frame>
 		<button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
