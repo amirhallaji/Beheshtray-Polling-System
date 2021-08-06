@@ -36,12 +36,12 @@
     <frame layout="linear_vertical" width="200" gravity="left">
         <frame layout="linear_horizontal" gravity="left">
             <frame>
-                <button gravity="center" onClick="command/profile_comment_history_tab_extended_sec" borderCornerRadius="100" background="#1E90FF" width="100"
+                <button gravity="center" onClick="command/profile_comment_history_tab_extended_sec" borderCornerRadius="100" background="#87CEEB" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">با متن
                 </button>
             </frame>
             <frame>
-                <button gravity="center" onClick="command/profile_comment_history_tab_non_extended_sec" borderCornerRadius="100" background="#87CEEB" width="100"
+                <button gravity="center" onClick="command/profile_comment_history_tab_non_extended_sec" borderCornerRadius="100" background="#1E90FF" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">بدون متن
                 </button>
             </frame>
@@ -61,22 +61,22 @@
             <frame layout="linear_horizontal">
 
 
-                <frame>
+<!--                <frame>-->
 
-                    <frame>
-                        <button gravity="center" onClick="update/upvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"
-                                textcolor="white" textsize="14" height="40" text="{{upVotes}}">
-                        </button>
-                    </frame>
+<!--                    <frame>-->
+<!--                        <button gravity="center" onClick="update/upvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"-->
+<!--                                textcolor="white" textsize="14" height="40" text="{{upVotes}}">-->
+<!--                        </button>-->
+<!--                    </frame>-->
 
 
-                    <frame>
-                        <button gravity="center" onClick="update/downvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"
-                                textcolor="white" textsize="14" height="40" text="{{downVotes}}">
-                        </button>
-                    </frame>
+<!--                    <frame>-->
+<!--                        <button gravity="center" onClick="update/downvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"-->
+<!--                                textcolor="white" textsize="14" height="40" text="{{downVotes}}">-->
+<!--                        </button>-->
+<!--                    </frame>-->
 
-                </frame>
+<!--                </frame>-->
 
 
                 <frame>
@@ -112,10 +112,10 @@
                 </frame>
             </frame>
 
-            <frame gravity="right">
-                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extendedFeedback}}">
-                </text>
-            </frame>
+<!--            <frame gravity="right">-->
+<!--                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extendedFeedback}}">-->
+<!--                </text>-->
+<!--            </frame>-->
 
 
 

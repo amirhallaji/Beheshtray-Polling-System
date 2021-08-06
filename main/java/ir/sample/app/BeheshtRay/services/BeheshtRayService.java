@@ -80,6 +80,8 @@ public class BeheshtRayService extends APSService {
                 view.setMustacheModel(currentStudentEntity);
                 break;
 
+            case "profile_comment_history_tab_extended_sec":
+
             case "profile_comment_history_tab":
                 view = new ProfileCommentHistory();
                 FeedbackEntity feedbackEntity = new FeedbackEntity();
@@ -87,6 +89,15 @@ public class BeheshtRayService extends APSService {
                 feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
                 view.setMustacheModel(feedbackEntity);
                 break;
+
+            case "profile_comment_history_tab_non_extended_sec":
+                view = new ProfileCommentHistory2();
+                feedbackEntity = new FeedbackEntity();
+                feedbackEntity.feedbacks =  DbOperation.retrieveMyFeedbacks(current_user.getUserId(), false, connection);
+                feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
+                view.setMustacheModel(feedbackEntity);
+                break;
+
 
             case "profile_setting_tab":
                 view = new ProfileSettings();
