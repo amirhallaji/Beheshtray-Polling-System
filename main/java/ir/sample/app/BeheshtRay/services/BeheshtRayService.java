@@ -14,7 +14,6 @@ import java.util.*;
 public class BeheshtRayService extends APSService {
 
 
-
     Connection connection = DatabaseManager.getConnection();
 
     ArrayList<Student> students = new ArrayList<>();
@@ -39,20 +38,17 @@ public class BeheshtRayService extends APSService {
     public View onCreateView(String command, JSONObject pageData, String userId) {
         View view = null;
 
-        if (command.startsWith("teacher_info_item"))
-        {
+        if (command.startsWith("teacher_info_item")) {
             String teachingId = command.substring(command.indexOf("+") + 1);
             view = new TeacherInfo();
             currentTeacherEntity.currentTeacher = DbOperation.retrieveTeacherInfoByTeachingId(Integer.parseInt(teachingId), connection);
-            current_teacher  = Objects.requireNonNull(currentTeacherEntity.currentTeacher).get(0);
+            current_teacher = Objects.requireNonNull(currentTeacherEntity.currentTeacher).get(0);
             currentTeacherEntity.otherLessons = DbOperation.retrieveOtherLessonsByTeacherInfo(current_teacher.getLessonName(), current_teacher.getTeacherName(), current_teacher.getFacultyId(), connection);
             view.setMustacheModel(currentTeacherEntity);
 
-        }else if (false){
+        } else if (false) {
 
-        }
-
-        else {
+        } else {
 
             switch (command) {
 
@@ -131,6 +127,12 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(searchPageEntity);
                     break;
 
+                case "make_poll_btn":
+                    view = new Score1();
+                    view.setMustacheModel(currentTeacherEntity);
+                    break;
+
+
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);
                     boolean isNotRegistered = students == null;
@@ -176,6 +178,34 @@ public class BeheshtRayService extends APSService {
                     DbOperation.sendUserInfo(student, connection);
                     current_user = student;
                     return showHome();
+                }
+
+
+            case "next_poll_btn":
+
+                String rightLegals = pageData.get("right_legals").toString().trim();
+                String transferContent = pageData.get("transfer_content").toString().trim();
+                String taTeam = pageData.get("ta_team").toString().trim();
+                String suitableExercise = pageData.get("suitable_exercise").toString().trim();
+
+                if (rightLegals.isEmpty() || transferContent.isEmpty() || taTeam.isEmpty() || suitableExercise.isEmpty()){
+                    update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
+                    return update;
+                } else {
+
+                    int rightLegalsNum = Integer.parseInt(rightLegals);
+                    int transferContentNum = Integer.parseInt(transferContent) ;
+                    int taTeamNum = Integer.parseInt(taTeam);
+                    int suitableExerciseNum = Integer.parseInt(suitableExercise);
+
+                    if ((rightLegalsNum>100 || rightLegalsNum<0) || (transferContentNum>100 || transferContentNum<0) || (taTeamNum>100 || taTeamNum<0) || (suitableExerciseNum>100 || suitableExerciseNum<0)){
+                        update.addChildUpdate("error_msg", "text", "امتیازات باید در بازه ۰ تا ۱۰۰ باشند!");
+                        return update;
+                    }else {
+                        View view = new Score2();
+                        view.setMustacheModel(currentTeacherEntity);
+                        return view;
+                    }
                 }
 
             default:
@@ -910,7 +940,7 @@ public class BeheshtRayService extends APSService {
         View view = new Home();
         HomePageEntity homePageEntity = new HomePageEntity();
         homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), true, connection)));
-        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(),true,  connection)));
+        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(), true, connection)));
         view.setMustacheModel(homePageEntity);
         return view;
     }

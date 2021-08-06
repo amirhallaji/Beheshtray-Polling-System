@@ -1,19 +1,19 @@
 <page title="بازخورد" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4">
 
-    {{#teachers}}
+    {{#currentTeacher}}
     <frame>
-        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164" scaletype="center_crop"
+        <image src="{{photoURL}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="teacher_name" textsize="28" text="{{teacher_name}}" margin_bottom="0"/>
+        <text gravity="center" id="teacher_name" textsize="28" text="{{teacherName}}" margin_bottom="0"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="lesson_name" text="{{lesson_name}}" textsize="14" textcolor="gray" margin_top="0"/>
+        <text gravity="center" id="lesson_name" text="{{lessonName}}" textsize="14" textcolor="gray" margin_top="0"/>
     </frame>
-    {{/teachers}}
+    {{/currentTeacher}}
 
 
     <frame layout="linear_horizontal">
@@ -114,11 +114,16 @@
 
     <frame padding_bottom="10"/>
 
+    <text gravity="center" textcolor="red" id="error_msg" text=""/>
+
+    <frame padding_bottom="10"/>
+
+
     <frame layout="linear_horizontal">
 
     <frame>
         <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="update/nextPage" margin="20">بعدی</button>
+                textcolor="#fff" borderCornerRadius="5" onClick="update/next_poll_btn" margin="20">بعدی</button>
     </frame>
     </frame>
 
