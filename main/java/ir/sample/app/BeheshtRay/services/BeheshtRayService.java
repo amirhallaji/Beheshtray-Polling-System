@@ -82,6 +82,9 @@ public class BeheshtRayService extends APSService {
 
             case "profile_comment_history_tab":
                 view = new ProfileCommentHistory();
+                FeedbackEntity feedbackEntity = new FeedbackEntity();
+                feedbackEntity.feedbacks =  DbOperation.retrieveMyFeedbacks(current_user.getUserId(), true, connection);
+                view.setMustacheModel(feedbackEntity);
                 break;
 
             case "profile_setting_tab":

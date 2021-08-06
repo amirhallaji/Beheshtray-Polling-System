@@ -154,4 +154,35 @@ public class Feedback {
         return teacherName;
     }
 
+
+    private double averageScore;
+
+    public void setAverageScore(double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    public double getAverageScore() {
+        return averageScore;
+    }
+
+    @Override
+    public String toString() {
+        return "Feedback{" +
+                "teachingId=" + teachingId +
+                ", userId='" + userId + '\'' +
+                ", score1=" + score1 +
+                ", score2=" + score2 +
+                ", score3=" + score3 +
+                ", score4=" + score4 +
+                ", studentScore='" + studentScore + '\'' +
+                ", extendedFeedback='" + extendedFeedback + '\'' +
+                ", persianDate='" + persianDate + '\'' +
+                ", upVotes=" + upVotes +
+                ", downVotes=" + downVotes +
+                ", feedbackId=" + feedbackId +
+                ", lessonName='" + lessonName + '\'' +
+                ", teacherName='" + teacherName + '\'' +
+                ", averageScore=" + averageScore +
+                '}';
+    }
 }
