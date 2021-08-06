@@ -1,18 +1,22 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
+    {{#currentTeacher}}
 
-    <!--    <frame>-->
-    <!--        <image src="{{image_url}}" borderCornerRadius="120" height="164"-->
-    <!--               width="164"/>-->
-    <!--    </frame>-->
+    <frame>
+        <image src="{{photoURL}}" borderCornerRadius="120" height="164"
+               width="164"/>
+    </frame>
 
-        <frame>
-            <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
-        </frame>
+    <frame>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacherName}}"/>
+    </frame>
 
-        <frame>
-            <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
-        </frame>
+    <frame>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lessonName}}"/>
+    </frame>
+
+    {{/currentTeacher}}
+
 
 
 
@@ -56,7 +60,7 @@
 
     <divider color="#DCDCDC" size="1"/>
 
-    {{#feedbacks}}
+    {{#teacherFeedbacks}}
 
     <frame layout="linear_vertical">
 
@@ -66,15 +70,15 @@
             <frame>
 
                 <frame>
-                    <button gravity="center" onClick="update/upvote_comment_teacher+{{feedback_id}}" borderCornerRadius="100" background="#228B22" width="30"
-                            textcolor="white" textsize="14" height="40" text="{{upvotes}}">
+                    <button gravity="center" onClick="update/upvote_comment_teacher+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"
+                            textcolor="white" textsize="14" height="40" text="{{upVotes}}">
                     </button>
                 </frame>
 
 
                 <frame>
-                    <button gravity="center" onClick="update/downvote_comment_teacher+{{feedback_id}}" borderCornerRadius="100" background="#FF0000" width="30"
-                            textcolor="white" textsize="14" height="40" text="{{downvotes}}">
+                    <button gravity="center" onClick="update/downvote_comment_teacher+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"
+                            textcolor="white" textsize="14" height="40" text="{{downVotes}}">
                     </button>
                 </frame>
 
@@ -82,9 +86,9 @@
 
 
             <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{student_score}}"/>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{studentScore}}"/>
 
-                <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{date_number}}"/>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{persianDate}}"/>
 
             </frame>
 
@@ -94,12 +98,12 @@
 
 
     <frame gravity="right">
-        <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}"/>
+        <text textalignment="right" textsize="16" gravity="left" text="{{extendedFeedback}}"/>
     </frame>
 
     <divider color="#DCDCDC" size="1"/>
 
-    {{/feedbacks}}
+    {{/teacherFeedbacks}}
 
 
 
