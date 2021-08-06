@@ -40,6 +40,53 @@ public class DbOperation {
         }
     }
 
+
+
+
+    public static void sendFeedback(Feedback feedback, Connection connection) {
+        try {
+            String checkSql1 = "SELECT MAX(feedback_id) + 1 FROM feedback";
+            PreparedStatement pstmt1 = connection.prepareStatement(checkSql1);
+            ResultSet resultSet = pstmt1.executeQuery();
+            resultSet.next();
+            int reset = resultSet.getInt(1);
+            pstmt1.close();
+
+
+            String checkSql2 = "ALTER SEQUENCE feedback_feedback_id_seq RESTART WITH " + reset;
+            PreparedStatement pstmt2 = connection.prepareStatement(checkSql2);
+            pstmt2.executeUpdate();
+            pstmt2.close();
+
+
+
+            String checkSql3 = "INSERT INTO feedback(teaching_id, user_id, score_1, score_2, score_3, score_4, student_score, extended_feedback, persian_date, created_date, up_votes, down_votes, feedback_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, ?, ?, DEFAULT)";
+            PreparedStatement pstmt3 = connection.prepareStatement(checkSql3);
+            pstmt3.setInt(1, feedback.getTeachingId());
+            pstmt3.setString(2, feedback.getUserId());
+
+            pstmt3.setDouble(3, feedback.getScore1());
+            pstmt3.setDouble(4, feedback.getScore2());
+            pstmt3.setDouble(5, feedback.getScore3());
+            pstmt3.setDouble(6, feedback.getScore4());
+
+            pstmt3.setString(7, feedback.getStudentScore());
+            pstmt3.setString(8, feedback.getExtendedFeedback());
+            pstmt3.setString(9, feedback.getPersianDate());
+
+            pstmt3.setInt(10, feedback.getUpVotes());
+            pstmt3.setInt(11, feedback.getDownVotes());
+
+            System.out.println(feedback);
+            pstmt3.executeUpdate();
+
+            pstmt3.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * Return ID of the selected faculty by getting its name
      * TABLE: FACULTY
@@ -273,6 +320,7 @@ public class DbOperation {
             teacher.setAcademicGroup(resultSet.getString(4));
             teacher.setPhotoURL(resultSet.getString(5));
             teacher.setFacultyId(resultSet.getInt(6));
+            teacher.setTeachingId(resultSet.getInt(7));
             teachers.add(teacher);
             return teachers;
         } catch (Exception e) {
@@ -505,42 +553,42 @@ public class DbOperation {
      */
 
 
-    public static void sendFeedBack(Feedback feedback, Connection connection) {
-        try {
-            String count = "SELECT COUNT(*) FROM feedbacks"; // TODO dbOperation
-            PreparedStatement pcount = connection.prepareStatement(count);
-            ResultSet rcount = pcount.executeQuery();
-            int countnum = 0;
-            while (rcount.next()) {
-                countnum = Integer.parseInt(rcount.getString(1));
-            }
-            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes, score_avg, is_removed) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,false)";
-            PreparedStatement pstmt = connection.prepareStatement(checkSql);
-//            pstmt.setString(1, feedback.teacher_name);
-//            pstmt.setString(2, feedback.lesson_name);
-//            pstmt.setDouble(3, feedback.score1);
-//            pstmt.setDouble(4, feedback.score2);
-//            pstmt.setDouble(5, feedback.score3);
-//            pstmt.setDouble(6, feedback.score4);
-//            pstmt.setString(7, feedback.student_score);
-//            pstmt.setString(8, feedback.extended_feedback);
-//            pstmt.setString(9, feedback.user_id);
-//            pstmt.setString(10, feedback.date_number);
-//            pstmt.setString(11, feedback.upvotes);
-//            pstmt.setString(12, feedback.downvotes);
-//            pstmt.setString(13, feedback.feedback_id);
-//            pstmt.setString(14, feedback.created_time);
-//            pstmt.setInt(15, feedback.diff_votes);
-//            pstmt.setString(16, feedback.score_avg);
-//            pstmt.setString(14, feedback.feedback_id);
-//            pstmt.setString(11, String.valueOf(feedback.feedback_key));
-            System.out.println("\n\nState:");
-            pstmt.executeUpdate();
-            pstmt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void sendFeedBack(Feedback feedback, Connection connection) {
+//        try {
+//            String count = "SELECT COUNT(*) FROM feedbacks"; // TODO dbOperation
+//            PreparedStatement pcount = connection.prepareStatement(count);
+//            ResultSet rcount = pcount.executeQuery();
+//            int countnum = 0;
+//            while (rcount.next()) {
+//                countnum = Integer.parseInt(rcount.getString(1));
+//            }
+//            String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes, score_avg, is_removed) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,false)";
+//            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+////            pstmt.setString(1, feedback.teacher_name);
+////            pstmt.setString(2, feedback.lesson_name);
+////            pstmt.setDouble(3, feedback.score1);
+////            pstmt.setDouble(4, feedback.score2);
+////            pstmt.setDouble(5, feedback.score3);
+////            pstmt.setDouble(6, feedback.score4);
+////            pstmt.setString(7, feedback.student_score);
+////            pstmt.setString(8, feedback.extended_feedback);
+////            pstmt.setString(9, feedback.user_id);
+////            pstmt.setString(10, feedback.date_number);
+////            pstmt.setString(11, feedback.upvotes);
+////            pstmt.setString(12, feedback.downvotes);
+////            pstmt.setString(13, feedback.feedback_id);
+////            pstmt.setString(14, feedback.created_time);
+////            pstmt.setInt(15, feedback.diff_votes);
+////            pstmt.setString(16, feedback.score_avg);
+////            pstmt.setString(14, feedback.feedback_id);
+////            pstmt.setString(11, String.valueOf(feedback.feedback_key));
+//            System.out.println("\n\nState:");
+//            pstmt.executeUpdate();
+//            pstmt.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public static ArrayList<Feedback> retrieveFeedbacksBySelf(String userid, Connection connection) {

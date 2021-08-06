@@ -4,9 +4,11 @@
             <text gravity="center" textsize="14">آیا از ثبت نظر خود اطمینان کافی دارید؟</text>
             <frame background="#FFF" layout="linear_horizontal">
                 <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
-                        textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">خیر</button>
+                        textcolor="#fff" borderCornerRadius="5" onClick="app/closedialog" margin="20">خیر</button>
                 <button height="50" width="70" padding="35" background="#225ab4" textsize="13" gravity="center"
-                        textcolor="#fff" borderCornerRadius="5" onClick="" margin="20">بله</button>
+                        textcolor="#fff" borderCornerRadius="5" onClick="update/send_feedback_btn;app/closedialog;snackbar/success" margin="20">بله</button>
+                <snackbar text="نظر شما با موفقیت به ثبت رسید!" duration="long" location="bottom" textColor="FF5733" id="success"/>
+
             </frame>
         </frame>
     </frame>
