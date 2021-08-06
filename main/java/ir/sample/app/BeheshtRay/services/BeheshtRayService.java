@@ -21,6 +21,8 @@ public class BeheshtRayService extends APSService {
     TempStudent<Student> tempStudent = new TempStudent<>();
     Teacher current_teacher;
     String feedback_id = "";
+
+
     Connection connection = DatabaseManager.getConnection();
 
     CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
@@ -64,6 +66,7 @@ public class BeheshtRayService extends APSService {
                     view = new Register();
                 } else {
                     view = new SignIn();
+                    current_user = students.get(0);
                     currentStudentEntity.currentStudent = students;
                     view.setMustacheModel(currentStudentEntity);
                 }
@@ -97,6 +100,7 @@ public class BeheshtRayService extends APSService {
                     student.setStudentPhotoURL(gender);
                     student.setUserKarma("0");
                     DbOperation.sendUserInfo(student, connection);
+                    current_user = student;
                     return showHome();
                 }
 
@@ -831,20 +835,23 @@ public class BeheshtRayService extends APSService {
     public View showHome() {
         View view = new Home();
         HomePageEntity homePageEntity = new HomePageEntity();
-        homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(connection)).subList(0, 5));
-        try {
-            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
-        } catch (Exception e) {
-            try {
-                homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
-            } catch (Exception e1) {
-                try {
-                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
-                } catch (Exception e2) {
+        homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), connection)));
+        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)));
 
-                }
-            }
-        }
+
+//        try {
+//            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
+//        } catch (Exception e) {
+//            try {
+//                homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
+//            } catch (Exception e1) {
+//                try {
+//                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
+//                } catch (Exception e2) {
+//
+//                }
+//            }
+//        }
         view.setMustacheModel(homePageEntity);  // query here
         return view;
     }

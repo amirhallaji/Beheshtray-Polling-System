@@ -25,13 +25,13 @@
         <frame layout="linear_horizontal" margin="0" gravity="top">
 
             {{#teachers}}
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacher_name}}" height="128">
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacherName}}" height="128">
 
                 <frame width="64" height="64">
-                    <image src="{{teacher_photo}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                    <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"></image>
                 </frame>
                 <frame gravity="center">
-                    <text textsize="10" gravity="center" text="{{teacher_name}}"/>
+                    <text textsize="10" gravity="center" text="{{teacherName}}"/>
 
                 </frame>
 

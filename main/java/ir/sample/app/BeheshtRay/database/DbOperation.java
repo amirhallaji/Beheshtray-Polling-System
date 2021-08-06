@@ -27,7 +27,7 @@ public class DbOperation {
             pstmt.setString(1, student.getStudentFirstName());
             pstmt.setString(2, student.getStudentLastName());
             pstmt.setString(3, student.getStudentId());
-            pstmt.setString(4, student.getStudentFacultyId());
+            pstmt.setInt(4, student.getStudentFacultyId());
             pstmt.setString(5, student.getUserId());
             pstmt.setString(6, student.getStudentGender());
             pstmt.setString(7, student.getStudentPhotoURL());
@@ -47,7 +47,7 @@ public class DbOperation {
      * @param connection
      * @return
      */
-    public static String retrieveFacultyIdByName(String faculty_name, Connection connection) {
+    public static int retrieveFacultyIdByName(String faculty_name, Connection connection) {
         String checkSql = "SELECT faculty_id FROM faculty WHERE faculty_name=?";
         PreparedStatement pstmt = null;
         try {
@@ -55,11 +55,11 @@ public class DbOperation {
             pstmt.setString(1, faculty_name);
             ResultSet resultSet = pstmt.executeQuery();
             resultSet.next();
-            return resultSet.getString(1);
+            return resultSet.getInt(1);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return null;
+        return 0;
     }
 
     public static ArrayList<Student> retrieveStudentByUserId(String user_id, Connection connection) {
@@ -77,7 +77,7 @@ public class DbOperation {
             student.setStudentFirstName(resultSet.getString(1));
             student.setStudentLastName(resultSet.getString(2));
             student.setStudentId(resultSet.getString(3));
-            student.setStudentFacultyId(resultSet.getString(4));
+            student.setStudentFacultyId(resultSet.getInt(4));
             student.setStudentGender(resultSet.getString(6));
             student.setStudentPhotoURL(resultSet.getString(7));
             student.setUserKarma(resultSet.getString(8));
@@ -90,6 +90,90 @@ public class DbOperation {
             return null;
         }
     }
+
+
+    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(int facultyId, Connection connection) {
+        try {
+            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=3 GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC limit 5";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeacherName(resultSet.getString(1));
+                teacher.setPhotoURL(resultSet.getString(2));
+                teachers.add(teacher);
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -852,28 +936,28 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(Connection connection) {
-        try {
-            int counter = 1;
-            ArrayList<Teacher> teachers = new ArrayList<>();
-            String checkSql = "select teacher_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by teacher_name order by team_score DESC";
-            PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            ResultSet resultSet = pstmt.executeQuery();
-            String[] data = new String[3];
-            while (resultSet.next() && counter <= 5) {
-                Teacher teacher = new Teacher();
-//                teacher.teacher_name = resultSet.getString(1);
-//                System.out.println(teacher.teacher_name);
-//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-//                System.out.println(teacher.teacher_photo);
-                teachers.add(teacher);
-                counter++;
-            }
-            return teachers;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(Connection connection) {
+//        try {
+//            int counter = 1;
+//            ArrayList<Teacher> teachers = new ArrayList<>();
+//            String checkSql = "select teacher_name, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 as team_score from feedbacks group by teacher_name order by team_score DESC";
+//            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+//            ResultSet resultSet = pstmt.executeQuery();
+//            String[] data = new String[3];
+//            while (resultSet.next() && counter <= 5) {
+//                Teacher teacher = new Teacher();
+////                teacher.teacher_name = resultSet.getString(1);
+////                System.out.println(teacher.teacher_name);
+////                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+////                System.out.println(teacher.teacher_photo);
+//                teachers.add(teacher);
+//                counter++;
+//            }
+//            return teachers;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
     public static ArrayList<Teacher> retrieveTheMostFamousTeachers2(Connection connection) {
         try {
