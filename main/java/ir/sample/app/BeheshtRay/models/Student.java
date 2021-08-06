@@ -20,6 +20,9 @@ public class Student {
 		this.userId = userId;
 	}
 
+	public Student() {
+	}
+
 	public void setStudentFullName(String studentFullName) {
 		this.studentFullName = studentFullName;
 	}
