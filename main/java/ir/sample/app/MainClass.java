@@ -15,11 +15,11 @@ public class MainClass {
 
         System.out.println("****** BEHESHTRAY ORG® ******");
 
-        try {
-            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/BeheshtRay/database/current_user.ser");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileOutputStream fileOut = new FileOutputStream("/main/java/ir/sample/app/BeheshtRay/database/current_user.ser");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
 
         String host = "connectorsbu.appsan.ir";

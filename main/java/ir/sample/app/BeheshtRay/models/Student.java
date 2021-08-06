@@ -8,7 +8,7 @@ public class Student {
 	private String studentFullName;
 
 	private String studentId;
-	private String studentFacultyId;
+	private int studentFacultyId;
 	private String userId;
 
 
@@ -44,7 +44,7 @@ public class Student {
 		return studentId;
 	}
 
-	public String getStudentFacultyId() {
+	public int getStudentFacultyId() {
 		return studentFacultyId;
 	}
 
@@ -78,7 +78,7 @@ public class Student {
 		this.studentId = studentId;
 	}
 
-	public void setStudentFacultyId(String studentFacultyId) {
+	public void setStudentFacultyId(int studentFacultyId) {
 		this.studentFacultyId = studentFacultyId;
 	}
 

@@ -87,6 +87,9 @@
 					<item id="" onClick="">علوم زمین</item>
 					<item id="" onClick="">علوم ریاضی</item>
 					<item id="" onClick="">علوم و فناوری زیستی</item>
+					<item id="" onClick="">علوم تربیتی و روانشناسی</item>
+					<item id="" onClick="">علوم ورزشی و تندرستی</item>
+					<item id="" onClick="">مدیریت و حسابداری</item>
 
 
 				</dropdown>
