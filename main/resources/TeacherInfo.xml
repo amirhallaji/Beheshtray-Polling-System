@@ -1,17 +1,17 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
-    {{#teachers}}
+    {{#currentTeacher}}
 
     <frame>
-        <image src="{{teacher_photo}}" borderCornerRadius="120" height="164" scaletype="center_crop"
+        <image src="{{photoURL}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacherName}}"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lessonName}}"/>
     </frame>
 
 
@@ -37,25 +37,25 @@
 
 
     <text gravity="center" textsize="16">گروه آموزشی</text>
-    <text gravity="center" textsize="14" id="fields" text="{{teacher_academic_group}}"/>
+    <text gravity="center" textsize="14" id="fields" text="{{academicGroup}}"/>
 
     <frame padding_bottom="10"/>
 
     <text gravity="center" textsize="16">ایمیل</text>
     <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
-        <text textsize="14" gravity="center" textcolor="black" text="{{teacher_email}}"/>
+        <text textsize="14" gravity="center" textcolor="black" text="{{email}}"/>
     </frame>
 
     <frame padding_bottom="20"/>
 
     <text gravity="center" textsize="16">دروس ارائه‌شده نیمسال جاری</text>
-    <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses" text="{{current_lesson}}"></text>
+    <text gravity="center" textsize="14" textcolor="#1E90FF" id="courses" text="{{lessonName}}"></text>
 
-    {{/teachers}}
+    {{/currentTeacher}}
 
     {{#otherLessons}}
-    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacher_profile_info+{{teacher_key}}" borderCornerRadius="5">
-        <text textsize="14" gravity="center" textcolor="black" text="{{lesson_name}}"></text>
+    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacher_info_item+{{teachingId}}" borderCornerRadius="5">
+        <text textsize="14" gravity="center" textcolor="black" text="{{lessonName}}"></text>
     </frame>
     {{/otherLessons}}
 

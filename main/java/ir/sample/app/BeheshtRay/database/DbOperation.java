@@ -177,7 +177,7 @@ public class DbOperation {
             ResultSet resultSet = pstmt.executeQuery();
             resultSet.next();
 
-            ArrayList<Faculty> faculties  = new ArrayList<>();
+            ArrayList<Faculty> faculties = new ArrayList<>();
             Faculty faculty = new Faculty();
 
             faculty.setFacultyName(resultSet.getString(1));
@@ -208,7 +208,7 @@ public class DbOperation {
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
 
-                if (isExtended){
+                if (isExtended) {
                     feedback.setFeedbackId(resultSet.getInt(1));
                     feedback.setPersianDate(resultSet.getString(2));
                     feedback.setStudentScore(resultSet.getString(3));
@@ -220,7 +220,7 @@ public class DbOperation {
                     feedback.setAverageScore(resultSet.getDouble(9));
 
 
-                }else {
+                } else {
                     feedback.setFeedbackId(resultSet.getInt(1));
                     feedback.setPersianDate(resultSet.getString(2));
                     feedback.setStudentScore(resultSet.getString(3));
@@ -257,6 +257,52 @@ public class DbOperation {
 
     }
 
+
+    public static ArrayList<Teacher> retrieveTeacherInfoByTeachingId(int teachingId, Connection connection) {
+        try {
+            String checkSql = "SELECT * FROM teacher WHERE teaching_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, teachingId);
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            resultSet.next();
+            Teacher teacher = new Teacher();
+            teacher.setTeacherName(resultSet.getString(1));
+            teacher.setLessonName(resultSet.getString(2));
+            teacher.setEmail(resultSet.getString(3));
+            teacher.setAcademicGroup(resultSet.getString(4));
+            teacher.setPhotoURL(resultSet.getString(5));
+            teacher.setFacultyId(resultSet.getInt(6));
+            teachers.add(teacher);
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    public static ArrayList<Teacher> retrieveOtherLessonsByTeacherInfo(String lessonName, String teacherName, int facultyId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT teaching_id, lesson_name FROM teacher WHERE lesson_name != ? AND teacher_name=? AND  faculty_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, lessonName);
+            pstmt.setString(2, teacherName);
+            pstmt.setInt(3, facultyId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setLessonName(resultSet.getString(2));
+                teachers.add(teacher);
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
 
@@ -1319,5 +1365,7 @@ public class DbOperation {
             return null;
         }
     }
+
+
 
 }
