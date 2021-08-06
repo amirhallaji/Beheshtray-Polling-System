@@ -229,7 +229,6 @@ public class DbOperation {
                     feedback.setAverageScore(resultSet.getDouble(6));
 
                 }
-                System.out.println(feedback);
                 feedbacks.add(feedback);
             }
             return feedbacks;
