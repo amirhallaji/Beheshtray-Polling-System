@@ -59,8 +59,18 @@ public class BeheshtRayService extends APSService {
                 view = new HelpRegister();
                 break;
 
+            case "home_nav":
+
             case "log_in_btn":
                 view = showHome();
+                break;
+
+            case "poll_nav":
+                view = new Search();
+                break;
+
+            case "profile_nav":
+                view = new ProfileInfo();
                 break;
 
             default:
