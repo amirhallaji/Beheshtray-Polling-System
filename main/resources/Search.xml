@@ -72,22 +72,22 @@
 
 
         {{#teachers_list}}
-        <frame layout="linear_horizental" background="#FFFAFA" onclick="update/teacher_profile_info+{{teacher_key}}" height="80">
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="update/teacher_profile_info+{{teachingId}}" height="80">
 
 
             <frame layout="linear_vertical" gravity="central">
                 <frame>
-                    <text textsize="14" gravity="center_right" padding="0" margin="0" text="{{lesson_name}}"></text>
+                    <text textsize="14" gravity="center_right" padding="0" margin="0" text="{{lessonName}}"></text>
                 </frame>
 
                 <frame>
-                    <text textsize="12" gravity="center_right" padding="0" margin="0" text="{{teacher_name}}"></text>
+                    <text textsize="12" gravity="center_right" padding="0" margin="0" text="{{teacherName}}"></text>
                 </frame>
             </frame>
 
 
             <frame height="128" width="128">
-                <image src="{{teacher_photo}}" scaletype="center_crop"
+                <image src="{{photoURL}}" scaletype="center_crop"
                        borderCornerRadius="120"/>
             </frame>
         </frame>
