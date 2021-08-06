@@ -47,7 +47,7 @@ public class DbOperation {
      * @param connection
      * @return
      */
-    public static String retrieveFacultyId(String faculty_name, Connection connection) {
+    public static String retrieveFacultyIdByName(String faculty_name, Connection connection) {
         String checkSql = "SELECT faculty_id FROM faculty WHERE faculty_name=?";
         PreparedStatement pstmt = null;
         try {
@@ -61,7 +61,6 @@ public class DbOperation {
         }
         return null;
     }
-
 
     public static ArrayList<Student> retrieveStudentByUserId(String user_id, Connection connection) {
         String checkSql = "SELECT * FROM student WHERE user_id=?";
@@ -91,6 +90,31 @@ public class DbOperation {
             return null;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public static void sendFeedBack(Feedback feedback, Connection connection) {
