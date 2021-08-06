@@ -3,23 +3,79 @@ package ir.sample.app.BeheshtRay.models;
 import java.util.ArrayList;
 
 public class Teacher {
-    public String teacher_name;
-    public String teacher_email;
-    public String teacher_academic_group;
-    public String lesson_name;
-    public String teacher_key;
-    public String teacher_photo;
-	public ArrayList<Comment> teacher_comments = new ArrayList<>();
+	private String teacherName;
+	private String lessonName;
+	private String email;
+	private String academicGroup;
+	private String photoURL;
+	private int facultyId;
+	private int teachingId;
 
-	public String tempAverage;
-
-	public Teacher(String teacher_name, String lesson_name) {
-		this.teacher_name = teacher_name;
-		this.lesson_name = lesson_name;
+	public Teacher(String teacherName, String lessonName, String email, String academicGroup, String photoURL, int facultyId) {
+		this.teacherName = teacherName;
+		this.lessonName = lessonName;
+		this.email = email;
+		this.academicGroup = academicGroup;
+		this.photoURL = photoURL;
+		this.facultyId = facultyId;
 	}
 
-	public Teacher () {
-
+	public Teacher() {
 	}
 
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public String getLessonName() {
+		return lessonName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getAcademicGroup() {
+		return academicGroup;
+	}
+
+	public String getPhotoURL() {
+		return photoURL;
+	}
+
+	public int getFacultyId() {
+		return facultyId;
+	}
+
+	public int getTeachingId() {
+		return teachingId;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+
+	public void setLessonName(String lessonName) {
+		this.lessonName = lessonName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAcademicGroup(String academicGroup) {
+		this.academicGroup = academicGroup;
+	}
+
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
+	}
+
+	public void setFacultyId(int facultyId) {
+		this.facultyId = facultyId;
+	}
+
+	public void setTeachingId(int teachingId) {
+		this.teachingId = teachingId;
+	}
 }
