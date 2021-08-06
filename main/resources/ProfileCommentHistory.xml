@@ -33,12 +33,12 @@
         <frame layout="linear_horizontal" gravity="left">
             <frame>
                 <button gravity="center" onClick="update/last_comments_teacher" borderCornerRadius="100" background="#1E90FF" width="100"
-                        textcolor="white" padding="40" textsize="12" height="40">بدون متن
+                        textcolor="white" padding="40" textsize="12" height="40">با متن
                 </button>
             </frame>
             <frame>
                 <button gravity="center" onClick="update/best_comments_teacher" borderCornerRadius="100" background="#87CEEB" width="100"
-                        textcolor="white" padding="40" textsize="12" height="40">با متن
+                        textcolor="white" padding="40" textsize="12" height="40">بدون متن
                 </button>
             </frame>
         </frame>
@@ -50,35 +50,35 @@
     <divider color="#DCDCDC" size="1"/>
 
     {{#feedbacks}}
-    <frame background="#FFFAFA" onclick="update/big_comment_to_teacher+{{teacher_name}}%{{lesson_name}}">
+    <frame background="#FFFAFA" onclick="update/big_comment_to_teacher+{{feedbackId}}">
 
         <frame layout="linear_vertical">
 
             <frame layout="linear_horizontal">
 
 
-<!--                <frame>-->
+                <frame>
 
-<!--                    <frame>-->
-<!--                        <button gravity="center" onClick="update/upvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#228B22" width="30"-->
-<!--                                textcolor="white" textsize="14" height="40" text="{{upvotes}}">-->
-<!--                        </button>-->
-<!--                    </frame>-->
+                    <frame>
+                        <button gravity="center" onClick="update/upvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"
+                                textcolor="white" textsize="14" height="40" text="{{upVotes}}">
+                        </button>
+                    </frame>
 
 
-<!--                    <frame>-->
-<!--                        <button gravity="center" onClick="update/downvote_comment_student+{{feedback_id}}" borderCornerRadius="100" background="#FF0000" width="30"-->
-<!--                                textcolor="white" textsize="14" height="40" text="{{downvotes}}">-->
-<!--                        </button>-->
-<!--                    </frame>-->
+                    <frame>
+                        <button gravity="center" onClick="update/downvote_comment_student+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"
+                                textcolor="white" textsize="14" height="40" text="{{downVotes}}">
+                        </button>
+                    </frame>
 
-<!--                </frame>-->
+                </frame>
 
 
                 <frame>
-                    <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{student_score}}"/>
+                    <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{studentScore}}"/>
 
-                    <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{date_number}}"/>
+                    <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{persianDate}}"/>
 
                 </frame>
 
@@ -86,12 +86,12 @@
 
             <frame layout="linear_horizontal">
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacher_name}}">
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacherName}}">
 
                     </text>
                 </frame>
                 <frame gravity="right">
-                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lesson_name}}">
+                    <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lessonName}}">
 
                     </text>
                 </frame>
@@ -102,14 +102,14 @@
 
             <frame layout="linear_horizontal">
                 <frame gravity="right">
-                    <text textalignment="right" textsize="12" gravity="center" text="میانگین امتیاز داده شده توسط شما:{{score_avg}}">
+                    <text textalignment="right" textsize="12" gravity="center" text="میانگین امتیاز داده شده توسط شما:{{averageScore}}">
 
                     </text>
                 </frame>
             </frame>
 
             <frame gravity="right">
-                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extended_feedback}}">
+                <text textalignment="right" textsize="16" gravity="left" text="متن:{{extendedFeedback}}">
                 </text>
             </frame>
 
@@ -118,7 +118,7 @@
 
             <frame>
                 <button height="50" width="100" padding="35" background="#b43322" textsize="14" gravity="center"
-                        textcolor="#fff" borderCornerRadius="5" margin="20" onClick="update/deleteComment+{{feedback_id}}">حذف نظر</button>
+                        textcolor="#fff" borderCornerRadius="5" margin="20" onClick="update/deleteComment+{{feedbackId}}">حذف نظر</button>
             </frame>
         </frame>
 

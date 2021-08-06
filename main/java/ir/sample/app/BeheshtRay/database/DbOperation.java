@@ -194,6 +194,52 @@ public class DbOperation {
     }
 
 
+    public static ArrayList<Feedback> retrieveMyFeedbacks(String userID, boolean isExtended, Connection connection) {
+        try {
+
+            String checkSql = isExtended ? "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, up_votes, down_votes, extended_feedback, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NOT NULL"
+                    : "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NULL";
+
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userID);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+
+                if (isExtended){
+                    feedback.setFeedbackId(resultSet.getInt(1));
+                    feedback.setPersianDate(resultSet.getString(2));
+                    feedback.setStudentScore(resultSet.getString(3));
+                    feedback.setLessonName(resultSet.getString(4));
+                    feedback.setTeacherName(resultSet.getString(5));
+                    feedback.setUpVotes(resultSet.getInt(6));
+                    feedback.setDownVotes(resultSet.getInt(7));
+                    feedback.setExtendedFeedback(resultSet.getString(8));
+                    feedback.setAverageScore(resultSet.getDouble(9));
+
+
+                }else {
+                    feedback.setFeedbackId(resultSet.getInt(1));
+                    feedback.setPersianDate(resultSet.getString(2));
+                    feedback.setStudentScore(resultSet.getString(3));
+                    feedback.setLessonName(resultSet.getString(4));
+                    feedback.setTeacherName(resultSet.getString(5));
+                    feedback.setAverageScore(resultSet.getDouble(6));
+
+                }
+                System.out.println(feedback);
+                feedbacks.add(feedback);
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
 
 
 
