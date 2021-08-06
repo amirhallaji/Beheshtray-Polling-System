@@ -86,6 +86,9 @@ public class BeheshtRayService extends APSService {
 
             case "profile_setting_tab":
                 view = new ProfileSettings();
+                FacultyEntity facultyEntity = new FacultyEntity();
+                facultyEntity.currentFaculty = DbOperation.retrieveFacultyByUserId(current_user.getUserId(), connection);
+                view.setMustacheModel(facultyEntity);
                 break;
 
             case "edit_info_btn":
