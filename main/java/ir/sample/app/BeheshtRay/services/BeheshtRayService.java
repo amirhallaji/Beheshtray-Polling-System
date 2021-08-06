@@ -13,13 +13,6 @@ import java.util.*;
 
 public class BeheshtRayService extends APSService {
 
-    //    Student student = new Student();
-    Feedback feedback = new Feedback();
-    ArrayList<Teacher> teachers = new ArrayList<>();
-    Temp<Teacher> temp = new Temp<>();
-    TempStudent<Student> tempStudent = new TempStudent<>();
-    Teacher current_teacher;
-    String feedback_id = "";
 
 
     Connection connection = DatabaseManager.getConnection();
@@ -27,6 +20,10 @@ public class BeheshtRayService extends APSService {
     ArrayList<Student> students = new ArrayList<>();
     CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
     Student current_user = null;
+
+    ArrayList<Teacher> teachers = new ArrayList<>();
+    CurrentTeacherEntity currentTeacherEntity = new CurrentTeacherEntity();
+    Teacher current_teacher = null;
 
 
     public BeheshtRayService(String channelName) {
@@ -42,86 +39,103 @@ public class BeheshtRayService extends APSService {
     public View onCreateView(String command, JSONObject pageData, String userId) {
         View view = null;
 
-        switch (command) {
-            case "sign_in_nav":
-                view = new SignIn();
-                view.setMustacheModel(currentStudentEntity);
-                break;
+        if (command.startsWith("teacher_info_item"))
+        {
+            String teachingId = command.substring(command.indexOf("+") + 1);
+            view = new TeacherInfo();
+            currentTeacherEntity.currentTeacher = DbOperation.retrieveTeacherInfoByTeachingId(Integer.parseInt(teachingId), connection);
+            current_teacher  = Objects.requireNonNull(currentTeacherEntity.currentTeacher).get(0);
+            currentTeacherEntity.otherLessons = DbOperation.retrieveOtherLessonsByTeacherInfo(current_teacher.getLessonName(), current_teacher.getTeacherName(), current_teacher.getFacultyId(), connection);
+            view.setMustacheModel(currentTeacherEntity);
 
-            case "help_sign_in_nav":
-                view = new HelpSignIn();
-                break;
+        }else if (false){
 
-            case "register_nav":
-                view = new Register();
-                break;
+        }
 
-            case "help_register_nav":
-                view = new HelpRegister();
-                break;
+        else {
 
-            case "home_nav":
+            switch (command) {
 
-            case "log_in_btn":
-                view = showHome();
-                break;
-
-            case "poll_nav":
-                view = new Search();
-                SearchPageEntity searchPageEntity = new SearchPageEntity();
-                searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), true, connection)).subList(0, 3));
-                view.setMustacheModel(searchPageEntity);
-                break;
-
-            case "profile_nav":
-
-            case "profile_info_tab":
-                view = new ProfileInfo();
-                view.setMustacheModel(currentStudentEntity);
-                break;
-
-            case "profile_comment_history_tab_extended_sec":
-
-            case "profile_comment_history_tab":
-                view = new ProfileCommentHistory();
-                FeedbackEntity feedbackEntity = new FeedbackEntity();
-                feedbackEntity.feedbacks =  DbOperation.retrieveMyFeedbacks(current_user.getUserId(), true, connection);
-                feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
-                view.setMustacheModel(feedbackEntity);
-                break;
-
-            case "profile_comment_history_tab_non_extended_sec":
-                view = new ProfileCommentHistory2();
-                feedbackEntity = new FeedbackEntity();
-                feedbackEntity.feedbacks =  DbOperation.retrieveMyFeedbacks(current_user.getUserId(), false, connection);
-                feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
-                view.setMustacheModel(feedbackEntity);
-                break;
-
-
-            case "profile_setting_tab":
-                view = new ProfileSettings();
-                FacultyEntity facultyEntity = new FacultyEntity();
-                facultyEntity.currentFaculty = DbOperation.retrieveFacultyByUserId(current_user.getUserId(), connection);
-                view.setMustacheModel(facultyEntity);
-                break;
-
-            case "edit_info_btn":
-                view = new ProfileEditInfo();
-                view.setMustacheModel(currentStudentEntity);
-                break;
-
-            default:
-                students = DbOperation.retrieveStudentByUserId(userId, connection);
-                boolean isNotRegistered = students == null;
-                if (isNotRegistered) {
-                    view = new Register();
-                } else {
+                case "sign_in_nav":
                     view = new SignIn();
-                    current_user = students.get(0);
-                    currentStudentEntity.currentStudent = students;
                     view.setMustacheModel(currentStudentEntity);
-                }
+                    break;
+
+                case "help_sign_in_nav":
+                    view = new HelpSignIn();
+                    break;
+
+                case "register_nav":
+                    view = new Register();
+                    break;
+
+                case "help_register_nav":
+                    view = new HelpRegister();
+                    break;
+
+                case "home_nav":
+
+                case "log_in_btn":
+                    view = showHome();
+                    break;
+
+                case "poll_nav":
+                    view = new Search();
+                    SearchPageEntity searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), true, connection)).subList(0, 3));
+                    view.setMustacheModel(searchPageEntity);
+                    break;
+
+                case "profile_nav":
+
+                case "profile_info_tab":
+                    view = new ProfileInfo();
+                    view.setMustacheModel(currentStudentEntity);
+                    break;
+
+                case "profile_comment_history_tab_extended_sec":
+
+                case "profile_comment_history_tab":
+                    view = new ProfileCommentHistory();
+                    FeedbackEntity feedbackEntity = new FeedbackEntity();
+                    feedbackEntity.feedbacks = DbOperation.retrieveMyFeedbacks(current_user.getUserId(), true, connection);
+                    feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
+                    view.setMustacheModel(feedbackEntity);
+                    break;
+
+                case "profile_comment_history_tab_non_extended_sec":
+                    view = new ProfileCommentHistory2();
+                    feedbackEntity = new FeedbackEntity();
+                    feedbackEntity.feedbacks = DbOperation.retrieveMyFeedbacks(current_user.getUserId(), false, connection);
+                    feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
+                    view.setMustacheModel(feedbackEntity);
+                    break;
+
+
+                case "profile_setting_tab":
+                    view = new ProfileSettings();
+                    FacultyEntity facultyEntity = new FacultyEntity();
+                    facultyEntity.currentFaculty = DbOperation.retrieveFacultyByUserId(current_user.getUserId(), connection);
+                    view.setMustacheModel(facultyEntity);
+                    break;
+
+                case "edit_info_btn":
+                    view = new ProfileEditInfo();
+                    view.setMustacheModel(currentStudentEntity);
+                    break;
+
+                default:
+                    students = DbOperation.retrieveStudentByUserId(userId, connection);
+                    boolean isNotRegistered = students == null;
+                    if (isNotRegistered) {
+                        view = new Register();
+                    } else {
+                        view = new SignIn();
+                        current_user = students.get(0);
+                        currentStudentEntity.currentStudent = students;
+                        view.setMustacheModel(currentStudentEntity);
+                    }
+            }
         }
 
         return view;

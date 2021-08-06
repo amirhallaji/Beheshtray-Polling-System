@@ -72,7 +72,7 @@
 
 
         {{#teachers_list}}
-        <frame layout="linear_horizental" background="#FFFAFA" onclick="update/teacher_profile_info+{{teachingId}}" height="80">
+        <frame layout="linear_horizental" background="#FFFAFA" onclick="command/teacher_info_item+{{teachingId}}" height="80">
 
 
             <frame layout="linear_vertical" gravity="central">
