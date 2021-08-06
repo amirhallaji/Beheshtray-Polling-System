@@ -128,22 +128,22 @@ public class DbOperation {
             }
             String checkSql = "INSERT INTO feedbacks(teacher_name, lesson_name, score_1, score_2, score_3, score_4, student_score, extended_feedback, userid, date_number, upvotes, downvotes, feedback_id, created_time, diff_votes, score_avg, is_removed) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,false)";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            pstmt.setString(1, feedback.teacher_name);
-            pstmt.setString(2, feedback.lesson_name);
-            pstmt.setDouble(3, feedback.score1);
-            pstmt.setDouble(4, feedback.score2);
-            pstmt.setDouble(5, feedback.score3);
-            pstmt.setDouble(6, feedback.score4);
-            pstmt.setString(7, feedback.student_score);
-            pstmt.setString(8, feedback.extended_feedback);
-            pstmt.setString(9, feedback.user_id);
-            pstmt.setString(10, feedback.date_number);
-            pstmt.setString(11, feedback.upvotes);
-            pstmt.setString(12, feedback.downvotes);
-            pstmt.setString(13, feedback.feedback_id);
-            pstmt.setString(14, feedback.created_time);
-            pstmt.setInt(15, feedback.diff_votes);
-            pstmt.setString(16, feedback.score_avg);
+//            pstmt.setString(1, feedback.teacher_name);
+//            pstmt.setString(2, feedback.lesson_name);
+//            pstmt.setDouble(3, feedback.score1);
+//            pstmt.setDouble(4, feedback.score2);
+//            pstmt.setDouble(5, feedback.score3);
+//            pstmt.setDouble(6, feedback.score4);
+//            pstmt.setString(7, feedback.student_score);
+//            pstmt.setString(8, feedback.extended_feedback);
+//            pstmt.setString(9, feedback.user_id);
+//            pstmt.setString(10, feedback.date_number);
+//            pstmt.setString(11, feedback.upvotes);
+//            pstmt.setString(12, feedback.downvotes);
+//            pstmt.setString(13, feedback.feedback_id);
+//            pstmt.setString(14, feedback.created_time);
+//            pstmt.setInt(15, feedback.diff_votes);
+//            pstmt.setString(16, feedback.score_avg);
 //            pstmt.setString(14, feedback.feedback_id);
 //            pstmt.setString(11, String.valueOf(feedback.feedback_key));
             System.out.println("\n\nState:");
@@ -168,23 +168,23 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
-                feedbacks.add(feedback);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
+//                feedbacks.add(feedback);
 
             }
             return feedbacks;
@@ -246,22 +246,22 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
 
@@ -314,22 +314,22 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
 
@@ -354,22 +354,22 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
 
@@ -394,22 +394,22 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
                 counter++;
@@ -435,22 +435,22 @@ public class DbOperation {
 //                for (int i = 1; i <= 15; i++) {
 //                    data[i] = resultSet.getString(i);
 //                }
-                feedback.teacher_name = resultSet.getString(1);
-                feedback.lesson_name = resultSet.getString(2);
-                feedback.score1 = resultSet.getDouble(3);
-                feedback.score2 = resultSet.getDouble(4);
-                feedback.score3 = resultSet.getDouble(5);
-                feedback.score4 = resultSet.getDouble(6);
-                feedback.student_score = resultSet.getString(7);
-                feedback.extended_feedback = resultSet.getString(8);
-                feedback.user_id = resultSet.getString(9);
-                feedback.date_number = resultSet.getString(10);
-                feedback.upvotes = resultSet.getString(11);
-                feedback.downvotes = resultSet.getString(12);
-                feedback.feedback_id = resultSet.getString(13);
-                feedback.created_time = resultSet.getString(14);
-                feedback.diff_votes = resultSet.getInt(15);
-                feedback.score_avg = resultSet.getString(16);
+//                feedback.teacher_name = resultSet.getString(1);
+//                feedback.lesson_name = resultSet.getString(2);
+//                feedback.score1 = resultSet.getDouble(3);
+//                feedback.score2 = resultSet.getDouble(4);
+//                feedback.score3 = resultSet.getDouble(5);
+//                feedback.score4 = resultSet.getDouble(6);
+//                feedback.student_score = resultSet.getString(7);
+//                feedback.extended_feedback = resultSet.getString(8);
+//                feedback.user_id = resultSet.getString(9);
+//                feedback.date_number = resultSet.getString(10);
+//                feedback.upvotes = resultSet.getString(11);
+//                feedback.downvotes = resultSet.getString(12);
+//                feedback.feedback_id = resultSet.getString(13);
+//                feedback.created_time = resultSet.getString(14);
+//                feedback.diff_votes = resultSet.getInt(15);
+//                feedback.score_avg = resultSet.getString(16);
 
                 feedbacks.add(feedback);
                 counter++;
@@ -483,12 +483,12 @@ public class DbOperation {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
 //                System.out.println(teacher.teacher_name);
                 teachers.add(teacher);
             }
@@ -515,12 +515,12 @@ public class DbOperation {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -548,12 +548,12 @@ public class DbOperation {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -578,13 +578,13 @@ public class DbOperation {
                 for (int i = 1; i <= 11; i++) {
                     data[i] = resultSet.getString(i);
                 }
-//                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+////                System.out.println("data: " + data[1]);
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -614,12 +614,12 @@ public class DbOperation {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -774,12 +774,12 @@ public class DbOperation {
                     data[i] = resultSet.getString(i);
                 }
 //                System.out.println("data: " + data[1]);
-                teacher.teacher_name = data[1];
-                teacher.lesson_name = data[2];
-                teacher.teacher_email = data[3];
-                teacher.teacher_academic_group = data[4];
-                teacher.teacher_key = data[10];
-                teacher.teacher_photo = data[11];
+//                teacher.teacher_name = data[1];
+//                teacher.lesson_name = data[2];
+//                teacher.teacher_email = data[3];
+//                teacher.teacher_academic_group = data[4];
+//                teacher.teacher_key = data[10];
+//                teacher.teacher_photo = data[11];
                 teachers.add(teacher);
 //                System.out.println(teacher.teacher_name);
             }
@@ -838,11 +838,11 @@ public class DbOperation {
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next() && counter <= 7) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                teacher.lesson_name = resultSet.getString(2);
-                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getDouble(3)).setScale(2, RoundingMode.HALF_UP).toString());
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+//                teacher.teacher_name = resultSet.getString(1);
+//                teacher.lesson_name = resultSet.getString(2);
+//                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getDouble(3)).setScale(2, RoundingMode.HALF_UP).toString());
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
                 teachers.add(teacher);
                 counter++;
             }
@@ -862,10 +862,10 @@ public class DbOperation {
             String[] data = new String[3];
             while (resultSet.next() && counter <= 5) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                System.out.println(teacher.teacher_name);
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                System.out.println(teacher.teacher_photo);
+//                teacher.teacher_name = resultSet.getString(1);
+//                System.out.println(teacher.teacher_name);
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;
             }
@@ -885,10 +885,10 @@ public class DbOperation {
             String[] data = new String[3];
             while (resultSet.next() && counter <= 20) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                System.out.println(teacher.teacher_name);
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                System.out.println(teacher.teacher_photo);
+//                teacher.teacher_name = resultSet.getString(1);
+//                System.out.println(teacher.teacher_name);
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;
             }
@@ -908,13 +908,13 @@ public class DbOperation {
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next() && counter <= 7) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                teacher.lesson_name = resultSet.getString(2);
-                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getInt(3)).setScale(2, RoundingMode.HALF_UP).toString());
-                System.out.println(teacher.teacher_name);
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
-                System.out.println(teacher.teacher_photo);
+//                teacher.teacher_name = resultSet.getString(1);
+//                teacher.lesson_name = resultSet.getString(2);
+//                teacher.tempAverage = convertToEnglishDigits(BigDecimal.valueOf(resultSet.getInt(3)).setScale(2, RoundingMode.HALF_UP).toString());
+//                System.out.println(teacher.teacher_name);
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+//                System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;
             }
@@ -934,14 +934,14 @@ public class DbOperation {
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next() && counter <= 7) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                teacher.lesson_name = resultSet.getString(2);
-                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
-
-                System.out.println(teacher.teacher_name);
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
-                System.out.println(teacher.teacher_photo);
+//                teacher.teacher_name = resultSet.getString(1);
+//                teacher.lesson_name = resultSet.getString(2);
+//                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
+//
+//                System.out.println(teacher.teacher_name);
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+//                System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;
             }
@@ -961,14 +961,14 @@ public class DbOperation {
             ResultSet resultSet = pstmt.executeQuery();
             while (resultSet.next() && counter <= 7) {
                 Teacher teacher = new Teacher();
-                teacher.teacher_name = resultSet.getString(1);
-                teacher.lesson_name = resultSet.getString(2);
-                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
-
-                System.out.println(teacher.teacher_name);
-                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
-                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
-                System.out.println(teacher.teacher_photo);
+//                teacher.teacher_name = resultSet.getString(1);
+//                teacher.lesson_name = resultSet.getString(2);
+//                teacher.tempAverage = convertToEnglishDigits(String.valueOf(resultSet.getInt(3)));
+//
+//                System.out.println(teacher.teacher_name);
+//                teacher.teacher_photo = retrieveTeacherURLImage(teacher.teacher_name, connection);
+//                teacher.teacher_key = retrieveTeacherID(teacher.teacher_name, teacher.lesson_name, connection);
+//                System.out.println(teacher.teacher_photo);
                 teachers.add(teacher);
                 counter++;
             }
