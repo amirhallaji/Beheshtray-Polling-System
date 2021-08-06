@@ -12,13 +12,13 @@
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentSettingsTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profile_setting_tab">
                 <text textsize="12" gravity="center" textcolor="black">تنظیمات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentInformationTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profile_info_tab">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات دانشجو</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/studentCommentHistoryTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/profile_comment_history_tab">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">تاریخچه نظرات</text>
             </frame>
         </frame>
@@ -26,6 +26,25 @@
     </frame>
 
     <divider width="5" background="#FFFFFF" margin_bottom="100" padding_bottom="10"/>
+
+    <frame padding_bottom="10"/>
+
+    <frame layout="linear_vertical" width="200" gravity="left">
+        <frame layout="linear_horizontal" gravity="left">
+            <frame>
+                <button gravity="center" onClick="update/last_comments_teacher" borderCornerRadius="100" background="#1E90FF" width="100"
+                        textcolor="white" padding="40" textsize="12" height="40">بدون متن
+                </button>
+            </frame>
+            <frame>
+                <button gravity="center" onClick="update/best_comments_teacher" borderCornerRadius="100" background="#87CEEB" width="100"
+                        textcolor="white" padding="40" textsize="12" height="40">با متن
+                </button>
+            </frame>
+        </frame>
+    </frame>
+
+    <frame padding_bottom="10"/>
 
 
     <divider color="#DCDCDC" size="1"/>

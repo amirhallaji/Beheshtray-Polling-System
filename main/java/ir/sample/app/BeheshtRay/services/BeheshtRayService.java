@@ -74,7 +74,22 @@ public class BeheshtRayService extends APSService {
                 break;
 
             case "profile_nav":
+
+            case "profile_info_tab":
                 view = new ProfileInfo();
+                view.setMustacheModel(currentStudentEntity);
+                break;
+
+            case "profile_comment_history_tab":
+                view = new ProfileCommentHistory();
+                break;
+
+            case "profile_setting_tab":
+                view = new ProfileSettings();
+                break;
+
+            case "edit_info_btn":
+                view = new ProfileEditInfo();
                 view.setMustacheModel(currentStudentEntity);
                 break;
 
