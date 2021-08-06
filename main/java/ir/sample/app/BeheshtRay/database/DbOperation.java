@@ -1,6 +1,7 @@
 package ir.sample.app.BeheshtRay.database;
 
 
+import ir.sample.app.BeheshtRay.models.Faculty;
 import ir.sample.app.BeheshtRay.models.Feedback;
 import ir.sample.app.BeheshtRay.models.Student;
 import ir.sample.app.BeheshtRay.models.Teacher;
@@ -166,6 +167,31 @@ public class DbOperation {
 
     }
 
+
+    public static ArrayList<Faculty> retrieveFacultyByUserId(String user_id, Connection connection) {
+        String checkSql = "SELECT f.faculty_name, f.photo_url FROM faculty f INNER JOIN student s on f.faculty_id = s.faculty_id WHERE user_id=?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, user_id);
+            ResultSet resultSet = pstmt.executeQuery();
+            resultSet.next();
+
+            ArrayList<Faculty> faculties  = new ArrayList<>();
+            Faculty faculty = new Faculty();
+
+            faculty.setFacultyName(resultSet.getString(1));
+            faculty.setPhotoURL(resultSet.getString(2));
+
+            faculties.add(faculty);
+
+            return faculties;
+
+
+        } catch (SQLException throwables) {
+            return null;
+        }
+    }
 
 
 
