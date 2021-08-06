@@ -67,7 +67,6 @@ public class BeheshtRayService extends APSService {
                     currentStudentEntity.currentStudent = students;
                     view.setMustacheModel(currentStudentEntity);
                 }
-
         }
 
         return view;
@@ -77,14 +76,13 @@ public class BeheshtRayService extends APSService {
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
 
-
         switch (updateCommand) {
             case "register_new_user":
-
                 String firstName = pageData.get("first_name").toString().trim();
                 String lastName = pageData.get("last_name").toString().trim();
                 String studentId = pageData.get("student_id").toString().trim();
                 String gender = pageData.get("selected_gender").toString();
+                String faculty = pageData.get("selected_faculty").toString();
 
                 if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty()) {
                     update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
@@ -94,13 +92,13 @@ public class BeheshtRayService extends APSService {
                     student.setStudentFirstName(firstName);
                     student.setStudentLastName(lastName);
                     student.setStudentId(studentId);
-                    student.setStudentFacultyId(DbOperation.retrieveFacultyId(pageData.get("selected_faculty").toString(), connection));
+                    student.setStudentFacultyId(DbOperation.retrieveFacultyIdByName(faculty, connection));
                     student.setStudentGender(gender);
                     student.setStudentPhotoURL(gender);
+                    student.setUserKarma("0");
                     DbOperation.sendUserInfo(student, connection);
+                    return showHome();
                 }
-
-                break;
 
             default:
                 break;

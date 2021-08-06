@@ -18,7 +18,6 @@ public class Student {
 
 	public Student(String userId) {
 		this.userId = userId;
-		this.userKarma = "0";
 	}
 
 	public void setStudentFullName(String studentFullName) {
