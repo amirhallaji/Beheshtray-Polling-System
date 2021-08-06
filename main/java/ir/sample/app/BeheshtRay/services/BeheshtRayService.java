@@ -82,7 +82,7 @@ public class BeheshtRayService extends APSService {
                 case "poll_nav":
                     view = new Search();
                     SearchPageEntity searchPageEntity = new SearchPageEntity();
-                    searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), true, connection)).subList(0, 3));
+                    searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), true, connection)));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -122,6 +122,13 @@ public class BeheshtRayService extends APSService {
                 case "edit_info_btn":
                     view = new ProfileEditInfo();
                     view.setMustacheModel(currentStudentEntity);
+                    break;
+
+                case "search_full_list_btn":
+                    view = new FullList();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), false, connection)));
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 default:
