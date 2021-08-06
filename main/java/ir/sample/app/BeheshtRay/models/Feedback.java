@@ -14,10 +14,12 @@ public class Feedback {
 
     private String persianDate;
 
-    private String upVotes;
-    private String downVotes;
+    private int upVotes;
+    private int downVotes;
 
     private int feedbackId;
+
+
 
     public Feedback(int teachingId, String userId, double score1, double score2, double score3, double score4, String studentScore, String extendedFeedback, String persianDate) {
         this.teachingId = teachingId;
@@ -71,11 +73,11 @@ public class Feedback {
         return persianDate;
     }
 
-    public String getUpVotes() {
+    public int getUpVotes() {
         return upVotes;
     }
 
-    public String getDownVotes() {
+    public int getDownVotes() {
         return downVotes;
     }
 
@@ -120,15 +122,36 @@ public class Feedback {
         this.persianDate = persianDate;
     }
 
-    public void setUpVotes(String upVotes) {
+    public void setUpVotes(int upVotes) {
         this.upVotes = upVotes;
     }
 
-    public void setDownVotes(String downVotes) {
+    public void setDownVotes(int downVotes) {
         this.downVotes = downVotes;
     }
 
     public void setFeedbackId(int feedbackId) {
         this.feedbackId = feedbackId;
     }
+
+
+    private String lessonName;
+    private String teacherName;
+
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getLessonName() {
+        return lessonName;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
 }

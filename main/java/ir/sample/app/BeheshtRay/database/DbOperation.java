@@ -94,8 +94,9 @@ public class DbOperation {
 
     public static ArrayList<Teacher> retrieveTheMostFamousTeachers(int facultyId, Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=3 GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC limit 5";
+            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=? GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC limit 5";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
@@ -105,6 +106,30 @@ public class DbOperation {
                 teachers.add(teacher);
             }
             return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Feedback> retrieveFeedbacksMostVoted(int facultyId, Connection connection) {
+        try {
+            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC LIMIT 3";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, facultyId);
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+                feedback.setUpVotes(resultSet.getInt(1));
+                feedback.setDownVotes(resultSet.getInt(2));
+                feedback.setPersianDate(resultSet.getString(3));
+                feedback.setStudentScore(resultSet.getString(4));
+                feedback.setLessonName(resultSet.getString(5));
+                feedback.setTeacherName(resultSet.getString(6));
+                feedback.setExtendedFeedback(resultSet.getString(7));
+                feedbacks.add(feedback);
+            }
+            return feedbacks;
         } catch (Exception e) {
             return null;
         }
@@ -465,46 +490,46 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Feedback> retrieveFeedbacksMostVoted(Connection connection) {
-        try {
-            String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL AND is_removed=false ORDER BY diff_votes DESC";
-            PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            ResultSet resultSet = pstmt.executeQuery();
-//            String data[] = new String[16];
-            ArrayList<Feedback> feedbacks = new ArrayList<>();
-            int counter = 1;
-            while (resultSet.next() && counter <= 16) {
-                Feedback feedback = new Feedback();
-//                for (int i = 1; i <= 15; i++) {
-//                    data[i] = resultSet.getString(i);
-//                }
-//                feedback.teacher_name = resultSet.getString(1);
-//                feedback.lesson_name = resultSet.getString(2);
-//                feedback.score1 = resultSet.getDouble(3);
-//                feedback.score2 = resultSet.getDouble(4);
-//                feedback.score3 = resultSet.getDouble(5);
-//                feedback.score4 = resultSet.getDouble(6);
-//                feedback.student_score = resultSet.getString(7);
-//                feedback.extended_feedback = resultSet.getString(8);
-//                feedback.user_id = resultSet.getString(9);
-//                feedback.date_number = resultSet.getString(10);
-//                feedback.upvotes = resultSet.getString(11);
-//                feedback.downvotes = resultSet.getString(12);
-//                feedback.feedback_id = resultSet.getString(13);
-//                feedback.created_time = resultSet.getString(14);
-//                feedback.diff_votes = resultSet.getInt(15);
-//                feedback.score_avg = resultSet.getString(16);
-
-                feedbacks.add(feedback);
-                counter++;
-
-
-            }
-            return feedbacks;
-        } catch (Exception e) {
-            return null;
-        }
-    }
+//    public static ArrayList<Feedback> retrieveFeedbacksMostVoted(Connection connection) {
+//        try {
+//            String checkSql = "SELECT * FROM feedbacks WHERE  extended_feedback IS NOT NULL AND is_removed=false ORDER BY diff_votes DESC";
+//            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+//            ResultSet resultSet = pstmt.executeQuery();
+////            String data[] = new String[16];
+//            ArrayList<Feedback> feedbacks = new ArrayList<>();
+//            int counter = 1;
+//            while (resultSet.next() && counter <= 16) {
+//                Feedback feedback = new Feedback();
+////                for (int i = 1; i <= 15; i++) {
+////                    data[i] = resultSet.getString(i);
+////                }
+////                feedback.teacher_name = resultSet.getString(1);
+////                feedback.lesson_name = resultSet.getString(2);
+////                feedback.score1 = resultSet.getDouble(3);
+////                feedback.score2 = resultSet.getDouble(4);
+////                feedback.score3 = resultSet.getDouble(5);
+////                feedback.score4 = resultSet.getDouble(6);
+////                feedback.student_score = resultSet.getString(7);
+////                feedback.extended_feedback = resultSet.getString(8);
+////                feedback.user_id = resultSet.getString(9);
+////                feedback.date_number = resultSet.getString(10);
+////                feedback.upvotes = resultSet.getString(11);
+////                feedback.downvotes = resultSet.getString(12);
+////                feedback.feedback_id = resultSet.getString(13);
+////                feedback.created_time = resultSet.getString(14);
+////                feedback.diff_votes = resultSet.getInt(15);
+////                feedback.score_avg = resultSet.getString(16);
+//
+//                feedbacks.add(feedback);
+//                counter++;
+//
+//
+//            }
+//            return feedbacks;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//    }
 
     public static ArrayList<Feedback> retrieveFeedbacksLeastVoted(Connection connection) {
         try {
