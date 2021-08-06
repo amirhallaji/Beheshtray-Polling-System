@@ -103,4 +103,15 @@ public class Student {
 	public void setUserKarma(String userKarma) {
 		this.userKarma = userKarma;
 	}
+
+
+	private String studentFacultyName;
+
+	public void setStudentFacultyName(String studentFacultyName) {
+		this.studentFacultyName = studentFacultyName;
+	}
+
+	public String getStudentFacultyName() {
+		return studentFacultyName;
+	}
 }

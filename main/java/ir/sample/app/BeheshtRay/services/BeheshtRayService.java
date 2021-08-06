@@ -75,6 +75,7 @@ public class BeheshtRayService extends APSService {
 
             case "profile_nav":
                 view = new ProfileInfo();
+                view.setMustacheModel(currentStudentEntity);
                 break;
 
             default:
@@ -114,6 +115,7 @@ public class BeheshtRayService extends APSService {
                     student.setStudentLastName(lastName);
                     student.setStudentId(studentId);
                     student.setStudentFacultyId(DbOperation.retrieveFacultyIdByName(faculty, connection));
+                    student.setStudentFacultyName(faculty);
                     student.setStudentGender(gender);
                     student.setStudentPhotoURL(gender);
                     student.setUserKarma("0");

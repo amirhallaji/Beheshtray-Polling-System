@@ -1,12 +1,12 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
-    {{#students}}
+    {{#currentStudent}}
     <frame>
-        <image src="{{student_photo}}" borderCornerRadius="120" height="164" scaletype="center_crop"
+        <image src="{{studentPhotoURL}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 
     <frame>
-        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{student_name}}"/>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{studentFullName}}"/>
     </frame>
 
 <!--    <frame>-->
@@ -37,23 +37,23 @@
 
 
     <text gravity="center" textsize="16">شماره دانشجویی</text>
-    <text gravity="center" textsize="14" id="fields" text="{{student_id}}"/>
+    <text gravity="center" textsize="14" id="fields" text="{{studentId}}"/>
 
     <frame padding_bottom="10"/>
 
     <text gravity="center" textsize="16">دانشکده</text>
-    <text gravity="center" textsize="14" id="e-mail_address" text="{{student_faculty}}"/>
+    <text gravity="center" textsize="14" id="e-mail_address" text="{{studentFacultyName}}"/>
 
     <frame padding_bottom="10"/>
 
 
     <text gravity="center" textsize="16">جنسیت</text>
-    <text gravity="center" textsize="14" id="courses" text="{{student_gender}}"/>
+    <text gravity="center" textsize="14" id="courses" text="{{studentGender}}"/>
 
 
     <frame padding_bottom="10"/>
 
-    {{/students}}
+    {{/currentStudent}}
 
 
 
