@@ -1,0 +1,123 @@
+<page onBack="app/back" background="" toolbarColor="#1E90FF" statusbarColor="#4682B4" title="بهشترأی"  scrollable="true" padding_top="64">
+
+    <frame layout="linear_vertical">
+
+        <frame layout="linear_horizontal">
+
+            <frame gravity="left">
+
+
+                <frame gravity="right" width="250">
+                    <text textsize="22" gravity="right">ویرایش اطلاعات</text>
+                </frame>
+            </frame>
+        </frame>
+    </frame>
+
+    {{#currentStudent}}
+    <frame layout="linear_vertical">
+
+        <frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+            <text gravity="center" background="white">نام</text>
+            <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+                <textInput id="first_name" width="200"  gravity="center" background="#FFFFFF"
+                           text="{{studentFirstName}}"
+                />
+            </frame>
+        </frame>
+
+        <frame padding="5"></frame>
+
+
+        <frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+            <text gravity="center" background="white">نام خانوادگی</text>
+            <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+                <textInput id="last_name" width="200"  gravity="center" background="#FFFFFF"
+                           text="{{studentLastName}}"
+                />
+            </frame>
+        </frame>
+
+        <frame padding="5"></frame>
+
+        <frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+            <text gravity="center" background="white">شماره دانشجویی</text>
+            <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+                <textInput id="student_id" width="200"  gravity="center" background="#FFFFFF"
+                           text="{{studentId}}"
+                           inputtype="number"/>
+            </frame>
+        </frame>
+
+        <frame padding="5"></frame>
+
+
+        <frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+            <text gravity="center" margin_left="10" margin_right="10" background="white">دانشکده</text>
+            <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+                <dropdown onSelectionChange="" id="selected_faculty" hint="انتخاب کنید...">
+                    <!--					<item id="" onClick="" text_color="#7F7F7F">هیچکدام</item>-->
+
+                    <item id="" onClick="">مهندسی و علوم کامپیوتر</item>
+                    <item id="" onClick="">مهندسی عمران، آب و محیط زیست</item>
+                    <item id="" onClick="">فیزیک</item>
+                    <item id="" onClick="">مهندسی برق</item>
+                    <item id="" onClick="">مهندسی مكانیک و انرژی</item>
+                    <item id="" onClick="">مهندسی و فناوری‌های نوین</item>
+                    <item id="" onClick="">معماری و شهرسازی</item>
+                    <item id="" onClick="">علوم شیمی و نفت</item>
+                    <item id="" onClick="">ادبیات و علوم انسانی</item>
+                    <item id="" onClick="">الهیات و ادیان</item>
+                    <item id="" onClick="">حقوق</item>
+                    <item id="" onClick="">علوم اقتصادی و سیاسی</item>
+                    <item id="" onClick="">علوم زمین</item>
+                    <item id="" onClick="">علوم ریاضی</item>
+                    <item id="" onClick="">علوم و فناوری زیستی</item>
+                    <item id="" onClick="">علوم تربیتی و روانشناسی</item>
+                    <item id="" onClick="">علوم ورزشی و تندرستی</item>
+                    <item id="" onClick="">مدیریت و حسابداری</item>
+
+
+                </dropdown>
+            </frame>
+        </frame>
+
+        <frame padding="5"></frame>
+
+
+        <frame layout="linear_vertical"  margin_left="15" margin_right="15" id="">
+            <text gravity="center" margin_left="10" margin_right="10" background="white">جنسیت</text>
+            <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="3" width="240">
+
+                <dropdown onSelectionChange="" id="selected_gender" hint="انتخاب کنید...">
+                    <item id="non-binary" onClick="" text_color="#7F7F7F">هیچکدام</item>
+                    <item id="male" onClick="">مرد</item>
+                    <item id="female" onClick="">زن</item>
+                </dropdown>
+            </frame>
+        </frame>
+
+
+    </frame>
+    {{/currentStudent}}
+
+    <frame padding="5"></frame>
+
+    <text gravity="center" textcolor="red" id="error_msg" text=""/>
+
+
+    <frame padding="5"></frame>
+
+
+    <frame>
+        <button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="update/register_new_user;update/WelcomeDialogShow" margin="20">ثبت تغییرات</button>
+    </frame>
+
+
+
+</page>
