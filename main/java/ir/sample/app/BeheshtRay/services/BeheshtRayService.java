@@ -84,6 +84,7 @@ public class BeheshtRayService extends APSService {
                 view = new ProfileCommentHistory();
                 FeedbackEntity feedbackEntity = new FeedbackEntity();
                 feedbackEntity.feedbacks =  DbOperation.retrieveMyFeedbacks(current_user.getUserId(), true, connection);
+                feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
                 view.setMustacheModel(feedbackEntity);
                 break;
 

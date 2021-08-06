@@ -240,6 +240,25 @@ public class DbOperation {
     }
 
 
+    public static ArrayList<Student> retrieveMyKarma(String userID, Connection connection) {
+        try {
+            String checkSql = "SELECT SUM(up_votes) - SUM(down_votes)  FROM feedback f WHERE f.user_id = ? AND f.extended_feedback IS NOT NULL GROUP BY f.user_id";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userID);
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Student> students = new ArrayList<>();
+            Student student = new Student();
+            resultSet.next();
+            student.setUserKarma(resultSet.getString(1));
+            students.add(student);
+            return students;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
 
 
 

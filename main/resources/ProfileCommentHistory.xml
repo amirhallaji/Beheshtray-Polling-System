@@ -1,9 +1,13 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
     <frame padding_bottom="10"/>
+
+    {{#studentKarma}}
     <frame height="164" width="164" background="#008080" borderCornerRadius="120">
-        <text weight="2" gravity="center" textsize="40" textcolor="white" text="{{user_karma}}"/>
+        <text weight="2" gravity="center" textsize="40" textcolor="white" text="{{userKarma}}"/>
     </frame>
+    {{/studentKarma}}
+
 
     <frame>
         <text gravity="center" id="pro_name" textsize="28" margin_bottom="0">امتیاز</text>
