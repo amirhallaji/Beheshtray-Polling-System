@@ -59,6 +59,10 @@ public class BeheshtRayService extends APSService {
                 view = new HelpRegister();
                 break;
 
+            case "log_in_btn":
+                view = showHome();
+                break;
+
             default:
                 students = DbOperation.retrieveStudentByUserId(userId, connection);
                 boolean isNotRegistered = students == null;
@@ -836,23 +840,8 @@ public class BeheshtRayService extends APSService {
         View view = new Home();
         HomePageEntity homePageEntity = new HomePageEntity();
         homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), connection)));
-        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)));
-
-
-//        try {
-//            homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 3));
-//        } catch (Exception e) {
-//            try {
-//                homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 2));
-//            } catch (Exception e1) {
-//                try {
-//                    homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(connection)).subList(0, 1));
-//                } catch (Exception e2) {
-//
-//                }
-//            }
-//        }
-        view.setMustacheModel(homePageEntity);  // query here
+        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(current_user.getStudentFacultyId(), connection)));
+        view.setMustacheModel(homePageEntity);
         return view;
     }
 
