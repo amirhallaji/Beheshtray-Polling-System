@@ -92,9 +92,11 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(int facultyId, Connection connection) {
+    public static ArrayList<Teacher> retrieveTheMostFamousTeachers(int facultyId, boolean isLimited, Connection connection) {
         try {
-            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=? GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC limit 5";
+            String postfix = isLimited ? " limit 5" : " limit 20";
+
+            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=? GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC" + postfix;
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -111,9 +113,11 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList<Feedback> retrieveFeedbacksMostVoted(int facultyId, Connection connection) {
+    public static ArrayList<Feedback> retrieveTheMostVotedFeedbacks(int facultyId, boolean isLimited, Connection connection) {
         try {
-            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC LIMIT 3";
+            String postfix = isLimited ? " limit 3" : " limit 20";
+
+            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC" + postfix;
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -135,95 +139,31 @@ public class DbOperation {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public static ArrayList<Teacher> retrieveTeachersList(String userID, boolean isLimited, Connection connection) {
+        try {
+
+            String postfix = isLimited ? " limit 3" : "";
+
+            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, t.photo_url FROM teacher t INNER JOIN student s ON t.faculty_id = s.faculty_id WHERE user_id=?" + postfix;
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userID);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teachers.add(teacher);
+            }
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 
 
     public static void sendFeedBack(Feedback feedback, Connection connection) {
@@ -573,40 +513,40 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
-        try {
-            String checkSql = "SELECT * FROM teachers ORDER BY teacher_name";
-            PreparedStatement pstmt = connection.prepareStatement(checkSql);
-            ResultSet resultSet = pstmt.executeQuery();
-//            System.out.println(resultSet.next());
-//            System.out.println(resultSet.next());
-//            System.out.println(resultSet.next());
-//            System.out.println(resultSet.next());
-//            System.out.println(resultSet.next());
-            String[] data = new String[12];
-            ArrayList<Teacher> teachers = new ArrayList<>();
-            while (resultSet.next()) {
-//                System.out.println("Hello");
-                Teacher teacher = new Teacher();
-                for (int i = 1; i <= 11; i++) {
-                    data[i] = resultSet.getString(i);
-                }
-//                System.out.println("data: " + data[1]);
-//                teacher.teacher_name = data[1];
-//                teacher.lesson_name = data[2];
-//                teacher.teacher_email = data[3];
-//                teacher.teacher_academic_group = data[4];
-//                teacher.teacher_key = data[10];
-//                teacher.teacher_photo = data[11];
-//                System.out.println(teacher.teacher_name);
-                teachers.add(teacher);
-            }
-            return teachers;
-        } catch (Exception e) {
-            return null;
-        }
-
-    }
+//    public static ArrayList<Teacher> retrieveTeachers(Connection connection) {
+//        try {
+//            String checkSql = "SELECT * FROM teachers ORDER BY teacher_name";
+//            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+//            ResultSet resultSet = pstmt.executeQuery();
+////            System.out.println(resultSet.next());
+////            System.out.println(resultSet.next());
+////            System.out.println(resultSet.next());
+////            System.out.println(resultSet.next());
+////            System.out.println(resultSet.next());
+//            String[] data = new String[12];
+//            ArrayList<Teacher> teachers = new ArrayList<>();
+//            while (resultSet.next()) {
+////                System.out.println("Hello");
+//                Teacher teacher = new Teacher();
+//                for (int i = 1; i <= 11; i++) {
+//                    data[i] = resultSet.getString(i);
+//                }
+////                System.out.println("data: " + data[1]);
+////                teacher.teacher_name = data[1];
+////                teacher.lesson_name = data[2];
+////                teacher.teacher_email = data[3];
+////                teacher.teacher_academic_group = data[4];
+////                teacher.teacher_key = data[10];
+////                teacher.teacher_photo = data[11];
+////                System.out.println(teacher.teacher_name);
+//                teachers.add(teacher);
+//            }
+//            return teachers;
+//        } catch (Exception e) {
+//            return null;
+//        }
+//
+//    }
 
 
     public static ArrayList<Teacher> retrieveTeacherByKey(String teacher_key, Connection connection) {

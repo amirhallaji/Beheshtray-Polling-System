@@ -15,7 +15,6 @@ public class BeheshtRayService extends APSService {
 
     //    Student student = new Student();
     Feedback feedback = new Feedback();
-    ArrayList<Student> students = new ArrayList<>();
     ArrayList<Teacher> teachers = new ArrayList<>();
     Temp<Teacher> temp = new Temp<>();
     TempStudent<Student> tempStudent = new TempStudent<>();
@@ -25,8 +24,10 @@ public class BeheshtRayService extends APSService {
 
     Connection connection = DatabaseManager.getConnection();
 
+    ArrayList<Student> students = new ArrayList<>();
     CurrentStudentEntity currentStudentEntity = new CurrentStudentEntity();
     Student current_user = null;
+
 
     public BeheshtRayService(String channelName) {
         super(channelName);
@@ -67,6 +68,9 @@ public class BeheshtRayService extends APSService {
 
             case "poll_nav":
                 view = new Search();
+                SearchPageEntity searchPageEntity = new SearchPageEntity();
+                searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), true, connection)).subList(0, 3));
+                view.setMustacheModel(searchPageEntity);
                 break;
 
             case "profile_nav":
@@ -849,8 +853,8 @@ public class BeheshtRayService extends APSService {
     public View showHome() {
         View view = new Home();
         HomePageEntity homePageEntity = new HomePageEntity();
-        homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), connection)));
-        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveFeedbacksMostVoted(current_user.getStudentFacultyId(), connection)));
+        homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), true, connection)));
+        homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(),true,  connection)));
         view.setMustacheModel(homePageEntity);
         return view;
     }
