@@ -46,10 +46,14 @@
 
     <frame borderStrokeWidth="0.2" borderColor="#4682B4" borderCornerRadius="1" >
         <textInput width="match_parent" height="260px" gravity="top_right" padding="10" borderColor="#4682B4"
-                   borderCornerRadius="10" background="#FFFAFA" id="extendedFeedback" hint="متن بازخورد..." multiline="true"
+                   borderCornerRadius="10" background="#FFFAFA" id="extended_feedback" hint="متن بازخورد..." multiline="true"
                    borderStrokeWidth=""/>
     </frame>
 
+
+    <frame padding_bottom="10"/>
+
+    <text gravity="center" textcolor="red" id="error_msg" text=""/>
 
     <frame padding_bottom="10"/>
 
@@ -63,7 +67,7 @@
 
         <frame>
             <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
-                    textcolor="#fff" borderCornerRadius="5" onClick="update/createPoll" margin="20">ثبت کن!</button>
+                    textcolor="#fff" borderCornerRadius="5" onClick="update/create_feedback_btn" margin="20">ثبت کن!</button>
         </frame>
 
 

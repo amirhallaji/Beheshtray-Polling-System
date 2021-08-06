@@ -1,5 +1,6 @@
 package ir.sample.app.BeheshtRay.services;
 
+import com.github.mfathi91.time.PersianDate;
 import ir.appsan.sdk.*;
 import ir.sample.app.BeheshtRay.database.DatabaseManager;
 import ir.sample.app.BeheshtRay.database.DbOperation;
@@ -9,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import java.io.*;
 import java.sql.Connection;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class BeheshtRayService extends APSService {
@@ -23,6 +25,8 @@ public class BeheshtRayService extends APSService {
     ArrayList<Teacher> teachers = new ArrayList<>();
     CurrentTeacherEntity currentTeacherEntity = new CurrentTeacherEntity();
     Teacher current_teacher = null;
+
+    Feedback current_feedback = null;
 
 
     public BeheshtRayService(String channelName) {
@@ -132,6 +136,16 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(currentTeacherEntity);
                     break;
 
+                case "send_feedback_btn":
+                    current_feedback.setTeachingId(current_teacher.getTeachingId());
+                    current_feedback.setUserId(current_user.getUserId());
+                    current_feedback.setUpVotes(0);
+                    current_feedback.setDownVotes(0);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
+                    DbOperation.sendFeedback(current_feedback, connection);
+                    break;
+
 
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);
@@ -188,25 +202,81 @@ public class BeheshtRayService extends APSService {
                 String taTeam = pageData.get("ta_team").toString().trim();
                 String suitableExercise = pageData.get("suitable_exercise").toString().trim();
 
-                if (rightLegals.isEmpty() || transferContent.isEmpty() || taTeam.isEmpty() || suitableExercise.isEmpty()){
+                if (rightLegals.isEmpty() || transferContent.isEmpty() || taTeam.isEmpty() || suitableExercise.isEmpty()) {
                     update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
                     return update;
                 } else {
 
                     int rightLegalsNum = Integer.parseInt(rightLegals);
-                    int transferContentNum = Integer.parseInt(transferContent) ;
+                    int transferContentNum = Integer.parseInt(transferContent);
                     int taTeamNum = Integer.parseInt(taTeam);
                     int suitableExerciseNum = Integer.parseInt(suitableExercise);
 
-                    if ((rightLegalsNum>100 || rightLegalsNum<0) || (transferContentNum>100 || transferContentNum<0) || (taTeamNum>100 || taTeamNum<0) || (suitableExerciseNum>100 || suitableExerciseNum<0)){
+                    if ((rightLegalsNum > 100 || rightLegalsNum < 0) || (transferContentNum > 100 || transferContentNum < 0) || (taTeamNum > 100 || taTeamNum < 0) || (suitableExerciseNum > 100 || suitableExerciseNum < 0)) {
                         update.addChildUpdate("error_msg", "text", "امتیازات باید در بازه ۰ تا ۱۰۰ باشند!");
                         return update;
-                    }else {
+                    } else {
                         View view = new Score2();
                         view.setMustacheModel(currentTeacherEntity);
+
+                        current_feedback = new Feedback();
+                        current_feedback.setScore1(rightLegalsNum);
+                        current_feedback.setScore2(transferContentNum);
+                        current_feedback.setScore3(taTeamNum);
+                        current_feedback.setScore4(suitableExerciseNum);
+
                         return view;
                     }
                 }
+
+            case "create_feedback_btn":
+
+                String studentScore = pageData.get("student_score").toString().trim();
+                String extendedFeedback = pageData.get("extended_feedback").toString().trim();
+
+                if (studentScore.isEmpty() && !extendedFeedback.isEmpty()) {
+                    update.addChildUpdate("error_msg", "text", "نمره حود را وارد کنید!");
+
+                } else {
+
+                    update.addChildUpdate("error_msg", "text", "");
+
+                    studentScore = studentScore.isEmpty() ? null : studentScore;
+                    extendedFeedback = extendedFeedback.isEmpty() ? null : extendedFeedback;
+
+                    current_feedback.setStudentScore(studentScore);
+                    current_feedback.setExtendedFeedback(extendedFeedback);
+
+
+                    /**/
+//                    current_feedback.setTeachingId(current_teacher.getTeachingId());
+//                    current_feedback.setUserId(current_user.getUserId());
+//                    current_feedback.setUpVotes(0);
+//                    current_feedback.setDownVotes(0);
+//                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
+//                    DbOperation.sendFeedback(current_feedback, connection);
+
+                    return new SubmitFeedbackDialog();
+                }
+
+            case "send_feedback_btn":
+                current_feedback.setTeachingId(current_teacher.getTeachingId());
+                current_feedback.setUserId(current_user.getUserId());
+                current_feedback.setUpVotes(0);
+                current_feedback.setDownVotes(0);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
+                DbOperation.sendFeedback(current_feedback, connection);
+                return new TeacherComment();
+
+
+//
+//                current_feedback.setStudentScore();
+
+
+//                DbOperation.sendFeedback();
+
 
             default:
                 break;
