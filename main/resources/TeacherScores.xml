@@ -21,13 +21,13 @@
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
         +
         <frame layout="linear_horizontal">
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherScoresTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacher_score_tab">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">امتیازات</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherInformationTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacher_information_tab">
                 <text textsize="12" gravity="center" textcolor="black">اطلاعات استاد</text>
             </frame>
-            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/teacherCommentsTab">
+            <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacher_comment_tab">
                 <text textsize="12" gravity="center" textcolor="black">نظرات</text>
             </frame>
         </frame>

@@ -136,14 +136,17 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(currentTeacherEntity);
                     break;
 
-                case "send_feedback_btn":
-                    current_feedback.setTeachingId(current_teacher.getTeachingId());
-                    current_feedback.setUserId(current_user.getUserId());
-                    current_feedback.setUpVotes(0);
-                    current_feedback.setDownVotes(0);
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
-                    DbOperation.sendFeedback(current_feedback, connection);
+                case "teacher_information_tab":
+                    view = new TeacherInfo();
+                    view.setMustacheModel(currentTeacherEntity);
+                    break;
+
+                case "teacher_comment_tab" :
+                    view = ShowTeacherFeedback(true);
+                    break;
+
+                case "teacher_score_tab":
+                    view = new TeacherScores();
                     break;
 
 
@@ -268,7 +271,7 @@ public class BeheshtRayService extends APSService {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
                 DbOperation.sendFeedback(current_feedback, connection);
-                return new TeacherComment();
+                return  ShowTeacherFeedback(true);
 
 
 //
@@ -1012,6 +1015,13 @@ public class BeheshtRayService extends APSService {
         homePageEntity.teachers = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), true, connection)));
         homePageEntity.feedbacks = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(), true, connection)));
         view.setMustacheModel(homePageEntity);
+        return view;
+    }
+
+    public View ShowTeacherFeedback(boolean isSortedByDate){
+        View view = new TeacherComment();
+        currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), isSortedByDate, connection);
+        view.setMustacheModel(currentTeacherEntity);
         return view;
     }
 

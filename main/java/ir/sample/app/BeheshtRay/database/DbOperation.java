@@ -41,8 +41,6 @@ public class DbOperation {
     }
 
 
-
-
     public static void sendFeedback(Feedback feedback, Connection connection) {
         try {
             String checkSql1 = "SELECT MAX(feedback_id) + 1 FROM feedback";
@@ -57,7 +55,6 @@ public class DbOperation {
             PreparedStatement pstmt2 = connection.prepareStatement(checkSql2);
             pstmt2.executeUpdate();
             pstmt2.close();
-
 
 
             String checkSql3 = "INSERT INTO feedback(teaching_id, user_id, score_1, score_2, score_3, score_4, student_score, extended_feedback, persian_date, created_date, up_votes, down_votes, feedback_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DEFAULT, ?, ?, DEFAULT)";
@@ -347,6 +344,37 @@ public class DbOperation {
                 teachers.add(teacher);
             }
             return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    public static ArrayList<Feedback> retrieveFeedbackByTeachingId(int teachingId, boolean isSortByDate, Connection connection) {
+        try {
+
+            String checkSql = isSortByDate ? "SELECT feedback_id, persian_date, student_score, up_votes, down_votes, extended_feedback FROM feedback WHERE teaching_id=? AND extended_feedback IS NOT NULL ORDER BY created_date DESC" :
+                    "SELECT feedback_id, persian_date, student_score, up_votes, down_votes, extended_feedback FROM feedback WHERE teaching_id=? AND extended_feedback IS NOT NULL ORDER BY up_votes-down_votes DESC";
+
+
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, teachingId);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+
+                feedback.setFeedbackId(resultSet.getInt(1));
+                feedback.setPersianDate(resultSet.getString(2));
+                feedback.setStudentScore(resultSet.getString(3));
+                feedback.setUpVotes(resultSet.getInt(4));
+                feedback.setDownVotes(resultSet.getInt(5));
+                feedback.setExtendedFeedback(resultSet.getString(6));
+
+                feedbacks.add(feedback);
+            }
+            return feedbacks;
         } catch (Exception e) {
             return null;
         }
@@ -1413,7 +1441,6 @@ public class DbOperation {
             return null;
         }
     }
-
 
 
 }
