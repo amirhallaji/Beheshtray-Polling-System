@@ -4,7 +4,7 @@
 
     {{#studentKarma}}
     <frame height="164" width="164" background="#008080" borderCornerRadius="120">
-        <text weight="2" gravity="center" textsize="40" textcolor="white" text="{{userKarma}}"/>
+        <text id="user_karma" weight="2" gravity="center" textsize="40" textcolor="white" text="{{userKarma}}"/>
     </frame>
     {{/studentKarma}}
 
