@@ -100,6 +100,7 @@ public class DbOperation {
             pstmt.setString(1, faculty_name);
             ResultSet resultSet = pstmt.executeQuery();
             resultSet.next();
+            pstmt.close();
             return resultSet.getInt(1);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -129,6 +130,9 @@ public class DbOperation {
             student.setStudentFacultyName(resultSet.getString(9));
             students.add(student);
 
+            pstmt.close();
+            resultSet.close();
+
             return students;
 
 
@@ -153,6 +157,10 @@ public class DbOperation {
                 teacher.setPhotoURL(resultSet.getString(2));
                 teachers.add(teacher);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return teachers;
         } catch (Exception e) {
             return null;
@@ -179,6 +187,10 @@ public class DbOperation {
                 feedback.setExtendedFeedback(resultSet.getString(7));
                 feedbacks.add(feedback);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return feedbacks;
         } catch (Exception e) {
             return null;
@@ -204,6 +216,10 @@ public class DbOperation {
                 teacher.setPhotoURL(resultSet.getString(4));
                 teachers.add(teacher);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return teachers;
         } catch (Exception e) {
             return null;
@@ -228,6 +244,9 @@ public class DbOperation {
             faculty.setPhotoURL(resultSet.getString(2));
 
             faculties.add(faculty);
+
+            pstmt.close();
+            resultSet.close();
 
             return faculties;
 
@@ -275,6 +294,10 @@ public class DbOperation {
                 }
                 feedbacks.add(feedback);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return feedbacks;
         } catch (Exception e) {
             return null;
@@ -294,6 +317,10 @@ public class DbOperation {
             resultSet.next();
             student.setUserKarma(resultSet.getString(1));
             students.add(student);
+
+            pstmt.close();
+            resultSet.close();
+
             return students;
         } catch (Exception e) {
             return null;
@@ -319,6 +346,10 @@ public class DbOperation {
             teacher.setFacultyId(resultSet.getInt(6));
             teacher.setTeachingId(resultSet.getInt(7));
             teachers.add(teacher);
+
+            pstmt.close();
+            resultSet.close();
+
             return teachers;
         } catch (Exception e) {
             return null;
@@ -336,6 +367,7 @@ public class DbOperation {
             pstmt.setInt(3, facultyId);
 
             ResultSet resultSet = pstmt.executeQuery();
+
             ArrayList<Teacher> teachers = new ArrayList<>();
             while (resultSet.next()) {
                 Teacher teacher = new Teacher();
@@ -343,6 +375,10 @@ public class DbOperation {
                 teacher.setLessonName(resultSet.getString(2));
                 teachers.add(teacher);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return teachers;
         } catch (Exception e) {
             return null;
@@ -374,12 +410,45 @@ public class DbOperation {
 
                 feedbacks.add(feedback);
             }
+
+            pstmt.close();
+            resultSet.close();
+
             return feedbacks;
         } catch (Exception e) {
             return null;
         }
     }
 
+
+    public static ArrayList<Feedback> retrieveScoreByTeachingId(int teachingId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT AVG(score_1) AS score_1, AVG(score_2) AS score_2, AVG(score_3) AS score_3, AVG(score_4) AS score_4, AVG((score_1 + score_2 + score_3 + score_4)/4.0) AS average FROM feedback WHERE teaching_id=? group by teaching_id";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, teachingId);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            resultSet.next();
+            Feedback feedback = new Feedback();
+
+            feedback.setScore1(resultSet.getDouble(1));
+            feedback.setScore2(resultSet.getDouble(2));
+            feedback.setScore3(resultSet.getDouble(3));
+            feedback.setScore4(resultSet.getDouble(4));
+            feedback.setAverageScore(resultSet.getDouble(5));
+
+            feedbacks.add(feedback);
+
+            pstmt.close();
+            resultSet.close();
+
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
 

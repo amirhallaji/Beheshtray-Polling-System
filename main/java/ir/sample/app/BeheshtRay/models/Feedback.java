@@ -185,4 +185,51 @@ public class Feedback {
                 ", averageScore=" + averageScore +
                 '}';
     }
+
+
+    private String score1Persian;
+    private String score2Persian;
+    private String score3Persian;
+    private String score4Persian;
+    private String averageScorePersian;
+
+    public String getScore1Persian() {
+        return score1Persian;
+    }
+
+    public void setScore1Persian(String score1Persian) {
+        this.score1Persian = score1Persian;
+    }
+
+    public String getScore2Persian() {
+        return score2Persian;
+    }
+
+    public void setScore2Persian(String score2Persian) {
+        this.score2Persian = score2Persian;
+    }
+
+    public String getScore3Persian() {
+        return score3Persian;
+    }
+
+    public void setScore3Persian(String score3Persian) {
+        this.score3Persian = score3Persian;
+    }
+
+    public String getScore4Persian() {
+        return score4Persian;
+    }
+
+    public void setScore4Persian(String score4Persian) {
+        this.score4Persian = score4Persian;
+    }
+
+    public String getAverageScorePersian() {
+        return averageScorePersian;
+    }
+
+    public void setAverageScorePersian(String averageScorePersian) {
+        this.averageScorePersian = averageScorePersian;
+    }
 }
