@@ -205,12 +205,12 @@
 
                 <frame layout="linear_horizontal">
                     <frame>
-                        <button gravity="center" onClick="update/bestTAs" borderCornerRadius="0" background="#228B22" width="30"
+                        <button gravity="center" onClick="command/view_best_TAs" borderCornerRadius="0" background="#228B22" width="30"
                                 textcolor="white" textsize="14" height="40">بهترین تیم‌های تدریس‌یار
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="update/popularLessons" borderCornerRadius="0" background="#FF8C00" width="30"
+                        <button gravity="center" onClick="command/view_popular_lessons" borderCornerRadius="0" background="#FF8C00" width="30"
                                 textcolor="white" textsize="14" height="40">محبوب‌ترین دروس
                         </button>
                     </frame>
@@ -218,12 +218,12 @@
 
                 <frame layout="linear_horizontal">
                     <frame>
-                        <button gravity="center" onClick="update/MostCommentedTeachers" borderCornerRadius="0" background="#808080" width="30"
+                        <button gravity="center" onClick="command/view_most_commented" borderCornerRadius="0" background="#808080" width="30"
                                 textcolor="white" textsize="14" height="40">بیشترین نظر
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="update/LeastCommentedTeachers" borderCornerRadius="0" background="#6A5ACD" width="30"
+                        <button gravity="center" onClick="command/view_least_commented" borderCornerRadius="0" background="#6A5ACD" width="30"
                                 textcolor="white" textsize="14" height="40">کمترین نظر
                         </button>
                     </frame>
@@ -231,12 +231,12 @@
 
                 <frame layout="linear_horizontal">
                     <frame>
-                        <button gravity="center" onClick="" borderCornerRadius="0" background="#A0522D" width="30"
-                                textcolor="white" textsize="14" height="40">بهترین اساتید عمومی
+                        <button gravity="center" onClick="command/view_general_lessons" borderCornerRadius="0" background="#A0522D" width="30"
+                                textcolor="white" textsize="14" height="40">دروس عمومی
                         </button>
                     </frame>
                     <frame>
-                        <button gravity="center" onClick="update/ViewFullWorstComments" borderCornerRadius="0" background="#DC143C" width="30"
+                        <button gravity="center" onClick="command/view_worst_comments" borderCornerRadius="0" background="#DC143C" width="30"
                                 textcolor="white" textsize="14" height="40">کم طرفدارترین نظرات
                         </button>
                     </frame>
