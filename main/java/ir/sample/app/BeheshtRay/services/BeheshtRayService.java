@@ -225,6 +225,13 @@ public class BeheshtRayService extends APSService {
 
                     break;
 
+                case "view_best_comments":
+                    view = new FullCommentListView();
+                    HomePageEntity homePageEntity = new HomePageEntity();
+                    homePageEntity.feedbacks = DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(), false, connection);
+                    view.setMustacheModel(homePageEntity);
+                    break;
+
 
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);

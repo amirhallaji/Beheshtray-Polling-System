@@ -29,7 +29,7 @@
 
             {{#feedbacks}}
 
-            <frame background="#FFFAFA" onclick="update/big_comment_to_teacher+{{teacher_name}}%{{lesson_name}}">
+            <frame background="#FFFAFA" onclick="command/comment_click_clk+{{teachingId}}">
                 <frame layout="linear_vertical">
 
                     <frame layout="linear_horizontal">
@@ -38,15 +38,15 @@
                         <frame>
 
                             <frame>
-                                <button gravity="center" onClick="update/upvote_comment_home+{{feedback_id}}" borderCornerRadius="100" background="#228B22"
-                                        width="30" textcolor="white" textsize="14" height="40" text="{{upvotes}}" >
+                                <button gravity="center" onClick="update/upvote_comment_home+{{feedbackId}}" borderCornerRadius="100" background="#228B22"
+                                        width="30" textcolor="white" textsize="14" height="40" text="{{upVotes}}" >
                                 </button>
                             </frame>
 
 
                             <frame>
-                                <button gravity="center" onClick="update/downvote_comment_home+{{feedback_id}}" borderCornerRadius="100" background="#FF0000"
-                                        width="30" textcolor="white" textsize="14" height="40" text="{{downvotes}}">
+                                <button gravity="center" onClick="update/downvote_comment_home+{{feedbackId}}" borderCornerRadius="100" background="#FF0000"
+                                        width="30" textcolor="white" textsize="14" height="40" text="{{downVotes}}">
                                 </button>
                             </frame>
 
@@ -54,9 +54,9 @@
 
 
                         <frame>
-                            <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره:{{student_score}}"></text>
+                            <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره:{{studentScore}}"></text>
 
-                            <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ ارسال نظر:{{date_number}}">
+                            <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ ارسال نظر:{{persianDate}}">
                                 ۹/۹/۱۳۹۹
                             </text>
 
@@ -66,17 +66,17 @@
 
                     <frame layout="linear_horizental">
                         <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacher_name}}">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="استاد:{{teacherName}}">
                             </text>
                         </frame>
                         <frame gravity="right">
-                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lesson_name}}">
+                            <text textalignment="right" textsize="14" gravity="left" textcolor="gray" text="درس:{{lessonName}}">
                             </text>
                         </frame>
                     </frame>
 
                     <frame gravity="right">
-                        <text textalignment="right" textsize="16" gravity="left" text="{{extended_feedback}}">
+                        <text textalignment="right" textsize="16" gravity="left" text="{{extendedFeedback}}">
 
                         </text>
                     </frame>
