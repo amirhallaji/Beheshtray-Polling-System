@@ -1,5 +1,10 @@
 package ir.sample.app.BeheshtRay.models;
 
+import ir.sample.app.BeheshtRay.services.BeheshtRayService;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Feedback {
     private int teachingId;
     private String userId;
@@ -194,7 +199,7 @@ public class Feedback {
     private String averageScorePersian;
 
     public String getScore1Persian() {
-        return score1Persian;
+        return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score1).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public void setScore1Persian(String score1Persian) {
@@ -202,7 +207,7 @@ public class Feedback {
     }
 
     public String getScore2Persian() {
-        return score2Persian;
+        return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score2).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public void setScore2Persian(String score2Persian) {
@@ -210,7 +215,7 @@ public class Feedback {
     }
 
     public String getScore3Persian() {
-        return score3Persian;
+        return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score3).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public void setScore3Persian(String score3Persian) {
@@ -218,7 +223,7 @@ public class Feedback {
     }
 
     public String getScore4Persian() {
-        return score4Persian;
+        return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score4).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public void setScore4Persian(String score4Persian) {
@@ -226,7 +231,7 @@ public class Feedback {
     }
 
     public String getAverageScorePersian() {
-        return averageScorePersian;
+        return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(averageScore).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
     public void setAverageScorePersian(String averageScorePersian) {
@@ -238,7 +243,7 @@ public class Feedback {
     private String downVotesPersian;
 
     public String getUpVotesPersian() {
-        return upVotesPersian;
+        return BeheshtRayService.convertToEnglishDigits(String.valueOf(upVotes));
     }
 
     public void setUpVotesPersian(String upVotesPersian) {
@@ -246,10 +251,21 @@ public class Feedback {
     }
 
     public String getDownVotesPersian() {
-        return downVotesPersian;
+        return BeheshtRayService.convertToEnglishDigits(String.valueOf(downVotes));
     }
 
     public void setDownVotesPersian(String downVotesPersian) {
         this.downVotesPersian = downVotesPersian;
+    }
+
+
+    private String  studentScorePersian;
+
+    public String getStudentScorePersian() {
+        return BeheshtRayService.convertToEnglishDigits(studentScore);
+    }
+
+    public void setStudentScorePersian(String studentScorePersian) {
+        this.studentScorePersian = studentScorePersian;
     }
 }

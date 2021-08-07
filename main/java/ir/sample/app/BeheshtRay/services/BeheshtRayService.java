@@ -181,11 +181,11 @@ public class BeheshtRayService extends APSService {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
-                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
-                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
-                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
-                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
-                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
+//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
+//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
+//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
+//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
+//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
                     }
                     view.setMustacheModel(currentTeacherEntity);
 
