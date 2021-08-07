@@ -146,7 +146,7 @@ public class DbOperation {
         try {
             String postfix = isLimited ? " limit 5" : " limit 20";
 
-            String checkSql = "SELECT teacher_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=? GROUP BY teacher_name, photo_url ORDER BY over_all_average DESC" + postfix;
+            String checkSql = "SELECT teacher_name, photo_url,faculty_id, (AVG(score_1) + AVG(score_2) + AVG(score_3) + AVG(score_4))/4.0 AS over_all_average FROM teacher INNER JOIN feedback f ON teacher.teaching_id = f.teaching_id WHERE teacher.faculty_id=? GROUP BY teacher_name, photo_url, faculty_id ORDER BY over_all_average DESC" + postfix;
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -155,6 +155,7 @@ public class DbOperation {
                 Teacher teacher = new Teacher();
                 teacher.setTeacherName(resultSet.getString(1));
                 teacher.setPhotoURL(resultSet.getString(2));
+                teacher.setFacultyId(resultSet.getInt(3));
                 teachers.add(teacher);
             }
 
@@ -484,6 +485,37 @@ public class DbOperation {
         }
     }
 
+
+    public static ArrayList<Teacher> retrieveAllLessonsByTeacherName(String teacherName, int facultyId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, photo_url FROM teacher WHERE teacher_name=? AND  faculty_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            pstmt.setString(1, teacherName);
+            pstmt.setInt(2, facultyId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                System.out.println(teacher);
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
 
