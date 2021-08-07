@@ -172,7 +172,7 @@ public class DbOperation {
         try {
             String postfix = isLimited ? " limit 3" : " limit 20";
 
-            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC" + postfix;
+            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, t.teaching_id, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC" + postfix;
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -186,6 +186,7 @@ public class DbOperation {
                 feedback.setLessonName(resultSet.getString(5));
                 feedback.setTeacherName(resultSet.getString(6));
                 feedback.setExtendedFeedback(resultSet.getString(7));
+                feedback.setTeachingId(resultSet.getInt(8));
                 feedbacks.add(feedback);
             }
 
