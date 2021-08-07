@@ -182,11 +182,6 @@ public class BeheshtRayService extends APSService {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
-//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
-//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
-//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
-//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
-//                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
                     }
                     view.setMustacheModel(currentTeacherEntity);
 
@@ -422,20 +417,10 @@ public class BeheshtRayService extends APSService {
                         current_feedback.setStudentScore(studentScore);
                         current_feedback.setExtendedFeedback(extendedFeedback);
 
-
-                        /**/
-//                    current_feedback.setTeachingId(current_teacher.getTeachingId());
-//                    current_feedback.setUserId(current_user.getUserId());
-//                    current_feedback.setUpVotes(0);
-//                    current_feedback.setDownVotes(0);
-//                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
-//                    DbOperation.sendFeedback(current_feedback, connection);
-
 //                    return new SubmitFeedbackDialog();
                     }
 
-                case "send_feedback_btn":
+//                case "send_feedback_btn":
                     current_feedback.setTeachingId(current_teacher.getTeachingId());
                     current_feedback.setUserId(current_user.getUserId());
                     current_feedback.setUpVotes(0);
@@ -443,6 +428,16 @@ public class BeheshtRayService extends APSService {
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                     current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
                     DbOperation.sendFeedback(current_feedback, connection);
+
+                    if (extendedFeedback == null) {
+                        View view = new TeacherScores();
+                        ArrayList<Feedback> feedbacks;
+                        feedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
+                        currentTeacherEntity.teacherFeedbacks = feedbacks;
+                        view.setMustacheModel(currentTeacherEntity);
+                        return view;
+                    }
+
                     return ShowTeacherFeedback(true);
 
 
