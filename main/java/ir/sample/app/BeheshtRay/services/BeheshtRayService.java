@@ -183,6 +183,7 @@ public class BeheshtRayService extends APSService {
 
 
 
+
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);
                     boolean isNotRegistered = students == null;
