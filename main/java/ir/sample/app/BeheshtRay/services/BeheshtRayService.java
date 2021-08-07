@@ -263,39 +263,61 @@ public class BeheshtRayService extends APSService {
             Boolean result = DbOperation.retrieveVoteStatus(current_user.getUserId(), feedbackId, connection);
 
             int newUpVoteValue;
-            int newDownVoteValue;
+            Integer newDownVoteValue = null;
 
             if (result != null){
                 if (result){
                     newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, false,connection);
+                    DbOperation.deleteVote(current_user.getUserId(), feedbackId, connection);
+
                 }else {
                     newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, true,connection);
                     newDownVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, false, connection);
+                    DbOperation.revertVote(current_user.getUserId(), feedbackId, connection);
                 }
 
             } else {
                 newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, true,connection);
+                DbOperation.sendVote(current_user.getUserId(), feedbackId, true, connection);
             }
 
-//            update.addChildUpdate("green_btn_"+feedbackId, "text", );
+            if (newDownVoteValue != null) {
+                update.addChildUpdate("red_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newDownVoteValue)) );
+
+            }
+
+            update.addChildUpdate("green_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newUpVoteValue)));
+            return update;
 
         } else if (updateCommand.startsWith("down_vote_btn")){
             int feedbackId = Integer.parseInt(updateCommand.substring(updateCommand.indexOf("+")));
             Boolean result = DbOperation.retrieveVoteStatus(current_user.getUserId(), feedbackId, connection);
 
-            int newUpVoteValue;
+            Integer newUpVoteValue = null;
             int newDownVoteValue;
 
             if (result != null){
                 if (result){
-                    newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
-                    newDownVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, false, connection);
+                    newDownVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
+                    newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, false, connection);
+                    DbOperation.revertVote(current_user.getUserId(), feedbackId, connection);
                 }else {
-                    newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, false,connection);
+                    newDownVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, false,connection);
+                    DbOperation.deleteVote(current_user.getUserId(), feedbackId, connection);
                 }
             } else {
-                newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
+                newDownVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
+                DbOperation.sendVote(current_user.getUserId(), feedbackId, false, connection);
             }
+
+            if (newUpVoteValue != null) {
+                update.addChildUpdate("green_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newUpVoteValue)) );
+
+            }
+
+            update.addChildUpdate("red_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newDownVoteValue)));
+            return update;
+
         }
 
 

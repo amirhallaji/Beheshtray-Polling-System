@@ -116,6 +116,53 @@ public class DbOperation {
     }
 
 
+    public static void sendVote(String userId, int feedbackId, boolean isUpVote, Connection connection) {
+        try {
+
+            String checkSql = "INSERT INTO vote(user_id, feedback_id, vote_status) VALUES (?, ?, ?)";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, feedbackId);
+            pstmt.setBoolean(3, isUpVote);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void revertVote(String userId, int feedbackId, Connection connection) {
+        try {
+            String checkSql = "UPDATE vote SET vote_status = NOT vote_status WHERE user_id=? AND feedback_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, feedbackId);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteVote(String userId, int feedbackId, Connection connection) {
+        try {
+
+            String checkSql = "DELETE FROM vote WHERE user_id=? AND feedback_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, feedbackId);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * Return ID of the selected faculty by getting its name
      * TABLE: FACULTY
@@ -558,6 +605,10 @@ public class DbOperation {
     public static Boolean retrieveVoteStatus(String userId, int feedbackId , Connection connection) {
 
         try {
+
+            System.out.println(userId);
+            System.out.println(feedbackId);
+
             String checkSql = "SELECT vote_status FROM vote WHERE user_id=? AND feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
 
@@ -566,9 +617,9 @@ public class DbOperation {
 
             ResultSet resultSet = pstmt.executeQuery();
 
+            resultSet.next();
             boolean result = resultSet.getBoolean(1);
 
-            resultSet.next();
 
 
             pstmt.close();
@@ -578,6 +629,7 @@ public class DbOperation {
 
 
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
 
