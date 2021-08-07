@@ -259,7 +259,7 @@ public class BeheshtRayService extends APSService {
                 case "view_general_lessons":
                     view = new FullList();
                     searchPageEntity = new SearchPageEntity();
-                    searchPageEntity.teachers_list = DbOperation.retrieveThegeneralLessons(connection);
+                    searchPageEntity.teachers_list = DbOperation.retrieveTheGeneralLessons(connection);
                     view.setMustacheModel(searchPageEntity);
                     break;
 

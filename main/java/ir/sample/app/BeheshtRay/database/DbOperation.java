@@ -823,6 +823,33 @@ public class DbOperation {
     }
 
 
+    public static ArrayList<Teacher> retrieveTheGeneralLessons(Connection connection) {
+        try {
+
+            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, photo_url FROM teacher WHERE teacher.faculty_id=10 GROUP BY teaching_id, teacher_name, lesson_name,photo_url ORDER BY lesson_name\n";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
 
 
@@ -1987,7 +2014,5 @@ public class DbOperation {
     }
 
 
-    public static ArrayList<Teacher> retrieveThegeneralLessons(Connection connection) {
-        return null;
-    }
+
 }
