@@ -352,13 +352,16 @@ public class DbOperation {
             resultSet.next();
             student.setUserKarma(resultSet.getString(1));
             students.add(student);
-
             pstmt.close();
             resultSet.close();
 
             return students;
         } catch (Exception e) {
-            return null;
+            ArrayList<Student> students = new ArrayList<>();
+            Student student = new Student();
+            student.setUserKarma("0");
+            students.add(student);
+            return students;
         }
 
     }
