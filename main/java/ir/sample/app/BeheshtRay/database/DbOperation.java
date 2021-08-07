@@ -343,8 +343,8 @@ public class DbOperation {
     public static ArrayList<Feedback> retrieveMyFeedbacks(String userID, boolean isExtended, Connection connection) {
         try {
 
-            String checkSql = isExtended ? "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, up_votes, down_votes, extended_feedback, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NOT NULL"
-                    : "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NULL";
+            String checkSql = isExtended ? "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, up_votes, down_votes, extended_feedback, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NOT NULL ORDER BY f.created_date DESC"
+                    : "SELECT feedback_id, persian_date, student_score, t.lesson_name, t.teacher_name, (score_1+score_2+score_3+score_4)/4.0 AS average FROM feedback f INNER JOIN student s ON f.user_id = s.user_id INNER JOIN teacher t ON f.teaching_id = t.teaching_id WHERE f.user_id = ? AND f.extended_feedback IS NULL ORDER BY f.created_date DESC";
 
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userID);
