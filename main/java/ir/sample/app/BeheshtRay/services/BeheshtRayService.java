@@ -228,6 +228,30 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(homePageEntity);
                     break;
 
+                case "view_best_TAs":
+                    view = new FullListWithNumber();
+                    break;
+
+                case "view_popular_lessons":
+                    view = new FullListWithNumber();
+                    break;
+
+                case "view_most_commented":
+                    view = new FullListWithNumber();
+                    break;
+
+                case "view_least_commented":
+                    view = new FullListWithNumber();
+                    break;
+
+                case "view_general_lessons":
+                    view = new FullList();
+                    break;
+
+                case "view_worst_comments":
+                    view = new FullCommentListView();
+                    break;
+
 
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);
