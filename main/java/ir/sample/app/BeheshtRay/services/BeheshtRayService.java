@@ -70,6 +70,9 @@ public class BeheshtRayService extends APSService {
             currentTeacherEntity.otherLessons = DbOperation.retrieveOtherLessonsByTeacherInfo(current_teacher.getLessonName(), current_teacher.getTeacherName(), current_teacher.getFacultyId(), connection);
             currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), true, connection);
             view.setMustacheModel(currentTeacherEntity);
+        } else if (command.startsWith("delete_comment")) {
+            int feedbackId = Integer.parseInt(command.substring(command.indexOf("+") + 1));
+            DbOperation.removeFeedback(feedbackId, connection);
         } else {
 
             switch (command) {
@@ -254,96 +257,100 @@ public class BeheshtRayService extends APSService {
     @Override
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
 
-        switch (updateCommand) {
-            case "change_user_info":
+        if (updateCommand.startsWith("delete_comment")) {
+            int feedbackId = Integer.parseInt(updateCommand.substring(updateCommand.indexOf("+") + 1));
+            DbOperation.removeFeedback(feedbackId, connection);
+        } else {
+            switch (updateCommand) {
+                case "change_user_info":
 
-            case "register_new_user":
-                String firstName = pageData.get("first_name").toString().trim();
-                String lastName = pageData.get("last_name").toString().trim();
-                String studentId = pageData.get("student_id").toString().trim();
-                String gender = pageData.get("selected_gender").toString();
-                String faculty = pageData.get("selected_faculty").toString();
+                case "register_new_user":
+                    String firstName = pageData.get("first_name").toString().trim();
+                    String lastName = pageData.get("last_name").toString().trim();
+                    String studentId = pageData.get("student_id").toString().trim();
+                    String gender = pageData.get("selected_gender").toString();
+                    String faculty = pageData.get("selected_faculty").toString();
 
-                if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty()) {
-                    update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
-                    return update;
-                } else {
-                    Student student = new Student(userId);
-                    student.setStudentFirstName(firstName);
-                    student.setStudentLastName(lastName);
-                    student.setStudentId(studentId);
-                    student.setStudentFacultyId(DbOperation.retrieveFacultyIdByName(faculty, connection));
-                    student.setStudentFacultyName(faculty);
-                    student.setStudentGender(gender);
-                    student.setStudentPhotoURL(gender);
-                    if (updateCommand.equals("change_user_info")){
-                        DbOperation.updateUserInfo(student, connection);
-                    } else {
-                        student.setUserKarma("0");
-                        DbOperation.sendUserInfo(student, connection);
-                    }
-                    current_user = student;
-                    students.set(0, current_user);
-                    currentStudentEntity.currentStudent = students;
-
-                    return showHome();
-                }
-
-
-            case "next_poll_btn":
-
-                String rightLegals = pageData.get("right_legals").toString().trim();
-                String transferContent = pageData.get("transfer_content").toString().trim();
-                String taTeam = pageData.get("ta_team").toString().trim();
-                String suitableExercise = pageData.get("suitable_exercise").toString().trim();
-
-                if (rightLegals.isEmpty() || transferContent.isEmpty() || taTeam.isEmpty() || suitableExercise.isEmpty()) {
-                    update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
-                    return update;
-                } else {
-
-                    int rightLegalsNum = Integer.parseInt(rightLegals);
-                    int transferContentNum = Integer.parseInt(transferContent);
-                    int taTeamNum = Integer.parseInt(taTeam);
-                    int suitableExerciseNum = Integer.parseInt(suitableExercise);
-
-                    if ((rightLegalsNum > 100 || rightLegalsNum < 0) || (transferContentNum > 100 || transferContentNum < 0) || (taTeamNum > 100 || taTeamNum < 0) || (suitableExerciseNum > 100 || suitableExerciseNum < 0)) {
-                        update.addChildUpdate("error_msg", "text", "امتیازات باید در بازه ۰ تا ۱۰۰ باشند!");
+                    if (firstName.isEmpty() || lastName.isEmpty() || studentId.isEmpty()) {
+                        update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
                         return update;
                     } else {
-                        View view = new Score2();
-                        view.setMustacheModel(currentTeacherEntity);
+                        Student student = new Student(userId);
+                        student.setStudentFirstName(firstName);
+                        student.setStudentLastName(lastName);
+                        student.setStudentId(studentId);
+                        student.setStudentFacultyId(DbOperation.retrieveFacultyIdByName(faculty, connection));
+                        student.setStudentFacultyName(faculty);
+                        student.setStudentGender(gender);
+                        student.setStudentPhotoURL(gender);
+                        if (updateCommand.equals("change_user_info")) {
+                            DbOperation.updateUserInfo(student, connection);
+                        } else {
+                            student.setUserKarma("0");
+                            DbOperation.sendUserInfo(student, connection);
+                        }
+                        current_user = student;
+                        students.set(0, current_user);
+                        currentStudentEntity.currentStudent = students;
 
-                        current_feedback = new Feedback();
-                        current_feedback.setScore1(rightLegalsNum);
-                        current_feedback.setScore2(transferContentNum);
-                        current_feedback.setScore3(taTeamNum);
-                        current_feedback.setScore4(suitableExerciseNum);
-
-                        return view;
+                        return showHome();
                     }
-                }
-
-            case "create_feedback_btn":
-
-                String studentScore = pageData.get("student_score").toString().trim();
-                String extendedFeedback = pageData.get("extended_feedback").toString().trim();
-
-                if (studentScore.isEmpty() && !extendedFeedback.isEmpty()) {
-                    update.addChildUpdate("error_msg", "text", "نمره حود را وارد کنید!");
-
-                } else {
-
-                    update.addChildUpdate("error_msg", "text", "");
-
-                    studentScore = studentScore.isEmpty() ? null : studentScore;
-                    extendedFeedback = extendedFeedback.isEmpty() ? null : extendedFeedback;
-
-                    current_feedback.setStudentScore(studentScore);
-                    current_feedback.setExtendedFeedback(extendedFeedback);
 
 
-                    /**/
+                case "next_poll_btn":
+
+                    String rightLegals = pageData.get("right_legals").toString().trim();
+                    String transferContent = pageData.get("transfer_content").toString().trim();
+                    String taTeam = pageData.get("ta_team").toString().trim();
+                    String suitableExercise = pageData.get("suitable_exercise").toString().trim();
+
+                    if (rightLegals.isEmpty() || transferContent.isEmpty() || taTeam.isEmpty() || suitableExercise.isEmpty()) {
+                        update.addChildUpdate("error_msg", "text", "فیلدها نمیتواند خالی باشد!");
+                        return update;
+                    } else {
+
+                        int rightLegalsNum = Integer.parseInt(rightLegals);
+                        int transferContentNum = Integer.parseInt(transferContent);
+                        int taTeamNum = Integer.parseInt(taTeam);
+                        int suitableExerciseNum = Integer.parseInt(suitableExercise);
+
+                        if ((rightLegalsNum > 100 || rightLegalsNum < 0) || (transferContentNum > 100 || transferContentNum < 0) || (taTeamNum > 100 || taTeamNum < 0) || (suitableExerciseNum > 100 || suitableExerciseNum < 0)) {
+                            update.addChildUpdate("error_msg", "text", "امتیازات باید در بازه ۰ تا ۱۰۰ باشند!");
+                            return update;
+                        } else {
+                            View view = new Score2();
+                            view.setMustacheModel(currentTeacherEntity);
+
+                            current_feedback = new Feedback();
+                            current_feedback.setScore1(rightLegalsNum);
+                            current_feedback.setScore2(transferContentNum);
+                            current_feedback.setScore3(taTeamNum);
+                            current_feedback.setScore4(suitableExerciseNum);
+
+                            return view;
+                        }
+                    }
+
+                case "create_feedback_btn":
+
+                    String studentScore = pageData.get("student_score").toString().trim();
+                    String extendedFeedback = pageData.get("extended_feedback").toString().trim();
+
+                    if (studentScore.isEmpty() && !extendedFeedback.isEmpty()) {
+                        update.addChildUpdate("error_msg", "text", "نمره حود را وارد کنید!");
+
+                    } else {
+
+                        update.addChildUpdate("error_msg", "text", "");
+
+                        studentScore = studentScore.isEmpty() ? null : studentScore;
+                        extendedFeedback = extendedFeedback.isEmpty() ? null : extendedFeedback;
+
+                        current_feedback.setStudentScore(studentScore);
+                        current_feedback.setExtendedFeedback(extendedFeedback);
+
+
+                        /**/
 //                    current_feedback.setTeachingId(current_teacher.getTeachingId());
 //                    current_feedback.setUserId(current_user.getUserId());
 //                    current_feedback.setUpVotes(0);
@@ -353,26 +360,26 @@ public class BeheshtRayService extends APSService {
 //                    DbOperation.sendFeedback(current_feedback, connection);
 
 //                    return new SubmitFeedbackDialog();
-                }
+                    }
 
-            case "send_feedback_btn":
-                current_feedback.setTeachingId(current_teacher.getTeachingId());
-                current_feedback.setUserId(current_user.getUserId());
-                current_feedback.setUpVotes(0);
-                current_feedback.setDownVotes(0);
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
-                DbOperation.sendFeedback(current_feedback, connection);
-                return ShowTeacherFeedback(true);
+                case "send_feedback_btn":
+                    current_feedback.setTeachingId(current_teacher.getTeachingId());
+                    current_feedback.setUserId(current_user.getUserId());
+                    current_feedback.setUpVotes(0);
+                    current_feedback.setDownVotes(0);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
+                    DbOperation.sendFeedback(current_feedback, connection);
+                    return ShowTeacherFeedback(true);
 
 
-            case "search_btn":
-                String searchInputText = pageData.get("search_input_text").toString().trim();
-                View view = new SearchResults();
-                SearchPageEntity searchPageEntity = new SearchPageEntity();
-                searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveSearchedTeachersList(searchInputText, current_user.getUserId(), connection)));
-                view.setMustacheModel(searchPageEntity);
-                return view;
+                case "search_btn":
+                    String searchInputText = pageData.get("search_input_text").toString().trim();
+                    View view = new SearchResults();
+                    SearchPageEntity searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveSearchedTeachersList(searchInputText, current_user.getUserId(), connection)));
+                    view.setMustacheModel(searchPageEntity);
+                    return view;
 
 
 //
@@ -382,8 +389,9 @@ public class BeheshtRayService extends APSService {
 //                DbOperation.sendFeedback();
 
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
 
 
