@@ -1,25 +1,25 @@
 <page title="بهشترأی" scrollable="true" toolbarColor="#1E90FF" statusbarColor="#4682B4" padding_top="64">
 
-    <!--    {{#teachers}}-->
+    {{#currentTeacher}}
 
-    <!--    <frame>-->
-    <!--        <image src="https://uupload.ir/files/bn5f_photo_2021-01-24_20-57-28.jpg" borderCornerRadius="120" height="164"-->
-    <!--               width="164"/>-->
-    <!--    </frame>-->
+    <frame>
+        <image src="{{photoURL}}" borderCornerRadius="120" height="164"
+               width="164"/>
+    </frame>
 
-        <frame>
-            <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacher_name}}"/>
-        </frame>
+    <frame>
+        <text gravity="center" id="pro_name" textsize="28" margin_bottom="0" text="{{teacherName}}"/>
+    </frame>
 
-        <frame>
-            <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lesson_name}}"/>
-        </frame>
+    <frame>
+        <text gravity="center" id="group" textsize="14" textcolor="gray" margin_top="0" text="{{lessonName}}"/>
+    </frame>
 
-    <!--    {{/teachers}}-->
+    {{/currentTeacher}}
 
 
     <frame layout="linear_vertical" margin_left="-1" margin_right="-1">
-        +
+
         <frame layout="linear_horizontal">
             <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/teacher_score_tab">
                 <text textsize="12" gravity="center" textcolor="#1E90FF">امتیازات</text>
@@ -39,6 +39,7 @@
     <frame padding_bottom="10"/>
 
 
+    {{#teacherFeedbacks}}
     <frame layout="linear_vertical">
 
 
@@ -46,7 +47,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#00FF00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black" text="{{score_overall}}"></text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{averageScorePersian}}/۱۰۰"></text>
                 </frame>
 
 
@@ -68,7 +69,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black" text="{{score1}}"></text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score1Persian}}/۱۰۰"></text>
                 </frame>
 
 
@@ -89,7 +90,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black" text="{{score2}}"></text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score2Persian}}/۱۰۰"></text>
                 </frame>
 
 
@@ -111,7 +112,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black" text="{{score3}}"></text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score3Persian}}/۱۰۰"></text>
                 </frame>
 
 
@@ -129,7 +130,7 @@
 
             <frame gravity="left" width="">
                 <frame background="#FF8C00" gravity="left" id="" borderCornerRadius="120">
-                    <text textsize="12" gravity="center" textcolor="black" text="{{score4}}"></text>
+                    <text textsize="12" gravity="center" textcolor="black" text="{{score4Persian}}/۱۰۰"></text>
                 </frame>
 
 
@@ -142,12 +143,14 @@
         </frame>
     </frame>
 
+    {{/teacherFeedbacks}}
+
 
     <frame padding_bottom="10"/>
 
     <frame>
-        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="update/makePoll" margin="20">ارسال بازخورد</button>
+        <button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="command/make_poll_btn" margin="20">ارسال بازخورد</button>
     </frame>
 
     <frame padding_bottom="10"/>

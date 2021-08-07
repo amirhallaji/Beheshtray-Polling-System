@@ -9,6 +9,8 @@ import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -149,6 +151,13 @@ public class BeheshtRayService extends APSService {
 
                 case "teacher_score_tab":
                     view = new TeacherScores();
+                    currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
+                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    view.setMustacheModel(currentTeacherEntity);
                     break;
 
                 case "teacher_comment_tab_best_sec":
