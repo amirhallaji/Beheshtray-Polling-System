@@ -5,6 +5,7 @@ import ir.sample.app.BeheshtRay.models.Faculty;
 import ir.sample.app.BeheshtRay.models.Feedback;
 import ir.sample.app.BeheshtRay.models.Student;
 import ir.sample.app.BeheshtRay.models.Teacher;
+import ir.sample.app.BeheshtRay.services.BeheshtRayService;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -690,6 +691,134 @@ public class DbOperation {
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+
+    public static ArrayList<Feedback> retrieveTheLeastVotedFeedbacks(int facultyId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, t.teaching_id, f.feedback_id ,(f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff LIMIT 10";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, facultyId);
+            ResultSet resultSet = pstmt.executeQuery();
+            ArrayList<Feedback> feedbacks = new ArrayList<>();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+                feedback.setUpVotes(resultSet.getInt(1));
+                feedback.setDownVotes(resultSet.getInt(2));
+                feedback.setPersianDate(resultSet.getString(3));
+                feedback.setStudentScore(resultSet.getString(4));
+                feedback.setLessonName(resultSet.getString(5));
+                feedback.setTeacherName(resultSet.getString(6));
+                feedback.setExtendedFeedback(resultSet.getString(7));
+                feedback.setTeachingId(resultSet.getInt(8));
+                feedback.setFeedbackId(resultSet.getInt(9));
+                feedbacks.add(feedback);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return feedbacks;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
+    public static ArrayList<Teacher> retrieveBestTAs(int facultyId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT t.teaching_id, teacher_name, lesson_name, photo_url, AVG(score_3) AS over_all_ta_score FROM teacher t INNER JOIN feedback f ON t.teaching_id = f.teaching_id WHERE t.faculty_id=? GROUP BY teacher_name, lesson_name,photo_url, t.teaching_id ORDER BY over_all_ta_score DESC LIMIT 10";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            pstmt.setInt(1, facultyId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teacher.setAverageScore(BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(resultSet.getDouble(5)).setScale(3, RoundingMode.HALF_UP).toString()));
+                teacher.setNumberTitle("میانگین امتیاز:");
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Teacher> retrieveBestLessons(int facultyId, Connection connection) {
+        try {
+
+            String checkSql = "SELECT t.teaching_id, teacher_name, lesson_name, photo_url, (AVG(score_1) + AVG(score_2) + AVG(score_4) + AVG(score_3))/4.0 AS over_all_average FROM teacher t INNER JOIN feedback f ON t.teaching_id = f.teaching_id WHERE t.faculty_id=? GROUP BY teacher_name, lesson_name,photo_url, t.teaching_id ORDER BY over_all_average DESC LIMIT 10";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            pstmt.setInt(1, facultyId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teacher.setAverageScore(BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(resultSet.getDouble(5)).setScale(3, RoundingMode.HALF_UP).toString()));
+                teacher.setNumberTitle("میانگین امتیاز:");
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Teacher> retrieveTheMostLeastCommentedLessons(int facultyId,boolean isMost, Connection connection) {
+        try {
+
+            String checkSql = isMost ? "SELECT t.teaching_id, teacher_name, lesson_name, photo_url, count(*) AS count FROM teacher t INNER JOIN feedback f ON t.teaching_id = f.teaching_id WHERE t.faculty_id=? AND f.extended_feedback IS NOT NULL GROUP BY teacher_name, lesson_name,photo_url, t.teaching_id ORDER BY count DESC LIMIT 10" :
+                    "SELECT t.teaching_id, teacher_name, lesson_name, photo_url, count(*) AS count FROM teacher t INNER JOIN feedback f ON t.teaching_id = f.teaching_id WHERE t.faculty_id=? AND f.extended_feedback IS NOT NULL GROUP BY teacher_name, lesson_name,photo_url, t.teaching_id ORDER BY count LIMIT 10";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            pstmt.setInt(1, facultyId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teacher.setAverageScore(BeheshtRayService.convertToEnglishDigits(resultSet.getString(5)));
+                teacher.setNumberTitle("تعداد نظرات:");
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -1858,4 +1987,7 @@ public class DbOperation {
     }
 
 
+    public static ArrayList<Teacher> retrieveThegeneralLessons(Connection connection) {
+        return null;
+    }
 }
