@@ -115,7 +115,7 @@
 
     <frame>
         <button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="update/register_new_user;update/WelcomeDialogShow" margin="20">ثبت تغییرات</button>
+                textcolor="#fff" borderCornerRadius="5" onClick="update/change_user_info" margin="20">ثبت تغییرات</button>
     </frame>
 
 

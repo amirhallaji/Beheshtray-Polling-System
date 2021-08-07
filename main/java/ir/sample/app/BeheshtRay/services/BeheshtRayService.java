@@ -255,6 +255,8 @@ public class BeheshtRayService extends APSService {
     public Response onUpdate(ViewUpdate update, String updateCommand, JSONObject pageData, String userId) {
 
         switch (updateCommand) {
+            case "change_user_info":
+
             case "register_new_user":
                 String firstName = pageData.get("first_name").toString().trim();
                 String lastName = pageData.get("last_name").toString().trim();
@@ -274,9 +276,16 @@ public class BeheshtRayService extends APSService {
                     student.setStudentFacultyName(faculty);
                     student.setStudentGender(gender);
                     student.setStudentPhotoURL(gender);
-                    student.setUserKarma("0");
-                    DbOperation.sendUserInfo(student, connection);
+                    if (updateCommand.equals("change_user_info")){
+                        DbOperation.updateUserInfo(student, connection);
+                    } else {
+                        student.setUserKarma("0");
+                        DbOperation.sendUserInfo(student, connection);
+                    }
                     current_user = student;
+                    students.set(0, current_user);
+                    currentStudentEntity.currentStudent = students;
+
                     return showHome();
                 }
 
@@ -343,7 +352,7 @@ public class BeheshtRayService extends APSService {
 //                    current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
 //                    DbOperation.sendFeedback(current_feedback, connection);
 
-                    return new SubmitFeedbackDialog();
+//                    return new SubmitFeedbackDialog();
                 }
 
             case "send_feedback_btn":

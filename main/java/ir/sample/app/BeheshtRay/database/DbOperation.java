@@ -40,6 +40,24 @@ public class DbOperation {
         }
     }
 
+    public static void updateUserInfo(Student student, Connection connection) {
+        try {
+            String checkSql = "UPDATE student SET first_name=?, last_name=?, student_id=?, faculty_id=?, gender=?, photo_url=? WHERE user_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, student.getStudentFirstName());
+            pstmt.setString(2, student.getStudentLastName());
+            pstmt.setString(3, student.getStudentId());
+            pstmt.setInt(4, student.getStudentFacultyId());
+            pstmt.setString(5, student.getStudentGender());
+            pstmt.setString(6, student.getStudentPhotoURL());
+            pstmt.setString(7, student.getUserId());
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void sendFeedback(Feedback feedback, Connection connection) {
         try {
@@ -100,8 +118,9 @@ public class DbOperation {
             pstmt.setString(1, faculty_name);
             ResultSet resultSet = pstmt.executeQuery();
             resultSet.next();
+            int res =  resultSet.getInt(1);
             pstmt.close();
-            return resultSet.getInt(1);
+            return res;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
