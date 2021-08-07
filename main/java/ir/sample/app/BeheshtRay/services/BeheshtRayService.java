@@ -9,8 +9,6 @@ import ir.sample.app.BeheshtRay.views.*;
 import org.json.simple.JSONObject;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -260,7 +258,48 @@ public class BeheshtRayService extends APSService {
         if (updateCommand.startsWith("delete_comment")) {
             int feedbackId = Integer.parseInt(updateCommand.substring(updateCommand.indexOf("+") + 1));
             DbOperation.removeFeedback(feedbackId, connection);
-        } else {
+        } else if (updateCommand.startsWith("up_vote_btn")){
+            int feedbackId = Integer.parseInt(updateCommand.substring(updateCommand.indexOf("+")));
+            Boolean result = DbOperation.retrieveVoteStatus(current_user.getUserId(), feedbackId, connection);
+
+            int newUpVoteValue;
+            int newDownVoteValue;
+
+            if (result != null){
+                if (result){
+                    newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, false,connection);
+                }else {
+                    newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, true,connection);
+                    newDownVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, false, connection);
+                }
+
+            } else {
+                newUpVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, true,connection);
+            }
+
+//            update.addChildUpdate("green_btn_"+feedbackId, "text", );
+
+        } else if (updateCommand.startsWith("down_vote_btn")){
+            int feedbackId = Integer.parseInt(updateCommand.substring(updateCommand.indexOf("+")));
+            Boolean result = DbOperation.retrieveVoteStatus(current_user.getUserId(), feedbackId, connection);
+
+            int newUpVoteValue;
+            int newDownVoteValue;
+
+            if (result != null){
+                if (result){
+                    newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
+                    newDownVoteValue = DbOperation.applyUpVoteFeedback(feedbackId, false, connection);
+                }else {
+                    newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, false,connection);
+                }
+            } else {
+                newUpVoteValue = DbOperation.applyDownVoteFeedback(feedbackId, true,connection);
+            }
+        }
+
+
+        else {
             switch (updateCommand) {
                 case "change_user_info":
 
