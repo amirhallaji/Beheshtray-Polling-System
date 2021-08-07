@@ -92,12 +92,26 @@ public class DbOperation {
             pstmt3.setInt(10, feedback.getUpVotes());
             pstmt3.setInt(11, feedback.getDownVotes());
 
-            System.out.println(feedback);
+//            System.out.println(feedback);
             pstmt3.executeUpdate();
 
             pstmt3.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public static void removeFeedback(int feedbackId, Connection connection) {
+        String checkSql = "DELETE FROM feedback WHERE feedback_id=?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = connection.prepareStatement(checkSql);
+            pstmt.setInt(1, feedbackId);
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -118,7 +132,7 @@ public class DbOperation {
             pstmt.setString(1, faculty_name);
             ResultSet resultSet = pstmt.executeQuery();
             resultSet.next();
-            int res =  resultSet.getInt(1);
+            int res = resultSet.getInt(1);
             pstmt.close();
             return res;
         } catch (SQLException throwables) {
