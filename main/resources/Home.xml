@@ -47,7 +47,7 @@
             <frame layout="linear_horizontal">
 
                 <frame gravity="left">
-                    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="update/ViewFullBestComments">
+                    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="command/view_best_comments">
                         <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
                     </frame>
 
@@ -190,9 +190,9 @@
             <frame layout="linear_horizontal">
 
                 <frame gravity="left">
-                    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">
-                        <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>
-                    </frame>
+<!--                    <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">-->
+<!--                        <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>-->
+<!--                    </frame>-->
 
 
                     <frame gravity="right" width="500">
