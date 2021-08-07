@@ -232,4 +232,24 @@ public class Feedback {
     public void setAverageScorePersian(String averageScorePersian) {
         this.averageScorePersian = averageScorePersian;
     }
+
+
+    private String upVotesPersian;
+    private String downVotesPersian;
+
+    public String getUpVotesPersian() {
+        return upVotesPersian;
+    }
+
+    public void setUpVotesPersian(String upVotesPersian) {
+        this.upVotesPersian = upVotesPersian;
+    }
+
+    public String getDownVotesPersian() {
+        return downVotesPersian;
+    }
+
+    public void setDownVotesPersian(String downVotesPersian) {
+        this.downVotesPersian = downVotesPersian;
+    }
 }
