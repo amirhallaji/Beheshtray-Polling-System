@@ -25,7 +25,7 @@
         <frame layout="linear_horizontal" margin="0" gravity="top">
 
             {{#teachers}}
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacherName}}" height="128">
+            <frame layout="linear_vertical" background="#FFFAFA" onclick="command/view_all_lessons_clk+{{teacherName}}%{{facultyId}}" height="128">
 
                 <frame width="64" height="64">
                     <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"></image>
