@@ -287,6 +287,12 @@ public class BeheshtRayService extends APSService {
             }
 
             update.addChildUpdate("green_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newUpVoteValue)));
+
+//            System.out.println(update.getData());
+            String newKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection).get(0).getUserKarma();
+            update.addChildUpdate("user_karma", "text", newKarma);
+
+
             return update;
 
         } else if (updateCommand.startsWith("down_vote_btn")){
@@ -316,6 +322,12 @@ public class BeheshtRayService extends APSService {
             }
 
             update.addChildUpdate("red_btn_"+feedbackId, "text", BeheshtRayService.convertToEnglishDigits(String.valueOf(newDownVoteValue)));
+
+//            System.out.println(update.getData());
+            String newKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection).get(0).getUserKarma();
+            update.addChildUpdate("user_karma", "text", newKarma);
+
+
             return update;
 
         }
