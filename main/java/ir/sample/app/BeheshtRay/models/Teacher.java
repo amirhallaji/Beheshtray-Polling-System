@@ -78,4 +78,23 @@ public class Teacher {
 	public void setTeachingId(int teachingId) {
 		this.teachingId = teachingId;
 	}
+
+	private String averageScore;
+	private String numberTitle;
+
+	public String getAverageScore() {
+		return averageScore;
+	}
+
+	public String getNumberTitle() {
+		return numberTitle;
+	}
+
+	public void setAverageScore(String averageScore) {
+		this.averageScore = averageScore;
+	}
+
+	public void setNumberTitle(String numberTitle) {
+		this.numberTitle = numberTitle;
+	}
 }

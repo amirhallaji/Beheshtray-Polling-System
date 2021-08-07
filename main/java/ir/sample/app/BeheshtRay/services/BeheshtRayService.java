@@ -230,26 +230,44 @@ public class BeheshtRayService extends APSService {
 
                 case "view_best_TAs":
                     view = new FullListWithNumber();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = DbOperation.retrieveBestTAs(current_user.getStudentFacultyId(),connection);
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 case "view_popular_lessons":
                     view = new FullListWithNumber();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = DbOperation.retrieveBestLessons(current_user.getStudentFacultyId(),connection);
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 case "view_most_commented":
                     view = new FullListWithNumber();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = DbOperation.retrieveTheMostLeastCommentedLessons(current_user.getStudentFacultyId(), true,connection);
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 case "view_least_commented":
                     view = new FullListWithNumber();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = DbOperation.retrieveTheMostLeastCommentedLessons(current_user.getStudentFacultyId(), false,connection);
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 case "view_general_lessons":
                     view = new FullList();
+                    searchPageEntity = new SearchPageEntity();
+                    searchPageEntity.teachers_list = DbOperation.retrieveThegeneralLessons(connection);
+                    view.setMustacheModel(searchPageEntity);
                     break;
 
                 case "view_worst_comments":
                     view = new FullCommentListView();
+                    homePageEntity = new HomePageEntity();
+                    homePageEntity.feedbacks = DbOperation.retrieveTheLeastVotedFeedbacks(current_user.getStudentFacultyId(), connection);
+                    view.setMustacheModel(homePageEntity);
                     break;
 
 
