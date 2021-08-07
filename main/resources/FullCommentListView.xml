@@ -38,15 +38,15 @@
                         <frame>
 
                             <frame>
-                                <button gravity="center" onClick="update/upvote_comment_home+{{feedbackId}}" borderCornerRadius="100" background="#228B22"
-                                        width="30" textcolor="white" textsize="14" height="40" text="{{upVotesPersian}}" >
+                                <button id="green_btn_{{feedbackId}}" gravity="center" onClick="update/up_vote_btn+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"
+                                        textcolor="white" textsize="14" height="40" text="{{upVotesPersian}}">
                                 </button>
                             </frame>
 
 
                             <frame>
-                                <button gravity="center" onClick="update/downvote_comment_home+{{feedbackId}}" borderCornerRadius="100" background="#FF0000"
-                                        width="30" textcolor="white" textsize="14" height="40" text="{{downVotesPersian}}">
+                                <button id="red_btn_{{feedbackId}}" gravity="center" onClick="update/down_vote_btn+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"
+                                        textcolor="white" textsize="14" height="40" text="{{downVotesPersian}}">
                                 </button>
                             </frame>
 
