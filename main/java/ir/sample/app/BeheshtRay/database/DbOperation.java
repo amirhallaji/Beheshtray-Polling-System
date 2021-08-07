@@ -252,7 +252,7 @@ public class DbOperation {
         try {
             String postfix = isLimited ? " limit 3" : " limit 20";
 
-            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, t.teaching_id, (f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC" + postfix;
+            String checkSql = "SELECT f.up_votes, f.down_votes, f.persian_date, f.student_score, t.lesson_name, t.teacher_name,f.extended_feedback, t.teaching_id, f.feedback_id ,(f.up_votes-f.down_votes) AS diff FROM feedback f INNER JOIN teacher t ON t.teaching_id=f.teaching_id WHERE t.faculty_id=? AND extended_feedback IS NOT NULL ORDER BY diff DESC" + postfix;
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, facultyId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -267,6 +267,7 @@ public class DbOperation {
                 feedback.setTeacherName(resultSet.getString(6));
                 feedback.setExtendedFeedback(resultSet.getString(7));
                 feedback.setTeachingId(resultSet.getInt(8));
+                feedback.setFeedbackId(resultSet.getInt(9));
                 feedbacks.add(feedback);
             }
 
@@ -588,7 +589,7 @@ public class DbOperation {
                 teacher.setTeacherName(resultSet.getString(2));
                 teacher.setLessonName(resultSet.getString(3));
                 teacher.setPhotoURL(resultSet.getString(4));
-                System.out.println(teacher);
+//                System.out.println(teacher);
                 teachers.add(teacher);
             }
 
@@ -606,8 +607,8 @@ public class DbOperation {
 
         try {
 
-            System.out.println(userId);
-            System.out.println(feedbackId);
+//            System.out.println(userId);
+//            System.out.println(feedbackId);
 
             String checkSql = "SELECT vote_status FROM vote WHERE user_id=? AND feedback_id=?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
@@ -629,7 +630,7 @@ public class DbOperation {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
 
