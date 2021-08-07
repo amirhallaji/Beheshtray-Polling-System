@@ -7,9 +7,9 @@
         <frame layout="linear_horizontal">
 
             <frame gravity="left">
-<!--                <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">-->
-<!--                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>-->
-<!--                </frame>-->
+                <!--                <frame textcolor="#fff" background="#FFFAFA" gravity="center" id="" onClick="">-->
+                <!--                    <text textsize="12" gravity="center" textcolor="#1E90FF">مشاهده همه</text>-->
+                <!--                </frame>-->
 
 
                 <frame gravity="right" width="500">
@@ -25,13 +25,14 @@
         <frame layout="linear_horizontal" margin="0" gravity="top">
 
             {{#teachers1}}
-            <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacher_name}}" height="128">
+            <frame layout="linear_vertical" background="#FFFAFA"
+                   onclick="command/view_all_lessons_clk+{{teacherName}}%{{facultyId}}" height="128">
 
                 <frame width="64" height="64">
-                    <image src="{{teacher_photo}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                    <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"/>
                 </frame>
                 <frame gravity="center">
-                    <text textsize="10" gravity="center" text="{{teacher_name}}"/>
+                    <text textsize="10" gravity="center" text="{{teacherName}}"/>
 
                 </frame>
 
@@ -44,72 +45,73 @@
 
     <frame layout="linear_vertical" margin="0">
 
-    <frame layout="linear_horizontal" margin="0" gravity="top">
+        <frame layout="linear_horizontal" margin="0" gravity="top">
 
-        {{#teachers2}}
-        <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacher_name}}" height="128">
+            {{#teachers2}}
+            <frame layout="linear_vertical" background="#FFFAFA"
+                   onclick="command/view_all_lessons_clk+{{teacherName}}%{{facultyId}}" height="128">
 
-            <frame width="64" height="64">
-                <image src="{{teacher_photo}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                <frame width="64" height="64">
+                    <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                </frame>
+                <frame gravity="center">
+                    <text textsize="10" gravity="center" text="{{teacherName}}"/>
+
+                </frame>
+
             </frame>
-            <frame gravity="center">
-                <text textsize="10" gravity="center" text="{{teacher_name}}"/>
+            {{/teachers2}}
 
-            </frame>
 
         </frame>
-        {{/teachers2}}
-
-
-    </frame>
     </frame>
 
 
     <frame layout="linear_vertical" margin="0">
 
 
-    <frame layout="linear_horizontal" margin="0" gravity="top">
+        <frame layout="linear_horizontal" margin="0" gravity="top">
 
-        {{#teachers3}}
-        <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacher_name}}" height="128">
+            {{#teachers3}}
+            <frame layout="linear_vertical" background="#FFFAFA"
+                   onclick="command/view_all_lessons_clk+{{teacherName}}%{{facultyId}}" height="128">
 
-            <frame width="64" height="64">
-                <image src="{{teacher_photo}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                <frame width="64" height="64">
+                    <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"></image>
+                </frame>
+                <frame gravity="center">
+                    <text textsize="10" gravity="center" text="{{teacherName}}"/>
+
+                </frame>
+
             </frame>
-            <frame gravity="center">
-                <text textsize="10" gravity="center" text="{{teacher_name}}"/>
+            {{/teachers3}}
 
-            </frame>
 
         </frame>
-        {{/teachers3}}
-
-
-    </frame>
     </frame>
 
     <frame layout="linear_vertical" margin="0">
 
 
+        <frame layout="linear_horizontal" margin="0" gravity="top">
 
+            {{#teachers4}}
+            <frame layout="linear_vertical" background="#FFFAFA"
+                   onclick="command/view_all_lessons_clk+{{teacherName}}%{{facultyId}}" height="128">
 
-    <frame layout="linear_horizontal" margin="0" gravity="top">
+                <frame width="64" height="64">
+                    <image src="{{photoURL}}" borderCornerRadius="120" scaletype="center_crop"/>
+                </frame>
 
-        {{#teachers4}}
-        <frame layout="linear_vertical" background="#FFFAFA" onclick="update/teacherViewAllLessons+{{teacher_name}}" height="128">
+                <frame gravity="center">
+                    <text textsize="10" gravity="center" text="{{teacherName}}"/>
+                </frame>
 
-            <frame width="64" height="64">
-                <image src="{{teacher_photo}}" borderCornerRadius="120" scaletype="center_crop"></image>
             </frame>
-            <frame gravity="center">
-                <text textsize="10" gravity="center" text="{{teacher_name}}"/>
+            {{/teachers4}}
 
-            </frame>
 
         </frame>
-        {{/teachers4}}
-
-
-    </frame>
     </frame>
 </page>

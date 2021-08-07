@@ -61,7 +61,7 @@ public class BeheshtRayService extends APSService {
 
             searchPageEntity.teachers_list = DbOperation.retrieveAllLessonsByTeacherName(teacherName, facultyId, connection);
             view.setMustacheModel(searchPageEntity);
-        } else if(command.startsWith("comment_click_clk")){
+        } else if (command.startsWith("comment_click_clk")) {
             String teachingId = command.substring(command.indexOf("+") + 1);
 
             view = new TeacherComment();
@@ -70,10 +70,7 @@ public class BeheshtRayService extends APSService {
             currentTeacherEntity.otherLessons = DbOperation.retrieveOtherLessonsByTeacherInfo(current_teacher.getLessonName(), current_teacher.getTeacherName(), current_teacher.getFacultyId(), connection);
             currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), true, connection);
             view.setMustacheModel(currentTeacherEntity);
-        }
-
-
-        else {
+        } else {
 
             switch (command) {
 
@@ -164,7 +161,7 @@ public class BeheshtRayService extends APSService {
 
                 case "teacher_comment_tab_last_sec":
 
-                case "teacher_comment_tab" :
+                case "teacher_comment_tab":
                     view = ShowTeacherFeedback(true);
                     break;
 
@@ -172,7 +169,7 @@ public class BeheshtRayService extends APSService {
                     view = new TeacherScores();
                     ArrayList<Feedback> feedbacks;
                     feedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
-                    if (feedbacks == null){
+                    if (feedbacks == null) {
                         feedbacks = new ArrayList<>();
                         Feedback feedback = new Feedback();
                         feedback.setScore1Persian("بدون امتیاز");
@@ -182,7 +179,7 @@ public class BeheshtRayService extends APSService {
                         feedback.setAverageScorePersian("بدون امتیاز");
                         feedbacks.add(feedback);
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
-                    }else {
+                    } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                         Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
                         Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
@@ -199,8 +196,34 @@ public class BeheshtRayService extends APSService {
                     view = ShowTeacherFeedback(false);
                     break;
 
+                case "view_teacher_circular_btn":
+                    view = new CircularTeacherList();
+                    CircularEntity circularEntity = new CircularEntity();
+                    ArrayList<Teacher> teachers = DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), false, connection);
 
+                    if (teachers != null) {
+                        int teachers_size = teachers.size();
+                        if (teachers_size <= 5) {
+                            circularEntity.teachers1 = new ArrayList<>(Objects.requireNonNull(teachers).subList(0, teachers_size));
+                        } else if (teachers_size <= 10) {
+                            circularEntity.teachers1 = new ArrayList<>(Objects.requireNonNull(teachers).subList(0, 5));
+                            circularEntity.teachers2 = new ArrayList<>(Objects.requireNonNull(teachers).subList(5, teachers_size));
+                        } else if (teachers_size <= 15) {
+                            circularEntity.teachers1 = new ArrayList<>(Objects.requireNonNull(teachers).subList(0, 5));
+                            circularEntity.teachers2 = new ArrayList<>(Objects.requireNonNull(teachers).subList(5, 10));
+                            circularEntity.teachers3 = new ArrayList<>(Objects.requireNonNull(teachers).subList(10, teachers_size));
+                        } else {
+                            circularEntity.teachers1 = new ArrayList<>(Objects.requireNonNull(teachers).subList(0, 5));
+                            circularEntity.teachers2 = new ArrayList<>(Objects.requireNonNull(teachers).subList(5, 10));
+                            circularEntity.teachers3 = new ArrayList<>(Objects.requireNonNull(teachers).subList(10, 15));
+                            circularEntity.teachers4 = new ArrayList<>(Objects.requireNonNull(teachers).subList(15, teachers_size));
+                        }
 
+                    }
+
+                    view.setMustacheModel(circularEntity);
+
+                    break;
 
 
                 default:
@@ -324,7 +347,7 @@ public class BeheshtRayService extends APSService {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
                 DbOperation.sendFeedback(current_feedback, connection);
-                return  ShowTeacherFeedback(true);
+                return ShowTeacherFeedback(true);
 
 
             case "search_btn":
@@ -334,7 +357,6 @@ public class BeheshtRayService extends APSService {
                 searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveSearchedTeachersList(searchInputText, current_user.getUserId(), connection)));
                 view.setMustacheModel(searchPageEntity);
                 return view;
-
 
 
 //
@@ -1081,8 +1103,8 @@ public class BeheshtRayService extends APSService {
         return view;
     }
 
-    public View ShowTeacherFeedback(boolean isSortedByDate){
-        View view = isSortedByDate? new TeacherComment() : new TeacherComment2();
+    public View ShowTeacherFeedback(boolean isSortedByDate) {
+        View view = isSortedByDate ? new TeacherComment() : new TeacherComment2();
         currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), isSortedByDate, connection);
         view.setMustacheModel(currentTeacherEntity);
         return view;
