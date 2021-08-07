@@ -42,13 +42,13 @@
     <frame layout="linear_vertical" width="200" gravity="left">
         <frame layout="linear_horizontal" gravity="left">
             <frame>
-                <button gravity="center" onClick="update/last_comments_teacher" borderCornerRadius="100"
+                <button gravity="center" onClick="command/teacher_comment_tab_last_sec" borderCornerRadius="100"
                         background="#87CEEB" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">آخرین
                 </button>
             </frame>
             <frame>
-                <button gravity="center" onClick="update/best_comments_teacher" borderCornerRadius="100"
+                <button gravity="center" onClick="command/teacher_comment_tab_best_sec" borderCornerRadius="100"
                         background="#1E90FF" width="100"
                         textcolor="white" padding="40" textsize="12" height="40">مفیدترین
                 </button>
@@ -110,9 +110,8 @@
     <frame padding_bottom="10"/>
 
     <frame>
-        <button height="50" width="100" padding="35" background="#225ab4" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="update/makePoll" margin="20">ارسال بازخورد
-        </button>
+        <button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
+                textcolor="#fff" borderCornerRadius="5" onClick="command/make_poll_btn" margin="20">ارسال بازخورد</button>
     </frame>
 
     <frame padding_bottom="10"/>

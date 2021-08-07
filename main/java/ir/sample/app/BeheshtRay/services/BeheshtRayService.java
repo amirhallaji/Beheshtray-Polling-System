@@ -141,6 +141,8 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(currentTeacherEntity);
                     break;
 
+                case "teacher_comment_tab_last_sec":
+
                 case "teacher_comment_tab" :
                     view = ShowTeacherFeedback(true);
                     break;
@@ -148,6 +150,11 @@ public class BeheshtRayService extends APSService {
                 case "teacher_score_tab":
                     view = new TeacherScores();
                     break;
+
+                case "teacher_comment_tab_best_sec":
+                    view = ShowTeacherFeedback(false);
+                    break;
+
 
 
                 default:
@@ -272,6 +279,7 @@ public class BeheshtRayService extends APSService {
                 current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
                 DbOperation.sendFeedback(current_feedback, connection);
                 return  ShowTeacherFeedback(true);
+
 
 
 //
@@ -1019,7 +1027,7 @@ public class BeheshtRayService extends APSService {
     }
 
     public View ShowTeacherFeedback(boolean isSortedByDate){
-        View view = new TeacherComment();
+        View view = isSortedByDate? new TeacherComment() : new TeacherComment2();
         currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), isSortedByDate, connection);
         view.setMustacheModel(currentTeacherEntity);
         return view;
