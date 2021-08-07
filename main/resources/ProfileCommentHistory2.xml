@@ -80,7 +80,6 @@
 
 
                 <frame>
-                    <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{studentScore}}"/>
 
                     <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{persianDate}}"/>
 
@@ -106,7 +105,7 @@
 
             <frame layout="linear_horizontal">
                 <frame gravity="right">
-                    <text textalignment="right" textsize="12" gravity="center" text="میانگین امتیاز داده شده توسط شما:{{averageScore}}">
+                    <text textalignment="right" textsize="12" gravity="center" text="میانگین امتیاز داده شده توسط شما:{{averageScorePersian}}">
 
                     </text>
                 </frame>

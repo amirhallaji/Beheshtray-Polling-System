@@ -1,5 +1,7 @@
 package ir.sample.app.BeheshtRay.models;
 
+import ir.sample.app.BeheshtRay.services.BeheshtRayService;
+
 public class Student {
 
 	private String studentFirstName;
@@ -44,7 +46,7 @@ public class Student {
 
 
 	public String getStudentId() {
-		return studentId;
+		return BeheshtRayService.convertToEnglishDigits(studentId);
 	}
 
 	public int getStudentFacultyId() {
@@ -64,7 +66,7 @@ public class Student {
 	}
 
 	public String getUserKarma() {
-		return userKarma;
+		return BeheshtRayService.convertToEnglishDigits(userKarma);
 	}
 
 	public void setStudentFirstName(String studentFirstName) {

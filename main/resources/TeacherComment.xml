@@ -71,14 +71,14 @@
 
                 <frame>
                     <button gravity="center" onClick="update/upvote_comment_teacher+{{feedbackId}}" borderCornerRadius="100" background="#228B22" width="30"
-                            textcolor="white" textsize="14" height="40" text="{{upVotes}}">
+                            textcolor="white" textsize="14" height="40" text="{{upVotesPersian}}">
                     </button>
                 </frame>
 
 
                 <frame>
                     <button gravity="center" onClick="update/downvote_comment_teacher+{{feedbackId}}" borderCornerRadius="100" background="#FF0000" width="30"
-                            textcolor="white" textsize="14" height="40" text="{{downVotes}}">
+                            textcolor="white" textsize="14" height="40" text="{{downVotesPersian}}">
                     </button>
                 </frame>
 
@@ -86,7 +86,7 @@
 
 
             <frame>
-                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{studentScore}}"/>
+                <text textalignment="right" gravity="right" width="60" textsize="12" text="نمره دانشجو:{{studentScorePersian}}"/>
 
                 <text textalignment="right" gravity="right" width="60" textsize="12" text="تاریخ:{{persianDate}}"/>
 
