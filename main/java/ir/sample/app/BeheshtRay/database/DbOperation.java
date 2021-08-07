@@ -451,6 +451,89 @@ public class DbOperation {
     }
 
 
+    public static ArrayList<Teacher> retrieveSearchedTeachersList(String searchText, String userId, Connection connection) {
+
+        try {
+
+            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, teacher.photo_url FROM teacher INNER JOIN student ON student.faculty_id = teacher.faculty_id WHERE teacher_name LIKE ? OR lesson_name LIKE ? OR email iLIKE ? AND student.user_id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+            searchText = "%" + searchText + "%";
+            pstmt.setString(1, searchText);
+            pstmt.setString(2, searchText);
+            pstmt.setString(3, searchText);
+            pstmt.setString(4, userId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            ArrayList<Teacher> teachers = new ArrayList<>();
+            while (resultSet.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTeachingId(resultSet.getInt(1));
+                teacher.setTeacherName(resultSet.getString(2));
+                teacher.setLessonName(resultSet.getString(3));
+                teacher.setPhotoURL(resultSet.getString(4));
+                teachers.add(teacher);
+            }
+
+            pstmt.close();
+            resultSet.close();
+
+            return teachers;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

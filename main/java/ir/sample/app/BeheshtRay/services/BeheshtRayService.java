@@ -151,18 +151,35 @@ public class BeheshtRayService extends APSService {
 
                 case "teacher_score_tab":
                     view = new TeacherScores();
-                    currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
-                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
-                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
-                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
-                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
-                    Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    ArrayList<Feedback> feedbacks;
+                    feedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
+                    if (feedbacks == null){
+                        feedbacks = new ArrayList<>();
+                        Feedback feedback = new Feedback();
+                        feedback.setScore1Persian("بدون امتیاز");
+                        feedback.setScore2Persian("بدون امتیاز");
+                        feedback.setScore3Persian("بدون امتیاز");
+                        feedback.setScore4Persian("بدون امتیاز");
+                        feedback.setAverageScorePersian("بدون امتیاز");
+                        feedbacks.add(feedback);
+                        currentTeacherEntity.teacherFeedbacks = feedbacks;
+                    }else {
+                        currentTeacherEntity.teacherFeedbacks = feedbacks;
+                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore1Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore1()).setScale(2, RoundingMode.HALF_UP).toString()));
+                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore2Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore2()).setScale(2, RoundingMode.HALF_UP).toString()));
+                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore3Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore3()).setScale(2, RoundingMode.HALF_UP).toString()));
+                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setScore4Persian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getScore4()).setScale(2, RoundingMode.HALF_UP).toString()));
+                        Objects.requireNonNull(currentTeacherEntity.teacherFeedbacks).get(0).setAverageScorePersian(convertToEnglishDigits(BigDecimal.valueOf(currentTeacherEntity.teacherFeedbacks.get(0).getAverageScore()).setScale(2, RoundingMode.HALF_UP).toString()));
+                    }
                     view.setMustacheModel(currentTeacherEntity);
+
+
                     break;
 
                 case "teacher_comment_tab_best_sec":
                     view = ShowTeacherFeedback(false);
                     break;
+
 
 
 
@@ -288,6 +305,15 @@ public class BeheshtRayService extends APSService {
                 current_feedback.setPersianDate(convertToEnglishDigits(dtf.format(PersianDate.now())));
                 DbOperation.sendFeedback(current_feedback, connection);
                 return  ShowTeacherFeedback(true);
+
+
+            case "search_btn":
+                String searchInputText = pageData.get("search_input_text").toString().trim();
+                View view = new SearchResults();
+                SearchPageEntity searchPageEntity = new SearchPageEntity();
+                searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveSearchedTeachersList(searchInputText, current_user.getUserId(), connection)));
+                view.setMustacheModel(searchPageEntity);
+                return view;
 
 
 
