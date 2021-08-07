@@ -555,6 +555,120 @@ public class DbOperation {
     }
 
 
+    public static Boolean retrieveVoteStatus(String userId, int feedbackId , Connection connection) {
+
+        try {
+            String checkSql = "SELECT vote_status FROM vote WHERE user_id=? AND feedback_id=?";
+            PreparedStatement pstmt = connection.prepareStatement(checkSql);
+
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, feedbackId);
+
+            ResultSet resultSet = pstmt.executeQuery();
+
+            boolean result = resultSet.getBoolean(1);
+
+            resultSet.next();
+
+
+            pstmt.close();
+            resultSet.close();
+
+            return result;
+
+
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+
+
+    public static int applyUpVoteFeedback(int feedbackId,boolean isIncremental, Connection connection) {
+        try {
+            String checkSql1 = isIncremental ? "UPDATE feedback SET up_votes = up_votes + 1 WHERE feedback_id=?" : "UPDATE feedback SET up_votes = up_votes - 1 WHERE feedback_id=?";
+            PreparedStatement pstmt1 = connection.prepareStatement(checkSql1);
+            pstmt1.setInt(1, feedbackId);
+            pstmt1.executeUpdate();
+            pstmt1.close();
+
+
+            String checkSql2 = "SELECT up_votes FROM feedback  WHERE feedback_id=?";
+            PreparedStatement pstmt2 = connection.prepareStatement(checkSql2);
+            pstmt2.setInt(1, feedbackId);
+            ResultSet resultSet = pstmt2.executeQuery();
+            resultSet.next();
+
+            int result = resultSet.getInt(1);
+
+            resultSet.close();
+            pstmt2.close();
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    public static int applyDownVoteFeedback(int feedbackId,boolean isIncremental, Connection connection) {
+        try {
+            String checkSql1 = isIncremental ? "UPDATE feedback SET down_votes = down_votes + 1 WHERE feedback_id=?" : "UPDATE feedback SET down_votes = down_votes - 1 WHERE feedback_id=?";
+            PreparedStatement pstmt1 = connection.prepareStatement(checkSql1);
+            pstmt1.setInt(1, feedbackId);
+            pstmt1.executeUpdate();
+            pstmt1.close();
+
+
+            String checkSql2 = "SELECT down_votes FROM feedback  WHERE feedback_id=?";
+            PreparedStatement pstmt2 = connection.prepareStatement(checkSql2);
+            pstmt2.setInt(1, feedbackId);
+            ResultSet resultSet = pstmt2.executeQuery();
+            resultSet.next();
+
+            int result = resultSet.getInt(1);
+
+            resultSet.close();
+            pstmt2.close();
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
