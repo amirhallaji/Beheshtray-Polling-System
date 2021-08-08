@@ -854,8 +854,8 @@ public class DbOperation {
         PreparedStatement pstmt = null;
 
         try {
-            System.out.println(userId);
-            System.out.println(teachingId);
+//            System.out.println(userId);
+//            System.out.println(teachingId);
             String checkSql = "SELECT feedback_id from feedback f WHERE f.user_id = ? AND f.teaching_id = ?";
             pstmt = connection.prepareStatement(checkSql);
             pstmt.setString(1, userId);
@@ -865,7 +865,7 @@ public class DbOperation {
             resultSet.getInt(1);
             resultSet.close();
             pstmt.close();
-            System.out.println("here");
+//            System.out.println("here");
             return true;
 
         } catch (SQLException throwables) {
