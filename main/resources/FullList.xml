@@ -45,6 +45,10 @@
         </frame>
         {{/teachers_list}}
 
+        <frame gravity="center">
+            <text textsize="16" textcolor="gray" gravity="center" text="{{number}} مورد"/>
+        </frame>
+
 
     </frame>
 

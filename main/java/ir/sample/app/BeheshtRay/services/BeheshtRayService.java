@@ -58,15 +58,20 @@ public class BeheshtRayService extends APSService {
             SearchPageEntity searchPageEntity = new SearchPageEntity();
 
             searchPageEntity.teachers_list = DbOperation.retrieveAllLessonsByTeacherName(teacherName, facultyId, connection);
+            searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
+
             view.setMustacheModel(searchPageEntity);
         } else if (command.startsWith("comment_click_clk")) {
             String teachingId = command.substring(command.indexOf("+") + 1);
 
             view = new TeacherComment();
             currentTeacherEntity.currentTeacher = DbOperation.retrieveTeacherInfoByTeachingId(Integer.parseInt(teachingId), connection);
+
             current_teacher = Objects.requireNonNull(currentTeacherEntity.currentTeacher).get(0);
             currentTeacherEntity.otherLessons = DbOperation.retrieveOtherLessonsByTeacherInfo(current_teacher.getLessonName(), current_teacher.getTeacherName(), current_teacher.getFacultyId(), connection);
             currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), true, connection);
+            currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks != null ? currentTeacherEntity.teacherFeedbacks.size() : 0));
+
             view.setMustacheModel(currentTeacherEntity);
         } else if (command.startsWith("delete_comment")) {
             int feedbackId = Integer.parseInt(command.substring(command.indexOf("+") + 1));
@@ -119,6 +124,7 @@ public class BeheshtRayService extends APSService {
                     FeedbackEntity feedbackEntity = new FeedbackEntity();
                     feedbackEntity.feedbacks = DbOperation.retrieveMyFeedbacks(current_user.getUserId(), true, connection);
                     feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
+                    feedbackEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(feedbackEntity.feedbacks.size()));
                     view.setMustacheModel(feedbackEntity);
                     break;
 
@@ -127,6 +133,7 @@ public class BeheshtRayService extends APSService {
                     feedbackEntity = new FeedbackEntity();
                     feedbackEntity.feedbacks = DbOperation.retrieveMyFeedbacks(current_user.getUserId(), false, connection);
                     feedbackEntity.studentKarma = DbOperation.retrieveMyKarma(current_user.getUserId(), connection);
+                    feedbackEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(feedbackEntity.feedbacks.size()));
                     view.setMustacheModel(feedbackEntity);
                     break;
 
@@ -147,6 +154,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullList();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveTeachersList(current_user.getUserId(), false, connection)));
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list.size()));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -183,6 +191,7 @@ public class BeheshtRayService extends APSService {
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                     }
+                    currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks.size()));
                     view.setMustacheModel(currentTeacherEntity);
 
 
@@ -196,6 +205,8 @@ public class BeheshtRayService extends APSService {
                     view = new CircularTeacherList();
                     CircularEntity circularEntity = new CircularEntity();
                     ArrayList<Teacher> teachers = DbOperation.retrieveTheMostFamousTeachers(current_user.getStudentFacultyId(), false, connection);
+                    circularEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(teachers != null ? teachers.size() : 0));
+
 
                     if (teachers != null) {
                         int teachers_size = teachers.size();
@@ -225,6 +236,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullCommentListView();
                     HomePageEntity homePageEntity = new HomePageEntity();
                     homePageEntity.feedbacks = DbOperation.retrieveTheMostVotedFeedbacks(current_user.getStudentFacultyId(), false, connection);
+                    homePageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(homePageEntity.feedbacks != null ? homePageEntity.feedbacks.size() : 0));
                     view.setMustacheModel(homePageEntity);
                     break;
 
@@ -232,6 +244,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullListWithNumber();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = DbOperation.retrieveBestTAs(current_user.getStudentFacultyId(),connection);
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -239,6 +252,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullListWithNumber();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = DbOperation.retrieveBestLessons(current_user.getStudentFacultyId(),connection);
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -246,6 +260,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullListWithNumber();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = DbOperation.retrieveTheMostLeastCommentedLessons(current_user.getStudentFacultyId(), true,connection);
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -253,6 +268,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullListWithNumber();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = DbOperation.retrieveTheMostLeastCommentedLessons(current_user.getStudentFacultyId(), false,connection);
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -260,6 +276,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullList();
                     searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = DbOperation.retrieveTheGeneralLessons(connection);
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list != null ? searchPageEntity.teachers_list.size() : 0));
                     view.setMustacheModel(searchPageEntity);
                     break;
 
@@ -267,6 +284,7 @@ public class BeheshtRayService extends APSService {
                     view = new FullCommentListView();
                     homePageEntity = new HomePageEntity();
                     homePageEntity.feedbacks = DbOperation.retrieveTheLeastVotedFeedbacks(current_user.getStudentFacultyId(), connection);
+                    homePageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(homePageEntity.feedbacks != null ? homePageEntity.feedbacks.size() : 0));
                     view.setMustacheModel(homePageEntity);
                     break;
 
@@ -476,6 +494,7 @@ public class BeheshtRayService extends APSService {
                         ArrayList<Feedback> feedbacks;
                         feedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
+                        currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks != null ? currentTeacherEntity.teacherFeedbacks.size() : 0));
                         view.setMustacheModel(currentTeacherEntity);
                         return view;
                     }
@@ -488,6 +507,7 @@ public class BeheshtRayService extends APSService {
                     View view = new SearchResults();
                     SearchPageEntity searchPageEntity = new SearchPageEntity();
                     searchPageEntity.teachers_list = new ArrayList<>(Objects.requireNonNull(DbOperation.retrieveSearchedTeachersList(searchInputText, current_user.getUserId(), connection)));
+                    searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list.size()));
                     view.setMustacheModel(searchPageEntity);
                     return view;
 
@@ -1240,6 +1260,7 @@ public class BeheshtRayService extends APSService {
     public View ShowTeacherFeedback(boolean isSortedByDate) {
         View view = isSortedByDate ? new TeacherComment() : new TeacherComment2();
         currentTeacherEntity.teacherFeedbacks = DbOperation.retrieveFeedbackByTeachingId(current_teacher.getTeachingId(), isSortedByDate, connection);
+        currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks != null ? currentTeacherEntity.teacherFeedbacks.size() : 0));
         view.setMustacheModel(currentTeacherEntity);
         return view;
     }

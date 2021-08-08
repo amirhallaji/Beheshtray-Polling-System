@@ -542,7 +542,7 @@ public class DbOperation {
 
         try {
 
-            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, teacher.photo_url FROM teacher INNER JOIN student ON student.faculty_id = teacher.faculty_id WHERE teacher_name LIKE ? OR lesson_name LIKE ? OR email iLIKE ? AND student.user_id = ?";
+            String checkSql = "SELECT teaching_id, teacher_name, lesson_name, teacher.photo_url FROM teacher INNER JOIN student ON student.faculty_id = teacher.faculty_id WHERE (teacher_name LIKE ? OR lesson_name LIKE ? OR email iLIKE ?) AND student.user_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             searchText = "%" + searchText + "%";
             pstmt.setString(1, searchText);
