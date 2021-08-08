@@ -181,18 +181,19 @@ public class BeheshtRayService extends APSService {
                     if (feedbacks == null) {
                         feedbacks = new ArrayList<>();
                         Feedback feedback = new Feedback();
-                        feedback.setScore1Persian("بدون امتیاز");
-                        feedback.setScore2Persian("بدون امتیاز");
-                        feedback.setScore3Persian("بدون امتیاز");
-                        feedback.setScore4Persian("بدون امتیاز");
-                        feedback.setAverageScorePersian("بدون امتیاز");
+                        feedback.setScore1Persian("-");
+                        feedback.setScore2Persian("-");
+                        feedback.setScore3Persian("-");
+                        feedback.setScore4Persian("-");
+                        feedback.setAverageScorePersian("-");
+                        currentTeacherEntity.number = "۰";
                         feedbacks.add(feedback);
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
-                        System.out.println("here");
+//                        System.out.println("here");
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
+                        currentTeacherEntity.number = currentTeacherEntity.teacherFeedbacks.get(0).getNumberOfParticipants();
                     }
-                    currentTeacherEntity.number = currentTeacherEntity.teacherFeedbacks.get(0).getNumberOfParticipants();
                     view.setMustacheModel(currentTeacherEntity);
 
 

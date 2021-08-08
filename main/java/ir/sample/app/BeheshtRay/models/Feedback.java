@@ -25,7 +25,6 @@ public class Feedback {
     private int feedbackId;
 
 
-
     public Feedback(int teachingId, String userId, double score1, double score2, double score3, double score4, String studentScore, String extendedFeedback, String persianDate) {
         this.teachingId = teachingId;
         this.userId = userId;
@@ -199,6 +198,10 @@ public class Feedback {
     private String averageScorePersian;
 
     public String getScore1Persian() {
+        if (score1Persian != null) {
+            if (score1Persian.equals("-"))
+                return "-";
+        }
         return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score1).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -207,6 +210,10 @@ public class Feedback {
     }
 
     public String getScore2Persian() {
+        if (score2Persian != null) {
+            if (score2Persian.equals("-"))
+                return "-";
+        }
         return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score2).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -215,6 +222,10 @@ public class Feedback {
     }
 
     public String getScore3Persian() {
+        if (score3Persian != null) {
+            if (score3Persian.equals("-"))
+                return "-";
+        }
         return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score3).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -223,6 +234,10 @@ public class Feedback {
     }
 
     public String getScore4Persian() {
+        if (score4Persian != null) {
+            if (score4Persian.equals("-"))
+                return "-";
+        }
         return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(score4).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -231,6 +246,10 @@ public class Feedback {
     }
 
     public String getAverageScorePersian() {
+        if (averageScorePersian != null) {
+            if (averageScorePersian.equals("-"))
+                return "-";
+        }
         return BeheshtRayService.convertToEnglishDigits(BigDecimal.valueOf(averageScore).setScale(2, RoundingMode.HALF_UP).toString());
     }
 
@@ -259,7 +278,7 @@ public class Feedback {
     }
 
 
-    private String  studentScorePersian;
+    private String studentScorePersian;
 
     public String getStudentScorePersian() {
         return BeheshtRayService.convertToEnglishDigits(studentScore);
