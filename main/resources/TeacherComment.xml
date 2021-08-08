@@ -118,8 +118,13 @@
 
     <frame>
         <button height="50" width="200" padding="35" background="#225ab4" textsize="14" gravity="center"
-                textcolor="#fff" borderCornerRadius="5" onClick="command/make_poll_btn" margin="20">ارسال بازخورد</button>
+                textcolor="#fff" borderCornerRadius="5" onClick="update/make_poll_btn" margin="20">ارسال بازخورد</button>
     </frame>
+
+    <frame padding_bottom="10"/>
+
+
+    <text gravity="center" textcolor="red" id="error_msg" text=""/>
 
     <frame padding_bottom="10"/>
 

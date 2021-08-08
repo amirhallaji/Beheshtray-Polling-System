@@ -158,10 +158,7 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(searchPageEntity);
                     break;
 
-                case "make_poll_btn":
-                    view = new Score1();
-                    view.setMustacheModel(currentTeacherEntity);
-                    break;
+
 
                 case "teacher_information_tab":
                     view = new TeacherInfo();
@@ -518,6 +515,26 @@ public class BeheshtRayService extends APSService {
                     searchPageEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(searchPageEntity.teachers_list.size()));
                     view.setMustacheModel(searchPageEntity);
                     return view;
+
+                case "make_poll_btn":
+
+
+                    Boolean result = DbOperation.isThisFeedbackRepetitive(current_user.getUserId(), current_teacher.getTeachingId(), connection);
+
+                    if (result != null){
+                        if (result){
+                            update.addChildUpdate("error_msg", "text", "شما قبلا برای این درس بازخورد ثبت کرده\u200Cاید. ");
+                            return update;
+                        }else {
+                            view = new Score1();
+                            view.setMustacheModel(currentTeacherEntity);
+                            return view;
+                        }
+                    }
+                    break;
+
+
+
 
 
 //
