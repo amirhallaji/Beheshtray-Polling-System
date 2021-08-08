@@ -268,4 +268,14 @@ public class Feedback {
     public void setStudentScorePersian(String studentScorePersian) {
         this.studentScorePersian = studentScorePersian;
     }
+
+    private String numberOfParticipants;
+
+    public String getNumberOfParticipants() {
+        return BeheshtRayService.convertToEnglishDigits(numberOfParticipants);
+    }
+
+    public void setNumberOfParticipants(String numberOfParticipants) {
+        this.numberOfParticipants = numberOfParticipants;
+    }
 }

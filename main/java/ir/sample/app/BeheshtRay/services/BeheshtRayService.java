@@ -191,7 +191,7 @@ public class BeheshtRayService extends APSService {
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                     }
-                    currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks.size()));
+                    currentTeacherEntity.number = currentTeacherEntity.teacherFeedbacks.get(0).getNumberOfParticipants();
                     view.setMustacheModel(currentTeacherEntity);
 
 
@@ -494,7 +494,7 @@ public class BeheshtRayService extends APSService {
                         ArrayList<Feedback> feedbacks;
                         feedbacks = DbOperation.retrieveScoreByTeachingId(current_teacher.getTeachingId(), connection);
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
-                        currentTeacherEntity.number = BeheshtRayService.convertToEnglishDigits(String.valueOf(currentTeacherEntity.teacherFeedbacks != null ? currentTeacherEntity.teacherFeedbacks.size() : 0));
+                        currentTeacherEntity.number = currentTeacherEntity.teacherFeedbacks != null ? currentTeacherEntity.teacherFeedbacks.get(0).getNumberOfParticipants() : "0";
                         view.setMustacheModel(currentTeacherEntity);
                         return view;
                     }

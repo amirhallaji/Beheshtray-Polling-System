@@ -511,7 +511,7 @@ public class DbOperation {
     public static ArrayList<Feedback> retrieveScoreByTeachingId(int teachingId, Connection connection) {
         try {
 
-            String checkSql = "SELECT AVG(score_1) AS score_1, AVG(score_2) AS score_2, AVG(score_3) AS score_3, AVG(score_4) AS score_4, AVG((score_1 + score_2 + score_3 + score_4)/4.0) AS average FROM feedback WHERE teaching_id=? group by teaching_id";
+            String checkSql = "SELECT AVG(score_1) AS score_1, AVG(score_2) AS score_2, AVG(score_3) AS score_3, AVG(score_4) AS score_4, AVG((score_1 + score_2 + score_3 + score_4)/4.0) AS average , count(*) AS counter FROM feedback WHERE teaching_id=? group by teaching_id";
             PreparedStatement pstmt = connection.prepareStatement(checkSql);
             pstmt.setInt(1, teachingId);
             ResultSet resultSet = pstmt.executeQuery();
@@ -525,6 +525,7 @@ public class DbOperation {
             feedback.setScore3(resultSet.getDouble(3));
             feedback.setScore4(resultSet.getDouble(4));
             feedback.setAverageScore(resultSet.getDouble(5));
+            feedback.setNumberOfParticipants(resultSet.getString(6));
 
             feedbacks.add(feedback);
 
