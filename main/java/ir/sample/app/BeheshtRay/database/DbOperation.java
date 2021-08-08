@@ -605,7 +605,7 @@ public class DbOperation {
     }
 
 
-    public static Boolean retrieveVoteStatus(String userId, int feedbackId , Connection connection) {
+    public static Boolean retrieveVoteStatus(String userId, int feedbackId, Connection connection) {
 
         try {
 
@@ -624,7 +624,6 @@ public class DbOperation {
             boolean result = resultSet.getBoolean(1);
 
 
-
             pstmt.close();
             resultSet.close();
 
@@ -639,8 +638,7 @@ public class DbOperation {
     }
 
 
-
-    public static int applyUpVoteFeedback(int feedbackId,boolean isIncremental, Connection connection) {
+    public static int applyUpVoteFeedback(int feedbackId, boolean isIncremental, Connection connection) {
         try {
             String checkSql1 = isIncremental ? "UPDATE feedback SET up_votes = up_votes + 1 WHERE feedback_id=?" : "UPDATE feedback SET up_votes = up_votes - 1 WHERE feedback_id=?";
             PreparedStatement pstmt1 = connection.prepareStatement(checkSql1);
@@ -668,7 +666,7 @@ public class DbOperation {
     }
 
 
-    public static int applyDownVoteFeedback(int feedbackId,boolean isIncremental, Connection connection) {
+    public static int applyDownVoteFeedback(int feedbackId, boolean isIncremental, Connection connection) {
         try {
             String checkSql1 = isIncremental ? "UPDATE feedback SET down_votes = down_votes + 1 WHERE feedback_id=?" : "UPDATE feedback SET down_votes = down_votes - 1 WHERE feedback_id=?";
             PreparedStatement pstmt1 = connection.prepareStatement(checkSql1);
@@ -791,7 +789,7 @@ public class DbOperation {
         }
     }
 
-    public static ArrayList<Teacher> retrieveTheMostLeastCommentedLessons(int facultyId,boolean isMost, Connection connection) {
+    public static ArrayList<Teacher> retrieveTheMostLeastCommentedLessons(int facultyId, boolean isMost, Connection connection) {
         try {
 
             String checkSql = isMost ? "SELECT t.teaching_id, teacher_name, lesson_name, photo_url, count(*) AS count FROM teacher t INNER JOIN feedback f ON t.teaching_id = f.teaching_id WHERE t.faculty_id=? AND f.extended_feedback IS NOT NULL GROUP BY teacher_name, lesson_name,photo_url, t.teaching_id ORDER BY count DESC LIMIT 10" :
@@ -849,5 +847,41 @@ public class DbOperation {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static Boolean isThisFeedbackRepetitive(String userId, int teachingId, Connection connection) {
+        ResultSet resultSet = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            System.out.println(userId);
+            System.out.println(teachingId);
+            String checkSql = "SELECT feedback_id from feedback f WHERE f.user_id = ? AND f.teaching_id = ?";
+            pstmt = connection.prepareStatement(checkSql);
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, teachingId);
+            resultSet = pstmt.executeQuery();
+            resultSet.next();
+            resultSet.getInt(1);
+            resultSet.close();
+            pstmt.close();
+            System.out.println("here");
+            return true;
+
+        } catch (SQLException throwables) {
+            try {
+
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                return null;
+            }
+            return false;
+        }
+
     }
 }
