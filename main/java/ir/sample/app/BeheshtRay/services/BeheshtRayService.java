@@ -188,6 +188,7 @@ public class BeheshtRayService extends APSService {
                         feedback.setAverageScorePersian("بدون امتیاز");
                         feedbacks.add(feedback);
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
+                        System.out.println("here");
                     } else {
                         currentTeacherEntity.teacherFeedbacks = feedbacks;
                     }
@@ -413,15 +414,19 @@ public class BeheshtRayService extends APSService {
                         student.setStudentFacultyName(faculty);
                         student.setStudentGender(gender);
                         student.setStudentPhotoURL(gender);
+                        current_user = student;
+
                         if (updateCommand.equals("change_user_info")) {
                             DbOperation.updateUserInfo(student, connection);
+                            students.set(0, current_user);
+                            currentStudentEntity.currentStudent = students;
                         } else {
                             student.setUserKarma("0");
                             DbOperation.sendUserInfo(student, connection);
+                            students = new ArrayList<>();
+                            students.add(current_user);
+                            currentStudentEntity.currentStudent = students;
                         }
-                        current_user = student;
-                        students.set(0, current_user);
-                        currentStudentEntity.currentStudent = students;
 
                         return showHome();
                     }
