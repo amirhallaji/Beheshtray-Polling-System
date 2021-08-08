@@ -145,6 +145,10 @@
 
     {{/teacherFeedbacks}}
 
+    <frame gravity="center">
+        <text textsize="16" textcolor="gray" gravity="center" text="{{number}} رای"/>
+    </frame>
+
 
     <frame padding_bottom="10"/>
 

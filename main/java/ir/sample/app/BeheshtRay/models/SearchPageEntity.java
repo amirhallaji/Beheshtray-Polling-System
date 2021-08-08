@@ -6,4 +6,5 @@ public class SearchPageEntity {
 
 //    public ArrayList<Teacher> teachers_recent;
     public ArrayList<Teacher> teachers_list;
+    public String number;
 }

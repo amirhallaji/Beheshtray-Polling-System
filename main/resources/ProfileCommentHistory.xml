@@ -132,6 +132,11 @@
     <frame padding_bottom="10"/>
     {{/feedbacks}}
 
+
+    <frame gravity="center">
+        <text textsize="16" textcolor="gray" gravity="center" text="{{number}} مورد"/>
+    </frame>
+
     <footer background="#1E90FF">
         <frame layout="linear_vertical" background="#1E90FF" margin_left="-1" margin_right="-1" margin_top="-1"
                margin_bottom="-1" height="64">

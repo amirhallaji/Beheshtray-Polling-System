@@ -114,4 +114,9 @@
 
         </frame>
     </frame>
+
+    <frame gravity="center">
+        <text textsize="16" textcolor="gray" gravity="center" text="{{number}} مورد"/>
+    </frame>
+
 </page>
