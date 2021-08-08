@@ -288,6 +288,8 @@ public class BeheshtRayService extends APSService {
                     view.setMustacheModel(homePageEntity);
                     break;
 
+                case "sign_out_btn":
+
 
                 default:
                     students = DbOperation.retrieveStudentByUserId(userId, connection);
