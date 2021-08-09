@@ -67,6 +67,8 @@ public class DbOperation {
             ResultSet resultSet = pstmt1.executeQuery();
             resultSet.next();
             int reset = resultSet.getInt(1);
+            if (reset == 0)
+                reset = 1;
             pstmt1.close();
 
 
