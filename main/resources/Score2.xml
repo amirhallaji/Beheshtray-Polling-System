@@ -3,7 +3,7 @@
 
     {{#currentTeacher}}
     <frame>
-        <image src="{{photoURL}}" borderCornerRadius="120" height="164"
+        <image src="{{photoURL}}" borderCornerRadius="120" height="164" scaletype="center_crop"
                width="164"/>
     </frame>
 
